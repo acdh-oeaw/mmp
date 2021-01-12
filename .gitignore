@@ -1,0 +1,55 @@
+
+# Byte-compiled
+__pycache__/
+*.pyc
+
+# sqlite
+/*.sqlite3
+/*.sqlite3-journal
+
+# test coverage
+.coverage
+cover/
+
+cypress/
+cypress.json
+
+# IDE
+.idea
+.pip_cache
+
+# migrations
+vocabs/migrations/*
+bib/migrations/*
+webpage/migrations/*
+places/migrations/*
+
+
+# Ipython Notebook checkpoints
+.ipynb_checkpoints
+
+# production(like) settings files
+mysql.py
+server.py
+postgres.py
+dev_secret.py
+
+# documentation build files
+
+/docs/_*/*
+/vocabs/data/spreadsheets/cv_burial.xlsx
+/Untitled.ipynb
+/arche/data/fileType.json
+/arche/data/fileList.json
+/myenv
+node_modules
+
+
+# other things
+
+temp
+appcreator
+*.ipynb
+.vscode
+dev.py
+pg_local.py
