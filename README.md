@@ -5,21 +5,20 @@
 a generic djangobaseproject port of https://gitlab.com/acdh-oeaw/imafo/gens, created with following steps:
 
 * provide data-model mapping from gend-db-dump (gema_scire_2020-11-04.sql) as [gsheet](https://docs.google.com/spreadsheets/d/1A68SVvRjXECFHlDMcuUfE_BL2k7HfXFB9jQ-yr9EGdA/edit#gid=0)
-
 * run script `create_app_files.ipynb` to generate a django-app with the according
   * data model
   * views
-
 * run script `import.ipynb` to import data from legacy-db into djanog-db
 
 ## Install
 
-* clone the repo `git clone `https://github.com/acdh-oeaw/djangobaseproject.git {project-name}`
+* clone the repo `git clone https://gitlab.com/acdh-oeaw/imafo/gens-django.git`
 * [optional]
   * create a virtual env, e.g. `virtualenv myenv`
   * activate virtual env, e.g. `source myenv/bin/activate`
-* install needed packages `pip install -r requirements.txt`
-* created your custom settings-file, e.g. `pg_local`
+* install needed packages `pip install -r requirements.txt` (jupyter notebook requirements not incldued)
+* [optional]
+  * created your custom settings-file, e.g. `pg_local`
 
 ## Start
 
