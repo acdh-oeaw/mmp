@@ -9,7 +9,11 @@ from . forms import *
 from . tables import *
 from . models import (
     Autor,
-    Ort
+    Edition,
+    KeyWord,
+    Ort,
+    Stelle,
+    Text
 )
 from browsing.browsing_utils import (
     GenericListView, BaseCreateView, BaseUpdateView, BaseDetailView
@@ -64,6 +68,102 @@ class AutorDelete(DeleteView):
         return super(AutorDelete, self).dispatch(*args, **kwargs)
 
 
+class EditionListView(GenericListView):
+
+    model = Edition
+    filter_class = EditionListFilter
+    formhelper_class = EditionFilterFormHelper
+    table_class = EditionTable
+    init_columns = [
+        'id', 'zitat',
+    ]
+    enable_merge = True
+
+
+class EditionDetailView(BaseDetailView):
+
+    model = Edition
+    template_name = 'browsing/generic_detail.html'
+
+
+class EditionCreate(BaseCreateView):
+
+    model = Edition
+    form_class = EditionForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(EditionCreate, self).dispatch(*args, **kwargs)
+
+
+class EditionUpdate(BaseUpdateView):
+
+    model = Edition
+    form_class = EditionForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(EditionUpdate, self).dispatch(*args, **kwargs)
+
+
+class EditionDelete(DeleteView):
+    model = Edition
+    template_name = 'webpage/confirm_delete.html'
+    success_url = reverse_lazy('archiv:edition_browse')
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(EditionDelete, self).dispatch(*args, **kwargs)
+
+
+class KeyWordListView(GenericListView):
+
+    model = KeyWord
+    filter_class = KeyWordListFilter
+    formhelper_class = KeyWordFilterFormHelper
+    table_class = KeyWordTable
+    init_columns = [
+        'id', 'stichwort',
+    ]
+    enable_merge = True
+
+
+class KeyWordDetailView(BaseDetailView):
+
+    model = KeyWord
+    template_name = 'browsing/generic_detail.html'
+
+
+class KeyWordCreate(BaseCreateView):
+
+    model = KeyWord
+    form_class = KeyWordForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(KeyWordCreate, self).dispatch(*args, **kwargs)
+
+
+class KeyWordUpdate(BaseUpdateView):
+
+    model = KeyWord
+    form_class = KeyWordForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(KeyWordUpdate, self).dispatch(*args, **kwargs)
+
+
+class KeyWordDelete(DeleteView):
+    model = KeyWord
+    template_name = 'webpage/confirm_delete.html'
+    success_url = reverse_lazy('archiv:keyword_browse')
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(KeyWordDelete, self).dispatch(*args, **kwargs)
+
+
 class OrtListView(GenericListView):
 
     model = Ort
@@ -110,5 +210,101 @@ class OrtDelete(DeleteView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(OrtDelete, self).dispatch(*args, **kwargs)
+
+
+class StelleListView(GenericListView):
+
+    model = Stelle
+    filter_class = StelleListFilter
+    formhelper_class = StelleFilterFormHelper
+    table_class = StelleTable
+    init_columns = [
+        'id', 'legacy_pk',
+    ]
+    enable_merge = True
+
+
+class StelleDetailView(BaseDetailView):
+
+    model = Stelle
+    template_name = 'browsing/generic_detail.html'
+
+
+class StelleCreate(BaseCreateView):
+
+    model = Stelle
+    form_class = StelleForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(StelleCreate, self).dispatch(*args, **kwargs)
+
+
+class StelleUpdate(BaseUpdateView):
+
+    model = Stelle
+    form_class = StelleForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(StelleUpdate, self).dispatch(*args, **kwargs)
+
+
+class StelleDelete(DeleteView):
+    model = Stelle
+    template_name = 'webpage/confirm_delete.html'
+    success_url = reverse_lazy('archiv:stelle_browse')
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(StelleDelete, self).dispatch(*args, **kwargs)
+
+
+class TextListView(GenericListView):
+
+    model = Text
+    filter_class = TextListFilter
+    formhelper_class = TextFilterFormHelper
+    table_class = TextTable
+    init_columns = [
+        'id', 'title',
+    ]
+    enable_merge = True
+
+
+class TextDetailView(BaseDetailView):
+
+    model = Text
+    template_name = 'browsing/generic_detail.html'
+
+
+class TextCreate(BaseCreateView):
+
+    model = Text
+    form_class = TextForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(TextCreate, self).dispatch(*args, **kwargs)
+
+
+class TextUpdate(BaseUpdateView):
+
+    model = Text
+    form_class = TextForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(TextUpdate, self).dispatch(*args, **kwargs)
+
+
+class TextDelete(DeleteView):
+    model = Text
+    template_name = 'webpage/confirm_delete.html'
+    success_url = reverse_lazy('archiv:text_browse')
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(TextDelete, self).dispatch(*args, **kwargs)
 
 

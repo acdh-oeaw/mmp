@@ -10,8 +10,28 @@ urlpatterns = [
         name='autor-autocomplete'
     ),
     url(
+        r'^edition-autocomplete/$',
+        dal_views.EditionAC.as_view(),
+        name='edition-autocomplete'
+    ),
+    url(
+        r'^keyword-autocomplete/$',
+        dal_views.KeyWordAC.as_view(),
+        name='keyword-autocomplete'
+    ),
+    url(
         r'^ort-autocomplete/$',
         dal_views.OrtAC.as_view(),
         name='ort-autocomplete'
+    ),
+    url(
+        r'^stelle-autocomplete/$',
+        dal_views.StelleAC.as_view(),
+        name='stelle-autocomplete'
+    ),
+    url(
+        r'^text-autocomplete/$',
+        dal_views.TextAC.as_view(),
+        name='text-autocomplete'
     ),
 ]

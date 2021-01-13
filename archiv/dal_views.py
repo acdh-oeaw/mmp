@@ -16,6 +16,30 @@ class AutorAC(autocomplete.Select2QuerySetView):
         return qs
 
 
+class EditionAC(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = Edition.objects.all()
+
+        if self.q:
+            qs = qs.filter(
+                Q(legacy_id__icontains=self.q) |
+                Q(zitat__icontains=self.q)
+            )
+        return qs
+
+
+class KeyWordAC(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = KeyWord.objects.all()
+
+        if self.q:
+            qs = qs.filter(
+                Q(legacy_id__icontains=self.q) |
+                Q(stichwort__icontains=self.q)
+            )
+        return qs
+
+
 class OrtAC(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         qs = Ort.objects.all()
@@ -24,6 +48,30 @@ class OrtAC(autocomplete.Select2QuerySetView):
             qs = qs.filter(
                 Q(legacy_id__icontains=self.q) |
                 Q(name__icontains=self.q)
+            )
+        return qs
+
+
+class StelleAC(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = Stelle.objects.all()
+
+        if self.q:
+            qs = qs.filter(
+                Q(legacy_id__icontains=self.q) |
+                Q(legacy_pk__icontains=self.q)
+            )
+        return qs
+
+
+class TextAC(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = Text.objects.all()
+
+        if self.q:
+            qs = qs.filter(
+                Q(legacy_id__icontains=self.q) |
+                Q(title__icontains=self.q)
             )
         return qs
 

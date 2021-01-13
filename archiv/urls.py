@@ -29,6 +29,54 @@ urlpatterns = [
         views.AutorDelete.as_view(),
         name='autor_delete'),
     url(
+        r'^edition/$',
+        views.EditionListView.as_view(),
+        name='edition_browse'
+    ),
+    url(
+        r'^edition/detail/(?P<pk>[0-9]+)$',
+        views.EditionDetailView.as_view(),
+        name='edition_detail'
+    ),
+    url(
+        r'^edition/create/$',
+        views.EditionCreate.as_view(),
+        name='edition_create'
+    ),
+    url(
+        r'^edition/edit/(?P<pk>[0-9]+)$',
+        views.EditionUpdate.as_view(),
+        name='edition_edit'
+    ),
+    url(
+        r'^edition/delete/(?P<pk>[0-9]+)$',
+        views.EditionDelete.as_view(),
+        name='edition_delete'),
+    url(
+        r'^keyword/$',
+        views.KeyWordListView.as_view(),
+        name='keyword_browse'
+    ),
+    url(
+        r'^keyword/detail/(?P<pk>[0-9]+)$',
+        views.KeyWordDetailView.as_view(),
+        name='keyword_detail'
+    ),
+    url(
+        r'^keyword/create/$',
+        views.KeyWordCreate.as_view(),
+        name='keyword_create'
+    ),
+    url(
+        r'^keyword/edit/(?P<pk>[0-9]+)$',
+        views.KeyWordUpdate.as_view(),
+        name='keyword_edit'
+    ),
+    url(
+        r'^keyword/delete/(?P<pk>[0-9]+)$',
+        views.KeyWordDelete.as_view(),
+        name='keyword_delete'),
+    url(
         r'^ort/$',
         views.OrtListView.as_view(),
         name='ort_browse'
@@ -52,4 +100,52 @@ urlpatterns = [
         r'^ort/delete/(?P<pk>[0-9]+)$',
         views.OrtDelete.as_view(),
         name='ort_delete'),
+    url(
+        r'^stelle/$',
+        views.StelleListView.as_view(),
+        name='stelle_browse'
+    ),
+    url(
+        r'^stelle/detail/(?P<pk>[0-9]+)$',
+        views.StelleDetailView.as_view(),
+        name='stelle_detail'
+    ),
+    url(
+        r'^stelle/create/$',
+        views.StelleCreate.as_view(),
+        name='stelle_create'
+    ),
+    url(
+        r'^stelle/edit/(?P<pk>[0-9]+)$',
+        views.StelleUpdate.as_view(),
+        name='stelle_edit'
+    ),
+    url(
+        r'^stelle/delete/(?P<pk>[0-9]+)$',
+        views.StelleDelete.as_view(),
+        name='stelle_delete'),
+    url(
+        r'^text/$',
+        views.TextListView.as_view(),
+        name='text_browse'
+    ),
+    url(
+        r'^text/detail/(?P<pk>[0-9]+)$',
+        views.TextDetailView.as_view(),
+        name='text_detail'
+    ),
+    url(
+        r'^text/create/$',
+        views.TextCreate.as_view(),
+        name='text_create'
+    ),
+    url(
+        r'^text/edit/(?P<pk>[0-9]+)$',
+        views.TextUpdate.as_view(),
+        name='text_edit'
+    ),
+    url(
+        r'^text/delete/(?P<pk>[0-9]+)$',
+        views.TextDelete.as_view(),
+        name='text_delete'),
 ]

@@ -5,7 +5,11 @@ from django_tables2.utils import A
 from browsing.browsing_utils import MergeColumn
 from . models import (
     Autor,
-    Ort
+    Edition,
+    KeyWord,
+    Ort,
+    Stelle,
+    Text
 )
 
 
@@ -20,6 +24,28 @@ class AutorTable(tables.Table):
         attrs = {"class": "table table-responsive table-hover"}
 
 
+class EditionTable(tables.Table):
+
+    id = tables.LinkColumn(verbose_name='ID')
+    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+
+    class Meta:
+        model = Edition
+        sequence = ('id',)
+        attrs = {"class": "table table-responsive table-hover"}
+
+
+class KeyWordTable(tables.Table):
+
+    id = tables.LinkColumn(verbose_name='ID')
+    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+
+    class Meta:
+        model = KeyWord
+        sequence = ('id',)
+        attrs = {"class": "table table-responsive table-hover"}
+
+
 class OrtTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name='ID')
@@ -27,6 +53,32 @@ class OrtTable(tables.Table):
 
     class Meta:
         model = Ort
+        sequence = ('id',)
+        attrs = {"class": "table table-responsive table-hover"}
+
+
+class StelleTable(tables.Table):
+
+    id = tables.LinkColumn(verbose_name='ID')
+    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    key_word = tables.columns.ManyToManyColumn()
+
+    class Meta:
+        model = Stelle
+        sequence = ('id',)
+        attrs = {"class": "table table-responsive table-hover"}
+
+
+class TextTable(tables.Table):
+
+    id = tables.LinkColumn(verbose_name='ID')
+    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    autor = tables.columns.ManyToManyColumn()
+    edition = tables.columns.ManyToManyColumn()
+    ort = tables.columns.ManyToManyColumn()
+
+    class Meta:
+        model = Text
         sequence = ('id',)
         attrs = {"class": "table table-responsive table-hover"}
 

@@ -2,7 +2,15 @@
 from django.contrib import admin
 from . models import (
     Autor,
-    Ort
+    Edition,
+    KeyWord,
+    Ort,
+    Stelle,
+    Text
 )
 admin.site.register(Autor)
+admin.site.register(Edition)
+admin.site.register(KeyWord)
 admin.site.register(Ort)
+admin.site.register(Stelle)
+admin.site.register(Text)
