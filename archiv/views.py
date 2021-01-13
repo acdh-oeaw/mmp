@@ -306,5 +306,3 @@ class TextDelete(DeleteView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(TextDelete, self).dispatch(*args, **kwargs)
-
-

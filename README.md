@@ -1,20 +1,25 @@
-[![DOI](https://zenodo.org/badge/95352230.svg)](https://zenodo.org/badge/latestdoi/95352230)
-
-# Django Base Project
+# gens django
 
 ## About
 
-As the name suggests, this is a basic Django project. The idea of this base project is mainly to bootstrap the web application development process through setting up such a Django Base Project which already provides a couple of Django apps providing quite generic functionalities needed for building web application bound to the Digital Humanities Domain.
+a generic djangobaseproject port of https://gitlab.com/acdh-oeaw/imafo/gens, created with following steps:
+
+* provide data-model mapping from gend-db-dump (gema_scire_2020-11-04.sql) as [gsheet](https://docs.google.com/spreadsheets/d/1A68SVvRjXECFHlDMcuUfE_BL2k7HfXFB9jQ-yr9EGdA/edit#gid=0)
+
+* run script `create_app_files.ipynb` to generate a django-app with the according
+  * data model
+  * views
+
+* run script `import.ipynb` to import data from legacy-db into djanog-db
 
 ## Install
 
 * clone the repo `git clone `https://github.com/acdh-oeaw/djangobaseproject.git {project-name}`
-* cd into into {project-name}: `cd {project-name}`
-* remove existing git-repo: `rm -rf .git`
 * [optional]
   * create a virtual env, e.g. `virtualenv myenv`
   * activate virtual env, e.g. `source myenv/bin/activate`
 * install needed packages `pip install -r requirements.txt`
+* created your custom settings-file, e.g. `pg_local`
 
 ## Start
 
@@ -22,6 +27,12 @@ As the name suggests, this is a basic Django project. The idea of this base proj
 * start dev-server `python manage.py runserver ---settings=djangobaseproject.settings.dev`
 * open http://127.0.0.1:8000/
 
+# ToDos
+
+* write customize import scripts for few data points
+* customize look of the application
+* add API
+  * which could be done in a generic way by expanding `appcreator` -> any new app created with this code would benefit from this
 
 # included packages
 

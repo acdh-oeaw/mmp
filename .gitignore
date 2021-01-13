@@ -48,7 +48,6 @@ node_modules
 # other things
 
 temp
-*.ipynb
 .vscode
 dev.py
 pg_local.py
