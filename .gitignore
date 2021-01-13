@@ -48,7 +48,6 @@ node_modules
 # other things
 
 temp
-appcreator
 *.ipynb
 .vscode
 dev.py
