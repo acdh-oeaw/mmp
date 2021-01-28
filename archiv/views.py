@@ -35,7 +35,7 @@ class AutorListView(GenericListView):
 class AutorDetailView(BaseDetailView):
 
     model = Autor
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'browsing/generic_detail.html'
 
 
 class AutorCreate(BaseCreateView):
@@ -83,7 +83,7 @@ class EditionListView(GenericListView):
 class EditionDetailView(BaseDetailView):
 
     model = Edition
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'browsing/generic_detail.html'
 
 
 class EditionCreate(BaseCreateView):
@@ -131,7 +131,7 @@ class KeyWordListView(GenericListView):
 class KeyWordDetailView(BaseDetailView):
 
     model = KeyWord
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'browsing/generic_detail.html'
 
 
 class KeyWordCreate(BaseCreateView):
@@ -179,7 +179,7 @@ class OrtListView(GenericListView):
 class OrtDetailView(BaseDetailView):
 
     model = Ort
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'browsing/generic_detail.html'
 
 
 class OrtCreate(BaseCreateView):
@@ -227,7 +227,7 @@ class StelleListView(GenericListView):
 class StelleDetailView(BaseDetailView):
 
     model = Stelle
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'browsing/generic_detail.html'
 
 
 class StelleCreate(BaseCreateView):
@@ -275,7 +275,7 @@ class TextListView(GenericListView):
 class TextDetailView(BaseDetailView):
 
     model = Text
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'browsing/generic_detail.html'
 
 
 class TextCreate(BaseCreateView):
@@ -306,3 +306,5 @@ class TextDelete(DeleteView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(TextDelete, self).dispatch(*args, **kwargs)
+
+

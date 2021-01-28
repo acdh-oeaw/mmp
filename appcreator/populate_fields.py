@@ -1,7 +1,11 @@
 import datetime
 from dateutil.parser import parse
 from pandas import pandas as pd
-from vocabs.models import SkosCollection
+from vocabs.models import SkosCollection, SkosConceptScheme
+
+DEFAULT_SCHEME, _ = SkosConceptScheme.objects.get_or_create(
+    title='fallback_scheme'
+)
 
 
 def pop_char_field(temp_item, row, cur_attr, max_length=249, fd=None):
@@ -24,7 +28,8 @@ def pop_char_field(temp_item, row, cur_attr, max_length=249, fd=None):
 def pop_text_field(temp_item, row, cur_attr, fd=None):
     """ adds value to TextField on the current temp_item
         :param temp_item: a model class object
-        :param row: A pandas DataFrame row with column names matching the items field names
+        :param row: A pandas DataFrame row with column names matching\
+            the items field names
         :param cur_attr: field name of the temp_item object
         :return: The temp_item
     """
@@ -40,7 +45,8 @@ def pop_text_field(temp_item, row, cur_attr, fd=None):
 def pop_int_field(temp_item, row, cur_attr, fd=None):
     """ adds value to TextField on the current temp_item
         :param temp_item: a model class object
-        :param row: A pandas DataFrame row with column names matching the items field names
+        :param row: A pandas DataFrame row with column names matching\
+            the items field names
         :param cur_attr: field name of the temp_item object
         :return: The temp_item
     """
@@ -56,7 +62,8 @@ def pop_int_field(temp_item, row, cur_attr, fd=None):
 def pop_float_field(temp_item, row, cur_attr, fd=None):
     """ adds value to FloatField on the current temp_item
         :param temp_item: a model class object
-        :param row: A pandas DataFrame row with column names matching the items field names
+        :param row: A pandas DataFrame row with column names matching\
+            the items field names
         :param cur_attr: field name of the temp_item object
         :return: The temp_item
     """
@@ -73,7 +80,8 @@ def pop_fk_field(current_class, temp_item, row, cur_attr, fd=None, source_name=F
     """ adds value to ForeignKey Field on the current temp_item
         :param current_class: a model class
         :param temp_item: a model class object
-        :param row: A pandas DataFrame row with column names matching the items field names
+        :param row: A pandas DataFrame row with column names matching\
+            the items field names
         :param cur_attr: field name of the temp_item object
         :param cur_field: the index number of the current collection
         :return: The temp_item
@@ -83,23 +91,29 @@ def pop_fk_field(current_class, temp_item, row, cur_attr, fd=None, source_name=F
     rel_model_name = fk.related_model._meta.model_name
     try:
         my_val = float(row[lookup_val])
-    except Exception as e:
+    except (ValueError, TypeError):
         my_val = row[lookup_val]
     if rel_model_name == 'skosconcept':
         legacy_id = f"{cur_attr}__{my_val}".strip().lower()
     else:
         legacy_id = f"{my_val}".strip()
     if rel_model_name == 'skosconcept':
-        pass
+        temp_rel_obj, _ = fk.related_model.objects.get_or_create(
+            legacy_id=legacy_id,
+            scheme=DEFAULT_SCHEME
+        )
     else:
         temp_rel_obj, _ = fk.related_model.objects.get_or_create(
             legacy_id=legacy_id
         )
-    # if rel_model_name == 'skosconcept':
-    #     temp_rel_obj.pref_label = f"{row[lookup_val]}".strip().lower()
-    #     col, _ = SkosCollection.objects.get_or_create(name=f"{cur_attr}")
-    #     temp_rel_obj.collection.add(col)
-    #     temp_rel_obj.save()
+    if rel_model_name == 'skosconcept':
+        temp_rel_obj.pref_label = f"{row[lookup_val]}".strip().lower()
+        col, _ = SkosCollection.objects.get_or_create(
+            name=f"{cur_attr}",
+            scheme=DEFAULT_SCHEME
+        )
+        temp_rel_obj.collection.add(col)
+        temp_rel_obj.save()
         setattr(temp_item, cur_attr, temp_rel_obj)
     return temp_item
 
@@ -108,7 +122,8 @@ def pop_m2m_field(current_class, temp_item, row, cur_attr, sep='|', fd=None, sou
     """ adds value to ManyToMany Field on the current temp_item
         :param current_class: a model class
         :param temp_item: a model class object
-        :param row: A pandas DataFrame row with column names matching the items field names
+        :param row: A pandas DataFrame row with column names matching\
+            the items field names
         :param cur_attr: field name of the temp_item object
         :param col_counter: the index number of the current collection
         :return: The temp_item
@@ -125,11 +140,15 @@ def pop_m2m_field(current_class, temp_item, row, cur_attr, sep='|', fd=None, sou
         except ValueError:
             legacy_id = f"{(row[lookup_val])}".strip().lower()
     if rel_model_name == 'skosconcept':
-        col, _ = SkosCollection.objects.get_or_create(name=f"{cur_attr}")
+        col, _ = SkosCollection.objects.get_or_create(
+            name=f"{cur_attr}",
+            scheme=DEFAULT_SCHEME
+        )
         rel_things = []
         for x in row[lookup_val].split(sep):
             temp_rel_obj, _ = fk.related_model.objects.get_or_create(
-                legacy_id=legacy_id
+                legacy_id=legacy_id,
+                scheme=DEFAULT_SCHEME
             )
             temp_rel_obj.pref_label = f"{row[lookup_val]}".strip().lower()
             temp_rel_obj.collection.add(col)
@@ -155,7 +174,8 @@ def pop_m2m_field(current_class, temp_item, row, cur_attr, sep='|', fd=None, sou
 def pop_date_field(temp_item, row, cur_attr, fd=None):
     """ adds value to DateField on the current temp_item
         :param temp_item: a model class object
-        :param row: A pandas DataFrame row with column names matching the items field names
+        :param row: A pandas DataFrame row with column names matching\
+            the items field names
         :param cur_attr: field name of the temp_item object
         :return: The temp_itemplaces
     """
@@ -170,7 +190,8 @@ def pop_date_field(temp_item, row, cur_attr, fd=None):
         try:
             value = parse(row[lookup_val])
         except Exception as e:
-            # print(f"{row[lookup_val]} for field: {cur_attr} could not be parsed, due to Error: {e}")
+            # print(f"{row[lookup_val]} for field: {cur_attr} could not be\
+            # parsed, due to Error: {e}")
             value = None
     elif pd.isnull(row[lookup_val]):
         value = None
@@ -182,7 +203,8 @@ def pop_date_field(temp_item, row, cur_attr, fd=None):
 def pop_date_range_field(temp_item, row, cur_attr, sep="|", fd=None):
     """ adds value to DateRangeField on the current temp_item
         :param temp_item: a model class object
-        :param row: A pandas DataFrame row with column names matching the items field names
+        :param row: A pandas DataFrame row with column names matching\
+            the items field names
         :param cur_attr: field name of the temp_item object
         :param sep: The separator used between start and end date
         :return: The temp_item
