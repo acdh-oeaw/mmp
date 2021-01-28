@@ -323,6 +323,12 @@ class KeyWord(models.Model):
         is_public=True,
         data_lookup="start",
     )
+    varianten = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="Varianten",
+        help_text="Varianten, bitte mit ';' trennen"
+    )
     wurzel = models.CharField(
         max_length=250,
         blank=True,
@@ -350,12 +356,12 @@ class KeyWord(models.Model):
         )
 
     class Meta:
-        
+
         ordering = [
             'stichwort',
         ]
         verbose_name = "Keyword"
-    
+
     def __str__(self):
         if self.stichwort:
             return "{}".format(self.stichwort)
