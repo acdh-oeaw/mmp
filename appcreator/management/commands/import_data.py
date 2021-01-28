@@ -8,10 +8,10 @@ import json
 from tqdm import tqdm
 import pandas as pd
 from django.core.serializers.json import DjangoJSONEncoder
-from archiv.models import KeyWord
+from archiv.models import KeyWord, Stelle
 
 
-dbc = settings.LEGACY_DB_CONNECTION 
+dbc = settings.LEGACY_DB_CONNECTION
 db_connection_str = f"mysql+pymysql://{dbc['USER']}:{dbc['PASSWORD']}@{dbc['HOST']}/{dbc['NAME']}"
 db_connection = create_engine(db_connection_str)
 
@@ -23,7 +23,7 @@ class Command(BaseCommand):
         run_import(
             'archiv',
             file_class_map_dict=None,
-            limit=50
+            limit=False
         )
         self.stdout.write(
             self.style.SUCCESS(
@@ -51,3 +51,48 @@ class Command(BaseCommand):
             row_data = f"{json.dumps(row.to_dict(), cls=DjangoJSONEncoder)}"
             item.orig_data_csv = row_data
             item.save()
+
+        self.stdout.write(
+            self.style.SUCCESS(
+                'link Stelle with KeyWords'
+            )
+        )
+        query = "SELECT * FROM stelle"
+        df = pd.read_sql(query, con=db_connection)
+        stichwort_list = [x for x in list(df.keys()) if x.startswith('sstich')]
+        ambique = []
+        no_match = []
+        for i, row in df.iterrows():
+            if row['sid']:
+                try:
+                    item = Stelle.objects.get(legacy_pk=row['sid'])
+                except:
+                    continue
+                for st in stichwort_list:
+                    if row[st] != "":
+                        lookup = row[st].strip()
+                        kws = KeyWord.objects.filter(stichwort=lookup)
+                        if len(kws) == 1:
+                            item.key_word.add(*kws)
+                        else:
+                            kws = KeyWord.objects.filter(
+                                    varianten__contains=lookup
+                                )
+                            if len(kws) == 1:
+                                item.key_word.add(*kws)
+                            elif len(kws) > 1:
+                                ambique.append(lookup)
+                            else:
+                                no_match.append(lookup)
+                    else:
+                        continue
+        self.stdout.write(
+            self.style.WARNING(
+                f'ambigue:{set(ambique)}'
+            )
+        )
+        self.stdout.write(
+            self.style.WARNING(
+                f'no matching KeyWord:{set(no_match)}'
+            )
+        )
