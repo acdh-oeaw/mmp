@@ -17,7 +17,7 @@ models.Field.set_extra = set_extra
 
 
 class Autor(models.Model):
-    ### Autor ###
+    """ Autor """
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -203,7 +203,7 @@ class Autor(models.Model):
 
 
 class Edition(models.Model):
-    ### Edition ###
+    """ Edition """
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -289,7 +289,7 @@ class Edition(models.Model):
 
 
 class KeyWord(models.Model):
-    ### Keyword ###
+    """ Keyword """
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -368,16 +368,15 @@ class KeyWord(models.Model):
     @classmethod
     def get_listview_url(self):
         return reverse('archiv:keyword_browse')
-    
+
     @classmethod
     def get_source_table(self):
-        return "stichworte"
-    
-    
+        return None
+
     @classmethod
     def get_natural_primary_key(self):
         return "stichwort"
-    
+
     @classmethod
     def get_createview_url(self):
         return reverse('archiv:keyword_create')
@@ -414,7 +413,7 @@ class KeyWord(models.Model):
 
 
 class Ort(models.Model):
-    ### Ort ###
+    """ Ort """
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -601,7 +600,7 @@ class Ort(models.Model):
 
 
 class Stelle(models.Model):
-    ### Stelle ###
+    """ Stelle """
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -662,7 +661,6 @@ class Stelle(models.Model):
         help_text="Stichwort",
     ).set_extra(
         is_public=True,
-        data_lookup="sstichwort1",
         arche_prop="hasSubject",
     )
     kommentar = models.TextField(
@@ -701,16 +699,15 @@ class Stelle(models.Model):
     @classmethod
     def get_listview_url(self):
         return reverse('archiv:stelle_browse')
-    
+
     @classmethod
     def get_source_table(self):
         return "stelle"
-    
-    
+
     @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
-    
+
     @classmethod
     def get_createview_url(self):
         return reverse('archiv:stelle_create')
@@ -747,7 +744,7 @@ class Stelle(models.Model):
 
 
 class Text(models.Model):
-    ### Text ###
+    """ Text """
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
@@ -891,9 +888,6 @@ class Text(models.Model):
     @classmethod
     def get_createview_url(self):
         return reverse('archiv:text_create')
-
-    def get_absolute_url(self):
-        return reverse('archiv:text_detail', kwargs={'pk': self.id})
 
     def get_absolute_url(self):
         return reverse('archiv:text_detail', kwargs={'pk': self.id})

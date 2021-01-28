@@ -151,7 +151,7 @@ def run_import(
                     )
                 except ValueError:
                     temp_item, _ = current_class.objects.get_or_create(
-                        legacy_id=f"{row[legacy_id_source_field]}".strip()
+                        legacy_id=f"{row[legacy_id_source_field]}".strip().lower()
                     )
                 row_data = f"{json.dumps(row.to_dict(), cls=DjangoJSONEncoder)}"
                 temp_item.orig_data_csv = row_data
@@ -230,8 +230,8 @@ def delete_all(app_name):
     print(app_name)
     all_models = fetch_models(app_name)
     print(all_models)
-    for x in all_models:
-        for y in x.objects.all():
+    for x in tqdm(all_models, total=len(all_models)):
+        for y in tqdm(x.objects.all(), total=len(x.objects.all())):
             y.delete()
 
 
@@ -261,7 +261,7 @@ def import_m2m_tables(app_name, m2m_df, db_connection):
             if '#' in source:
                 continue
             cur_model_attr = row['field name technical']
-            table, prop_1, prop_2 =  source.split('___')
+            table, prop_1, prop_2 = source.split('___')
             print(f"cur_model_attr: {cur_model_attr}; table: {table}; prop 1: {prop_1}")
             query = f"SELECT * FROM {table}"
             data_source = pd.read_sql(query, con=db_connection).dropna()

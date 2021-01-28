@@ -10,7 +10,7 @@ class Command(BaseCommand):
         sheet_id = settings.SHEET_ID
         df = creator.gsheet_to_df(sheet_id)
         dicts = [x for x in creator.df_to_classdicts(df)]
-        app_name = 'archiv'
+        app_name = 'myarchiv'
         creator.serialize_dal_views(
             dicts, app_name=app_name, file_name=f"{app_name}/dal_views.py"
         )
