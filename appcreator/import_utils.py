@@ -151,7 +151,7 @@ def run_import(
                     )
                 except ValueError:
                     temp_item, _ = current_class.objects.get_or_create(
-                        legacy_id=f"{row[legacy_id_source_field]}".strip().lower()
+                        legacy_id=f"{row[legacy_id_source_field]}".strip()
                     )
                 row_data = f"{json.dumps(row.to_dict(), cls=DjangoJSONEncoder)}"
                 temp_item.orig_data_csv = row_data

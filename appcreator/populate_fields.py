@@ -76,7 +76,10 @@ def pop_float_field(temp_item, row, cur_attr, fd=None):
     return temp_item
 
 
-def pop_fk_field(current_class, temp_item, row, cur_attr, fd=None, source_name=False):
+def pop_fk_field(
+        current_class, temp_item, row,
+        cur_attr, fd=None, source_name=False
+    ):
     """ adds value to ForeignKey Field on the current temp_item
         :param current_class: a model class
         :param temp_item: a model class object
@@ -114,7 +117,7 @@ def pop_fk_field(current_class, temp_item, row, cur_attr, fd=None, source_name=F
         )
         temp_rel_obj.collection.add(col)
         temp_rel_obj.save()
-        setattr(temp_item, cur_attr, temp_rel_obj)
+    setattr(temp_item, cur_attr, temp_rel_obj)
     return temp_item
 
 

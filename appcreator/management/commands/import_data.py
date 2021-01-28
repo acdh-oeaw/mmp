@@ -62,7 +62,7 @@ class Command(BaseCommand):
         stichwort_list = [x for x in list(df.keys()) if x.startswith('sstich')]
         ambique = []
         no_match = []
-        for i, row in df.iterrows():
+        for i, row in tqdm(df.iterrows(), total=len(df)):
             if row['sid']:
                 try:
                     item = Stelle.objects.get(legacy_pk=row['sid'])
@@ -70,7 +70,10 @@ class Command(BaseCommand):
                     continue
                 for st in stichwort_list:
                     if row[st] != "":
-                        lookup = row[st].strip()
+                        try:
+                            lookup = row[st].strip()
+                        except AttributeError:
+                            continue
                         kws = KeyWord.objects.filter(stichwort=lookup)
                         if len(kws) == 1:
                             item.key_word.add(*kws)

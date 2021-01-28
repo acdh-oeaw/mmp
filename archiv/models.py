@@ -687,12 +687,12 @@ class Stelle(models.Model):
         )
 
     class Meta:
-        
+
         ordering = [
             'legacy_pk',
         ]
         verbose_name = "Stelle"
-    
+
     def __str__(self):
         if self.legacy_pk:
             return "{}".format(self.legacy_pk)
@@ -863,12 +863,12 @@ class Text(models.Model):
         )
 
     class Meta:
-        
+
         ordering = [
             'title',
         ]
         verbose_name = "Text"
-    
+
     def __str__(self):
         if self.title:
             return "{}".format(self.title)
@@ -881,11 +881,10 @@ class Text(models.Model):
     @classmethod
     def get_listview_url(self):
         return reverse('archiv:text_browse')
-    
+
     @classmethod
     def get_source_table(self):
         return "text"
-    
     
     @classmethod
     def get_natural_primary_key(self):
