@@ -4,11 +4,26 @@
 
 a generic djangobaseproject port of https://gitlab.com/acdh-oeaw/imafo/gens, created with following steps:
 
+### create custom app/datamodel
+
 * provide data-model mapping from gend-db-dump (gema_scire_2020-11-04.sql) as [gsheet](https://docs.google.com/spreadsheets/d/1A68SVvRjXECFHlDMcuUfE_BL2k7HfXFB9jQ-yr9EGdA/edit#gid=0)
-* run script `create_app_files.ipynb` to generate a django-app with the according
+* add the sheet-id to settings, e.g. `SHEET_ID = 'theidofthegsheetneedstobereadableforanyone-yr9EGdA`'
+* run `python manage.py create_files --settings=djangobaseproject.settings.pg_local` to create application files:
   * data model
   * views
-* run script `import.ipynb` to import data from legacy-db into djanog-db
+
+### import legacy data
+* add legacy-db connection info to settings, e.g. 
+```
+LEGACY_DB_CONNECTION = {
+    'NAME': 'legacy_db_name',
+    'USER': 'legacy_db_user',
+    'PASSWORD': 'legacy_db_pw',
+    'HOST': 'localhost',
+    'PORT': '3306'
+}
+```
+* run script `python manage.py import_data --settings=djangobaseproject.settings.pg_local` to import data from legacy-db into djanog-db
 
 ## Install
 

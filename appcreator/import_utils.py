@@ -1,10 +1,10 @@
 import glob
 import json
 
+from tqdm import tqdm
 from sqlalchemy import create_engine
 
 from django.core.serializers.json import DjangoJSONEncoder
-
 from django.apps import apps
 from django.conf import settings
 from django.core.exceptions import FieldDoesNotExist
@@ -12,7 +12,7 @@ from django.core.exceptions import FieldDoesNotExist
 from pandas import pandas as pd
 from acdh_geonames_utils import acdh_geonames_utils as gn
 
-from . populate_fields import *
+from appcreator.populate_fields import *
 
 
 dbc = settings.LEGACY_DB_CONNECTION
@@ -109,7 +109,7 @@ def run_import(
         print("new file class created")
         file_class_map = get_class_sources_map(app_name)
         print(file_class_map)
-    for current_class in fetch_models(app_name):
+    for current_class in tqdm(fetch_models(app_name), total=len(fetch_models(app_name))):
         model_name = current_class.__name__
         print(model_name)
         try:
@@ -144,7 +144,7 @@ def run_import(
             legacy_id_source_field = field_mapping_inverse_dict[legacy_id_field]
             if limit:
                 df_data = df_data.head(limit)
-            for i, row in df_data.iterrows():
+            for i, row in tqdm(df_data.iterrows(), total=len(df_data)):
                 try:
                     temp_item, _ = current_class.objects.get_or_create(
                         legacy_id=f"{float(row[legacy_id_source_field])}".lower().strip()
@@ -164,7 +164,7 @@ def run_import(
                             cur_attr
                         ).get_internal_type()
                     except FieldDoesNotExist:
-                        print(f"Field: {cur_attr} does not exist")
+                        # print(f"Field: {cur_attr} does not exist")
                         cur_attr_type = None
                     if cur_attr_type is not None:
                         # print("{}".format(cur_attr_type))
