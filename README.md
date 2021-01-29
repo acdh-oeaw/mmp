@@ -95,3 +95,7 @@ REDMINE_ID=12345
 ```
 
 `docker run -it -p 8020:8020 --rm --env-file .env_dev mmp:latest`
+
+### or use published image:
+
+`docker run -it -p 8020:8020 --rm --env-file .env_dev acdhch/mmp:latest`

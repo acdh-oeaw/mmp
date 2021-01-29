@@ -20,3 +20,4 @@ env
 logs
 pg_local.py
 Dockerfile
+server.py

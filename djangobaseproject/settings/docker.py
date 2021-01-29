@@ -4,7 +4,7 @@ from .base import *
 SECRET_KEY = os.environ.get('SECRET_KEY', '1234verysecret')
 
 DEBUG = os.environ.get('DEBUG', True)
-REDMINE_ID = os.environ.get('REDMINE_ID', '12305')
+REDMINE_ID = os.environ.get('REDMINE_ID', '18716')
 PROJECT_NAME = os.environ.get('PROJECT_NAME', 'mmp')
 BASE_URL = f"https://{PROJECT_NAME}.acdh.oeaw.ac.at"
 
