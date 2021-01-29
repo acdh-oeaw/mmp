@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'netvis',
     'vocabs',
     'infos',
-    'gn_places',
     'archiv',
 ]
 

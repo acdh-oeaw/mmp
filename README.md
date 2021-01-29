@@ -31,7 +31,7 @@ LEGACY_DB_CONNECTION = {
 
 ## Install
 
-* clone the repo `git clone https://gitlab.com/acdh-oeaw/imafo/gens-django.git`
+* clone the repo `git clone https://github.com/acdh-oeaw/mmp.git`
 * [optional]
   * create a virtual env, e.g. `virtualenv myenv`
   * activate virtual env, e.g. `source myenv/bin/activate`
@@ -69,15 +69,6 @@ Django-App providing some useful things to create browsing views
 ## [acdh-django-vocabs](https://github.com/acdh-oeaw/acdh-django-vocabs)
 
 Curate controlled vocabularies as SKOS
-
-## [acdh-django-geonames](https://github.com/acdh-oeaw/acdh-django-geonames)
-
-A django package providing models and views for Geoname Places
-
-* populate vocabs with geoname-feature codes
-    * `python manage.py import_ftc --lang=en--settings=djangobaseproject.settings.dev`
-* populate db with geoname-places of a given country:
-    * `python manage.py import_places ..--country_code=YU--settings=djangobaseproject.settings.dev`
 
 
 ### building the image

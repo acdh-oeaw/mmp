@@ -26,10 +26,6 @@ urlpatterns = [
     url(r'^archiv-ac/', include('archiv.dal_urls', namespace='archiv-ac')),
     url(r'^vocabs/', include('vocabs.urls', namespace='vocabs')),
     url(r'^vocabs-ac/', include('vocabs.dal_urls', namespace='vocabs-ac')),
-    url(
-        r'^gn-places-ac/',
-        include('gn_places.dal_urls', namespace='gn_places-ac')
-    ),
     url(r'^', include('webpage.urls', namespace='webpage')),
 ]
 
