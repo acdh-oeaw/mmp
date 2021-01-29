@@ -1,10 +1,14 @@
-# gens django
+# MMP
 
-## About
+## Mapping Medieval Peoples: Visualizing Semantic Landscapes in Early Medieval Europe
+
+### About
 
 a generic djangobaseproject port of https://gitlab.com/acdh-oeaw/imafo/gens, created with following steps:
 
 ### create custom app/datamodel
+
+[data model is quite stable, so any further changes should happen in `archiv.models.py`]
 
 * provide data-model mapping from gend-db-dump (gema_scire_2020-11-04.sql) as [gsheet](https://docs.google.com/spreadsheets/d/1A68SVvRjXECFHlDMcuUfE_BL2k7HfXFB9jQ-yr9EGdA/edit#gid=0)
 * add the sheet-id to settings, e.g. `SHEET_ID = 'theidofthegsheetneedstobereadableforanyone-yr9EGdA`'
@@ -40,6 +44,13 @@ LEGACY_DB_CONNECTION = {
 * apply migrations `python manage.py migrate --settings=djangobaseproject.settings.dev`
 * start dev-server `python manage.py runserver ---settings=djangobaseproject.settings.dev`
 * open http://127.0.0.1:8000/
+
+[optional] populate netvis-cache
+
+* run something like `python manage.py populate_netvis_cache <app_name> <model_name>`
+  * `python manage.py populate_netvis_cache archiv autor --settings=djangobaseproject.settings.pg_local`
+
+* go to http://127.0.0.1:8000/netvis/archiv/autor to the see the corresponding generic netvis
 
 # ToDos
 
