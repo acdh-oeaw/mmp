@@ -1,8 +1,5 @@
 FROM python:3.8-buster
 
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
 # install nginx
 RUN apt-get update -y && apt-get upgrade -y
 RUN apt-get install nginx vim postgresql-common libpq-dev python3-gdal -y
