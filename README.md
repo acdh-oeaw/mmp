@@ -67,3 +67,29 @@ A django package providing models and views for Geoname Places
     * `python manage.py import_ftc --lang=en--settings=djangobaseproject.settings.dev`
 * populate db with geoname-places of a given country:
     * `python manage.py import_places ..--country_code=YU--settings=djangobaseproject.settings.dev`
+
+
+### building the image
+
+`docker build -t mmp:latest .`
+`docker build -t mmp:latest --no-cache .`
+
+### running the image
+
+To run the image you should provide an `.env` file to pass in needed environment variables; see example below:
+
+```
+DB_NAME=mmp
+DB_USER=mmp
+DB_PASSWORD=db_pw
+PROJECT_NAME=mmp
+SECRET_KEY=randomstring
+DEBUG=True
+DJANGO_SUPERUSER_USERNAME=user_name
+DJANGO_SUPERUSER_PASSWORD=user_pw
+VOCABS_DEFAULT_PEFIX=mmp
+VOCABS_DEFAULT_PEFIX=en
+REDMINE_ID=12345
+```
+
+`docker run -it -p 8020:8020 --rm --env-file .env_dev mmp:latest`
