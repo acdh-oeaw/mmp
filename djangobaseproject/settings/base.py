@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'mptt',
     'webpage',
     'browsing',
+    'charts',
+    'netvis',
     'vocabs',
     'infos',
     'gn_places',
