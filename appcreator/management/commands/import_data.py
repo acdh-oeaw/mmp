@@ -44,7 +44,7 @@ class Command(BaseCommand):
             item.art = row['start']
             item.wurzel = row['wurzel']
             varianten = []
-            for n in range(1,6):
+            for n in range(1, 6):
                 lookup = f"svar{n}"
                 varianten.append(row[lookup].strip())
             item.varianten = ";".join(list(filter(None, varianten)))

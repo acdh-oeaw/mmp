@@ -157,12 +157,12 @@ class Autor(models.Model):
     @classmethod
     def get_listview_url(self):
         return reverse('archiv:autor_browse')
-    
+
     @classmethod
     def get_source_table(self):
         return "autor"
-    
-    
+
+
     @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
@@ -225,12 +225,12 @@ class Edition(models.Model):
         )
 
     class Meta:
-        
+
         ordering = [
             'zitat',
         ]
         verbose_name = "Edition"
-    
+
     def __str__(self):
         if self.zitat:
             return "{}".format(self.zitat)
