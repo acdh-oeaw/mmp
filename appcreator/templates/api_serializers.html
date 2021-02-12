@@ -1,0 +1,16 @@
+# API serializers for {{ app_name }} created by appcreator
+from rest_framework import serializers
+from {{ app_name }}.models import (
+{%- for x in data %}
+    {{ x.model_name }}{{ "," if not loop.last }}
+{%- endfor %}
+)
+
+{% for x in data %}
+class {{ x.model_name }}Serializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = {{ x.model_name }}
+        fields = "__all__"
+
+{% endfor %}

@@ -88,7 +88,7 @@ def df_to_classdicts(df):
         class_dict['model_helptext'] = x[1]['class name helptext'].iloc[0].replace('\n', '')
         class_dict['model_verbose_name'] = x[1]['class name verbose_name'].iloc[0].replace('\n', '')
         try:
-            source_table =  x[1]['source_table'].iloc[0]
+            source_table = x[1]['source_table'].iloc[0]
         except KeyError:
             source_table = None
         if source_table is not None and isinstance(source_table, str):
@@ -97,7 +97,7 @@ def df_to_classdicts(df):
             class_dict['source_table'] = None
 
         try:
-            natural_primary_key =  x[1]['natural primary key'].iloc[0]
+            natural_primary_key = x[1]['natural primary key'].iloc[0]
         except KeyError:
             natural_primary_key = 'legacy_id'
         if natural_primary_key is not None and isinstance(natural_primary_key, str):

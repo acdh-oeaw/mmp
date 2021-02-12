@@ -3,6 +3,7 @@ from django.core.management.base import BaseCommand
 from django.conf import settings
 # imports for custom things
 import pandas as pd
+import math
 import archiv
 
 dbc = settings.LEGACY_DB_CONNECTION
@@ -47,3 +48,17 @@ class Command(BaseCommand):
                     rel_item = rel_item_class.objects.get(legacy_pk=value)
                     rel_attr = getattr(cur_item, 'ort')
                     rel_attr.add(rel_item)
+
+        self.stdout.write(
+            self.style.NOTICE(
+                "remove nan from places"
+            )
+        )
+        for x in archiv.models.Ort.objects.all():
+            try:
+                if math.isnan(x.long):
+                    x.long = None
+                    x.lat = None
+                    x.save()
+            except TypeError:
+                pass
