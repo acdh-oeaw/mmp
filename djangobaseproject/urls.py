@@ -21,7 +21,7 @@ router.register(r'text', archiv_api_views.TextViewSet)
 
 urlpatterns = [
     url(r'^api/', include(router.urls)),
-    url('api-docs/', include_docs_urls(title='HistoGIS-API')),
+    url('api-docs/', include_docs_urls(title='MMP-API')),
     url(
         r'^api-auth/',
         include(
