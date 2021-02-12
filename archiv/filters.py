@@ -141,6 +141,11 @@ class KeyWordListFilter(django_filters.FilterSet):
         help_text=KeyWord._meta.get_field('kommentar').help_text,
         label=KeyWord._meta.get_field('kommentar').verbose_name
     )
+    varianten = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=KeyWord._meta.get_field('varianten').help_text,
+        label=KeyWord._meta.get_field('varianten').verbose_name
+    )
 
     class Meta:
         model = KeyWord
@@ -152,6 +157,7 @@ class KeyWordListFilter(django_filters.FilterSet):
             'art',
             'wurzel',
             'kommentar',
+            'varianten'
             ]
 
 

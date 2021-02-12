@@ -140,6 +140,7 @@ class KeyWordFilterFormHelper(FormHelper):
                     'art',
                     'wurzel',
                     'kommentar',
+                    'varianten',
                     css_id="more"
                     ),
                 AccordionGroup(
