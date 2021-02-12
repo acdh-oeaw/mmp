@@ -2,6 +2,8 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from rest_framework import routers
+from rest_framework.documentation import include_docs_urls
+
 from vocabs import api_views
 from archiv import api_views as archiv_api_views
 
@@ -19,6 +21,7 @@ router.register(r'text', archiv_api_views.TextViewSet)
 
 urlpatterns = [
     url(r'^api/', include(router.urls)),
+    url('api-docs/', include_docs_urls(title='HistoGIS-API')),
     url(
         r'^api-auth/',
         include(

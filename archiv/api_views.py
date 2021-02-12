@@ -1,5 +1,7 @@
 # API views for archiv created by appcreator
+import django_filters.rest_framework
 from rest_framework import viewsets
+
 
 from archiv.api_serializers import (
     AutorSerializer,
@@ -17,42 +19,56 @@ from archiv.models import (
     Stelle,
     Text
 )
+from archiv.filters import (
+    AutorListFilter,
+    EditionListFilter,
+    KeyWordListFilter,
+    OrtListFilter,
+    StelleListFilter,
+    TextListFilter
+)
 
 
 class AutorViewSet(viewsets.ModelViewSet):
     queryset = Autor.objects.all()
     serializer_class = AutorSerializer
-    depth = 2
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filter_class = AutorListFilter
 
 
 class EditionViewSet(viewsets.ModelViewSet):
     queryset = Edition.objects.all()
     serializer_class = EditionSerializer
-    depth = 2
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filter_class = EditionListFilter
 
 
 class KeyWordViewSet(viewsets.ModelViewSet):
     queryset = KeyWord.objects.all()
     serializer_class = KeyWordSerializer
-    depth = 2
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filter_class = KeyWordListFilter
 
 
 class OrtViewSet(viewsets.ModelViewSet):
     queryset = Ort.objects.all()
     serializer_class = OrtSerializer
-    depth = 2
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filter_class = OrtListFilter
 
 
 class StelleViewSet(viewsets.ModelViewSet):
     queryset = Stelle.objects.all()
     serializer_class = StelleSerializer
-    depth = 2
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filter_class = StelleListFilter
 
 
 class TextViewSet(viewsets.ModelViewSet):
     queryset = Text.objects.all()
     serializer_class = TextSerializer
-    depth = 2
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filter_class = TextListFilter
 
 
 
