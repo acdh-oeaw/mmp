@@ -32,6 +32,25 @@ class Command(BaseCommand):
         )
         self.stdout.write(
             self.style.SUCCESS(
+                'Split quote/page'
+            )
+        )
+        for x in tqdm(Stelle.objects.all(), total=Stelle.objects.all().count()):
+            zitat = x.zitat
+            try:
+                stelle, text = zitat.split(':', 1)
+            except (AttributeError, ValueError):
+                continue
+            x.zitat_stelle = stelle
+            if len(stelle) > 249:
+                pass
+            else:
+                x.stelle = stelle
+                x.zitat = text
+                x.save()
+
+        self.stdout.write(
+            self.style.SUCCESS(
                 'KeyWords/Stichworte'
             )
         )

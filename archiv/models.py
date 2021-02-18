@@ -662,6 +662,15 @@ class Stelle(models.Model):
         data_lookup="szitat",
         arche_prop="hasDescription",
     )
+    zitat_stelle = models.CharField(
+        max_length=250,
+        blank=True, null=True,
+        verbose_name="Zitat Stelle",
+        help_text="z.B. Seitenangaben",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasNote",
+    )
     translation = models.TextField(
         blank=True, null=True,
         verbose_name="Übersetzung",
