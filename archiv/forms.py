@@ -27,14 +27,15 @@ class AutorFilterFormHelper(FormHelper):
             Fieldset(
                 'Basic search options',
                 'id',
+                'name',
+                'gnd_id',
+                'ort',
                 css_id="basic_search_fields"
                 ),
             Accordion(
                 AccordionGroup(
                     'Advanced search',
-                    
                     'legacy_pk',
-                    'name',
                     'name_lat',
                     'name_en',
                     'name_fr',
@@ -42,7 +43,6 @@ class AutorFilterFormHelper(FormHelper):
                     'jahrhundert',
                     'start_date',
                     'end_date',
-                    'ort',
                     'kommentar',
                     css_id="more"
                     ),
@@ -180,15 +180,15 @@ class OrtFilterFormHelper(FormHelper):
             Fieldset(
                 'Basic search options',
                 'id',
+                'name',
+                'name_antik',
+                'norm_id',
                 css_id="basic_search_fields"
                 ),
             Accordion(
                 AccordionGroup(
                     'Advanced search',
-                    
                     'legacy_pk',
-                    'name',
-                    'name_antik',
                     'name_de',
                     'name_fr',
                     'name_it',

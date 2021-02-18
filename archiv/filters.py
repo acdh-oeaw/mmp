@@ -26,6 +26,11 @@ class AutorListFilter(django_filters.FilterSet):
         help_text=Autor._meta.get_field('name').help_text,
         label=Autor._meta.get_field('name').verbose_name
     )
+    gnd_id = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=Autor._meta.get_field('gnd_id').help_text,
+        label=Autor._meta.get_field('gnd_id').verbose_name
+    )
     name_lat = django_filters.CharFilter(
         lookup_expr='icontains',
         help_text=Autor._meta.get_field('name_lat').help_text,
@@ -82,6 +87,7 @@ class AutorListFilter(django_filters.FilterSet):
             'legacy_id',
             'legacy_pk',
             'name',
+            'gnd_id',
             'name_lat',
             'name_en',
             'name_fr',
@@ -172,6 +178,11 @@ class OrtListFilter(django_filters.FilterSet):
         help_text=Ort._meta.get_field('name').help_text,
         label=Ort._meta.get_field('name').verbose_name
     )
+    norm_id = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=Ort._meta.get_field('norm_id').help_text,
+        label=Ort._meta.get_field('norm_id').verbose_name
+    )
     name_antik = django_filters.CharFilter(
         lookup_expr='icontains',
         help_text=Ort._meta.get_field('name_antik').help_text,
@@ -233,6 +244,7 @@ class OrtListFilter(django_filters.FilterSet):
             'legacy_id',
             'legacy_pk',
             'name',
+            'norm_id',
             'name_antik',
             'name_de',
             'name_fr',

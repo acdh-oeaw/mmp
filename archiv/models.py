@@ -149,12 +149,12 @@ class Autor(models.Model):
         )
 
     class Meta:
-        
+
         ordering = [
             'legacy_pk',
         ]
         verbose_name = "Autor"
-    
+
     def __str__(self):
         if self.name:
             return "{}".format(self.name)
@@ -172,17 +172,13 @@ class Autor(models.Model):
     def get_source_table(self):
         return "autor"
 
-
     @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
-    
+
     @classmethod
     def get_createview_url(self):
         return reverse('archiv:autor_create')
-
-    def get_absolute_url(self):
-        return reverse('archiv:autor_detail', kwargs={'pk': self.id})
 
     def get_absolute_url(self):
         return reverse('archiv:autor_detail', kwargs={'pk': self.id})
@@ -253,22 +249,18 @@ class Edition(models.Model):
     @classmethod
     def get_listview_url(self):
         return reverse('archiv:edition_browse')
-    
+
     @classmethod
     def get_source_table(self):
         return None
-    
-    
+
     @classmethod
     def get_natural_primary_key(self):
         return "zitat"
-    
+
     @classmethod
     def get_createview_url(self):
         return reverse('archiv:edition_create')
-
-    def get_absolute_url(self):
-        return reverse('archiv:edition_detail', kwargs={'pk': self.id})
 
     def get_absolute_url(self):
         return reverse('archiv:edition_detail', kwargs={'pk': self.id})
@@ -565,12 +557,12 @@ class Ort(models.Model):
         )
 
     class Meta:
-        
+
         ordering = [
             'legacy_pk',
         ]
         verbose_name = "Ort"
-    
+
     def __str__(self):
         if self.name:
             return "{}".format(self.name)
@@ -583,22 +575,18 @@ class Ort(models.Model):
     @classmethod
     def get_listview_url(self):
         return reverse('archiv:ort_browse')
-    
+
     @classmethod
     def get_source_table(self):
         return "orte"
-    
-    
+
     @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
-    
+
     @classmethod
     def get_createview_url(self):
         return reverse('archiv:ort_create')
-
-    def get_absolute_url(self):
-        return reverse('archiv:ort_detail', kwargs={'pk': self.id})
 
     def get_absolute_url(self):
         return reverse('archiv:ort_detail', kwargs={'pk': self.id})
