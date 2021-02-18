@@ -42,6 +42,16 @@ class Autor(models.Model):
         data_lookup="anamed",
         arche_prop="hasTitle",
     )
+    gnd_id = models.CharField(
+        max_length=250,
+        blank=True,
+        verbose_name="GND ID",
+        help_text="z.B. http://d-nb.info/gnd/118650130",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasNonLinkedIdentifier",
+        arche_prop_str_template="GND-ID: <value>",
+    )
     name_lat = models.CharField(
         max_length=250,
         blank=True,
@@ -443,6 +453,19 @@ class Ort(models.Model):
         is_public=True,
         data_lookup="Ort_en",
         arche_prop="hasTitle",
+    )
+    norm_id = models.CharField(
+        max_length=250,
+        blank=True,
+        verbose_name="Norm-ID",
+        help_text="""z.B. 'https://gazetteer.dainst.org/place/2070134',\
+            https://www.geonames.org/2772400 oder\
+            https://pleiades.stoa.org/places/857050
+        """,
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasNonLinkedIdentifier",
+        arche_prop_str_template="NormID: <value>",
     )
     name_antik = models.CharField(
         max_length=250,
