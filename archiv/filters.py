@@ -17,6 +17,22 @@ from . models import (
 
 
 class SpatialCoverageListFilter(django_filters.FilterSet):
+    key_word = django_filters.ModelMultipleChoiceFilter(
+        queryset=KeyWord.objects.all(),
+        help_text=SpatialCoverage._meta.get_field('key_word').help_text,
+        label=SpatialCoverage._meta.get_field('key_word').verbose_name,
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:keyword-autocomplete",
+        )
+    )
+    stelle = django_filters.ModelMultipleChoiceFilter(
+        queryset=Stelle.objects.all(),
+        help_text=SpatialCoverage._meta.get_field('stelle').help_text,
+        label=SpatialCoverage._meta.get_field('stelle').verbose_name,
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:stelle-autocomplete",
+        )
+    )
 
     class Meta:
         model = SpatialCoverage

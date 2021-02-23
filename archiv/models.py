@@ -844,9 +844,6 @@ class Stelle(models.Model):
     def get_absolute_url(self):
         return reverse('archiv:stelle_detail', kwargs={'pk': self.id})
 
-    def get_absolute_url(self):
-        return reverse('archiv:stelle_detail', kwargs={'pk': self.id})
-
     def get_delete_url(self):
         return reverse('archiv:stelle_delete', kwargs={'pk': self.id})
 
