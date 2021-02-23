@@ -817,9 +817,9 @@ class Stelle(models.Model):
         verbose_name = "Stelle"
 
     def __str__(self):
-        if self.text and self.zitat and self.zitat_stelle:
+        try:
             return f"{self.zitat[:35]}...; ({self.text}, {self.zitat_stelle})"
-        else:
+        except:
             return "{}".format(self.id)
 
     def field_dict(self):
