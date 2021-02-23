@@ -11,8 +11,20 @@ from . models import (
     KeyWord,
     Ort,
     Stelle,
-    Text
+    Text,
+    SpatialCoverage
 )
+
+
+class SpatialCoverageListFilter(django_filters.FilterSet):
+
+    class Meta:
+        model = SpatialCoverage
+        fields = [
+            'id',
+            'key_word',
+            'stelle',
+        ]
 
 
 class AutorListFilter(django_filters.FilterSet):

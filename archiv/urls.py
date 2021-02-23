@@ -5,6 +5,30 @@ from . import views
 app_name = 'archiv'
 urlpatterns = [
     url(
+        r'^spatialcoverage/$',
+        views.SpatialCoverageListView.as_view(),
+        name='spatialcoverage_browse'
+    ),
+    url(
+        r'^spatialcoverage/detail/(?P<pk>[0-9]+)$',
+        views.SpatialCoverageDetailView.as_view(),
+        name='spatialcoverage_detail'
+    ),
+    url(
+        r'^spatialcoverage/create/$',
+        views.SpatialCoverageCreate.as_view(),
+        name='spatialcoverage_create'
+    ),
+    url(
+        r'^spatialcoverage/edit/(?P<pk>[0-9]+)$',
+        views.SpatialCoverageUpdate.as_view(),
+        name='spatialcoverage_edit'
+    ),
+    url(
+        r'^spatialcoverage/delete/(?P<pk>[0-9]+)$',
+        views.EditionDelete.as_view(),
+        name='spatialcoverage_delete'),
+    url(
         r'^autor/$',
         views.AutorListView.as_view(),
         name='autor_browse'

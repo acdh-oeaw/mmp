@@ -9,8 +9,19 @@ from . models import (
     KeyWord,
     Ort,
     Stelle,
-    Text
+    Text,
+    SpatialCoverage
 )
+
+
+class SpatialCoverageTable(tables.Table):
+
+    id = tables.LinkColumn(verbose_name='ID')
+
+    class Meta:
+        model = SpatialCoverage
+        sequence = ('id',)
+        attrs = {"class": "table table-responsive table-hover"}
 
 
 class AutorTable(tables.Table):

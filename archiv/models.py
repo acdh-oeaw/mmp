@@ -2,6 +2,8 @@
 
 from django.db import models
 from django.urls import reverse
+from django.contrib.gis.db.models import PolygonField
+
 
 from vocabs.models import SkosConcept
 
@@ -14,6 +16,110 @@ def set_extra(self, **kwargs):
 
 
 models.Field.set_extra = set_extra
+
+
+class SpatialCoverage(models.Model):
+    """ Spatial Coverage of a Keyword bound to a specifc source document"""
+    stelle = models.ForeignKey(
+        "Stelle",
+        related_name='has_spatial_coverage',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Stelle",
+        help_text="Stelle",
+    ).set_extra(
+        is_public=True,
+    )
+    key_word = models.ForeignKey(
+        "KeyWord",
+        related_name='has_spatial_coverage',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Stichwort",
+        help_text="Stichwort",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasSubject",
+    )
+
+    kommentar = models.TextField(
+        blank=True, null=True,
+        verbose_name="Kommentar",
+        help_text="Kommentar",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasNote",
+    )
+    exactish_geom = PolygonField(
+        blank=True, null=True,
+        verbose_name="Relative sichere Ortsangabe",
+        help_text="Lokalisierung einer Region",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasWkt",
+    )
+    fuzzy_geom = PolygonField(
+        blank=True, null=True,
+        verbose_name="unsichere Ortsangabe",
+        help_text="Ungefähre Lokalisierung einer Region",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasWkt",
+    )
+
+    class Meta:
+
+        ordering = [
+            'id',
+        ]
+        verbose_name = "Spatial Coverage"
+
+    def __str__(self):
+        return f"{self.id}"
+
+    def field_dict(self):
+        return model_to_dict(self)
+
+    @classmethod
+    def get_listview_url(self):
+        return reverse('archiv:spatialcoverage_browse')
+
+    @classmethod
+    def get_natural_primary_key(self):
+        return "id"
+
+    @classmethod
+    def get_createview_url(self):
+        return reverse('archiv:spatialcoverage_create')
+
+    def get_absolute_url(self):
+        return reverse('archiv:spatialcoverage_detail', kwargs={'pk': self.id})
+
+    def get_delete_url(self):
+        return reverse('archiv:spatialcoverage_delete', kwargs={'pk': self.id})
+
+    def get_edit_url(self):
+        return reverse('archiv:spatialcoverage_edit', kwargs={'pk': self.id})
+
+    def get_next(self):
+        next = self.__class__.objects.filter(id__gt=self.id)
+        if next:
+            return reverse(
+                'archiv:spatialcoverage_detail',
+                kwargs={'pk': next.first().id}
+            )
+        return False
+
+    def get_prev(self):
+        prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
+        if prev:
+            return reverse(
+                'archiv:spatialcoverage_detail',
+                kwargs={'pk': prev.first().id}
+            )
+        return False
 
 
 class Autor(models.Model):
@@ -392,9 +498,6 @@ class KeyWord(models.Model):
     def get_absolute_url(self):
         return reverse('archiv:keyword_detail', kwargs={'pk': self.id})
 
-    def get_absolute_url(self):
-        return reverse('archiv:keyword_detail', kwargs={'pk': self.id})
-
     def get_delete_url(self):
         return reverse('archiv:keyword_delete', kwargs={'pk': self.id})
 
@@ -714,10 +817,10 @@ class Stelle(models.Model):
         verbose_name = "Stelle"
 
     def __str__(self):
-        if self.legacy_pk:
-            return "{}".format(self.legacy_pk)
+        if self.text and self.zitat and self.zitat_stelle:
+            return f"{self.zitat[:35]}...; ({self.text}, {self.zitat_stelle})"
         else:
-            return "{}".format(self.legacy_id)
+            return "{}".format(self.id)
 
     def field_dict(self):
         return model_to_dict(self)

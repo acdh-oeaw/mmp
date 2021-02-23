@@ -1,0 +1,28 @@
+{% extends "browsing/create_base_template.html" %}
+{% block title %}
+    Create/Edit {{ class_name }}
+{% endblock %}
+{% load leaflet_tags %}
+{% block scriptHeader %}
+    {% leaflet_js plugins="forms" %}
+    {% leaflet_css plugins="forms" %}
+    <style>
+
+        .leaflet-container {  /* all maps */
+            width:  100%;
+            height: 800px;
+        }
+        label { font-weight: bold; }
+
+</style>
+{% endblock %}
+
+{% block objectType %}
+    <h1>Create/Edit
+        {% if docstring %}
+            <abbr title="{{ docstring}}">{{ class_name }}</abbr>
+        {% else %}
+            {{ class_name }}
+        {% endif %}
+    </h1>
+{% endblock %}

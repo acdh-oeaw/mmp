@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django_tables2',
     'rest_framework',
     'mptt',
+    'leaflet',
     'webpage',
     'browsing',
     'charts',
@@ -146,5 +147,9 @@ VOCABS_SETTINGS = {
     'default_lang': "en"
 }
 
-
-
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER': (41, 20),
+    'DEFAULT_ZOOM': 9,
+    'MIN_ZOOM': 3,
+    'OVERLAYS': []
+}
