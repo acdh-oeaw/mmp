@@ -269,7 +269,7 @@ class StelleListView(GenericListView):
     formhelper_class = StelleFilterFormHelper
     table_class = StelleTable
     init_columns = [
-        'id', 'legacy_pk',
+        'id', 'display_label',
     ]
     enable_merge = True
 

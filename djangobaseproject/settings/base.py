@@ -147,6 +147,10 @@ VOCABS_SETTINGS = {
     'default_lang': "en"
 }
 
+SERIALIZATION_MODULES = {
+    "geojson": "django.contrib.gis.serializers.geojson", 
+ }
+
 LEAFLET_CONFIG = {
     'DEFAULT_CENTER': (41, 20),
     'DEFAULT_ZOOM': 9,
