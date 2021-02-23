@@ -35,7 +35,9 @@ class KeyWordAC(autocomplete.Select2QuerySetView):
         if self.q:
             qs = qs.filter(
                 Q(legacy_id__icontains=self.q) |
-                Q(stichwort__icontains=self.q)
+                Q(stichwort__icontains=self.q) |
+                Q(wurzel__icontains=self.q) |
+                Q(varianten__icontains=self.q)
             )
         return qs
 
@@ -75,5 +77,4 @@ class TextAC(autocomplete.Select2QuerySetView):
                 Q(title__icontains=self.q)
             )
         return qs
-
 

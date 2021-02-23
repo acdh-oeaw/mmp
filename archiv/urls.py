@@ -26,7 +26,7 @@ urlpatterns = [
     ),
     url(
         r'^spatialcoverage/delete/(?P<pk>[0-9]+)$',
-        views.EditionDelete.as_view(),
+        views.SpatialCoverageDelete.as_view(),
         name='spatialcoverage_delete'),
     url(
         r'^autor/$',

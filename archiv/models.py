@@ -77,7 +77,7 @@ class SpatialCoverage(models.Model):
         verbose_name = "Spatial Coverage"
 
     def __str__(self):
-        return f"{self.id}"
+        return f"{self.stelle} - {self.key_word}"
 
     def field_dict(self):
         return model_to_dict(self)
@@ -472,7 +472,7 @@ class KeyWord(models.Model):
 
     def __str__(self):
         if self.stichwort:
-            return "{}".format(self.stichwort)
+            return f"{self.stichwort}, [wurzel: {self.wurzel}]"
         else:
             return "{}".format(self.legacy_id)
 
