@@ -16,19 +16,16 @@ class SpatialCoverageSerializer(
     GeoFeatureModelSerializer, serializers.HyperlinkedModelSerializer
 ):
 
-    text_title = serializers.CharField(source='stelle.text.title')
-    text_author = serializers.CharField(source='stelle.text.autor')
-
     class Meta:
         model = SpatialCoverage
         geo_field = 'fuzzy_geom'
         auto_bbox = True
         fields = (
-            'text_title',
-            'text_author',
             'stelle',
-            'key_word'
+            'key_word',
+            'fuzzyness'
         )
+        depth = 3
 
 
 class AutorSerializer(serializers.HyperlinkedModelSerializer):
