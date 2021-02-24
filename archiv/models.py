@@ -85,6 +85,10 @@ class SpatialCoverage(models.Model):
 
     def field_dict(self):
         return model_to_dict(self)
+    
+    @classmethod
+    def get_source_table(self):
+        return None
 
     @classmethod
     def get_listview_url(self):
