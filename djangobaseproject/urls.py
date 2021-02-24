@@ -1,6 +1,5 @@
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.conf import settings
 from rest_framework import routers
 from rest_framework.documentation import include_docs_urls
 
@@ -11,7 +10,6 @@ router = routers.DefaultRouter()
 router.register(r'skosconceptschemes', api_views.SkosConceptSchemeViewSet)
 router.register(r'skoscollections', api_views.SkosCollectionViewSet)
 router.register(r'skosconcepts', api_views.SkosConceptViewSet)
-router.register(r'authors', archiv_api_views.AutorViewSet)
 router.register(r'autor', archiv_api_views.AutorViewSet)
 router.register(r'edition', archiv_api_views.EditionViewSet)
 router.register(r'keyword', archiv_api_views.KeyWordViewSet)

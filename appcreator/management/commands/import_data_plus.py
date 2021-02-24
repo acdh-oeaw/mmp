@@ -62,3 +62,16 @@ class Command(BaseCommand):
                     x.save()
             except TypeError:
                 pass
+
+        self.stdout.write(
+            self.style.NOTICE(
+                "create display_label for Stelle"
+            )
+        )
+        for x in archiv.models.Stelle.objects.all():
+            x.save()
+            self.stdout.write(
+                self.style.SUCCESS(
+                    f"{x}"
+                )
+            )

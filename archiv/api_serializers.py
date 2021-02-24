@@ -33,6 +33,7 @@ class AutorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Autor
         fields = "__all__"
+        depth = 1
 
 
 class EditionSerializer(serializers.HyperlinkedModelSerializer):
@@ -61,6 +62,7 @@ class StelleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Stelle
         fields = "__all__"
+        depth = 1
 
 
 class TextSerializer(serializers.HyperlinkedModelSerializer):
@@ -68,5 +70,4 @@ class TextSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Text
         fields = "__all__"
-
-
+        depth = 1

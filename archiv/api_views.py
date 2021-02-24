@@ -83,8 +83,6 @@ class TextViewSet(viewsets.ModelViewSet):
     filter_class = TextListFilter
 
 
-
-
 # cut&paste the following snippet into your projects urls.py
 
 # from archiv import api_views as archiv_api_views
