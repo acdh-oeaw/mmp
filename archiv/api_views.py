@@ -1,6 +1,7 @@
 # API views for archiv created by appcreator
 import django_filters.rest_framework
 from rest_framework import viewsets
+from rest_framework_gis.pagination import GeoJsonPagination
 
 
 from archiv.api_serializers import (
@@ -9,7 +10,8 @@ from archiv.api_serializers import (
     KeyWordSerializer,
     OrtSerializer,
     StelleSerializer,
-    TextSerializer
+    TextSerializer,
+    SpatialCoverageSerializer
 )
 from archiv.models import (
     Autor,
@@ -17,7 +19,8 @@ from archiv.models import (
     KeyWord,
     Ort,
     Stelle,
-    Text
+    Text,
+    SpatialCoverage
 )
 from archiv.filters import (
     AutorListFilter,
@@ -25,8 +28,17 @@ from archiv.filters import (
     KeyWordListFilter,
     OrtListFilter,
     StelleListFilter,
-    TextListFilter
+    TextListFilter,
+    SpatialCoverageListFilter
 )
+
+
+class SpatialCoverageViewSet(viewsets.ModelViewSet):
+    queryset = SpatialCoverage.objects.all()
+    serializer_class = SpatialCoverageSerializer
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filter_class = SpatialCoverageListFilter
+    pagination_class = GeoJsonPagination
 
 
 class AutorViewSet(viewsets.ModelViewSet):

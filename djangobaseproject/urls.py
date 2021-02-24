@@ -18,6 +18,7 @@ router.register(r'keyword', archiv_api_views.KeyWordViewSet)
 router.register(r'ort', archiv_api_views.OrtViewSet)
 router.register(r'stelle', archiv_api_views.StelleViewSet)
 router.register(r'text', archiv_api_views.TextViewSet)
+router.register(r'spatialcoverage', archiv_api_views.SpatialCoverageViewSet)
 
 urlpatterns = [
     url(r'^api/', include(router.urls)),

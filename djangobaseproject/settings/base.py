@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework_gis',
     'reversion',
     'crispy_forms',
     'django_filters',
@@ -148,7 +149,7 @@ VOCABS_SETTINGS = {
 }
 
 SERIALIZATION_MODULES = {
-    "geojson": "django.contrib.gis.serializers.geojson", 
+    "geojson": "django.contrib.gis.serializers.geojson",
  }
 
 LEAFLET_CONFIG = {
