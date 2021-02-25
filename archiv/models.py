@@ -878,6 +878,15 @@ class Stelle(models.Model):
         ).set_extra(
             is_public=True
         )
+    use_case = models.ManyToManyField(
+        "UseCase",
+        related_name='has_stelle',
+        blank=True,
+        verbose_name="Use Case",
+        help_text="Verwendet in Use Case",
+    ).set_extra(
+        is_public=True,
+    )
 
     class Meta:
 
