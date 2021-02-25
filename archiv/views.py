@@ -54,7 +54,7 @@ class UseCaseListView(GenericListView):
     formhelper_class = UseCaseFilterFormHelper
     table_class = UseCaseTable
     init_columns = [
-        'id', 'stelle', 'key_word',
+        'id', 'title', 'pi',
     ]
     enable_merge = False
 
@@ -222,7 +222,7 @@ class KeyWordListView(GenericListView):
     formhelper_class = KeyWordFilterFormHelper
     table_class = KeyWordTable
     init_columns = [
-        'id', 'stichwort',
+        'id', 'stichwort', 'wurzel', 'varianten'
     ]
     enable_merge = True
 
@@ -270,7 +270,7 @@ class OrtListView(GenericListView):
     formhelper_class = OrtFilterFormHelper
     table_class = OrtTable
     init_columns = [
-        'id', 'name',
+        'id', 'name', 'long', 'lat'
     ]
     enable_merge = True
 

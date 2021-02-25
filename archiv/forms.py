@@ -49,10 +49,8 @@ class UseCaseFilterFormHelper(FormHelper):
         self.layout = Layout(
             Fieldset(
                 'Basic search options',
-                'id',
                 'title',
-                'pi',
-                'pi_id',
+                'principal_investigator',
                 css_id="basic_search_fields"
                 ),
             )
