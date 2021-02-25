@@ -21,6 +21,62 @@ def set_extra(self, **kwargs):
 models.Field.set_extra = set_extra
 
 
+class UseCase(models.Model):
+    """ Use Case in regards of a specific research questions """
+    title = models.CharField(
+        max_length=250,
+        blank=True,
+        verbose_name="Title",
+        help_text="Title of the Use Case",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasTitle",
+    )
+    principal_investigator = models.CharField(
+        max_length=250,
+        blank=True,
+        verbose_name="PI",
+        help_text="Principal Investigator of the Use Case",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasPrincipalInvestigator",
+    )
+    pi_norm_id = models.CharField(
+        max_length=250,
+        blank=True,
+        verbose_name="Some Norm-ID of the PI",
+        help_text="e.g. GND-ID or ORCID",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasPrincipalInvestigator",
+    )
+    description = models.TextField(
+        blank=True, null=True,
+        verbose_name="Description",
+        help_text="Short Description of the Use Case",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasDescription",
+    )
+
+    class Meta:
+
+        ordering = [
+            'title',
+        ]
+        verbose_name = "Use Case"
+
+    def __str__(self):
+        return f"{self.title}"
+
+    def field_dict(self):
+        return model_to_dict(self)
+
+    @classmethod
+    def get_source_table(self):
+        return None
+
+
 class SpatialCoverage(models.Model):
     """ Spatial Coverage of a Keyword bound to a specifc source document"""
     stelle = models.ForeignKey(
@@ -85,7 +141,7 @@ class SpatialCoverage(models.Model):
 
     def field_dict(self):
         return model_to_dict(self)
-    
+
     @classmethod
     def get_source_table(self):
         return None
@@ -838,7 +894,9 @@ class Stelle(models.Model):
         try:
             label = f"{self.zitat[:35]}...; ({self.text}, {self.zitat_stelle})"
         except Exception as e:
-            logger.error(f'Stelle.make_label in object: {self.id} threw error {e}')
+            logger.error(
+                f'Stelle.make_label in object: {self.id} threw error {e}'
+            )
             label = "{}".format(self.id)
         return label[:249]
 
@@ -1031,11 +1089,11 @@ class Text(models.Model):
     @classmethod
     def get_source_table(self):
         return "text"
-    
+
     @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
-    
+
     @classmethod
     def get_createview_url(self):
         return reverse('archiv:text_create')
@@ -1066,5 +1124,3 @@ class Text(models.Model):
                 kwargs={'pk': prev.first().id}
             )
         return False
-
-
