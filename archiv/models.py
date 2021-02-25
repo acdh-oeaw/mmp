@@ -76,6 +76,44 @@ class UseCase(models.Model):
     def get_source_table(self):
         return None
 
+    @classmethod
+    def get_listview_url(self):
+        return reverse('archiv:usecase_browse')
+
+    @classmethod
+    def get_natural_primary_key(self):
+        return "id"
+
+    @classmethod
+    def get_createview_url(self):
+        return reverse('archiv:usecase_create')
+
+    def get_absolute_url(self):
+        return reverse('archiv:usecase_detail', kwargs={'pk': self.id})
+
+    def get_delete_url(self):
+        return reverse('archiv:usecase_delete', kwargs={'pk': self.id})
+
+    def get_edit_url(self):
+        return reverse('archiv:usecase_edit', kwargs={'pk': self.id})
+
+    def get_next(self):
+        next = self.__class__.objects.filter(id__gt=self.id)
+        if next:
+            return reverse(
+                'archiv:usecase_detail',
+                kwargs={'pk': next.first().id}
+            )
+        return False
+
+    def get_prev(self):
+        prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
+        if prev:
+            return reverse(
+                'archiv:usecase_detail',
+                kwargs={'pk': prev.first().id}
+            )
+        return False
 
 class SpatialCoverage(models.Model):
     """ Spatial Coverage of a Keyword bound to a specifc source document"""

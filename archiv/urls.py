@@ -5,6 +5,30 @@ from . import views
 app_name = 'archiv'
 urlpatterns = [
     url(
+        r'^usecase/$',
+        views.UseCaseListView.as_view(),
+        name='usecase_browse'
+    ),
+    url(
+        r'^usecase/detail/(?P<pk>[0-9]+)$',
+        views.UseCaseDetailView.as_view(),
+        name='usecase_detail'
+    ),
+    url(
+        r'^usecase/create/$',
+        views.UseCaseCreate.as_view(),
+        name='usecase_create'
+    ),
+    url(
+        r'^usecase/edit/(?P<pk>[0-9]+)$',
+        views.UseCaseUpdate.as_view(),
+        name='usecase_edit'
+    ),
+    url(
+        r'^usecase/delete/(?P<pk>[0-9]+)$',
+        views.UseCaseDelete.as_view(),
+        name='usecase_delete'),
+    url(
         r'^spatialcoverage/$',
         views.SpatialCoverageListView.as_view(),
         name='spatialcoverage_browse'

@@ -13,11 +13,60 @@ from . models import (
     Ort,
     Stelle,
     Text,
-    SpatialCoverage
+    SpatialCoverage,
+    UseCase
 )
 from browsing.browsing_utils import (
     GenericListView, BaseCreateView, BaseUpdateView, BaseDetailView
 )
+
+
+class UseCaseCreate(BaseCreateView):
+
+    model = UseCase
+    form_class = UseCaseForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(UseCaseCreate, self).dispatch(*args, **kwargs)
+
+
+class UseCaseUpdate(BaseUpdateView):
+
+    model = UseCase
+    form_class = UseCaseForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(UseCaseUpdate, self).dispatch(*args, **kwargs)
+
+
+class UseCaseDetailView(BaseDetailView):
+
+    model = UseCase
+    template_name = 'archiv/generic_detail.html'
+
+
+class UseCaseListView(GenericListView):
+
+    model = UseCase
+    filter_class = UseCaseListFilter
+    formhelper_class = UseCaseFilterFormHelper
+    table_class = UseCaseTable
+    init_columns = [
+        'id', 'stelle', 'key_word',
+    ]
+    enable_merge = False
+
+
+class UseCaseDelete(DeleteView):
+    model = UseCase
+    template_name = 'webpage/confirm_delete.html'
+    success_url = reverse_lazy('archiv:usecase_browse')
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(UseCaseDelete, self).dispatch(*args, **kwargs)
 
 
 class SpatialCoverageCreate(BaseCreateView):
