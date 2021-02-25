@@ -11,7 +11,8 @@ from archiv.api_serializers import (
     OrtSerializer,
     StelleSerializer,
     TextSerializer,
-    SpatialCoverageSerializer
+    SpatialCoverageSerializer,
+    UseCaseSerializer
 )
 from archiv.models import (
     Autor,
@@ -20,7 +21,8 @@ from archiv.models import (
     Ort,
     Stelle,
     Text,
-    SpatialCoverage
+    SpatialCoverage,
+    UseCase
 )
 from archiv.filters import (
     AutorListFilter,
@@ -29,8 +31,16 @@ from archiv.filters import (
     OrtListFilter,
     StelleListFilter,
     TextListFilter,
-    SpatialCoverageListFilter
+    SpatialCoverageListFilter,
+    UseCaseListFilter
 )
+
+
+class UseCaseViewSet(viewsets.ModelViewSet):
+    queryset = UseCase.objects.all()
+    serializer_class = UseCaseSerializer
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filter_class = UseCaseListFilter
 
 
 class SpatialCoverageViewSet(viewsets.ModelViewSet):

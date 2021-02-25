@@ -8,8 +8,17 @@ from archiv.models import (
     Ort,
     Stelle,
     Text,
-    SpatialCoverage
+    SpatialCoverage,
+    UseCase,
 )
+
+
+class UseCaseSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = UseCase
+        fields = "__all__"
+        depth = 1
 
 
 class SpatialCoverageSerializer(
