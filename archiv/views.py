@@ -8,7 +8,6 @@ from . forms import *
 from . tables import *
 from . models import (
     Autor,
-    Edition,
     KeyWord,
     Ort,
     Stelle,
@@ -165,54 +164,6 @@ class AutorDelete(DeleteView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(AutorDelete, self).dispatch(*args, **kwargs)
-
-
-class EditionListView(GenericListView):
-
-    model = Edition
-    filter_class = EditionListFilter
-    formhelper_class = EditionFilterFormHelper
-    table_class = EditionTable
-    init_columns = [
-        'id', 'zitat',
-    ]
-    enable_merge = True
-
-
-class EditionDetailView(BaseDetailView):
-
-    model = Edition
-    template_name = 'archiv/generic_detail.html'
-
-
-class EditionCreate(BaseCreateView):
-
-    model = Edition
-    form_class = EditionForm
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(EditionCreate, self).dispatch(*args, **kwargs)
-
-
-class EditionUpdate(BaseUpdateView):
-
-    model = Edition
-    form_class = EditionForm
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(EditionUpdate, self).dispatch(*args, **kwargs)
-
-
-class EditionDelete(DeleteView):
-    model = Edition
-    template_name = 'webpage/confirm_delete.html'
-    success_url = reverse_lazy('archiv:edition_browse')
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(EditionDelete, self).dispatch(*args, **kwargs)
 
 
 class KeyWordListView(GenericListView):

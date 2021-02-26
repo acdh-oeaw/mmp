@@ -77,30 +77,6 @@ urlpatterns = [
         views.AutorDelete.as_view(),
         name='autor_delete'),
     url(
-        r'^edition/$',
-        views.EditionListView.as_view(),
-        name='edition_browse'
-    ),
-    url(
-        r'^edition/detail/(?P<pk>[0-9]+)$',
-        views.EditionDetailView.as_view(),
-        name='edition_detail'
-    ),
-    url(
-        r'^edition/create/$',
-        views.EditionCreate.as_view(),
-        name='edition_create'
-    ),
-    url(
-        r'^edition/edit/(?P<pk>[0-9]+)$',
-        views.EditionUpdate.as_view(),
-        name='edition_edit'
-    ),
-    url(
-        r'^edition/delete/(?P<pk>[0-9]+)$',
-        views.EditionDelete.as_view(),
-        name='edition_delete'),
-    url(
         r'^keyword/$',
         views.KeyWordListView.as_view(),
         name='keyword_browse'

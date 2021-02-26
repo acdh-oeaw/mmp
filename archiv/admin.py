@@ -2,15 +2,17 @@
 from django.contrib import admin
 from . models import (
     Autor,
-    Edition,
     KeyWord,
     Ort,
     Stelle,
-    Text
+    Text,
+    SpatialCoverage,
+    UseCase,
 )
 admin.site.register(Autor)
-admin.site.register(Edition)
 admin.site.register(KeyWord)
 admin.site.register(Ort)
 admin.site.register(Stelle)
 admin.site.register(Text)
+admin.site.register(UseCase)
+admin.site.register(SpatialCoverage)

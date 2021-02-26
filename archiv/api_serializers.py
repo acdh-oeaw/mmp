@@ -3,7 +3,6 @@ from rest_framework import serializers
 from rest_framework_gis.serializers import GeoFeatureModelSerializer
 from archiv.models import (
     Autor,
-    Edition,
     KeyWord,
     Ort,
     Stelle,
@@ -43,13 +42,6 @@ class AutorSerializer(serializers.HyperlinkedModelSerializer):
         model = Autor
         fields = "__all__"
         depth = 1
-
-
-class EditionSerializer(serializers.HyperlinkedModelSerializer):
-
-    class Meta:
-        model = Edition
-        fields = "__all__"
 
 
 class KeyWordSerializer(serializers.HyperlinkedModelSerializer):

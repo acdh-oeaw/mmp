@@ -4,7 +4,6 @@ import django_tables2 as tables
 from browsing.browsing_utils import MergeColumn
 from . models import (
     Autor,
-    Edition,
     KeyWord,
     Ort,
     Stelle,
@@ -41,17 +40,6 @@ class AutorTable(tables.Table):
 
     class Meta:
         model = Autor
-        sequence = ('id',)
-        attrs = {"class": "table table-responsive table-hover"}
-
-
-class EditionTable(tables.Table):
-
-    id = tables.LinkColumn(verbose_name='ID')
-    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
-
-    class Meta:
-        model = Edition
         sequence = ('id',)
         attrs = {"class": "table table-responsive table-hover"}
 
@@ -95,7 +83,6 @@ class TextTable(tables.Table):
     id = tables.LinkColumn(verbose_name='ID')
     merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
     autor = tables.columns.ManyToManyColumn()
-    edition = tables.columns.ManyToManyColumn()
     ort = tables.columns.ManyToManyColumn()
 
     class Meta:

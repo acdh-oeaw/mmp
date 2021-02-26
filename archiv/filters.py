@@ -6,7 +6,6 @@ from dal import autocomplete
 from vocabs.models import SkosConcept
 from . models import (
     Autor,
-    Edition,
     KeyWord,
     Ort,
     Stelle,
@@ -132,27 +131,6 @@ class AutorListFilter(django_filters.FilterSet):
             'end_date',
             'ort',
             'kommentar',
-            ]
-
-
-class EditionListFilter(django_filters.FilterSet):
-    legacy_id = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=Edition._meta.get_field('legacy_id').help_text,
-        label=Edition._meta.get_field('legacy_id').verbose_name
-    )
-    zitat = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=Edition._meta.get_field('zitat').help_text,
-        label=Edition._meta.get_field('zitat').verbose_name
-    )
-
-    class Meta:
-        model = Edition
-        fields = [
-            'id',
-            'legacy_id',
-            'zitat',
             ]
 
 
@@ -383,14 +361,6 @@ class TextListFilter(django_filters.FilterSet):
         lookup_expr='icontains',
         help_text=Text._meta.get_field('end_date').help_text,
         label=Text._meta.get_field('end_date').verbose_name
-    )
-    edition = django_filters.ModelMultipleChoiceFilter(
-        queryset=Edition.objects.all(),
-        help_text=Text._meta.get_field('edition').help_text,
-        label=Text._meta.get_field('edition').verbose_name,
-        widget=autocomplete.Select2Multiple(
-            url="archiv-ac:edition-autocomplete",
-        )
     )
     art = django_filters.ModelMultipleChoiceFilter(
         queryset=SkosConcept.objects.filter(

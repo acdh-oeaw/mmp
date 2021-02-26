@@ -416,88 +416,6 @@ class Autor(models.Model):
         return False
 
 
-class Edition(models.Model):
-    """ Edition """
-    legacy_id = models.CharField(
-        max_length=300, blank=True,
-        verbose_name="Legacy ID"
-        )
-    zitat = models.CharField(
-        max_length=250,
-        blank=True,
-        verbose_name="Zitat",
-        help_text="Zitat",
-    ).set_extra(
-        is_public=True,
-    )
-    orig_data_csv = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="The original data"
-        ).set_extra(
-            is_public=True
-        )
-
-    class Meta:
-
-        ordering = [
-            'zitat',
-        ]
-        verbose_name = "Edition"
-
-    def __str__(self):
-        if self.zitat:
-            return "{}".format(self.zitat)
-        else:
-            return "{}".format(self.legacy_id)
-
-    def field_dict(self):
-        return model_to_dict(self)
-
-    @classmethod
-    def get_listview_url(self):
-        return reverse('archiv:edition_browse')
-
-    @classmethod
-    def get_source_table(self):
-        return None
-
-    @classmethod
-    def get_natural_primary_key(self):
-        return "zitat"
-
-    @classmethod
-    def get_createview_url(self):
-        return reverse('archiv:edition_create')
-
-    def get_absolute_url(self):
-        return reverse('archiv:edition_detail', kwargs={'pk': self.id})
-
-    def get_delete_url(self):
-        return reverse('archiv:edition_delete', kwargs={'pk': self.id})
-
-    def get_edit_url(self):
-        return reverse('archiv:edition_edit', kwargs={'pk': self.id})
-
-    def get_next(self):
-        next = self.__class__.objects.filter(id__gt=self.id)
-        if next:
-            return reverse(
-                'archiv:edition_detail',
-                kwargs={'pk': next.first().id}
-            )
-        return False
-
-    def get_prev(self):
-        prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
-        if prev:
-            return reverse(
-                'archiv:edition_detail',
-                kwargs={'pk': prev.first().id}
-            )
-        return False
-
-
 class KeyWord(models.Model):
     """ Keyword """
     legacy_id = models.CharField(
@@ -1064,9 +982,8 @@ class Text(models.Model):
         is_public=True,
         data_lookup="tzeitbis",
     )
-    edition = models.ManyToManyField(
-        "Edition",
-        related_name='rvn_text_edition_edition',
+    edition = models.CharField(
+        max_length=350,
         blank=True,
         verbose_name="Edition",
         help_text="Edition",

@@ -12,7 +12,6 @@ from leaflet.forms.widgets import LeafletWidget
 from vocabs.models import SkosConcept
 from . models import (
     Autor,
-    Edition,
     KeyWord,
     Ort,
     Stelle,
@@ -149,52 +148,6 @@ class AutorForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(AutorForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_tag = True
-        self.helper.form_class = 'form-horizontal'
-        self.helper.label_class = 'col-md-3'
-        self.helper.field_class = 'col-md-9'
-        self.helper.add_input(Submit('submit', 'save'),)
-
-
-class EditionFilterFormHelper(FormHelper):
-    def __init__(self, *args, **kwargs):
-        super(EditionFilterFormHelper, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.form_class = 'genericFilterForm'
-        self.form_method = 'GET'
-        self.helper.form_tag = False
-        self.add_input(Submit('Filter', 'Search'))
-        self.layout = Layout(
-            Fieldset(
-                'Basic search options',
-                'id',
-                css_id="basic_search_fields"
-                ),
-            Accordion(
-                AccordionGroup(
-                    'Advanced search',
-                    
-                    'zitat',
-                    css_id="more"
-                    ),
-                AccordionGroup(
-                    'admin',
-                    'legacy_id',
-                    css_id="admin_search"
-                    ),
-                )
-            )
-
-
-class EditionForm(forms.ModelForm):
-
-    class Meta:
-        model = Edition
-        fields = "__all__"
-
-    def __init__(self, *args, **kwargs):
-        super(EditionForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_tag = True
         self.helper.form_class = 'form-horizontal'
@@ -430,5 +383,3 @@ class TextForm(forms.ModelForm):
         self.helper.label_class = 'col-md-3'
         self.helper.field_class = 'col-md-9'
         self.helper.add_input(Submit('submit', 'save'),)
-
-

@@ -6,7 +6,6 @@ from rest_framework_gis.pagination import GeoJsonPagination
 
 from archiv.api_serializers import (
     AutorSerializer,
-    EditionSerializer,
     KeyWordSerializer,
     OrtSerializer,
     StelleSerializer,
@@ -16,7 +15,6 @@ from archiv.api_serializers import (
 )
 from archiv.models import (
     Autor,
-    Edition,
     KeyWord,
     Ort,
     Stelle,
@@ -26,7 +24,6 @@ from archiv.models import (
 )
 from archiv.filters import (
     AutorListFilter,
-    EditionListFilter,
     KeyWordListFilter,
     OrtListFilter,
     StelleListFilter,
@@ -56,13 +53,6 @@ class AutorViewSet(viewsets.ModelViewSet):
     serializer_class = AutorSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filter_class = AutorListFilter
-
-
-class EditionViewSet(viewsets.ModelViewSet):
-    queryset = Edition.objects.all()
-    serializer_class = EditionSerializer
-    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
-    filter_class = EditionListFilter
 
 
 class KeyWordViewSet(viewsets.ModelViewSet):
