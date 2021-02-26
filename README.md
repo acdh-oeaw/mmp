@@ -99,3 +99,8 @@ REDMINE_ID=12345
 ### or use published image:
 
 `docker run -it -p 8020:8020 --rm --env-file .env_dev acdhch/mmp:latest`
+
+
+### dev notes
+
+`python manage.py remove_stale_contenttypes`
