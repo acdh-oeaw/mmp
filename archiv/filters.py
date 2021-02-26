@@ -145,11 +145,6 @@ class KeyWordListFilter(django_filters.FilterSet):
         help_text=KeyWord._meta.get_field('stichwort').help_text,
         label=KeyWord._meta.get_field('stichwort').verbose_name
     )
-    art = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=KeyWord._meta.get_field('art').help_text,
-        label=KeyWord._meta.get_field('art').verbose_name
-    )
     wurzel = django_filters.CharFilter(
         lookup_expr='icontains',
         help_text=KeyWord._meta.get_field('wurzel').help_text,

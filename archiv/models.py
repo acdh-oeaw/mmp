@@ -445,6 +445,10 @@ class KeyWord(models.Model):
     art = models.CharField(
         max_length=250,
         blank=True,
+        choices=(
+            ('Schlagwort', 'Schlagwort'),
+            ('Eigenname', 'Eigenname'),
+        ),
         verbose_name="Art des Stichworts",
         help_text="Art des Stichworts",
     ).set_extra(
