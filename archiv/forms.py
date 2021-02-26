@@ -145,6 +145,11 @@ class AutorForm(forms.ModelForm):
     class Meta:
         model = Autor
         fields = "__all__"
+        widgets = {
+            'ort': autocomplete.ModelSelect2(
+                url='archiv-ac:ort-autocomplete'
+            )
+        }
 
     def __init__(self, *args, **kwargs):
         super(AutorForm, self).__init__(*args, **kwargs)
@@ -314,6 +319,14 @@ class StelleForm(forms.ModelForm):
     class Meta:
         model = Stelle
         fields = "__all__"
+        widgets = {
+            'text': autocomplete.ModelSelect2(
+                url='archiv-ac:text-autocomplete'
+            ),
+            'key_word': autocomplete.ModelSelect2Multiple(
+                url='archiv-ac:keyword-autocomplete'
+            )
+        }
 
     def __init__(self, *args, **kwargs):
         super(StelleForm, self).__init__(*args, **kwargs)
@@ -374,6 +387,14 @@ class TextForm(forms.ModelForm):
     class Meta:
         model = Text
         fields = "__all__"
+        widgets = {
+            'autor': autocomplete.ModelSelect2Multiple(
+                url='archiv-ac:autor-autocomplete'
+            ),
+            'ort': autocomplete.ModelSelect2Multiple(
+                url='archiv-ac:ort-autocomplete'
+            ),
+        }
 
     def __init__(self, *args, **kwargs):
         super(TextForm, self).__init__(*args, **kwargs)
