@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from django.core.management.base import BaseCommand
 from django.conf import settings
-# imports for custom things
+from tqdm import tqdm
 import pandas as pd
 import math
 import archiv
@@ -68,10 +68,8 @@ class Command(BaseCommand):
                 "create display_label for Stelle"
             )
         )
-        for x in archiv.models.Stelle.objects.all():
+        for x in tqdm(
+            archiv.models.Stelle.objects.all(),
+            total=archiv.models.Stelle.objects.all().count()
+        ):
             x.save()
-            self.stdout.write(
-                self.style.SUCCESS(
-                    f"{x}"
-                )
-            )
