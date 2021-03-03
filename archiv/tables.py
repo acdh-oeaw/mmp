@@ -90,4 +90,3 @@ class TextTable(tables.Table):
         model = Text
         sequence = ('id',)
         attrs = {"class": "table table-responsive table-hover"}
-
