@@ -35,7 +35,9 @@ class Command(BaseCommand):
                 'Split quote/page'
             )
         )
-        for x in tqdm(Stelle.objects.all(), total=Stelle.objects.all().count()):
+        for x in tqdm(
+                Stelle.objects.all(), total=Stelle.objects.all().count()
+            ):
             zitat = x.zitat
             try:
                 stelle, text = zitat.split(':', 1)

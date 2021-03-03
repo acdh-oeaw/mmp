@@ -290,18 +290,18 @@ class StelleFilterFormHelper(FormHelper):
             Fieldset(
                 'Basic search options',
                 'id',
+                'text',
+                'key_word',
+                'use_case',
                 css_id="basic_search_fields"
                 ),
             Accordion(
                 AccordionGroup(
                     'Advanced search',
-                    
                     'legacy_pk',
-                    'text',
                     'summary',
                     'zitat',
                     'translation',
-                    'key_word',
                     'kommentar',
                     css_id="more"
                     ),

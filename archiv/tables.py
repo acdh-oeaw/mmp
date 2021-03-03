@@ -71,6 +71,7 @@ class StelleTable(tables.Table):
     id = tables.LinkColumn(verbose_name='ID')
     merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
     key_word = tables.columns.ManyToManyColumn()
+    use_case = tables.columns.ManyToManyColumn()
 
     class Meta:
         model = Stelle

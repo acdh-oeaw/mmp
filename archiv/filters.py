@@ -320,6 +320,7 @@ class StelleListFilter(django_filters.FilterSet):
             'translation',
             'key_word',
             'kommentar',
+            'use_case'
             ]
 
 
