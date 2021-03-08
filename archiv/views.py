@@ -327,7 +327,7 @@ class StelleListView(GenericListView):
 class StelleDetailView(BaseDetailView):
 
     model = Stelle
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'archiv/stelle_detail.html'
 
 
 class StelleCreate(BaseCreateView):
