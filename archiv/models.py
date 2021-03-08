@@ -115,6 +115,7 @@ class UseCase(models.Model):
             )
         return False
 
+
 class SpatialCoverage(models.Model):
     """ Spatial Coverage of a Keyword bound to a specifc source document"""
     stelle = models.ForeignKey(

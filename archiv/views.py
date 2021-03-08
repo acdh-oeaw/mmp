@@ -105,6 +105,24 @@ class SpatialCoverageCreate(BaseCreateView):
     form_class = SpatialCoverageForm
     template_name = 'archiv/generic_create.html'
 
+    def get_initial(self):
+        initial = super(SpatialCoverageCreate, self).get_initial()
+        stelle_id = self.request.GET.get('stelle', None)
+        stichwort_id = self.request.GET.get('stichwort', None)
+        try:
+            stelle_obj = Stelle.objects.get(id=int(stelle_id))
+        except:
+            stelle_obj = False
+        try:
+            stichwort_obj = KeyWord.objects.get(id=int(stichwort_id))
+        except:
+            stichwort_obj = False
+        if stelle_obj:
+            initial['stelle'] = self.request.GET.get('stelle', None)
+        if stichwort_obj:
+            initial['key_word'] = self.request.GET.get('stichwort', None)
+        return initial
+
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(SpatialCoverageCreate, self).dispatch(*args, **kwargs)
