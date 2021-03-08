@@ -178,7 +178,6 @@ class KeyWordFilterFormHelper(FormHelper):
             Accordion(
                 AccordionGroup(
                     'Advanced search',
-                    
                     'legacy_pk',
                     'stichwort',
                     'art',
@@ -355,7 +354,6 @@ class TextFilterFormHelper(FormHelper):
             Accordion(
                 AccordionGroup(
                     'Advanced search',
-                    
                     'legacy_pk',
                     'autor',
                     'title',

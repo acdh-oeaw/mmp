@@ -3,9 +3,40 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView
-from . filters import *
-from . forms import *
-from . tables import *
+from . filters import (
+    UseCaseListFilter,
+    SpatialCoverageListFilter,
+    AutorListFilter,
+    KeyWordListFilter,
+    OrtListFilter,
+    StelleListFilter,
+    TextListFilter,
+)
+from . forms import (
+    AutorForm,
+    KeyWordForm,
+    OrtForm,
+    StelleForm,
+    TextForm,
+    SpatialCoverageForm,
+    UseCaseForm,
+    AutorFilterFormHelper,
+    KeyWordFilterFormHelper,
+    OrtFilterFormHelper,
+    StelleFilterFormHelper,
+    TextFilterFormHelper,
+    SpatialCoverageFilterFormHelper,
+    UseCaseFilterFormHelper,
+)
+from . tables import (
+    AutorTable,
+    KeyWordTable,
+    OrtTable,
+    StelleTable,
+    TextTable,
+    SpatialCoverageTable,
+    UseCaseTable
+)
 from . models import (
     Autor,
     KeyWord,
