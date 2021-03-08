@@ -57,11 +57,18 @@
   <div class="card-body">
     {% block custom %}
     <legend>Basic Information</legend>
-    {% if user.is_authenticated %}
-      <legend><a href="{% url 'archiv:spatialcoverage_create' %}?stelle={{ object.id }}">Add Spatial coverage</a></legend>
-    {% endif %}
     <div class="row">
         <div class="col-md-6">
+          <ul>
+            {% for x in object.key_word.all %}
+              <li>
+                <a href="{{ x.get_absolute_url }}">{{ x }}</a>
+                {% if user.is_authenticated %}
+                  <a href="{% url 'archiv:spatialcoverage_create' %}?stelle={{ object.id }}&stichwort={{ x.id }}">[add spatial coverage]</a>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
             <table class="table table-responsive table-hover">
               {% for x in object.field_dict %}
               {% if x.value %}
