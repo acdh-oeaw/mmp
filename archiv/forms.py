@@ -180,6 +180,7 @@ class KeyWordFilterFormHelper(FormHelper):
                     'Advanced search',
                     'legacy_pk',
                     'stichwort',
+                    'rvn_stelle_key_word_keyword__text__autor',
                     'art',
                     'wurzel',
                     'kommentar',

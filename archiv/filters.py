@@ -135,6 +135,11 @@ class AutorListFilter(django_filters.FilterSet):
 
 
 class KeyWordListFilter(django_filters.FilterSet):
+    rvn_stelle_key_word_keyword__text__autor = django_filters.ModelMultipleChoiceFilter(
+        queryset=Autor.objects.all(),
+        label="Autor",
+        help_text="Stichworte wurde von diesen Autoren verwendet"
+    )
     legacy_id = django_filters.CharFilter(
         lookup_expr='icontains',
         help_text=KeyWord._meta.get_field('legacy_id').help_text,
@@ -164,6 +169,7 @@ class KeyWordListFilter(django_filters.FilterSet):
     class Meta:
         model = KeyWord
         fields = [
+            'rvn_stelle_key_word_keyword__text__autor',
             'id',
             'legacy_id',
             'legacy_pk',
