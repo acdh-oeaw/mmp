@@ -4,6 +4,7 @@ import logging
 from django.db import models
 from django.urls import reverse
 from django.contrib.gis.db.models import PolygonField
+from django.utils.functional import cached_property
 
 
 from vocabs.models import SkosConcept
@@ -500,6 +501,20 @@ class KeyWord(models.Model):
             return f"{self.stichwort}, [wurzel: {self.wurzel}]"
         else:
             return "{}".format(self.legacy_id)
+
+    @cached_property
+    def get_texts(self):
+        texts = Text.objects.filter(
+            rvn_stelle_text_text__key_word=self
+        ).distinct()
+        return texts
+
+    @cached_property
+    def get_authors(self):
+        authors = Autor.objects.filter(
+            rvn_text_autor_autor__in=self.get_texts
+        ).distinct()
+        return authors
 
     def field_dict(self):
         return model_to_dict(self)

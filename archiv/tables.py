@@ -48,6 +48,16 @@ class KeyWordTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name='ID')
     merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    autoren = tables.columns.TemplateColumn(
+        template_name="archiv/authorkeywordcol.html",
+        orderable=False,
+        verbose_name='Autoren'
+    )
+    texte = tables.columns.TemplateColumn(
+        template_name="archiv/textkeywordcol.html",
+        orderable=False,
+        verbose_name='Texte'
+    )
 
     class Meta:
         model = KeyWord
