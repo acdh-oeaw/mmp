@@ -54,3 +54,4 @@ pg_local.py
 .env_dev
 vocabs
 no_match.json
+database_mit_CaseStudies.csv
