@@ -1,4 +1,4 @@
-acdh-django-vocabs>=0.1.3
+acdh-django-vocabs>=0.1.4
 acdh-django-netvis>=2.0.0
 Django>=3.1
 django-mptt==0.11.0
