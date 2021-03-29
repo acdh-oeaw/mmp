@@ -975,6 +975,25 @@ class Text(models.Model):
         data_lookup="ttitel",
         arche_prop="hasTitle",
     )
+    alt_title = models.CharField(
+        max_length=250,
+        blank=True,
+        verbose_name="Alternative(r) Titel",
+        help_text="Alternative(r) Titel",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasAlternativeTitle",
+    )
+    text_lang = models.CharField(
+        max_length=250,
+        blank=True,
+        default='lat',
+        verbose_name="Sprache des Textes",
+        help_text="Spraches des Textes, default 'lat'",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasLanguage",
+    )
     jahrhundert = models.CharField(
         max_length=250,
         blank=True,
