@@ -302,6 +302,15 @@ class Autor(models.Model):
         data_lookup="anameit",
         arche_prop="hasAlternativeTitle",
     )
+    name_gr = models.CharField(
+        max_length=250,
+        blank=True,
+        verbose_name="Name (gr)",
+        help_text="Name (gr)",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasAlternativeTitle",
+    )
     jahrhundert = models.CharField(
         max_length=250,
         blank=True,
@@ -443,6 +452,15 @@ class KeyWord(models.Model):
         is_public=True,
         data_lookup="stichwort",
         arche_prop="hasTitle",
+    )
+    name_gr = models.CharField(
+        max_length=250,
+        blank=True,
+        verbose_name="Name (gr)",
+        help_text="Name (gr)",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasAlternativeTitle",
     )
     art = models.CharField(
         max_length=250,
@@ -640,6 +658,15 @@ class Ort(models.Model):
     ).set_extra(
         is_public=True,
         data_lookup="Ort_it",
+        arche_prop="hasAlternativeTitle",
+    )
+    name_gr = models.CharField(
+        max_length=250,
+        blank=True,
+        verbose_name="Name (gr)",
+        help_text="Name (gr)",
+    ).set_extra(
+        is_public=True,
         arche_prop="hasAlternativeTitle",
     )
     long = models.FloatField(
