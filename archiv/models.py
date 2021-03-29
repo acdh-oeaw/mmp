@@ -868,6 +868,18 @@ class Stelle(models.Model):
         is_public=True,
         arche_prop="hasSubject",
     )
+    ort = models.ForeignKey(
+        "Ort",
+        related_name='rvn_stelle_ort_ort',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Ort",
+        help_text="Ort",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasSpatialCoverage"
+    )
     kommentar = models.TextField(
         blank=True, null=True,
         verbose_name="Kommentar",
