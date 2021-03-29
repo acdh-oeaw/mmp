@@ -490,6 +490,15 @@ class KeyWord(models.Model):
         is_public=True,
         data_lookup="wurzel",
     )
+    related_keyword = models.ManyToManyField(
+        "KeyWord",
+        related_name='rvn_related_keyword',
+        blank=True,
+        verbose_name="Stichwort",
+        help_text="Steht in Verbindung zu anderem Stichwort",
+    ).set_extra(
+        is_public=True,
+    )
     kommentar = models.TextField(
         blank=True, null=True,
         verbose_name="Kommentar",
