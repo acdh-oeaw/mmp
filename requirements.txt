@@ -1,4 +1,4 @@
-acdh-django-vocabs>=0.1.5
+acdh-django-vocabs>=0.1.6
 acdh-django-browsing>=0.2.0
 acdh-django-netvis==2.0.0
 Django>=3.1
