@@ -219,16 +219,12 @@ class OrtListFilter(django_filters.FilterSet):
     )
     art = django_filters.ModelMultipleChoiceFilter(
         queryset=SkosConcept.objects.filter(
-            collection__name="art"
+            collection__name="place_art"
         ),
         help_text=Ort._meta.get_field('art').help_text,
         label=Ort._meta.get_field('art').verbose_name,
         widget=autocomplete.Select2Multiple(
-            url="/vocabs-ac/specific-concept-ac/art",
-            attrs={
-                'data-placeholder': 'Autocomplete ...',
-                'data-minimum-input-length': 2,
-                },
+            url="/vocabs-ac/specific-concept-ac/place_art"
         )
     )
     kategorie = django_filters.ModelMultipleChoiceFilter(
@@ -238,11 +234,7 @@ class OrtListFilter(django_filters.FilterSet):
         help_text=Ort._meta.get_field('kategorie').help_text,
         label=Ort._meta.get_field('kategorie').verbose_name,
         widget=autocomplete.Select2Multiple(
-            url="/vocabs-ac/specific-concept-ac/kategorie",
-            attrs={
-                'data-placeholder': 'Autocomplete ...',
-                'data-minimum-input-length': 2,
-                },
+            url="/vocabs-ac/specific-concept-ac/kategorie"
         )
     )
     kommentar = django_filters.CharFilter(
@@ -372,10 +364,6 @@ class TextListFilter(django_filters.FilterSet):
         label=Text._meta.get_field('art').verbose_name,
         widget=autocomplete.Select2Multiple(
             url="/vocabs-ac/specific-concept-ac/art",
-            attrs={
-                'data-placeholder': 'Autocomplete ...',
-                'data-minimum-input-length': 2,
-                },
         )
     )
     ort = django_filters.ModelMultipleChoiceFilter(

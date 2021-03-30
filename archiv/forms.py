@@ -256,7 +256,7 @@ class OrtForm(forms.ModelForm):
     art = forms.ModelChoiceField(
         required=False,
         label="Art des Ortes",
-        queryset=SkosConcept.objects.filter(collection__name="art")
+        queryset=SkosConcept.objects.filter(collection__name="place_art")
     )
     kategorie = forms.ModelChoiceField(
         required=False,
