@@ -65,7 +65,6 @@
                             <tbody style="text-align:left;">                    
                             {% for x in object.field_dict %}
                                 {% if x.value %}
-                                    {% if user.is_authenticated %}
                                         {% if x.verbose_name != 'ID' and x.verbose_name != 'rvn_stelle_text_text' and x.verbose_name != 'Titel' %}
                                             <tr>
                                                 {% if x.help_text %}
@@ -93,7 +92,6 @@
                                             </tr>
                                         {% endif %}
                                     {% endif %}
-                                {% endif %}
                             {% endfor %}                    
                             </tbody>                        
                         </table>

@@ -399,6 +399,20 @@ class Autor(models.Model):
     def get_createview_url(self):
         return reverse('archiv:autor_create')
 
+    @cached_property
+    def get_stellen(self):
+        stellen = Stelle.objects.filter(
+            text__autor=self
+        ).distinct()
+        return stellen
+
+    @cached_property
+    def get_keywords(self):
+        keywords = KeyWord.objects.filter(
+            rvn_stelle_key_word_keyword__in=self.get_stellen
+        ).distinct()
+        return keywords
+
     def get_absolute_url(self):
         return reverse('archiv:autor_detail', kwargs={'pk': self.id})
 

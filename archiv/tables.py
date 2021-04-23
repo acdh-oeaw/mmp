@@ -37,6 +37,16 @@ class AutorTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name='ID')
     merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    stellen = tables.columns.TemplateColumn(
+        template_name="archiv/autor_stelle_col.html",
+        orderable=False,
+        verbose_name='Stellen'
+    )
+    keywords = tables.columns.TemplateColumn(
+        template_name="archiv/autor_keyword_col.html",
+        orderable=False,
+        verbose_name='Keywords'
+    )
 
     class Meta:
         model = Autor
