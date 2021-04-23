@@ -3,12 +3,21 @@
 {% load webpage_extras %}
 {% block title %}{{ object.name }}{% endblock %}
 {% block scriptHeader %}
+{% load leaflet_tags %}
+{% leaflet_js %}
+{% leaflet_css %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
 <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/three@latest/build/three.min.js"></script>
+<script crossorigin src="https://unpkg.com/three@0.126.1/build/three.min.js"></script>
 <script crossorigin src="https://unpkg.com/@acdh/network-visualization@latest/lib/network-visualization.umd.js"></script>
 <script src="{% static 'netvis/js/netvis.js' %}"></script>
+<style type="text/css">
+  #yourmap_text{
+      min-height:600px;
+  }
+</style>
+
 {% endblock %}
 {% block content %}
 <!-- <div class="container"> -->
@@ -154,6 +163,9 @@
           <script type="text/javascript">
             showGraph("{% url 'netvis:graph' app_name=app_name model_name=class_name|lower pk=object.id %}", "visualization")
           </script>
+          <div style="padding:0;">
+            {% leaflet_map "yourmap_text" callback="window.map_init_basic" %}
+        </div>
       </div>
 
     </div>
@@ -163,3 +175,41 @@
 </div>
 {% endblock custom %}
 {% endblock %}
+{% block scripts2 %}
+
+<script type="text/javascript">
+
+  function createTableRows(propertyObject){
+      var returnTable = "<table class='table table-hover table-striped table-condensed'>";
+      var linkToObject = "#";
+      returnTable += "<tr><td>linkToObject</td><td><a href='"+linkToObject+"'>follow link</a></td></tr>";
+      for (var [key, value] of Object.entries(propertyObject.key_word)) {
+          returnTable += "<tr><td>"+key+"</td><td>"+value+"</td></tr>";
+      };
+      return returnTable += "</table>";
+  };
+
+  function onEachFeature(feature, layer) {
+      if (feature.properties) {
+          var popupContent = createTableRows(feature.properties);
+          layer.bindPopup(popupContent);
+      }
+  };
+
+  function map_init_basic (map, options) {
+      $.ajax({
+          dataType: "json",
+          url: "/api/spatialcoverage/?stelle={{ object.id }}&format=json",
+          success: function(data) {
+              var geojsonFeature = data;
+              var geojsonLayer = L.geoJson(geojsonFeature, {
+                  onEachFeature: onEachFeature
+              }).addTo(map);
+              map.fitBounds(geojsonLayer.getBounds());
+          }
+          }).error(function() {});
+  }
+</script>
+
+
+{% endblock scripts2 %}
