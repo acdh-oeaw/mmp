@@ -113,6 +113,11 @@ class AutorListFilter(django_filters.FilterSet):
         help_text=Autor._meta.get_field('kommentar').help_text,
         label=Autor._meta.get_field('kommentar').verbose_name
     )
+    rvn_text_autor_autor__rvn_stelle_text_text__key_word = django_filters.ModelMultipleChoiceFilter(
+        queryset=KeyWord.objects.all(),
+        label="Keywords",
+        help_text="Keywords für Texte von diesen Autoren"
+    )
 
     class Meta:
         model = Autor
