@@ -334,6 +334,7 @@ class StelleCreate(BaseCreateView):
 
     model = Stelle
     form_class = StelleForm
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -344,6 +345,7 @@ class StelleUpdate(BaseUpdateView):
 
     model = Stelle
     form_class = StelleForm
+    template_name = 'archiv/generic_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
