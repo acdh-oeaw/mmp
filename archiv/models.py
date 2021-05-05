@@ -963,7 +963,7 @@ class Stelle(models.Model):
 
     def __str__(self):
         if self.display_label:
-            return f"{self.display_label}"
+            return f"{self.display_label} [{self.id}]"
         else:
             return f"{self.id}"
 

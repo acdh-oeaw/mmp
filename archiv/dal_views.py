@@ -62,7 +62,8 @@ class StelleAC(autocomplete.Select2QuerySetView):
             qs = qs.filter(
                 Q(legacy_id__icontains=self.q) |
                 Q(zitat__icontains=self.q) |
-                Q(text__title__icontains=self.q)
+                Q(text__title__icontains=self.q) |
+                Q(id__icontains=self.q)
             )
         return qs
 
