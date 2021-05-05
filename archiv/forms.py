@@ -61,7 +61,7 @@ class SpatialCoverageForm(forms.ModelForm):
         model = SpatialCoverage
         fields = "__all__"
         widgets = {
-            'stelle': autocomplete.ModelSelect2(
+            'stelle': autocomplete.ModelSelect2Multiple(
                 url='archiv-ac:stelle-autocomplete'
             ),
             'key_word': autocomplete.ModelSelect2(

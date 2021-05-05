@@ -119,11 +119,9 @@ class UseCase(models.Model):
 
 class SpatialCoverage(models.Model):
     """ Spatial Coverage of a Keyword bound to a specifc source document"""
-    stelle = models.ForeignKey(
+    stelle = models.ManyToManyField(
         "Stelle",
         related_name='has_spatial_coverage',
-        on_delete=models.SET_NULL,
-        null=True,
         blank=True,
         verbose_name="Stelle",
         help_text="Stelle",
@@ -177,7 +175,7 @@ class SpatialCoverage(models.Model):
         verbose_name = "Spatial Coverage"
 
     def __str__(self):
-        return f"{self.stelle} - {self.key_word}"
+        return f"{self.stelle.all()} - {self.key_word}"
 
     def field_dict(self):
         return model_to_dict(self)
@@ -893,6 +891,22 @@ class Stelle(models.Model):
     ).set_extra(
         is_public=True,
         arche_prop="hasSpatialCoverage"
+    )
+    start_date = models.PositiveSmallIntegerField(
+        blank=True, null=True,
+        verbose_name="Start Date",
+        help_text="e.g. '300'"
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasCoverageStartDate"
+    )
+    end_date = models.PositiveSmallIntegerField(
+        blank=True, null=True,
+        verbose_name="End Date",
+        help_text="e.g. '1234'"
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasCoverageEndDate"
     )
     kommentar = models.TextField(
         blank=True, null=True,

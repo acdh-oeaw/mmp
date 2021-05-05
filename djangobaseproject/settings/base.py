@@ -7,6 +7,9 @@ BASE_DIR = os.path.dirname(
 os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 
 
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+
 SHARED_URL = "https://shared.acdh.oeaw.ac.at/"
 PROJECT_NAME = "djangobaseproject"
 

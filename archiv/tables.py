@@ -26,6 +26,11 @@ class UseCaseTable(tables.Table):
 class SpatialCoverageTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name='ID')
+    stelle = tables.columns.TemplateColumn(
+        template_name="archiv/spatialstellecol.html",
+        orderable=False,
+        verbose_name='Stelle'
+    )
 
     class Meta:
         model = SpatialCoverage
@@ -67,6 +72,11 @@ class KeyWordTable(tables.Table):
         template_name="archiv/textkeywordcol.html",
         orderable=False,
         verbose_name='Texte'
+    )
+    spatial_coverage = tables.columns.TemplateColumn(
+        template_name="archiv/keywordspatialcol.html",
+        orderable=False,
+        verbose_name='SpatialCoverage'
     )
 
     class Meta:
