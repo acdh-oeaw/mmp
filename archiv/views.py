@@ -4,6 +4,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView
+
+from archiv.network_utils import create_graph, graph_table
+
 from . filters import (
     UseCaseListFilter,
     SpatialCoverageListFilter,
@@ -226,6 +229,15 @@ class KeyWordListView(GenericListView):
         'id', 'stichwort', 'wurzel', 'varianten'
     ]
     enable_merge = True
+    template_name = 'archiv/keyword_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(KeyWordListView, self).get_context_data()
+        qs = self.get_queryset()
+        if qs.count() < 50:
+            df = graph_table(qs)
+            context['graph'] = create_graph(df, qs)
+        return context
 
 
 class KeyWordDetailView(BaseDetailView):
