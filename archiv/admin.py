@@ -9,6 +9,7 @@ from . models import (
     Text,
     SpatialCoverage,
     UseCase,
+    Event
 )
 
 
@@ -42,5 +43,9 @@ class UseCaseAdmin(VersionAdmin):
 
 
 @admin.register(SpatialCoverage)
+class SpatialCoverageAdmin(VersionAdmin):
+    pass
+
+@admin.register(Event)
 class SpatialCoverageAdmin(VersionAdmin):
     pass

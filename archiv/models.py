@@ -1203,3 +1203,49 @@ class Text(models.Model):
                 kwargs={'pk': prev.first().id}
             )
         return False
+
+
+class Event(models.Model):
+    title = models.CharField(
+        max_length=250,
+        blank=True, null=True,
+        verbose_name="Titel",
+        help_text="Titel des Events"
+    )
+    description = models.TextField(
+        blank=True, null=True,
+        verbose_name="Beschreibung",
+        help_text="Beschreibung"
+    )
+    start_date = models.IntegerField(
+        blank=True,
+        verbose_name="von",
+        help_text="von",
+    ).set_extra(
+        is_public=True,
+    )
+    end_date = models.IntegerField(
+        blank=True,
+        verbose_name="bis",
+        help_text="bis",
+    ).set_extra(
+        is_public=True,
+    )
+    written_date = models.CharField(
+        max_length=250,
+        blank=True, null=True,
+        verbose_name="Datum",
+        help_text="z.B. 'um 750'"
+    )
+    use_case = models.ManyToManyField(
+        "UseCase",
+        related_name='has_event',
+        blank=True,
+        verbose_name="Use Case",
+        help_text="Verwendet in Use Case",
+    ).set_extra(
+        is_public=True
+    )
+
+    def __str__(self):
+        return f"{self.title}"
