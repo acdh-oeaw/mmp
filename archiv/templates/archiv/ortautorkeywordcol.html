@@ -1,5 +1,5 @@
 {% for x in record.get_orte %}
-    <li><a href="{{ x }}">{{ x }}</a></li>
+    <li><a href="{{ x.get_absolute_url }}">{{ x }}</a></li>
 {% endfor %}
 
 
