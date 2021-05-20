@@ -418,6 +418,7 @@ class TextListFilter(django_filters.FilterSet):
             'kommentar',
             ]
 
+
 class EventListFilter(django_filters.FilterSet):
 
     class Meta:

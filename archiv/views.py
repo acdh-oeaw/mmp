@@ -185,7 +185,7 @@ class AutorListView(GenericListView):
     init_columns = [
         'id', 'name',
     ]
-    enable_merge = True
+    enable_merge = False
 
 
 class AutorDetailView(BaseDetailView):
@@ -233,7 +233,7 @@ class KeyWordListView(GenericListView):
     init_columns = [
         'id', 'stichwort', 'wurzel', 'varianten'
     ]
-    enable_merge = True
+    enable_merge = False
     template_name = 'archiv/keyword_list.html'
 
     def get_context_data(self, **kwargs):
@@ -290,7 +290,7 @@ class OrtListView(GenericListView):
     init_columns = [
         'id', 'name', 'long', 'lat'
     ]
-    enable_merge = True
+    enable_merge = False
 
 
 class OrtDetailView(BaseDetailView):
@@ -338,7 +338,7 @@ class StelleListView(GenericListView):
     init_columns = [
         'id', 'display_label',
     ]
-    enable_merge = True
+    enable_merge = False
 
 
 class StelleDetailView(BaseDetailView):
@@ -388,7 +388,7 @@ class TextListView(GenericListView):
     init_columns = [
         'id', 'title',
     ]
-    enable_merge = True
+    enable_merge = False
 
 
 class TextDetailView(BaseDetailView):
@@ -435,7 +435,7 @@ class EventListView(GenericListView):
     init_columns = [
         'id', 'title',
     ]
-    enable_merge = True
+    enable_merge = False
 
 
 class EventDetailView(BaseDetailView):

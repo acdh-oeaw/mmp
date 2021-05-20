@@ -43,7 +43,7 @@ class SpatialCoverageTable(tables.Table):
 class AutorTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name='ID')
-    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    # merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
     stellen = tables.columns.TemplateColumn(
         template_name="archiv/autor_stelle_col.html",
         orderable=False,
@@ -64,7 +64,7 @@ class AutorTable(tables.Table):
 class KeyWordTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name='ID')
-    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    # merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
     autoren = tables.columns.TemplateColumn(
         template_name="archiv/authorkeywordcol.html",
         orderable=False,
@@ -100,7 +100,7 @@ class KeyWordTable(tables.Table):
 class OrtTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name='ID')
-    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    # merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
 
     class Meta:
         model = Ort
@@ -111,7 +111,7 @@ class OrtTable(tables.Table):
 class StelleTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name='ID')
-    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    # merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
     key_word = tables.columns.ManyToManyColumn()
     use_case = tables.columns.ManyToManyColumn()
 
@@ -124,7 +124,7 @@ class StelleTable(tables.Table):
 class TextTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name='ID')
-    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    # merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
     autor = tables.columns.ManyToManyColumn()
     ort = tables.columns.ManyToManyColumn()
 
@@ -133,9 +133,10 @@ class TextTable(tables.Table):
         sequence = ('id',)
         attrs = {"class": "table table-responsive table-hover"}
 
+
 class EventTable(tables.Table):
     id = tables.LinkColumn(verbose_name='ID')
-    merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    # merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
 
     class Meta:
         model = Event

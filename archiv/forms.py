@@ -409,6 +409,7 @@ class TextForm(forms.ModelForm):
         self.helper.field_class = 'col-md-9'
         self.helper.add_input(Submit('submit', 'save'),)
 
+
 class EventFilterFormHelper(FormHelper):
     def __init__(self, *args, **kwargs):
         super(EventFilterFormHelper, self).__init__(*args, **kwargs)
@@ -420,14 +421,15 @@ class EventFilterFormHelper(FormHelper):
         self.layout = Layout(
             Fieldset(
                 'Basic search options',
-                'id',
+                'title',
+                'description',
                 css_id="basic_search_fields"
                 ),
             Accordion(
                 AccordionGroup(
                     'Advanced search',
-                    'title',
-                    'description',
+                    'start_date',
+                    'end_date',
                     css_id="more"
                     ),
                 ),    

@@ -1263,6 +1263,19 @@ class Event(models.Model):
     @classmethod
     def get_listview_url(self):
         return reverse('archiv:event_browse')
+    
+    @classmethod
+    def get_createview_url(self):
+        return reverse('archiv:event_create')
+
+    def get_absolute_url(self):
+        return reverse('archiv:event_detail', kwargs={'pk': self.id})
+
+    def get_delete_url(self):
+        return reverse('archiv:event_delete', kwargs={'pk': self.id})
+
+    def get_edit_url(self):
+        return reverse('archiv:event_edit', kwargs={'pk': self.id})
 
     def get_next(self):
         next = self.__class__.objects.filter(id__gt=self.id)
