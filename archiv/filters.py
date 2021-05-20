@@ -12,6 +12,7 @@ from . models import (
     Text,
     SpatialCoverage,
     UseCase,
+    Event
 )
 
 
@@ -417,4 +418,8 @@ class TextListFilter(django_filters.FilterSet):
             'kommentar',
             ]
 
+class EventListFilter(django_filters.FilterSet):
 
+    class Meta:
+        model = Event
+        fields = '__all__'

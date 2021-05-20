@@ -1256,3 +1256,28 @@ class Event(models.Model):
 
     def __str__(self):
         return f"{self.title}"
+
+    def field_dict(self):
+        return model_to_dict(self)
+
+    @classmethod
+    def get_listview_url(self):
+        return reverse('archiv:event_browse')
+
+    def get_next(self):
+        next = self.__class__.objects.filter(id__gt=self.id)
+        if next:
+            return reverse(
+                'archiv:event_detail',
+                kwargs={'pk': next.first().id}
+            )
+        return False
+
+    def get_prev(self):
+        prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
+        if prev:
+            return reverse(
+                'archiv:event_detail',
+                kwargs={'pk': prev.first().id}
+            )
+        return False

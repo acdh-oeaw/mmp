@@ -15,6 +15,7 @@ from . filters import (
     OrtListFilter,
     StelleListFilter,
     TextListFilter,
+    EventListFilter
 )
 from . forms import (
     AutorForm,
@@ -31,6 +32,8 @@ from . forms import (
     TextFilterFormHelper,
     SpatialCoverageFilterFormHelper,
     UseCaseFilterFormHelper,
+    EventFilterFormHelper,
+    EventForm
 )
 from . tables import (
     AutorTable,
@@ -39,7 +42,8 @@ from . tables import (
     StelleTable,
     TextTable,
     SpatialCoverageTable,
-    UseCaseTable
+    UseCaseTable,
+    EventTable
 )
 from . models import (
     Autor,
@@ -48,7 +52,8 @@ from . models import (
     Stelle,
     Text,
     SpatialCoverage,
-    UseCase
+    UseCase,
+    Event
 )
 from browsing.browsing_utils import (
     GenericListView, BaseCreateView, BaseUpdateView, BaseDetailView
@@ -420,3 +425,50 @@ class TextDelete(DeleteView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(TextDelete, self).dispatch(*args, **kwargs)
+
+class EventListView(GenericListView):
+    
+    model = Event
+    filter_class = EventListFilter
+    formhelper_class = EventFilterFormHelper
+    table_class = EventTable
+    init_columns = [
+        'id', 'title',
+    ]
+    enable_merge = True
+
+
+class EventDetailView(BaseDetailView):
+
+    model = Event
+    template_name = 'archiv/event_detail.html'
+
+
+class EventCreate(BaseCreateView):
+
+    model = Event
+    form_class = EventForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(EventCreate, self).dispatch(*args, **kwargs)
+
+
+class EventUpdate(BaseUpdateView):
+
+    model = Event
+    form_class = EventForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(EventUpdate, self).dispatch(*args, **kwargs)
+
+
+class EventDelete(DeleteView):
+    model = Event
+    template_name = 'webpage/confirm_delete.html'
+    success_url = reverse_lazy('archiv:event_browse')
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(EventDelete, self).dispatch(*args, **kwargs)

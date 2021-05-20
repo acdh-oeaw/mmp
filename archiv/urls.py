@@ -172,4 +172,28 @@ urlpatterns = [
         r'^text/delete/(?P<pk>[0-9]+)$',
         views.TextDelete.as_view(),
         name='text_delete'),
+    url(
+        r'^event/$',
+        views.EventListView.as_view(),
+        name='event_browse'
+    ),
+    url(
+        r'^event/detail/(?P<pk>[0-9]+)$',
+        views.EventDetailView.as_view(),
+        name='event_detail'
+    ),
+    url(
+        r'^event/create/$',
+        views.EventCreate.as_view(),
+        name='event_create'
+    ),
+    url(
+        r'^event/edit/(?P<pk>[0-9]+)$',
+        views.EventUpdate.as_view(),
+        name='event_edit'
+    ),
+    url(
+        r'^event/delete/(?P<pk>[0-9]+)$',
+        views.EventDelete.as_view(),
+        name='event_delete'),        
 ]
