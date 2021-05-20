@@ -1226,6 +1226,7 @@ class Event(models.Model):
     )
     start_date = models.IntegerField(
         blank=True,
+        null=True,
         verbose_name="von",
         help_text="von",
     ).set_extra(
@@ -1233,6 +1234,7 @@ class Event(models.Model):
     )
     end_date = models.IntegerField(
         blank=True,
+        null=True,
         verbose_name="bis",
         help_text="bis",
     ).set_extra(
