@@ -78,6 +78,11 @@ class KeyWordTable(tables.Table):
         orderable=False,
         verbose_name='SpatialCoverage'
     )
+    ort = tables.columns.TemplateColumn(
+        template_name="archiv/ortautorkeywordcol.html",
+        orderable=False,
+        verbose_name='Ort'
+    )
 
     class Meta:
         model = KeyWord

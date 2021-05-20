@@ -555,6 +555,13 @@ class KeyWord(models.Model):
         ).distinct()
         return authors
 
+    @cached_property
+    def get_orte(self):
+        orte = Ort.objects.filter(
+            rvn_autor_ort_ort__in=self.get_authors
+        ).distinct()
+        return orte
+
     def field_dict(self):
         return model_to_dict(self)
 
