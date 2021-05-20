@@ -426,8 +426,9 @@ class TextDelete(DeleteView):
     def dispatch(self, *args, **kwargs):
         return super(TextDelete, self).dispatch(*args, **kwargs)
 
+
 class EventListView(GenericListView):
-    
+
     model = Event
     filter_class = EventListFilter
     formhelper_class = EventFilterFormHelper

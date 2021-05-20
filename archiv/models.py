@@ -546,7 +546,7 @@ class KeyWord(models.Model):
         texts = Text.objects.filter(
             rvn_stelle_text_text__key_word=self
         ).distinct()
-        return texts 
+        return texts
 
     @cached_property
     def get_authors(self):
@@ -1263,7 +1263,7 @@ class Event(models.Model):
     @classmethod
     def get_listview_url(self):
         return reverse('archiv:event_browse')
-    
+
     @classmethod
     def get_createview_url(self):
         return reverse('archiv:event_create')

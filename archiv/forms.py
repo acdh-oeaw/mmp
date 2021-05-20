@@ -196,7 +196,7 @@ class KeyWordFilterFormHelper(FormHelper):
                     'admin',
                     'legacy_id',
                     css_id="admin_search"
-                    ),   
+                    ),
                 )
             )
 
@@ -432,8 +432,9 @@ class EventFilterFormHelper(FormHelper):
                     'end_date',
                     css_id="more"
                     ),
-                ),    
+                ),
             )
+
 
 class EventForm(forms.ModelForm):
 
