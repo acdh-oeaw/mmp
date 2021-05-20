@@ -83,6 +83,11 @@ class KeyWordTable(tables.Table):
         orderable=False,
         verbose_name='Ort'
     )
+    stelle = tables.columns.TemplateColumn(
+        template_name="archiv/stellekeywordcol.html",
+        orderable=False,
+        verbose_name='Stelle'
+    )
 
     class Meta:
         model = KeyWord
