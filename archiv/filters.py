@@ -170,6 +170,21 @@ class KeyWordListFilter(django_filters.FilterSet):
         help_text=KeyWord._meta.get_field('varianten').help_text,
         label=KeyWord._meta.get_field('varianten').verbose_name
     )
+    rvn_stelle_key_word_keyword = django_filters.ModelMultipleChoiceFilter(
+        queryset=Stelle.objects.all(),
+        label="Stelle",
+        help_text="Stichworte stehen mit diesen Stellen in Verbindung"
+    )
+    rvn_stelle_key_word_keyword__text = django_filters.ModelMultipleChoiceFilter(
+        queryset=Text.objects.all(),
+        label="Text",
+        help_text="Stichworte stehen mit diesen Texten in Verbindung"
+    )
+    rvn_stelle_key_word_keyword__text__autor__ort = django_filters.ModelMultipleChoiceFilter(
+        queryset=Ort.objects.all(),
+        label="Ort",
+        help_text="Stichworte stehen mit diesen Orten in Verbindung"
+    )
 
     class Meta:
         model = KeyWord

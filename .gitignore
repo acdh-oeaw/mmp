@@ -62,3 +62,4 @@ database_mit_CaseStudies_stichworte.csv
 stellen.csv
 update_keywords.ipynb
 djangobaseproject/settings/pg_local.py
+local.py

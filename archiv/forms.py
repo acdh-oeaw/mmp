@@ -186,13 +186,16 @@ class KeyWordFilterFormHelper(FormHelper):
                     'wurzel',
                     'kommentar',
                     'varianten',
+                    'rvn_stelle_key_word_keyword',
+                    'rvn_stelle_key_word_keyword__text',
+                    'rvn_stelle_key_word_keyword__text__autor__ort',
                     css_id="more"
                     ),
                 AccordionGroup(
                     'admin',
                     'legacy_id',
                     css_id="admin_search"
-                    ),
+                    ),   
                 )
             )
 

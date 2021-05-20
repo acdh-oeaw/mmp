@@ -546,7 +546,7 @@ class KeyWord(models.Model):
         texts = Text.objects.filter(
             rvn_stelle_text_text__key_word=self
         ).distinct()
-        return texts
+        return texts 
 
     @cached_property
     def get_authors(self):
