@@ -1256,6 +1256,13 @@ class Event(models.Model):
         is_public=True
     )
 
+    class Meta:
+
+        ordering = [
+            'title',
+        ]
+        verbose_name = "Event"
+
     def __str__(self):
         return f"{self.title}"
 

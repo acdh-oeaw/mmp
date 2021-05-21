@@ -15,6 +15,12 @@ from . models import (
     Event
 )
 
+DATE_LOOKUP_CHOICES=[
+    ('exact', 'Equals'),
+    ('gt', 'Greater than'),
+    ('lt', 'Less than')
+]
+
 
 class UseCaseListFilter(django_filters.FilterSet):
 
@@ -420,7 +426,29 @@ class TextListFilter(django_filters.FilterSet):
 
 
 class EventListFilter(django_filters.FilterSet):
+    title = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=Event._meta.get_field('title').help_text,
+        label=Event._meta.get_field('title').verbose_name
+    )
+    description = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=Event._meta.get_field('description').help_text,
+        label=Event._meta.get_field('description').verbose_name
+    )
+    start_date=django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text=Event._meta.get_field('start_date').help_text,
+        label=Event._meta.get_field('start_date').verbose_name
+    )
+    end_date=django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text=Event._meta.get_field('end_date').help_text,
+        label=Event._meta.get_field('end_date').verbose_name
+    )   
 
     class Meta:
         model = Event
-        fields = '__all__'
+        fields = [
+            'title',
+        ]
