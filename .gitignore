@@ -63,3 +63,5 @@ stellen.csv
 update_keywords.ipynb
 djangobaseproject/settings/pg_local.py
 local.py
+djangobaseproject/settings/pg_local.py
+import_events.ipynb
