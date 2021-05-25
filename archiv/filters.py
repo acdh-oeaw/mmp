@@ -23,6 +23,11 @@ DATE_LOOKUP_CHOICES=[
 
 
 class UseCaseListFilter(django_filters.FilterSet):
+    rvn_stelle_text_text__use_case = django_filters.ModelMultipleChoiceFilter(
+        queryset=Text.objects.all(),
+        help_text="Related Text",
+        label="Text",
+    )
 
     class Meta:
         model = UseCase

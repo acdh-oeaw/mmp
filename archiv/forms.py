@@ -51,6 +51,7 @@ class UseCaseFilterFormHelper(FormHelper):
                 'Basic search options',
                 'title',
                 'principal_investigator',
+                'rvn_stelle_text_text__use_case',
                 css_id="basic_search_fields"
                 ),
             )

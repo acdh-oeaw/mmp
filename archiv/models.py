@@ -73,6 +73,13 @@ class UseCase(models.Model):
     def field_dict(self):
         return model_to_dict(self)
 
+    @cached_property
+    def get_texts(self):
+        text = Text.objects.filter(
+            rvn_stelle_text_text__use_case=self
+        ).distinct()
+        return text
+
     @classmethod
     def get_source_table(self):
         return None

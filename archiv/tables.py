@@ -17,6 +17,11 @@ from . models import (
 class UseCaseTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name='ID')
+    texte = tables.columns.TemplateColumn(
+        template_name="archiv/stelleusecasecol.html",
+        orderable=False,
+        verbose_name='Texte'
+    )
 
     class Meta:
         model = UseCase
