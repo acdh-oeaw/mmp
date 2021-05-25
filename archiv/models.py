@@ -80,6 +80,20 @@ class UseCase(models.Model):
         ).distinct()
         return text
 
+    @cached_property
+    def get_authors(self):
+        author = Autor.objects.filter(
+            rvn_text_autor_autor__in=self.get_texts
+        ).distinct()
+        return author
+
+    @cached_property
+    def get_keywords(self):
+        keyword = KeyWord.objects.filter(
+            rvn_stelle_key_word_keyword__use_case=self
+        ).distinct()
+        return keyword
+
     @classmethod
     def get_source_table(self):
         return None

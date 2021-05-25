@@ -22,6 +22,16 @@ class UseCaseTable(tables.Table):
         orderable=False,
         verbose_name='Texte'
     )
+    autor = tables.columns.TemplateColumn(
+        template_name="archiv/autorusecasecol.html",
+        orderable=False,
+        verbose_name='Autor'
+    )
+    keyword = tables.columns.TemplateColumn(
+        template_name="archiv/keywordusecasecol.html",
+        orderable=False,
+        verbose_name='Keyword'
+    )    
 
     class Meta:
         model = UseCase
