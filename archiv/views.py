@@ -83,7 +83,7 @@ class UseCaseUpdate(BaseUpdateView):
 class UseCaseDetailView(BaseDetailView):
 
     model = UseCase
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'archiv/usecase_detail.html'
 
 
 class UseCaseListView(GenericListView):
