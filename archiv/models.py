@@ -94,6 +94,13 @@ class UseCase(models.Model):
         ).distinct()
         return keyword
 
+    @cached_property
+    def get_events(self):
+        event = Event.objects.filter(
+            use_case=self
+        )
+        return event    
+
     @classmethod
     def get_source_table(self):
         return None
@@ -136,6 +143,49 @@ class UseCase(models.Model):
                 kwargs={'pk': prev.first().id}
             )
         return False
+
+    def get_timetable_data(self):
+        time_table_data = []
+        if self.get_texts:
+            for x in self.get_texts:
+                time_table_data.append(
+                    {
+                        'id': x.id,
+                        'start_date': x.start_date,
+                        'end_date': x.end_date,
+                        'ent_type': 'text',
+                        'ent_title': x.title,
+                        'ent_description': x.title,
+                        'ent_detail_view': x.get_absolute_url()  
+                    }
+                )
+        if self.get_authors:
+            for x in self.get_authors:
+                time_table_data.append(
+                    {
+                        'id': x.id,
+                        'start_date': x.start_date,
+                        'end_date': x.end_date,
+                        'ent_type': 'autor',
+                        'ent_title': x.name,
+                        'ent_description': x.name,
+                        'ent_detail_view': x.get_absolute_url()  
+                    }
+                )
+        if self.get_events:        
+            for x in self.get_events:
+                time_table_data.append(
+                    {
+                        'id': x.id,
+                        'start_date': x.start_date,
+                        'end_date': x.end_date,
+                        'ent_type': 'event',
+                        'ent_title': x.title,
+                        'ent_description': x.description,
+                        'ent_detail_view': x.get_absolute_url()  
+                    }
+                )    
+        return time_table_data        
 
 
 class SpatialCoverage(models.Model):
