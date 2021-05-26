@@ -96,9 +96,7 @@ class UseCase(models.Model):
 
     @cached_property
     def get_events(self):
-        event = Event.objects.filter(
-            use_case=self
-        )
+        event = Event.objects.all()
         return event    
 
     @classmethod
