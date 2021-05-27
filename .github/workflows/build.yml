@@ -3,7 +3,7 @@ name: Build and push to DockerHub
 on:
   push:
     branches: 
-      - master
+      - hansi
 
 jobs:
   push_to_registry:

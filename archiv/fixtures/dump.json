@@ -1,0 +1,767 @@
+[
+    {
+        "fields": {
+            "contributor": "",
+            "created_by": null,
+            "creator": "",
+            "date_created": "2021-01-29T11:12:00.004Z",
+            "date_modified": "2021-01-29T11:12:00.004Z",
+            "label_lang": "en",
+            "legacy_id": "",
+            "name": "kategorie",
+            "scheme": 1
+        },
+        "model": "vocabs.skoscollection",
+        "pk": 2
+    },
+    {
+        "fields": {
+            "contributor": "",
+            "created_by": null,
+            "creator": "",
+            "date_created": "2021-03-30T10:27:37.416Z",
+            "date_modified": "2021-03-30T10:27:37.416Z",
+            "label_lang": "en",
+            "legacy_id": "",
+            "name": "place_art",
+            "scheme": 1
+        },
+        "model": "vocabs.skoscollection",
+        "pk": 3
+    },
+    {
+        "fields": {
+            "broad_match": "",
+            "broader_concept": null,
+            "close_match": "",
+            "collection": [
+                2
+            ],
+            "contributor": "",
+            "created_by": null,
+            "creator": "",
+            "date_created": "2021-01-29T11:12:04.462Z",
+            "date_modified": "2021-03-01T12:01:07.469Z",
+            "exact_match": "",
+            "legacy_id": "kategorie__small place",
+            "level": 0,
+            "lft": 1,
+            "narrow_match": "",
+            "needs_review": null,
+            "notation": "small-place",
+            "pref_label": "small place",
+            "pref_label_lang": "en",
+            "related": "",
+            "related_match": "",
+            "rght": 2,
+            "scheme": 1,
+            "top_concept": null,
+            "tree_id": 27
+        },
+        "model": "vocabs.skosconcept",
+        "pk": 7
+    },
+    {
+        "fields": {
+            "broad_match": "",
+            "broader_concept": null,
+            "close_match": "",
+            "collection": [
+                2
+            ],
+            "contributor": "",
+            "created_by": null,
+            "creator": "",
+            "date_created": "2021-01-29T11:12:00.881Z",
+            "date_modified": "2021-03-01T12:01:07.748Z",
+            "exact_match": "",
+            "legacy_id": "kategorie__monastery",
+            "level": 0,
+            "lft": 1,
+            "narrow_match": "",
+            "needs_review": null,
+            "notation": "monastery",
+            "pref_label": "monastery",
+            "pref_label_lang": "en",
+            "related": "",
+            "related_match": "",
+            "rght": 2,
+            "scheme": 1,
+            "top_concept": null,
+            "tree_id": 20
+        },
+        "model": "vocabs.skosconcept",
+        "pk": 5
+    },
+    {
+        "fields": {
+            "art": null,
+            "kategorie": null,
+            "kommentar": null,
+            "lat": null,
+            "legacy_id": "",
+            "legacy_pk": null,
+            "long": null,
+            "name": "",
+            "name_antik": "",
+            "name_de": "",
+            "name_fr": "",
+            "name_gr": "",
+            "name_it": "",
+            "norm_id": "",
+            "orig_data_csv": null
+        },
+        "model": "archiv.ort",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "broad_match": "",
+            "broader_concept": null,
+            "close_match": "",
+            "collection": [
+                2
+            ],
+            "contributor": "",
+            "created_by": null,
+            "creator": "",
+            "date_created": "2021-01-29T11:12:01.367Z",
+            "date_modified": "2021-03-01T12:01:07.229Z",
+            "exact_match": "",
+            "legacy_id": "kategorie__bishopric",
+            "level": 0,
+            "lft": 1,
+            "narrow_match": "",
+            "needs_review": null,
+            "notation": "bishopric",
+            "pref_label": "bishopric",
+            "pref_label_lang": "en",
+            "related": "",
+            "related_match": "",
+            "rght": 2,
+            "scheme": 1,
+            "top_concept": null,
+            "tree_id": 6
+        },
+        "model": "vocabs.skosconcept",
+        "pk": 6
+    },
+    {
+        "fields": {
+            "broad_match": "",
+            "broader_concept": null,
+            "close_match": "",
+            "collection": [
+                3
+            ],
+            "contributor": "",
+            "created_by": null,
+            "creator": "",
+            "date_created": "2021-01-29T11:12:00.673Z",
+            "date_modified": "2021-03-30T10:27:39.458Z",
+            "exact_match": "",
+            "legacy_id": "art__ort",
+            "level": 0,
+            "lft": 1,
+            "narrow_match": "",
+            "needs_review": null,
+            "notation": "ort",
+            "pref_label": "Ort",
+            "pref_label_lang": "en",
+            "related": "",
+            "related_match": "",
+            "rght": 2,
+            "scheme": 1,
+            "top_concept": null,
+            "tree_id": 21
+        },
+        "model": "vocabs.skosconcept",
+        "pk": 4
+    },
+    {
+        "fields": {
+            "art": 4,
+            "kategorie": 7,
+            "kommentar": "",
+            "lat": 46.666667,
+            "legacy_id": "67.0",
+            "legacy_pk": 67,
+            "long": 11.166667,
+            "name": "Meran",
+            "name_antik": "Meranum/Merona/Mairania",
+            "name_de": "Meran",
+            "name_fr": "Merano",
+            "name_gr": "",
+            "name_it": "Merano",
+            "norm_id": "",
+            "orig_data_csv": "{\"ortid\": 67, \"ort_en\": \"Meran\", \"ort_antik\": \"Meranum/Merona/Mairania\", \"ort_de\": \"Meran\", \"ort_fr\": \"Merano\", \"ort_it\": \"Merano\", \"koordn\": 46.666667, \"koordw\": 11.166667, \"art\": \"Ort\", \"kommentar\": \"\", \"kategorie\": \"small place\", \"heilige\": \"\"}"
+        },
+        "model": "archiv.ort",
+        "pk": 5
+    },
+    {
+        "fields": {
+            "contributor": "",
+            "created_by": null,
+            "creator": "",
+            "date_created": "2021-01-29T11:11:59.772Z",
+            "date_modified": "2021-03-30T10:28:01.628Z",
+            "label_lang": "en",
+            "legacy_id": "",
+            "name": "art",
+            "scheme": 1
+        },
+        "model": "vocabs.skoscollection",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "contributor": "",
+            "coverage": "",
+            "created_by": null,
+            "creator": "",
+            "curator": [],
+            "date_created": "2021-01-29T11:10:42.465Z",
+            "date_issued": null,
+            "date_modified": "2021-01-29T11:10:42.465Z",
+            "identifier": "https://vocabs.acdh.oeaw.ac.at/fallback_scheme",
+            "language": "",
+            "legacy_id": "",
+            "license": "",
+            "owner": "",
+            "publisher": "",
+            "relation": "",
+            "subject": "",
+            "title": "fallback_scheme",
+            "title_lang": "en",
+            "version": ""
+        },
+        "model": "vocabs.skosconceptscheme",
+        "pk": 1
+    },
+    {
+        "fields": {
+            "art": 4,
+            "kategorie": 6,
+            "kommentar": "",
+            "lat": 50.6425,
+            "legacy_id": "61.0",
+            "legacy_pk": 61,
+            "long": 5.57,
+            "name": "Li\u00e8ge",
+            "name_antik": "Leodicum/Vicus Leodicus",
+            "name_de": "L\u00fcttich",
+            "name_fr": "Li\u00e8ge",
+            "name_gr": "",
+            "name_it": "Liegi",
+            "norm_id": "",
+            "orig_data_csv": "{\"ortid\": 61, \"ort_en\": \"Li\\u00e8ge\", \"ort_antik\": \"Leodicum/Vicus Leodicus\", \"ort_de\": \"L\\u00fcttich\", \"ort_fr\": \"Li\\u00e8ge\", \"ort_it\": \"Liegi\", \"koordn\": 50.6425, \"koordw\": 5.57, \"art\": \"Ort\", \"kommentar\": \"\", \"kategorie\": \"bishopric\", \"heilige\": \"\"}"
+        },
+        "model": "archiv.ort",
+        "pk": 57
+    },
+    {
+        "fields": {
+            "art": 4,
+            "kategorie": 5,
+            "kommentar": "",
+            "lat": 50.333,
+            "legacy_id": "22.0",
+            "legacy_pk": 22,
+            "long": 4.267,
+            "name": "Lobbes",
+            "name_antik": "Laubium",
+            "name_de": "Laubach/Lobbes",
+            "name_fr": "Lobbes",
+            "name_gr": "",
+            "name_it": "Lobbes",
+            "norm_id": "",
+            "orig_data_csv": "{\"ortid\": 22, \"ort_en\": \"Lobbes\", \"ort_antik\": \"Laubium\", \"ort_de\": \"Laubach/Lobbes\", \"ort_fr\": \"Lobbes\", \"ort_it\": \"Lobbes\", \"koordn\": 50.333, \"koordw\": 4.267, \"art\": \"Ort\", \"kommentar\": \"\", \"kategorie\": \"monastery\", \"heilige\": \"\"}"
+        },
+        "model": "archiv.ort",
+        "pk": 4
+    },
+    {
+        "fields": {
+            "end_date": "",
+            "gnd_id": "",
+            "jahrhundert": "",
+            "kommentar": "completely unknown",
+            "legacy_id": "0.0",
+            "legacy_pk": 0,
+            "name": "Anonymus",
+            "name_en": "Anonymus",
+            "name_fr": "",
+            "name_gr": "",
+            "name_it": "",
+            "name_lat": "",
+            "orig_data_csv": "{\"aid\": 0, \"anamed\": \"Anonymus\", \"anamelat\": \"\", \"anameeng\": \"Anonymus\", \"anamefr\": \"\", \"anameit\": \"\", \"avon\": \"\", \"abis\": \"\", \"ajh\": \"\", \"aort\": \"\", \"akommentar\": \"completely unknown\"}",
+            "ort": 1,
+            "start_date": ""
+        },
+        "model": "archiv.autor",
+        "pk": 5
+    },
+    {
+        "fields": {
+            "broad_match": "",
+            "broader_concept": null,
+            "close_match": "",
+            "collection": [
+                1
+            ],
+            "contributor": "",
+            "created_by": null,
+            "creator": "",
+            "date_created": "2021-01-29T11:40:14.825Z",
+            "date_modified": "2021-03-30T10:27:23.704Z",
+            "exact_match": "",
+            "legacy_id": "art__5.0",
+            "level": 0,
+            "lft": 1,
+            "narrow_match": "",
+            "needs_review": null,
+            "notation": "5",
+            "pref_label": "Annals",
+            "pref_label_lang": "en",
+            "related": "",
+            "related_match": "",
+            "rght": 2,
+            "scheme": 1,
+            "top_concept": null,
+            "tree_id": 4
+        },
+        "model": "vocabs.skosconcept",
+        "pk": 20
+    },
+    {
+        "fields": {
+            "art": 4,
+            "kategorie": 6,
+            "kommentar": "",
+            "lat": 48.402778,
+            "legacy_id": "18.0",
+            "legacy_pk": 18,
+            "long": 11.748889,
+            "name": "Freising",
+            "name_antik": "Frisinga",
+            "name_de": "Freising",
+            "name_fr": "Frisingue",
+            "name_gr": "",
+            "name_it": "Frisinga",
+            "norm_id": "",
+            "orig_data_csv": "{\"ortid\": 18, \"ort_en\": \"Freising\", \"ort_antik\": \"Frisinga\", \"ort_de\": \"Freising\", \"ort_fr\": \"Frisingue\", \"ort_it\": \"Frisinga\", \"koordn\": 48.402778, \"koordw\": 11.748889, \"art\": \"Ort\", \"kommentar\": \"\", \"kategorie\": \"bishopric\", \"heilige\": \"\"}"
+        },
+        "model": "archiv.ort",
+        "pk": 11
+    },
+    {
+        "fields": {
+            "end_date": "784",
+            "gnd_id": "",
+            "jahrhundert": "8th",
+            "kommentar": "764 he becomes bishop of Freising",
+            "legacy_id": "12.0",
+            "legacy_pk": 12,
+            "name": "Arbeo von Freising",
+            "name_en": "Arbeo of Freising",
+            "name_fr": "",
+            "name_gr": "",
+            "name_it": "Arbeo di Frisinga",
+            "name_lat": "Arbeo Frisingensis episcopus",
+            "orig_data_csv": "{\"aid\": 12, \"anamed\": \"Arbeo von Freising\", \"anamelat\": \"Arbeo Frisingensis episcopus\", \"anameeng\": \"Arbeo of Freising\", \"anamefr\": \"\", \"anameit\": \"Arbeo di Frisinga\", \"avon\": \"723\", \"abis\": \"784\", \"ajh\": \"8th\", \"aort\": \"67\", \"akommentar\": \"764 he becomes bishop of Freising\"}",
+            "ort": 5,
+            "start_date": "723"
+        },
+        "model": "archiv.autor",
+        "pk": 7
+    },
+    {
+        "fields": {
+            "broad_match": "",
+            "broader_concept": null,
+            "close_match": "",
+            "collection": [
+                1
+            ],
+            "contributor": "",
+            "created_by": null,
+            "creator": "",
+            "date_created": "2021-01-29T11:39:17.032Z",
+            "date_modified": "2021-03-30T10:27:23.599Z",
+            "exact_match": "",
+            "legacy_id": "art__2.0",
+            "level": 0,
+            "lft": 1,
+            "narrow_match": "",
+            "needs_review": null,
+            "notation": "2",
+            "pref_label": "Vitae",
+            "pref_label_lang": "en",
+            "related": "",
+            "related_match": "",
+            "rght": 2,
+            "scheme": 1,
+            "top_concept": null,
+            "tree_id": 28
+        },
+        "model": "vocabs.skosconcept",
+        "pk": 16
+    },
+    {
+        "fields": {
+            "art": "Schlagwort",
+            "kommentar": null,
+            "legacy_id": "",
+            "legacy_pk": 107,
+            "name_gr": "",
+            "orig_data_csv": "{\"stid\": 107, \"stichwort\": \"imperator\", \"start\": \"Schlagwort\", \"svar1\": \"imperatores\", \"svar2\": \"induperator\", \"svar3\": \"imperatori\", \"svar4\": \"imperatorem\", \"svar5\": \"\", \"Unnamed: 8\": \"\", \"wurzel\": \"imperator\", \"Kommentar\": \"\"}",
+            "related_keyword": [],
+            "stichwort": "imperator",
+            "varianten": "imperatores;induperator;imperatori;imperatorem",
+            "wurzel": "imperator"
+        },
+        "model": "archiv.keyword",
+        "pk": 107
+    },
+    {
+        "fields": {
+            "art": "Eigenname",
+            "kommentar": null,
+            "legacy_id": "",
+            "legacy_pk": 29,
+            "name_gr": "",
+            "orig_data_csv": "{\"stid\": 29, \"stichwort\": \"Baioaria\", \"start\": \"Eigenname\", \"svar1\": \"Baioariae\", \"svar2\": \"Baioariam\", \"svar3\": \"Bawaria\", \"svar4\": \"\", \"svar5\": \"\", \"Unnamed: 8\": \"\", \"wurzel\": \"Baioari\", \"Kommentar\": \"Bawaria\"}",
+            "related_keyword": [],
+            "stichwort": "Baioaria",
+            "varianten": "Baioariae;Baioariam;Bawaria",
+            "wurzel": "Baioari"
+        },
+        "model": "archiv.keyword",
+        "pk": 29
+    },
+    {
+        "fields": {
+            "art": "Eigenname",
+            "kommentar": null,
+            "legacy_id": "",
+            "legacy_pk": 5,
+            "name_gr": "",
+            "orig_data_csv": "{\"stid\": 5, \"stichwort\": \"Alamannia\", \"start\": \"Eigenname\", \"svar1\": \"Alamanniae\", \"svar2\": \"Alamanniam\", \"svar3\": \"Alemannia\", \"svar4\": \"\", \"svar5\": \"\", \"Unnamed: 8\": \"\", \"wurzel\": \"Alamanni\", \"Kommentar\": \"\"}",
+            "related_keyword": [],
+            "stichwort": "Alamannia",
+            "varianten": "Alamanniae;Alamanniam;Alemannia",
+            "wurzel": "Alamanni"
+        },
+        "model": "archiv.keyword",
+        "pk": 5
+    },
+    {
+        "fields": {
+            "alt_title": "",
+            "art": 20,
+            "autor": [
+                5
+            ],
+            "edition": "MGH, SS, Supplementa tomorum 13, 1881 (G. Waitz), p. 226-235",
+            "end_date": "1100",
+            "jahrhundert": "10th-11th.",
+            "kommentar": "The place of origin of the text is uncertain.",
+            "legacy_id": "144.0",
+            "legacy_pk": 144,
+            "orig_data_csv": "{\"tid\": 144, \"tautor\": null, \"tautor2\": \"\", \"tautor3\": \"\", \"ttitel\": \"Annales Lobienses\", \"tzeitvon\": \"982\", \"tzeitbis\": \"1100\", \"tjh\": \"10th-11th.\", \"tedition1\": \"MGH, SS, Supplementa tomorum 13, 1881 (G. Waitz), p. 226-235\", \"tedition2\": \"\", \"tart1\": \"5\", \"tkommentar\": \"The place of origin of the text is uncertain.\", \"tort\": \"61\", \"tort2\": \"22\", \"tort3\": \"\", \"tort4\": \"\", \"tort5\": \"\", \"tort6\": \"\", \"tautor1\": \"0\"}",
+            "ort": [
+                4,
+                57
+            ],
+            "start_date": "982",
+            "text_lang": "lat",
+            "title": "Annales Lobienses"
+        },
+        "model": "archiv.text",
+        "pk": 143
+    },
+    {
+        "fields": {
+            "description": "This usecase will investigate the Avar realm in Carolingian times, spanning from the last appearances of the Avar army in the mid 8th c. to the conquest in 796 by Charlemagne  and his son Pippin. Finally, it will map the subsequent attempt to create a provinicia avaria in the early 9th century, an attempt that ultimately failed.",
+            "pi_norm_id": "",
+            "principal_investigator": "Katharina Winckler",
+            "title": "The Carolingian Avaria: Katharina Winckler"
+        },
+        "model": "archiv.usecase",
+        "pk": 4
+    },
+    {
+        "fields": {
+            "description": "",
+            "pi_norm_id": "",
+            "principal_investigator": "",
+            "title": "Steppe Peoples 5: View from the \"West\" (5th-10th c.)"
+        },
+        "model": "archiv.usecase",
+        "pk": 9
+    },
+    {
+        "fields": {
+            "art": "Eigenname",
+            "kommentar": "",
+            "legacy_id": "",
+            "legacy_pk": 105,
+            "name_gr": "",
+            "orig_data_csv": "{\"stid\": 105, \"stichwort\": \"Huni\", \"start\": \"Eigenname\", \"svar1\": \"Hunorum\", \"svar2\": \"Hunos\", \"svar3\": \"Chuni \", \"svar4\": \"Chunorum\", \"svar5\": \"Hunni\", \"Unnamed: 8\": \"\", \"wurzel\": \"hun\", \"Kommentar\": \"\"}",
+            "related_keyword": [],
+            "stichwort": "Huni",
+            "varianten": "Hunorum;Hunos;Chuni;Chunorum;Hunni",
+            "wurzel": "hun"
+        },
+        "model": "archiv.keyword",
+        "pk": 105
+    },
+    {
+        "fields": {
+            "art": "Schlagwort",
+            "kommentar": "",
+            "legacy_id": "",
+            "legacy_pk": 76,
+            "name_gr": "",
+            "orig_data_csv": "{\"stid\": 76, \"stichwort\": \"gens\", \"start\": \"Schlagwort\", \"svar1\": \"gentes\", \"svar2\": \"genti\", \"svar3\": \"gente\", \"svar4\": \"\", \"svar5\": \"\", \"Unnamed: 8\": \"\", \"wurzel\": \"gent\", \"Kommentar\": \"\"}",
+            "related_keyword": [],
+            "stichwort": "gens",
+            "varianten": "gentes;genti;gente",
+            "wurzel": "gent"
+        },
+        "model": "archiv.keyword",
+        "pk": 76
+    },
+    {
+        "fields": {
+            "art": "Schlagwort",
+            "kommentar": null,
+            "legacy_id": "",
+            "legacy_pk": 57,
+            "name_gr": "",
+            "orig_data_csv": "{\"stid\": 57, \"stichwort\": \"episcopus\", \"start\": \"Schlagwort\", \"svar1\": \"episcopi\", \"svar2\": \"episcopum\", \"svar3\": \"episcopos\", \"svar4\": \"episcopis\", \"svar5\": \"episcopo\", \"Unnamed: 8\": \"\", \"wurzel\": \"episcop\", \"Kommentar\": \"\"}",
+            "related_keyword": [],
+            "stichwort": "episcopus",
+            "varianten": "episcopi;episcopum;episcopos;episcopis;episcopo",
+            "wurzel": "episcop"
+        },
+        "model": "archiv.keyword",
+        "pk": 57
+    },
+    {
+        "fields": {
+            "art": "Schlagwort",
+            "kommentar": null,
+            "legacy_id": "",
+            "legacy_pk": 55,
+            "name_gr": "",
+            "orig_data_csv": "{\"stid\": 55, \"stichwort\": \"dux\", \"start\": \"Schlagwort\", \"svar1\": \"duci\", \"svar2\": \"duce\", \"svar3\": \"ducum\", \"svar4\": \"\", \"svar5\": \"\", \"Unnamed: 8\": \"\", \"wurzel\": \"duc\", \"Kommentar\": \"\"}",
+            "related_keyword": [],
+            "stichwort": "dux",
+            "varianten": "duci;duce;ducum",
+            "wurzel": "duc"
+        },
+        "model": "archiv.keyword",
+        "pk": 55
+    },
+    {
+        "fields": {
+            "art": "Eigenname",
+            "kommentar": "",
+            "legacy_id": "",
+            "legacy_pk": 30,
+            "name_gr": "",
+            "orig_data_csv": "{\"stid\": 30, \"stichwort\": \"Baiuvarii\", \"start\": \"Eigenname\", \"svar1\": \"Baioarii\", \"svar2\": \"Bawarii\", \"svar3\": \"\", \"svar4\": \"\", \"svar5\": \"\", \"Unnamed: 8\": \"\", \"wurzel\": \"Baiuvari\", \"Kommentar\": \"\"}",
+            "related_keyword": [
+                29
+            ],
+            "stichwort": "Baiuvarii",
+            "varianten": "Baioarii;Bawarii",
+            "wurzel": "Baiuvari"
+        },
+        "model": "archiv.keyword",
+        "pk": 30
+    },
+    {
+        "fields": {
+            "art": "Eigenname",
+            "kommentar": null,
+            "legacy_id": "",
+            "legacy_pk": 28,
+            "name_gr": "",
+            "orig_data_csv": "{\"stid\": 28, \"stichwort\": \"Avari\", \"start\": \"Eigenname\", \"svar1\": \"Avar\", \"svar2\": \"Avares\", \"svar3\": \"\", \"svar4\": \"\", \"svar5\": \"\", \"Unnamed: 8\": \"\", \"wurzel\": \"Avar\", \"Kommentar\": \"\"}",
+            "related_keyword": [],
+            "stichwort": "Avari",
+            "varianten": "Avar;Avares",
+            "wurzel": "Avar"
+        },
+        "model": "archiv.keyword",
+        "pk": 28
+    },
+    {
+        "fields": {
+            "alt_title": "",
+            "art": 16,
+            "autor": [
+                7
+            ],
+            "edition": "Erlangen 1953 (B. Bischoff)",
+            "end_date": "775",
+            "jahrhundert": "late 8th ",
+            "kommentar": "",
+            "legacy_id": "19.0",
+            "legacy_pk": 19,
+            "orig_data_csv": "{\"tid\": 19, \"tautor\": null, \"tautor2\": \"\", \"tautor3\": \"\", \"ttitel\": \"Vita Haimhrammi/Emmerami\", \"tzeitvon\": \"765\", \"tzeitbis\": \"775\", \"tjh\": \"late 8th \", \"tedition1\": \"Erlangen 1953 (B. Bischoff)\", \"tedition2\": \"MGH, SS in usum Scholarum 13, 1920 (B. Krusch), p. 26-99 (column A)\", \"tart1\": \"2\", \"tkommentar\": \"\", \"tort\": \"18\", \"tort2\": \"\", \"tort3\": \"\", \"tort4\": \"\", \"tort5\": \"\", \"tort6\": \"\", \"tautor1\": \"12\"}",
+            "ort": [
+                11
+            ],
+            "start_date": "765",
+            "text_lang": "lat",
+            "title": "Vita Haimhrammi/Emmerami"
+        },
+        "model": "archiv.text",
+        "pk": 20
+    },
+    {
+        "fields": {
+            "display_label": " eodem anno legatus michahelis impe...; (Annales Lobienses, (p. 230))",
+            "end_date": null,
+            "key_word": [
+                5,
+                28,
+                29,
+                55,
+                76,
+                107
+            ],
+            "kommentar": "",
+            "legacy_id": "859.0",
+            "legacy_pk": 859,
+            "orig_data_csv": "{\"sid\": 859, \"stexttitel\": 144, \"ssummary\": \"\", \"szitat\": \"(p. 230): eodem anno legatus michahelis imperatoris uenit et cum honore dimissus est.\\ngens auarorum a fide defecit.\\net heiricus dux foroiuliensis et geroldus prefectus alamanniae et bawariae ab eis interfecti sunt.\", \"stranslation\": \"\", \"sstichwort1\": \"imperator\", \"sstichwort2\": \"gens\", \"sstichwort3\": \"Avari\", \"sstichwort4\": \"dux\", \"sstichwort5\": \"Alamannia\", \"sstichwort6\": \"Bawaria\", \"sstichwort7\": \"\", \"sstichwort8\": \"\", \"sstichwort9\": \"\", \"sstichwort10\": \"\", \"sstichwort11\": \"\", \"sstichwort12\": \"\", \"sstichwort13\": \"\", \"sstichwort14\": \"\", \"skommentar\": \"\", \"sperre\": null, \"kommentar_sperre\": \"\", \"sstichwort15\": null, \"sstichwort16\": null, \"sstichwort17\": null, \"sstichwort18\": null}",
+            "ort": null,
+            "start_date": null,
+            "summary": "",
+            "text": 143,
+            "translation": "",
+            "use_case": [],
+            "zitat": " eodem anno legatus michahelis imperatoris uenit et cum honore dimissus est.\ngens auarorum a fide defecit.\net heiricus dux foroiuliensis et geroldus prefectus alamanniae et bawariae ab eis interfecti sunt.",
+            "zitat_stelle": "(p. 230)"
+        },
+        "model": "archiv.stelle",
+        "pk": 860
+    },
+    {
+        "fields": {
+            "display_label": "Eo namque tempore inter Hunorum et ...; (Vita Haimhrammi/Emmerami, p. 12)",
+            "end_date": null,
+            "key_word": [
+                28,
+                30,
+                55,
+                57,
+                76,
+                105
+            ],
+            "kommentar": "Avars = Huns",
+            "legacy_id": "807.0",
+            "legacy_pk": 807,
+            "orig_data_csv": "{\"sid\": 807, \"stexttitel\": 19, \"ssummary\": \"\", \"szitat\": \"p. 12: Eo namque tempore inter Hunorum et gentem Baiuvariorum orta est discordia, ita ut a vastantium manibus circa amnem Anisem interiacentem depopulate urbis pene deserte esse videbatur  (...) Tunc praedictus Theoto Baiuvariorum gentis dux, se discordare cum Avaros praenuntians, illuc eum ire minime sinire professus est; sed aiebat, ut tantus et talis Deo notus episcopus apud se et suos remansisset.\", \"stranslation\": \"Zu jener Zeit war zwischen den Hunnen und dem Volk der Bayern ein Streit ausgebrochen, so dass die St\\u00e4dte um die Enns, die die Grenze bildet, verheert waren (\\u2026)Darum erkl\\u00e4rte der Herzog des Bayernvolkes, Theoto, er liege im Streit mit den Avaren und werde nicht zulassen, dass jener dorthin ziehe. Er sagte aber, ein so bedeutender, Gott wohlbekannter Bischof solle bei ihm und den Seinen bleiben. (Bischoff, p. 13)\", \"sstichwort1\": \"Huni\", \"sstichwort2\": \"Baiuvarii\", \"sstichwort3\": \"dux \", \"sstichwort4\": \"Avari\", \"sstichwort5\": \"episcopus\", \"sstichwort6\": \"gens\", \"sstichwort7\": \"\", \"sstichwort8\": \"\", \"sstichwort9\": \"\", \"sstichwort10\": \"\", \"sstichwort11\": \"\", \"sstichwort12\": \"\", \"sstichwort13\": \"\", \"sstichwort14\": \"\", \"skommentar\": \"Avars = Huns\", \"sperre\": null, \"kommentar_sperre\": \"\", \"sstichwort15\": null, \"sstichwort16\": null, \"sstichwort17\": null, \"sstichwort18\": null}",
+            "ort": null,
+            "start_date": null,
+            "summary": "",
+            "text": 20,
+            "translation": "Zu jener Zeit war zwischen den Hunnen und dem Volk der Bayern ein Streit ausgebrochen, so dass die St\u00e4dte um die Enns, die die Grenze bildet, verheert waren (\u2026)Darum erkl\u00e4rte der Herzog des Bayernvolkes, Theoto, er liege im Streit mit den Avaren und werde nicht zulassen, dass jener dorthin ziehe. Er sagte aber, ein so bedeutender, Gott wohlbekannter Bischof solle bei ihm und den Seinen bleiben. (Bischoff, p. 13)",
+            "use_case": [
+                9,
+                4
+            ],
+            "zitat": "Eo namque tempore inter Hunorum et gentem Baiuvariorum orta est discordia, ita ut a vastantium manibus circa amnem Anisem interiacentem depopulate urbis pene deserte esse videbatur  (...) Tunc praedictus Theoto Baiuvariorum gentis dux, se discordare cum Avaros praenuntians, illuc eum ire minime sinire professus est; sed aiebat, ut tantus et talis Deo notus episcopus apud se et suos remansisset.",
+            "zitat_stelle": "p. 12"
+        },
+        "model": "archiv.stelle",
+        "pk": 808
+    },
+    {
+        "fields": {
+            "end_date": "",
+            "gnd_id": "",
+            "jahrhundert": "9th c.",
+            "kommentar": "",
+            "legacy_id": "36.0",
+            "legacy_pk": 36,
+            "name": "Pseudo Arbeo von Freising",
+            "name_en": "Pseudo Arbeo of Freising",
+            "name_fr": "",
+            "name_gr": "",
+            "name_it": "pseudo Arbeone di Frisinga",
+            "name_lat": "",
+            "orig_data_csv": "{\"aid\": 36, \"anamed\": \"Pseudo Arbeo von Freising\", \"anamelat\": \"\", \"anameeng\": \"Pseudo Arbeo of Freising\", \"anamefr\": \"\", \"anameit\": \"pseudo Arbeone di Frisinga\", \"avon\": \"\", \"abis\": \"\", \"ajh\": \"9th c.\", \"aort\": \"\", \"akommentar\": \"\"}",
+            "ort": 1,
+            "start_date": ""
+        },
+        "model": "archiv.autor",
+        "pk": 40
+    },
+    {
+        "fields": {
+            "alt_title": "",
+            "art": 16,
+            "autor": [
+                40
+            ],
+            "edition": "MGH Scriptores Rerum Germanicarum in usum scholarum separatim editi 13, 1920 (B. Krusch), p. 26-99 ",
+            "end_date": "860",
+            "jahrhundert": "mid 9th",
+            "kommentar": "The place of origin of the text is uncertain.",
+            "legacy_id": "60.0",
+            "legacy_pk": 60,
+            "orig_data_csv": "{\"tid\": 60, \"tautor\": null, \"tautor2\": \"\", \"tautor3\": \"\", \"ttitel\": \"Vita Haimhrammi/Emmerami recensio B\", \"tzeitvon\": \"840\", \"tzeitbis\": \"860\", \"tjh\": \"mid 9th\", \"tedition1\": \"MGH Scriptores Rerum Germanicarum in usum scholarum separatim editi 13, 1920 (B. Krusch), p. 26-99 \", \"tedition2\": \"Vita et passio Sancti Haimhrammi, Leben und Leiden des hl. Emmeram, lat.-deutsch, M\\u00fcnchen 1953, p. 7-83 (B. Bischoff) \", \"tart1\": \"2\", \"tkommentar\": \"The place of origin of the text is uncertain.\", \"tort\": \"18\", \"tort2\": \"\", \"tort3\": \"\", \"tort4\": \"\", \"tort5\": \"\", \"tort6\": \"\", \"tautor1\": \"36\"}",
+            "ort": [
+                11
+            ],
+            "start_date": "840",
+            "text_lang": "lat",
+            "title": "Vita Haimhrammi/Emmerami recensio B"
+        },
+        "model": "archiv.text",
+        "pk": 61
+    },
+    {
+        "fields": {
+            "display_label": " Eo namque tempore praedictus et in...; (Vita Haimhrammi/Emmerami recensio B, 9 (p. 39))",
+            "end_date": null,
+            "key_word": [
+                55,
+                76
+            ],
+            "kommentar": "",
+            "legacy_id": "284.0",
+            "legacy_pk": 284,
+            "orig_data_csv": "{\"sid\": 284, \"stexttitel\": 60, \"ssummary\": \"\", \"szitat\": \"9 (p. 39): Eo namque tempore praedictus et inluster dux praenotate gentis habebat filiam nomine Otam, quae, inimico suadente, propria libidine succumbens, a cuiusdam iudicis filio nuncupato Sigibaldo devicta concoepit.\", \"stranslation\": \"\", \"sstichwort1\": \"dux \", \"sstichwort2\": \"gens\", \"sstichwort3\": \"\", \"sstichwort4\": \"\", \"sstichwort5\": \"\", \"sstichwort6\": \"\", \"sstichwort7\": \"\", \"sstichwort8\": \"\", \"sstichwort9\": \"\", \"sstichwort10\": \"\", \"sstichwort11\": \"\", \"sstichwort12\": \"\", \"sstichwort13\": \"\", \"sstichwort14\": \"\", \"skommentar\": \"\", \"sperre\": null, \"kommentar_sperre\": \"\", \"sstichwort15\": null, \"sstichwort16\": null, \"sstichwort17\": null, \"sstichwort18\": null}",
+            "ort": null,
+            "start_date": null,
+            "summary": "",
+            "text": 61,
+            "translation": "",
+            "use_case": [],
+            "zitat": " Eo namque tempore praedictus et inluster dux praenotate gentis habebat filiam nomine Otam, quae, inimico suadente, propria libidine succumbens, a cuiusdam iudicis filio nuncupato Sigibaldo devicta concoepit.",
+            "zitat_stelle": "9 (p. 39)"
+        },
+        "model": "archiv.stelle",
+        "pk": 285
+    },
+    {
+        "fields": {
+            "fuzzy_geom": "SRID=4326;POLYGON ((14.511108 48.239309, 14.475403 48.222843, 14.476776 48.19081, 14.471283 48.140432, 14.46991 48.112016, 14.413605 48.042283, 14.402618 48.016568, 14.460297 48.031264, 14.509735 48.131268, 14.511108 48.218268, 14.534454 48.238394, 14.511108 48.239309))",
+            "fuzzyness": 1,
+            "key_word": 28,
+            "kommentar": "Avaria, frontier between Bavaria and Avaria according to Arbeo/Vita Haimhrammi.",
+            "stelle": [
+                285
+            ]
+        },
+        "model": "archiv.spatialcoverage",
+        "pk": 4
+    }
+]

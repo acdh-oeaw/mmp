@@ -13,10 +13,12 @@ ALLOWED_HOSTS = [
     "127.0.0.1"
 ]
 
+# INSTALLED_APPS += ['fixture_magic', ]
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'mmp',
+        'NAME': 'mmp_fixtures',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
         'HOST': 'localhost',
