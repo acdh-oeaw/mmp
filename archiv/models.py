@@ -11,8 +11,6 @@ from vocabs.models import SkosConcept
 
 from browsing.browsing_utils import model_to_dict
 
-from async_generator import async_generator, yield_, yield_from_
-
 logger = logging.getLogger(__name__)
 
 

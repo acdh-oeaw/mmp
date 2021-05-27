@@ -42,7 +42,6 @@ from . tables import (
     StelleTable,
     TextTable,
     SpatialCoverageTable,
-    UseCaseDetailTable,
     UseCaseTable,
     EventTable
 )
@@ -59,6 +58,7 @@ from . models import (
 from browsing.browsing_utils import (
     GenericListView, BaseCreateView, BaseUpdateView, BaseDetailView
 )
+
 
 class UseCaseCreate(BaseCreateView):
 
@@ -83,7 +83,6 @@ class UseCaseUpdate(BaseUpdateView):
 class UseCaseDetailView(BaseDetailView):
 
     model = UseCase
-    table_class = UseCaseDetailTable
     template_name = 'archiv/usecase_detail.html'
 
 

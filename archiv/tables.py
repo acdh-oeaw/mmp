@@ -40,16 +40,6 @@ class UseCaseTable(tables.Table):
         attrs = {"class": "table table-responsive table-hover"}
 
 
-class UseCaseDetailTable(tables.Table):
-
-    id = tables.LinkColumn(verbose_name='ID')
-    
-    class Meta:
-        model = UseCase
-        attrs = {"class": "table table-responsive table-hover"}
-        sequence = ('id', )
-
-
 class SpatialCoverageTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name='ID')
