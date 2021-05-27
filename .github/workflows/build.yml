@@ -1,9 +1,8 @@
 name: Build and push to DockerHub
 
 on:
-  push:
-    branches: 
-      - hansi
+  release:
+    types: [published]
 
 jobs:
   push_to_registry:

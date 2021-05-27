@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/acdh-oeaw/mmp/branch/master/graph/badge.svg?token=PQTAIJWOGX)](https://codecov.io/gh/acdh-oeaw/mmp)
+
 # MMP
 
 ## Mapping Medieval Peoples: Visualizing Semantic Landscapes in Early Medieval Europe
