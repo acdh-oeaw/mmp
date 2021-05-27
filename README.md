@@ -1,4 +1,6 @@
+[![Test](https://github.com/acdh-oeaw/mmp/actions/workflows/test.yml/badge.svg)](https://github.com/acdh-oeaw/mmp/actions/workflows/test.yml)
 [![codecov](https://codecov.io/gh/acdh-oeaw/mmp/branch/master/graph/badge.svg?token=PQTAIJWOGX)](https://codecov.io/gh/acdh-oeaw/mmp)
+
 
 # MMP
 
