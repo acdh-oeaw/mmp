@@ -11,6 +11,8 @@ from vocabs.models import SkosConcept
 
 from browsing.browsing_utils import model_to_dict
 
+from async_generator import async_generator, yield_, yield_from_
+
 logger = logging.getLogger(__name__)
 
 
@@ -146,44 +148,53 @@ class UseCase(models.Model):
         time_table_data = []
         if self.get_texts:
             for x in self.get_texts:
-                time_table_data.append(
-                    {
-                        'id': x.id,
-                        'start_date': x.start_date,
-                        'end_date': x.end_date,
-                        'ent_type': 'text',
-                        'ent_title': x.title,
-                        'ent_description': x.title,
-                        'ent_detail_view': x.get_absolute_url()  
-                    }
-                )
+                try:
+                    time_table_data.append(
+                        {
+                            'id': x.id,
+                            'start_date': int(x.start_date),
+                            'end_date': x.end_date,
+                            'ent_type': 'text',
+                            'ent_title': x.title,
+                            'ent_description': x.title,
+                            'ent_detail_view': x.get_absolute_url()  
+                        }
+                    )
+                except Exception:
+                    pass
         if self.get_authors:
             for x in self.get_authors:
-                time_table_data.append(
-                    {
-                        'id': x.id,
-                        'start_date': x.start_date,
-                        'end_date': x.end_date,
-                        'ent_type': 'autor',
-                        'ent_title': x.name,
-                        'ent_description': x.name,
-                        'ent_detail_view': x.get_absolute_url()  
-                    }
-                )
+                try:
+                    time_table_data.append(
+                        {
+                            'id': x.id,
+                            'start_date': int(x.start_date),
+                            'end_date': x.end_date,
+                            'ent_type': 'autor',
+                            'ent_title': x.name,
+                            'ent_description': x.name,
+                            'ent_detail_view': x.get_absolute_url()  
+                        }
+                    )
+                except Exception:
+                    pass                
         if self.get_events:        
             for x in self.get_events:
-                time_table_data.append(
-                    {
-                        'id': x.id,
-                        'start_date': x.start_date,
-                        'end_date': x.end_date,
-                        'ent_type': 'event',
-                        'ent_title': x.title,
-                        'ent_description': x.description,
-                        'ent_detail_view': x.get_absolute_url()  
-                    }
-                )    
-        return time_table_data        
+                try:
+                    time_table_data.append(
+                        {
+                            'id': x.id,
+                            'start_date': int(x.start_date),
+                            'end_date': x.end_date,
+                            'ent_type': 'event',
+                            'ent_title': x.title,
+                            'ent_description': x.description,
+                            'ent_detail_view': x.get_absolute_url()  
+                        }
+                    ) 
+                except Exception:
+                    pass                   
+        return sorted(time_table_data, key=lambda k: k['start_date'])
 
 
 class SpatialCoverage(models.Model):
