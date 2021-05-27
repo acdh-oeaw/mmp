@@ -66,3 +66,4 @@ local.py
 djangobaseproject/settings/pg_local.py
 import_events.ipynb
 event_import.ipynb
+htmlcov/

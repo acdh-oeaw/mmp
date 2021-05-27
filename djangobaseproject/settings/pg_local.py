@@ -1,3 +1,4 @@
+import os
 from .base import *
 
 SECRET_KEY = 'changemeforproduction'
@@ -18,8 +19,8 @@ ALLOWED_HOSTS = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'mmp_fixtures',
-        'USER': 'postgres',
+        'NAME': os.environ.get('POSTGRES_DB', 'mmp'),
+        'USER': os.environ.get('POSTGRES_USER', 'postgres'),
         'PASSWORD': 'postgres',
         'HOST': 'localhost',
         'PORT': '5432',
