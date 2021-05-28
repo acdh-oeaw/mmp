@@ -146,7 +146,7 @@
     <legend>Timetable</legend>
     <div class="row">
       <div class="col-md-12">
-        <div class="table-responsive" id="testing-json"></div>      
+        <div class="table-responsive" id="time_table"></div>      
         <script type="text/javascript">
           (async function get_time_table_json() {
             var xhttp = new XMLHttpRequest();
@@ -160,7 +160,7 @@
                   row += `<td>${data[i].end_date}</td>`;
                   row += `<td><a href="${ data[i].ent_detail_view }">${data[i].ent_title}</a></td>`;
                   row += `<td>${data[i].ent_description}</td>`;
-                  row += `<td>${data[i].ent_type}</td>`;
+                  row += `<td>${data[i].ent_type}</td></tr>`;
                   tbody += row;
                 }
                 tbody += '</tbody>';
@@ -176,7 +176,7 @@
                               </thead>
                               ${tbody}
                             </table>`
-                document.getElementById('testing-json').innerHTML = table;
+                document.getElementById('time_table').innerHTML = table;
                 }
               };
             xhttp.open('GET', 'http://mmp.acdh-dev.oeaw.ac.at/archiv/usecase-timetable-data/'.concat({{ object.id }}), true);  
