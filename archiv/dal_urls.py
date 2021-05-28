@@ -10,11 +10,6 @@ urlpatterns = [
         name='autor-autocomplete'
     ),
     url(
-        r'^edition-autocomplete/$',
-        dal_views.EditionAC.as_view(),
-        name='edition-autocomplete'
-    ),
-    url(
         r'^keyword-autocomplete/$',
         dal_views.KeyWordAC.as_view(),
         name='keyword-autocomplete'
