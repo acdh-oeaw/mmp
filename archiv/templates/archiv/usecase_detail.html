@@ -153,7 +153,6 @@
             xhttp.onreadystatechange = function() {
               if(this.readyState == 4 && this.status == 200) {
                 var data = JSON.parse(xhttp.responseText);
-                console.log(data);
                 var tbody = '<tbody>';
                 for(var i = 0; i < data.length; i++) {
                   var row = '<tr>';
