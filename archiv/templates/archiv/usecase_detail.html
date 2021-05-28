@@ -1,7 +1,6 @@
 {% extends "webpage/base.html" %}
 {% load static %}
 {% load webpage_extras %}
-{% load render_table from django_tables2 %}
 {% block title %}{{ object.name }}{% endblock %}
 {% block scriptHeader %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
@@ -144,9 +143,9 @@
           </script>
       </div>     
     </div>
+    <legend>Timetable</legend>
     <div class="row">
       <div class="col-md-12">
-        {% comment %} {% render_table table %} {% endcomment %}
         <table class="table">
           <thead>
             <tr>
