@@ -3,7 +3,6 @@ from django.db.models import Q
 from dal import autocomplete
 from . models import (
     Autor,
-    Edition,
     KeyWord,
     Text,
     Stelle,
@@ -19,18 +18,6 @@ class AutorAC(autocomplete.Select2QuerySetView):
             qs = qs.filter(
                 Q(legacy_id__icontains=self.q) |
                 Q(name__icontains=self.q)
-            )
-        return qs
-
-
-class EditionAC(autocomplete.Select2QuerySetView):
-    def get_queryset(self):
-        qs = Edition.objects.all()
-
-        if self.q:
-            qs = qs.filter(
-                Q(legacy_id__icontains=self.q) |
-                Q(zitat__icontains=self.q)
             )
         return qs
 
