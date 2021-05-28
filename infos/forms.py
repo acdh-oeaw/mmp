@@ -101,15 +101,15 @@ class AboutTheProjectFilterFormHelper(FormHelper):
                 'id',
                 'description',
                 css_id="basic_search_fields"
-                ),
+            ),
             Accordion(
                 AccordionGroup(
                     'Authors',
                     'author',
                     css_id="more"
-                    ),
-                )
+                ),
             )
+        )
 
 
 class AboutTheProjectForm(forms.ModelForm):

@@ -1,0 +1,12 @@
+[flake8]
+ignore = D203
+max-line-length = 120
+exclude =
+    */migrations,
+    */migrations,
+    .git,
+    .tox,
+    docs/conf.py,
+    build,
+    dist
+    env
