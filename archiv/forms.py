@@ -3,7 +3,9 @@ from django import forms
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import (
-    Submit,  Layout, Fieldset
+    Submit,
+    Layout,
+    Fieldset
 )
 from crispy_forms.bootstrap import Accordion, AccordionGroup
 from dal import autocomplete
@@ -52,7 +54,7 @@ class UseCaseFilterFormHelper(FormHelper):
                 'title',
                 'principal_investigator',
                 css_id="basic_search_fields"
-                ),
+            ),
             Accordion(
                 AccordionGroup(
                     'Advanced search',
@@ -62,9 +64,9 @@ class UseCaseFilterFormHelper(FormHelper):
                     'has_stelle__text__autor',
                     'has_stelle__key_word',
                     css_id="more"
-                    )
-                )    
+                )
             )
+        )
 
 
 class SpatialCoverageForm(forms.ModelForm):
@@ -108,8 +110,8 @@ class SpatialCoverageFilterFormHelper(FormHelper):
                 'key_word',
                 'stelle',
                 css_id="basic_search_fields"
-                ),
-            )
+            ),
+        )
 
 
 class AutorFilterFormHelper(FormHelper):
@@ -128,7 +130,7 @@ class AutorFilterFormHelper(FormHelper):
                 'gnd_id',
                 'ort',
                 css_id="basic_search_fields"
-                ),
+            ),
             Accordion(
                 AccordionGroup(
                     'Advanced search',
@@ -143,14 +145,14 @@ class AutorFilterFormHelper(FormHelper):
                     'kommentar',
                     'rvn_text_autor_autor__rvn_stelle_text_text__key_word',
                     css_id="more"
-                    ),
+                ),
                 AccordionGroup(
                     'admin',
                     'legacy_id',
                     css_id="admin_search"
-                    ),
-                )
+                ),
             )
+        )
 
 
 class AutorForm(forms.ModelForm):
@@ -187,7 +189,7 @@ class KeyWordFilterFormHelper(FormHelper):
                 'Basic search options',
                 'id',
                 css_id="basic_search_fields"
-                ),
+            ),
             Accordion(
                 AccordionGroup(
                     'Advanced search',
@@ -202,14 +204,14 @@ class KeyWordFilterFormHelper(FormHelper):
                     'rvn_stelle_key_word_keyword__text',
                     'rvn_stelle_key_word_keyword__text__autor__ort',
                     css_id="more"
-                    ),
+                ),
                 AccordionGroup(
                     'admin',
                     'legacy_id',
                     css_id="admin_search"
-                    ),
-                )
+                ),
             )
+        )
 
 
 class KeyWordForm(forms.ModelForm):
@@ -244,7 +246,7 @@ class OrtFilterFormHelper(FormHelper):
                 'name_antik',
                 'norm_id',
                 css_id="basic_search_fields"
-                ),
+            ),
             Accordion(
                 AccordionGroup(
                     'Advanced search',
@@ -258,14 +260,14 @@ class OrtFilterFormHelper(FormHelper):
                     'kategorie',
                     'kommentar',
                     css_id="more"
-                    ),
+                ),
                 AccordionGroup(
                     'admin',
                     'legacy_id',
                     css_id="admin_search"
-                    ),
-                )
+                ),
             )
+        )
 
 
 class OrtForm(forms.ModelForm):
@@ -310,7 +312,7 @@ class StelleFilterFormHelper(FormHelper):
                 'key_word',
                 'use_case',
                 css_id="basic_search_fields"
-                ),
+            ),
             Accordion(
                 AccordionGroup(
                     'Advanced search',
@@ -320,14 +322,14 @@ class StelleFilterFormHelper(FormHelper):
                     'translation',
                     'kommentar',
                     css_id="more"
-                    ),
+                ),
                 AccordionGroup(
                     'admin',
                     'legacy_id',
                     css_id="admin_search"
-                    ),
-                )
+                ),
             )
+        )
 
 
 class StelleForm(forms.ModelForm):
@@ -367,7 +369,7 @@ class TextFilterFormHelper(FormHelper):
                 'Basic search options',
                 'id',
                 css_id="basic_search_fields"
-                ),
+            ),
             Accordion(
                 AccordionGroup(
                     'Advanced search',
@@ -382,14 +384,14 @@ class TextFilterFormHelper(FormHelper):
                     'ort',
                     'kommentar',
                     css_id="more"
-                    ),
+                ),
                 AccordionGroup(
                     'admin',
                     'legacy_id',
                     css_id="admin_search"
-                    ),
-                )
+                ),
             )
+        )
 
 
 class TextForm(forms.ModelForm):
@@ -435,16 +437,16 @@ class EventFilterFormHelper(FormHelper):
                 'title',
                 'description',
                 css_id="basic_search_fields"
-                ),
+            ),
             Accordion(
                 AccordionGroup(
                     'Advanced search',
                     'start_date',
                     'end_date',
                     css_id="more"
-                    ),
                 ),
-            )
+            ),
+        )
 
 
 class EventForm(forms.ModelForm):

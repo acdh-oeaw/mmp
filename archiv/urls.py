@@ -199,5 +199,6 @@ urlpatterns = [
     url(
         r'^event/delete/(?P<pk>[0-9]+)$',
         views.EventDelete.as_view(),
-        name='event_delete'),        
+        name='event_delete'
+    ),
 ]

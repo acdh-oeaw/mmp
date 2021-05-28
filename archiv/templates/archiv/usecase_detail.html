@@ -179,7 +179,7 @@
                 document.getElementById('time_table').innerHTML = table;
                 }
               };
-            xhttp.open('GET', 'http://mmp.acdh-dev.oeaw.ac.at/archiv/usecase-timetable-data/'.concat({{ object.id }}), true);  
+            xhttp.open('GET', "{% url 'archiv:usecase_timetable_json' pk=object.id %}", true);  
             xhttp.setRequestHeader("Content-type", "application/json");   
             xhttp.send();
           })();

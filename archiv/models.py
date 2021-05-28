@@ -96,7 +96,7 @@ class UseCase(models.Model):
     @cached_property
     def get_events(self):
         event = Event.objects.all()
-        return event    
+        return event
 
     @classmethod
     def get_source_table(self):
@@ -154,7 +154,7 @@ class UseCase(models.Model):
                             'ent_type': 'text',
                             'ent_title': x.title,
                             'ent_description': x.title,
-                            'ent_detail_view': x.get_absolute_url()  
+                            'ent_detail_view': x.get_absolute_url()
                         }
                     )
                 except Exception:
@@ -170,12 +170,12 @@ class UseCase(models.Model):
                             'ent_type': 'autor',
                             'ent_title': x.name,
                             'ent_description': x.name,
-                            'ent_detail_view': x.get_absolute_url()  
+                            'ent_detail_view': x.get_absolute_url()
                         }
                     )
                 except Exception:
-                    pass                
-        if self.get_events:        
+                    pass
+        if self.get_events:
             for x in self.get_events:
                 try:
                     time_table_data.append(
@@ -186,11 +186,11 @@ class UseCase(models.Model):
                             'ent_type': 'event',
                             'ent_title': x.title,
                             'ent_description': x.description,
-                            'ent_detail_view': x.get_absolute_url()  
+                            'ent_detail_view': x.get_absolute_url()
                         }
-                    ) 
+                    )
                 except Exception:
-                    pass                   
+                    pass
         return sorted(time_table_data, key=lambda k: k['start_date'])
 
 
@@ -306,7 +306,7 @@ class Autor(models.Model):
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
-        )
+    )
     legacy_pk = models.IntegerField(
         blank=True, null=True,
         verbose_name="Primärschlüssel Alt",
@@ -438,9 +438,9 @@ class Autor(models.Model):
         blank=True,
         null=True,
         verbose_name="The original data"
-        ).set_extra(
-            is_public=True
-        )
+    ).set_extra(
+        is_public=True
+    )
 
     class Meta:
 
@@ -521,7 +521,7 @@ class KeyWord(models.Model):
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
-        )
+    )
     legacy_pk = models.IntegerField(
         blank=True, null=True,
         verbose_name="Primärschlüssel Alt",
@@ -601,9 +601,9 @@ class KeyWord(models.Model):
         blank=True,
         null=True,
         verbose_name="The original data"
-        ).set_extra(
-            is_public=True
-        )
+    ).set_extra(
+        is_public=True
+    )
 
     class Meta:
 
@@ -691,7 +691,7 @@ class Ort(models.Model):
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
-        )
+    )
     legacy_pk = models.IntegerField(
         blank=True, null=True,
         verbose_name="Primärschlüssel Alt",
@@ -827,9 +827,9 @@ class Ort(models.Model):
         blank=True,
         null=True,
         verbose_name="The original data"
-        ).set_extra(
-            is_public=True
-        )
+    ).set_extra(
+        is_public=True
+    )
 
     class Meta:
 
@@ -896,7 +896,7 @@ class Stelle(models.Model):
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
-        )
+    )
     legacy_pk = models.IntegerField(
         blank=True, null=True,
         verbose_name="Primärschlüssel Alt",
@@ -1011,9 +1011,9 @@ class Stelle(models.Model):
         blank=True,
         null=True,
         verbose_name="The original data"
-        ).set_extra(
-            is_public=True
-        )
+    ).set_extra(
+        is_public=True
+    )
     use_case = models.ManyToManyField(
         "UseCase",
         related_name='has_stelle',
@@ -1103,7 +1103,7 @@ class Text(models.Model):
     legacy_id = models.CharField(
         max_length=300, blank=True,
         verbose_name="Legacy ID"
-        )
+    )
     legacy_pk = models.IntegerField(
         blank=True, null=True,
         verbose_name="Primärschlüssel Alt",
@@ -1225,9 +1225,9 @@ class Text(models.Model):
         blank=True,
         null=True,
         verbose_name="The original data"
-        ).set_extra(
-            is_public=True
-        )
+    ).set_extra(
+        is_public=True
+    )
 
     class Meta:
 

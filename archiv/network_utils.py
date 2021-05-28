@@ -2,12 +2,12 @@ import pandas as pd
 
 
 generic_property_table = [
-        ('stichwort', 's'),
-        ('id', 's_id'),
-        ('rvn_stelle_key_word_keyword__id', 'stelle_id'),
-        ('rvn_stelle_key_word_keyword__key_word__stichwort', 't'),
-        ('rvn_stelle_key_word_keyword__key_word__id', 't_id')
-    ]
+    ('stichwort', 's'),
+    ('id', 's_id'),
+    ('rvn_stelle_key_word_keyword__id', 'stelle_id'),
+    ('rvn_stelle_key_word_keyword__key_word__stichwort', 't'),
+    ('rvn_stelle_key_word_keyword__key_word__id', 't_id')
+]
 
 
 def graph_table(qs, prop_table=generic_property_table):

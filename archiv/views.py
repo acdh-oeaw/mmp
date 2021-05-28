@@ -61,6 +61,7 @@ from browsing.browsing_utils import (
 )
 from django.http import JsonResponse
 
+
 class UseCaseCreate(BaseCreateView):
 
     model = UseCase

@@ -22,6 +22,7 @@ class AutorAdmin(VersionAdmin):
 class KeyWordAdmin(VersionAdmin):
     pass
 
+
 @admin.register(Ort)
 class OrtAdmin(VersionAdmin):
     pass
@@ -46,6 +47,7 @@ class UseCaseAdmin(VersionAdmin):
 class SpatialCoverageAdmin(VersionAdmin):
     pass
 
+
 @admin.register(Event)
-class SpatialCoverageAdmin(VersionAdmin):
+class EventAdmin(VersionAdmin):
     pass
