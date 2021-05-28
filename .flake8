@@ -10,3 +10,7 @@ exclude =
     build,
     dist
     env
+    infos
+    appcreator
+    djangobaseproject/settings
+    webpage

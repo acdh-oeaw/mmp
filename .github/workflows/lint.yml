@@ -15,3 +15,18 @@ jobs:
           python-version: "3.8"
       - name: flake8 Lint
         uses: py-actions/flake8@v1
+        with:
+          ignore: "D203"
+          exclude:
+            "*/migrations"
+            ".git"
+            ".tox"
+            "docs/conf.py"
+            "build"
+            "dist"
+            "env"
+            "infos"
+            "appcreator"
+            "djangobaseproject/settings"
+            "webpage"
+          max-line-length: "120"
