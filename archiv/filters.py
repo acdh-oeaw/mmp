@@ -20,6 +20,11 @@ DATE_LOOKUP_CHOICES=[
     ('gt', 'Greater than'),
     ('lt', 'Less than')
 ]
+CHAR_LOOKUP_CHOICES=[
+    ('exact', 'Equals'),
+    ('icontains', 'contains'),
+    ('iexact', 'starts with')
+]
 
 
 class UseCaseListFilter(django_filters.FilterSet):
@@ -112,16 +117,16 @@ class AutorListFilter(django_filters.FilterSet):
         help_text=Autor._meta.get_field('jahrhundert').help_text,
         label=Autor._meta.get_field('jahrhundert').verbose_name
     )
-    start_date = django_filters.CharFilter(
-        lookup_expr='icontains',
+    start_date=django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
         help_text=Autor._meta.get_field('start_date').help_text,
         label=Autor._meta.get_field('start_date').verbose_name
     )
-    end_date = django_filters.CharFilter(
-        lookup_expr='icontains',
+    end_date=django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
         help_text=Autor._meta.get_field('end_date').help_text,
         label=Autor._meta.get_field('end_date').verbose_name
-    )
+    )    
     ort = django_filters.ModelMultipleChoiceFilter(
         queryset=Ort.objects.all(),
         help_text=Autor._meta.get_field('ort').help_text,
@@ -388,16 +393,16 @@ class TextListFilter(django_filters.FilterSet):
         help_text=Text._meta.get_field('jahrhundert').help_text,
         label=Text._meta.get_field('jahrhundert').verbose_name
     )
-    start_date = django_filters.CharFilter(
-        lookup_expr='icontains',
+    start_date=django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
         help_text=Text._meta.get_field('start_date').help_text,
         label=Text._meta.get_field('start_date').verbose_name
     )
-    end_date = django_filters.CharFilter(
-        lookup_expr='icontains',
+    end_date=django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
         help_text=Text._meta.get_field('end_date').help_text,
         label=Text._meta.get_field('end_date').verbose_name
-    )
+    )  
     art = django_filters.ModelMultipleChoiceFilter(
         queryset=SkosConcept.objects.filter(
             collection__name="art"
