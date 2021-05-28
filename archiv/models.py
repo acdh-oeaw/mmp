@@ -6,7 +6,6 @@ from django.urls import reverse
 from django.contrib.gis.db.models import PolygonField
 from django.utils.functional import cached_property
 
-
 from vocabs.models import SkosConcept
 
 from browsing.browsing_utils import model_to_dict

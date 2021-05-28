@@ -29,6 +29,10 @@ urlpatterns = [
         views.UseCaseDelete.as_view(),
         name='usecase_delete'),
     url(
+        r'^usecase-timetable-data/(?P<pk>[0-9]+)$',
+        views.get_usecase_timetable_json,
+        name='usecase_timetable_json'),
+    url(
         r'^spatialcoverage/$',
         views.SpatialCoverageListView.as_view(),
         name='spatialcoverage_browse'

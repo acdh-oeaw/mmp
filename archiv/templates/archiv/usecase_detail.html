@@ -1,7 +1,6 @@
 {% extends "webpage/base.html" %}
 {% load static %}
 {% load webpage_extras %}
-{% load render_table from django_tables2 %}
 {% block title %}{{ object.name }}{% endblock %}
 {% block scriptHeader %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
@@ -144,31 +143,47 @@
           </script>
       </div>     
     </div>
+    <legend>Timetable</legend>
     <div class="row">
       <div class="col-md-12">
-        {% comment %} {% render_table table %} {% endcomment %}
-        <table class="table">
-          <thead>
-            <tr>
-              <th>start-date</th>
-              <th>end-date</th>
-              <th>title</th>
-              <th>description</th>
-              <th>type</th>
-            </tr>  
-          </thead>
-          <tbody>
-            {% for x in object.get_timetable_data %}
-            <tr>
-              <td>{{ x.start_date }}</td>
-              <td>{{ x.end_date }}</td>
-              <td><a href="{{ x.ent_detail_view }}">{{ x.ent_title }}</a></td>
-              <td>{{ x.ent_description }}</td>
-              <td>{{ x.ent_type }}</td>
-            </tr>  
-            {% endfor %}
-          </tbody>
-        </table>
+        <div class="table-responsive" id="testing-json"></div>      
+        <script type="text/javascript">
+          (async function get_time_table_json() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+              if(this.readyState == 4 && this.status == 200) {
+                var data = JSON.parse(xhttp.responseText);
+                var tbody = '<tbody>';
+                for(var i = 0; i < data.length; i++) {
+                  var row = '<tr>';
+                  row += `<td>${data[i].start_date}</td>`;
+                  row += `<td>${data[i].end_date}</td>`;
+                  row += `<td><a href="${ data[i].ent_detail_view }">${data[i].ent_title}</a></td>`;
+                  row += `<td>${data[i].ent_description}</td>`;
+                  row += `<td>${data[i].ent_type}</td>`;
+                  tbody += row;
+                }
+                tbody += '</tbody>';
+                var table = `<table class="table table-striped">
+                              <thead>
+                                <tr>
+                                  <th>Start-date</th>
+                                  <th>End-date</th>
+                                  <th>Title</th>
+                                  <th>Description</th>
+                                  <th>Type</th>
+                                </tr>  
+                              </thead>
+                              ${tbody}
+                            </table>`
+                document.getElementById('testing-json').innerHTML = table;
+                }
+              };
+            xhttp.open('GET', 'http://mmp.acdh-dev.oeaw.ac.at/archiv/usecase-timetable-data/'.concat({{ object.id }}), true);  
+            xhttp.setRequestHeader("Content-type", "application/json");   
+            xhttp.send();
+          })();
+        </script> 
       </div>
     </div>
     {% if user.is_authenticated %}
