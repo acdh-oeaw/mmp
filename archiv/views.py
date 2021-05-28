@@ -93,7 +93,7 @@ class UseCaseListView(GenericListView):
     formhelper_class = UseCaseFilterFormHelper
     table_class = UseCaseTable
     init_columns = [
-        'id', 'title', 'pi',
+        'id', 'title', 'principal_investigator'
     ]
     enable_merge = False
 

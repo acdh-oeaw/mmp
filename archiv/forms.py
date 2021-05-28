@@ -51,11 +51,19 @@ class UseCaseFilterFormHelper(FormHelper):
                 'Basic search options',
                 'title',
                 'principal_investigator',
-                'has_stelle__text',
-                'has_stelle__text__autor',
-                'has_stelle__key_word',
                 css_id="basic_search_fields"
                 ),
+            Accordion(
+                AccordionGroup(
+                    'Advanced search',
+                    'pi_norm_id',
+                    'description',
+                    'has_stelle__text',
+                    'has_stelle__text__autor',
+                    'has_stelle__key_word',
+                    css_id="more"
+                    )
+                )    
             )
 
 
