@@ -4,7 +4,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView
-from django.http import Http404
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 
 from archiv.network_utils import create_graph, graph_table
 
@@ -59,7 +60,6 @@ from . models import (
 from browsing.browsing_utils import (
     GenericListView, BaseCreateView, BaseUpdateView, BaseDetailView
 )
-from django.http import JsonResponse
 
 
 class UseCaseCreate(BaseCreateView):
@@ -112,12 +112,9 @@ class UseCaseDelete(DeleteView):
 
 
 def get_usecase_timetable_json(response, pk):
-    try:
-        item = UseCase.objects.get(id=pk)
-        data = item.get_timetable_data()
-        return JsonResponse(data, safe=False)
-    except UseCase.DoesNotExist:
-        raise Http404("No UseCase matches the given query.")
+    item = get_object_or_404(UseCase, pk=pk)
+    data = item.get_timetable_data()
+    return JsonResponse(data, safe=False)
 
 
 class SpatialCoverageCreate(BaseCreateView):

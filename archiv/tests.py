@@ -1,8 +1,9 @@
 from django.apps import apps
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
+from django.urls import reverse
 
-from archiv.models import KeyWord
+from archiv.models import KeyWord, UseCase
 
 MODELS = list(apps.all_models['archiv'].values())
 
@@ -80,3 +81,9 @@ class ArchivTestCase(TestCase):
             if url:
                 response = client.get(url, {'pk': item.id})
                 self.assertEqual(response.status_code, 200)
+
+    def test_007_timetable(self):
+        item = UseCase.objects.first()
+        url = reverse('archiv:usecase_timetable_json', kwargs={'pk': item.id})
+        response = client.get(url)
+        self.assertEqual(response.status_code, 200)
