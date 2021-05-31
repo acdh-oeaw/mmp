@@ -55,10 +55,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS':
         'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 50,
-    'DEFAULT_FILTER_BACKENDS':
-        [
-            'django_filters.rest_framework.DjangoFilterBackend'
-        ]
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'
+    ]
 }
 
 MIDDLEWARE = [
@@ -154,7 +153,7 @@ VOCABS_SETTINGS = {
 
 SERIALIZATION_MODULES = {
     "geojson": "django.contrib.gis.serializers.geojson",
- }
+}
 
 LEAFLET_CONFIG = {
     'DEFAULT_CENTER': (40, 10),
