@@ -63,7 +63,7 @@ class UseCaseFilterFormHelper(FormHelper):
                     'has_stelle__text',
                     'has_stelle__text__autor',
                     'has_stelle__key_word',
-                    css_id="more",
+                    css_id="more"
                 )
             )
         )
