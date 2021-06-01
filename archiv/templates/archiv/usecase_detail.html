@@ -9,6 +9,7 @@
 <script crossorigin src="https://unpkg.com/three@0.126.1/build/three.min.js"></script>
 <script crossorigin src="https://unpkg.com/@acdh/network-visualization@latest/lib/network-visualization.umd.js"></script>
 <script src="{% static 'netvis/js/netvis.js' %}"></script>
+<script src="{% static 'archiv/js/tt-fetch.js' %}"></script>
 {% endblock %}
 {% block content %}
 <!-- <div class="container"> -->
@@ -146,44 +147,7 @@
     <legend>Timetable</legend>
     <div class="row">
       <div class="col-md-12">
-        <div class="table-responsive" id="time_table"></div>      
-        <script type="text/javascript">
-          (async function get_time_table_json() {
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-              if(this.readyState == 4 && this.status == 200) {
-                var data = JSON.parse(xhttp.responseText);
-                var tbody = '<tbody>';
-                for(var i = 0; i < data.length; i++) {
-                  var row = '<tr>';
-                  row += `<td>${data[i].start_date}</td>`;
-                  row += `<td>${data[i].end_date}</td>`;
-                  row += `<td><a href="${ data[i].ent_detail_view }">${data[i].ent_title}</a></td>`;
-                  row += `<td>${data[i].ent_description}</td>`;
-                  row += `<td>${data[i].ent_type}</td></tr>`;
-                  tbody += row;
-                }
-                tbody += '</tbody>';
-                var table = `<table class="table table-striped">
-                              <thead>
-                                <tr>
-                                  <th>Start-date</th>
-                                  <th>End-date</th>
-                                  <th>Title</th>
-                                  <th>Description</th>
-                                  <th>Type</th>
-                                </tr>  
-                              </thead>
-                              ${tbody}
-                            </table>`
-                document.getElementById('time_table').innerHTML = table;
-                }
-              };
-            xhttp.open('GET', "{% url 'archiv:usecase_timetable_json' pk=object.id %}", true);  
-            xhttp.setRequestHeader("Content-type", "application/json");   
-            xhttp.send();
-          })();
-        </script> 
+        <div class="table-responsive" id="time_table" data-target="{% url 'archiv:usecase_timetable_json' pk=object.id %}"></div>  
       </div>
     </div>
     {% if user.is_authenticated %}
@@ -196,5 +160,8 @@
 
   </div>
 </div>
+<script type="text/javascript">
+  get_time_table_json()
+</script
 {% endblock custom %}
 {% endblock %}
