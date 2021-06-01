@@ -9,12 +9,7 @@
 {% load crispy_forms_tags %}
 {% block title %} Browse {{ class_name }} {% endblock %}
 {% block scriptHeader %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
-<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/three@0.126.1/build/three.min.js"></script>
-<script crossorigin src="https://unpkg.com/@acdh/network-visualization@latest/lib/network-visualization.umd.js"></script>
-<script src="{% static 'netvis/js/netvis.js' %}"></script>
+
 {% endblock %}
 {% block content %}
 
@@ -132,6 +127,17 @@
                                     </ul>
                                 </div>
                             {% endif %}
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle dropdown-custom" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <i class="fas fa-download"></i>
+                                    Download
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li><a class="dropdown-item" href="{% querystring %}&_export=csv">CSV</a></li>
+                                    <li><a class="dropdown-item" href="{% querystring %}&_export=json">JSON</a></li>
+                                </ul>
+                            </div>
                         {% endwith %}
                         {% block table %}
 {% if enable_merge and user.is_authenticated %}
@@ -262,44 +268,14 @@
                             {% endif %}
                         {% endblock pagination.allpages %}
                     </div>
-                    
                 </div>
-                <div id="visualization" style="position: relative; height: 600px; background: #fafafa;"></div>
             </div>
         </div>
+        {% if 'entities' in APPS %}
+        {% endif %}
     </div>
-    
 
 {% endblock %}
 {% block scripts2 %}
-<script>
-    // const graph = {
-    //   nodes: [
-    //     { id: 'n1', label: 'Node 1', type: 't1' },
-    //     { id: 'n2', label: 'Node 2', type: 't2' },
-    //     { id: 'n3', label: 'Node 3', type: 't2' },
-    //   ],
-    //   edges: [
-    //     { id: 'e1', label: 'Edge 1', source: 'n1', target: 'n2', type: 'r1' },
-    //     { id: 'e2', label: 'Edge 2', source: 'n1', target: 'n3', type: 'r1' },
-    //   ],
-    //   types: {
-    //     nodes: [
-    //       { id: 't1', label: 'Category 1', color: '#006699' },
-    //       { id: 't2', label: 'Category 2', color: '#669900' },
-    //     ],
-    //     edges: [{ id: 'r1', label: 'Relation 1', color: '#990066' }],
-    //   },
-    // }
-    const graph = {{ graph|safe }}
-    ReactDOM.render(
-      React.createElement(NetworkVisualization.Visualization, {
-        graph,
-        // width: 600,
-        // height: 600,
-      }),
-      document.getElementById('visualization')
-    )
-  </script>
-  <script src="{% static 'archiv/js/set-form-attributes.js' %}"></script>
+    <script src="{% static 'archiv/js/set-form-attributes.js' %}"></script>
 {% endblock scripts2 %}

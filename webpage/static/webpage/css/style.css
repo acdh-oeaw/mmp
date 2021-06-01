@@ -244,3 +244,8 @@ footer {
 a > .fa-2x {
     color: #444;
 }
+
+.custom-select {
+    margin-top: .5em;
+    max-width: 30%;
+}
