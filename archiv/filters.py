@@ -34,8 +34,7 @@ class UseCaseListFilter(django_filters.FilterSet):
     title = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=UseCase._meta.get_field('title').help_text,
-        label=UseCase._meta.get_field('title').verbose_name,
-        lookup_expr='icontains'
+        label=UseCase._meta.get_field('title').verbose_name
     )
     principal_investigator = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
