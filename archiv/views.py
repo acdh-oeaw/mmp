@@ -355,7 +355,6 @@ class StelleListView(GenericListView):
     template_name = 'archiv/overrides-genericlistviews.html'
 
 
-
 class StelleDetailView(BaseDetailView):
 
     model = Stelle
