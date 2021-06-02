@@ -23,8 +23,8 @@ DATE_LOOKUP_CHOICES = [
 ]
 
 CHAR_LOOKUP_CHOICES = [
-    ('iexact', 'Equals'),
     ('icontains', 'Contains'),
+    ('iexact', 'Equals'),
     ('istartswith', 'Starts with'),
     ('iendswith', 'Ends with')
 ]
@@ -34,7 +34,8 @@ class UseCaseListFilter(django_filters.FilterSet):
     title = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=UseCase._meta.get_field('title').help_text,
-        label=UseCase._meta.get_field('title').verbose_name
+        label=UseCase._meta.get_field('title').verbose_name,
+        lookup_expr='icontains'
     )
     principal_investigator = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
