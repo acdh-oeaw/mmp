@@ -23,8 +23,8 @@ DATE_LOOKUP_CHOICES = [
 ]
 
 CHAR_LOOKUP_CHOICES = [
-    ('iexact', 'Equals'),
     ('icontains', 'Contains'),
+    ('iexact', 'Equals'),
     ('istartswith', 'Starts with'),
     ('iendswith', 'Ends with')
 ]
