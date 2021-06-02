@@ -273,33 +273,30 @@
 {% endblock %}
 {% block scripts2 %}
 <script>
-    // const graph = {
-    //   nodes: [
-    //     { id: 'n1', label: 'Node 1', type: 't1' },
-    //     { id: 'n2', label: 'Node 2', type: 't2' },
-    //     { id: 'n3', label: 'Node 3', type: 't2' },
-    //   ],
-    //   edges: [
-    //     { id: 'e1', label: 'Edge 1', source: 'n1', target: 'n2', type: 'r1' },
-    //     { id: 'e2', label: 'Edge 2', source: 'n1', target: 'n3', type: 'r1' },
-    //   ],
-    //   types: {
-    //     nodes: [
-    //       { id: 't1', label: 'Category 1', color: '#006699' },
-    //       { id: 't2', label: 'Category 2', color: '#669900' },
-    //     ],
-    //     edges: [{ id: 'r1', label: 'Relation 1', color: '#990066' }],
-    //   },
-    // }
+     
+    const graph_endpoint = "{% url 'archiv:keyword_data' %}";
+    const graph_params = window.location.search;
+    const graph_url = `${graph_endpoint}${graph_params}`;
+
+    // console.log(graph_url);
     const graph = {{ graph|safe }}
-    ReactDOM.render(
-      React.createElement(NetworkVisualization.Visualization, {
-        graph,
-        // width: 600,
-        // height: 600,
-      }),
-      document.getElementById('visualization')
-    )
+    fetch (graph_url).then (function (response) {
+        return response.json();
+        }).then (function (data) {
+            // console.log(data);
+            ReactDOM.render(
+            React.createElement(NetworkVisualization.Visualization, {
+                data,
+                // width: 600,
+                // height: 600,
+            }),
+            document.getElementById('visualization')
+            )
+        }).catch (function (error) {
+        console.log ("error: " + error);
+    })
+   
+    
   </script>
   <script src="{% static 'archiv/js/set-form-attributes.js' %}"></script>
 {% endblock scripts2 %}
