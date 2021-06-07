@@ -74,6 +74,7 @@ class TextAC(autocomplete.Select2QuerySetView):
             )
         return qs
 
+
 class UseCaseAC(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         qs = UseCase.objects.all()
