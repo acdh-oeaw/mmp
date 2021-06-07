@@ -240,7 +240,7 @@ class KeyWordListFilter(django_filters.FilterSet):
         label="Stelle",
         help_text="Stichworte stehen mit diesen Stellen in Verbindung",
         widget=autocomplete.Select2Multiple(
-            url="archiv-ac:keyword-autocomplete",
+            url="archiv-ac:stelle-autocomplete",
         )
     )
     rvn_stelle_key_word_keyword__text = django_filters.ModelMultipleChoiceFilter(
