@@ -283,14 +283,14 @@
     fetch (graph_url).then (function (response) {
         return response.json();
         }).then (function (data) {
-            // console.log(data);
+            console.log(data);
             ReactDOM.render(
-            React.createElement(NetworkVisualization.Visualization, {
-                data,
-                // width: 600,
-                // height: 600,
-            }),
-            document.getElementById('visualization')
+                React.createElement(NetworkVisualization.Visualization, {
+                    data,
+                    // width: 600,
+                    // height: 600,
+                }),
+                document.getElementById('visualization')
             )
         }).catch (function (error) {
         console.log ("error: " + error);
