@@ -7,8 +7,6 @@ from django.views.generic.edit import DeleteView
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 
-from archiv.network_utils import create_graph, graph_table
-
 from . filters import (
     UseCaseListFilter,
     SpatialCoverageListFilter,
