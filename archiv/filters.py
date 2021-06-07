@@ -34,7 +34,7 @@ class UseCaseListFilter(django_filters.FilterSet):
     title = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=UseCase._meta.get_field('title').help_text,
-        label=UseCase._meta.get_field('title').verbose_name
+        label=UseCase._meta.get_field('title').verbose_name,
     )
     principal_investigator = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
@@ -55,16 +55,25 @@ class UseCaseListFilter(django_filters.FilterSet):
         queryset=Text.objects.all(),
         help_text="Related Text",
         label="Text",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:text-autocomplete",
+        )
     )
     has_stelle__text__autor = django_filters.ModelMultipleChoiceFilter(
         queryset=Autor.objects.all(),
         help_text="Related Authors",
-        label="Author"
+        label="Author",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:autor-autocomplete",
+        )
     )
     has_stelle__key_word = django_filters.ModelMultipleChoiceFilter(
         queryset=KeyWord.objects.all(),
         help_text="Related Keywords",
-        label="Keywords"
+        label="Keywords",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:keyword-autocomplete",
+        )
     )
 
     class Meta:
@@ -166,7 +175,10 @@ class AutorListFilter(django_filters.FilterSet):
     rvn_text_autor_autor__rvn_stelle_text_text__key_word = django_filters.ModelMultipleChoiceFilter(
         queryset=KeyWord.objects.all(),
         label="Keywords",
-        help_text="Keywords für Texte von diesen Autoren"
+        help_text="Keywords für Texte von diesen Autoren",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:keyword-autocomplete",
+        )
     )
 
     class Meta:
@@ -193,7 +205,10 @@ class KeyWordListFilter(django_filters.FilterSet):
     rvn_stelle_key_word_keyword__text__autor = django_filters.ModelMultipleChoiceFilter(
         queryset=Autor.objects.all(),
         label="Autor",
-        help_text="Stichworte wurde von diesen Autoren verwendet"
+        help_text="Stichworte wurde von diesen Autoren verwendet",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:autor-autocomplete",
+        )
     )
     legacy_id = django_filters.CharFilter(
         lookup_expr='icontains',
@@ -223,17 +238,26 @@ class KeyWordListFilter(django_filters.FilterSet):
     rvn_stelle_key_word_keyword = django_filters.ModelMultipleChoiceFilter(
         queryset=Stelle.objects.all(),
         label="Stelle",
-        help_text="Stichworte stehen mit diesen Stellen in Verbindung"
+        help_text="Stichworte stehen mit diesen Stellen in Verbindung",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:keyword-autocomplete",
+        )
     )
     rvn_stelle_key_word_keyword__text = django_filters.ModelMultipleChoiceFilter(
         queryset=Text.objects.all(),
         label="Text",
-        help_text="Stichworte stehen mit diesen Texten in Verbindung"
+        help_text="Stichworte stehen mit diesen Texten in Verbindung",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:text-autocomplete",
+        )
     )
     rvn_stelle_key_word_keyword__text__autor__ort = django_filters.ModelMultipleChoiceFilter(
         queryset=Ort.objects.all(),
         label="Ort",
-        help_text="Stichworte stehen mit diesen Orten in Verbindung"
+        help_text="Stichworte stehen mit diesen Orten in Verbindung",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:ort-autocomplete",
+        )
     )
 
     class Meta:
@@ -368,6 +392,14 @@ class StelleListFilter(django_filters.FilterSet):
         label=Stelle._meta.get_field('key_word').verbose_name,
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:keyword-autocomplete",
+        )
+    )
+    use_case = django_filters.ModelMultipleChoiceFilter(
+        queryset=UseCase.objects.all(),
+        help_text="Related UseCase",
+        label="UseCase",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:usecase-autocomplete",
         )
     )
     kommentar = django_filters.LookupChoiceFilter(

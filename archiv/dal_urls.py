@@ -29,4 +29,9 @@ urlpatterns = [
         dal_views.TextAC.as_view(),
         name='text-autocomplete'
     ),
+    url(
+        r'^usecase-autocomplete/$',
+        dal_views.UseCaseAC.as_view(),
+        name='usecase-autocomplete'
+    ),
 ]

@@ -6,7 +6,8 @@ from . models import (
     KeyWord,
     Text,
     Stelle,
-    Ort
+    Ort,
+    UseCase
 )
 
 
@@ -69,6 +70,16 @@ class TextAC(autocomplete.Select2QuerySetView):
         if self.q:
             qs = qs.filter(
                 Q(legacy_id__icontains=self.q) |
+                Q(title__icontains=self.q)
+            )
+        return qs
+
+class UseCaseAC(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = UseCase.objects.all()
+
+        if self.q:
+            qs = qs.filter(
                 Q(title__icontains=self.q)
             )
         return qs
