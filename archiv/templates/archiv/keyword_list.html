@@ -277,24 +277,14 @@
     const graph_endpoint = "{% url 'archiv:keyword_data' %}";
     const graph_params = window.location.search;
     const graph_url = `${graph_endpoint}${graph_params}`;
-
-    // console.log(graph_url);
-    const graph = {{ graph|safe }}
-    fetch (graph_url).then (function (response) {
-        return response.json();
-        }).then (function (data) {
-            console.log(data);
-            ReactDOM.render(
+    fetch(graph_url)
+        .then(response => response.json())
+        .then(data => ReactDOM.render(
                 React.createElement(NetworkVisualization.Visualization, {
-                    data,
-                    // width: 600,
-                    // height: 600,
+                    graph: data,
                 }),
                 document.getElementById('visualization')
-            )
-        }).catch (function (error) {
-        console.log ("error: " + error);
-    })
+            ));
    
     
   </script>

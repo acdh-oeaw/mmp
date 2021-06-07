@@ -248,14 +248,6 @@ class KeyWordListView(GenericListView):
     enable_merge = False,
     template_name = 'archiv/keyword_list.html'
 
-    def get_context_data(self, **kwargs):
-        context = super(KeyWordListView, self).get_context_data()
-        qs = self.get_queryset()
-        if qs.count() < 70:
-            df = graph_table(qs)
-            context['graph'] = create_graph(df, qs)
-        return context
-
 
 class KeyWordDetailView(BaseDetailView):
 
