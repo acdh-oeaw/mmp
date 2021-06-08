@@ -40,7 +40,7 @@ def create_graph(df, qs):
         nodes.append(
             {
                 "id": x.id,
-                "label": x.stichwort,
+                "label": f"{x}",
                 "type": 'n'
             }
         )
