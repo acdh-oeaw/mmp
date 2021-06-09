@@ -23,5 +23,5 @@ class KeyWordEndpoint(ListView):
             df = graph_table(qs)
         else:
             df = graph_table(qs[:70])
-        data = create_graph(df, qs)
+        data = create_graph(df, KeyWord)
         return JsonResponse(data)
