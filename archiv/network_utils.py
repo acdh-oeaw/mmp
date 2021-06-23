@@ -50,7 +50,7 @@ def create_graph(df, ItemClass):
     g_types = {
         "nodes": [
             {
-                'id': 'n',
+                'id': f"{app_name}__{model_name}",
                 'label': 'Keyword',
                 'color': '#006699'
             },
