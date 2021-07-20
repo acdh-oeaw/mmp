@@ -308,7 +308,9 @@ class StelleFilterFormHelper(FormHelper):
             Fieldset(
                 'Basic search options',
                 'id',
+                'zitat',
                 'text',
+                'text__autor',
                 'key_word',
                 'use_case',
                 css_id="basic_search_fields"
@@ -318,7 +320,6 @@ class StelleFilterFormHelper(FormHelper):
                     'Advanced search',
                     'legacy_pk',
                     'summary',
-                    'zitat',
                     'translation',
                     'kommentar',
                     css_id="more"
