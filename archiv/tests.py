@@ -2,8 +2,8 @@ from django.apps import apps
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.urls import reverse
-
 from archiv.models import KeyWord, UseCase
+from archiv.utils import parse_date
 
 MODELS = list(apps.all_models['archiv'].values())
 
@@ -13,6 +13,14 @@ USER = {
     "password": "somepassword"
 }
 
+DATES_DEFAULT = 600
+
+DATES = [
+    ['800', 800],
+    ['asfd800? ? ', 800],
+    ['', DATES_DEFAULT]
+]
+
 
 class ArchivTestCase(TestCase):
     fixtures = ['dump.json']
@@ -20,6 +28,11 @@ class ArchivTestCase(TestCase):
     def setUp(self):
         # Create two users
         User.objects.create_user(**USER)
+
+    def test_parse_date(self):
+        for x in DATES:
+            parsed = parse_date(x[0], default=DATES_DEFAULT)
+            self.assertEqual(parsed, x[1])
 
     def test_001_source(self):
         # A test that uses the fixtures.
