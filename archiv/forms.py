@@ -109,6 +109,7 @@ class SpatialCoverageFilterFormHelper(FormHelper):
                 'id',
                 'key_word',
                 'stelle',
+                'stelle__text__autor',
                 css_id="basic_search_fields"
             ),
         )

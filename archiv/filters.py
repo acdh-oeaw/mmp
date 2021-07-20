@@ -100,6 +100,14 @@ class SpatialCoverageListFilter(django_filters.FilterSet):
             url="archiv-ac:stelle-autocomplete",
         )
     )
+    stelle__text__autor = django_filters.ModelMultipleChoiceFilter(
+        queryset=Autor.objects.all(),
+        help_text="Related Authors",
+        label="Author",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:autor-autocomplete",
+        )
+    )
 
     class Meta:
         model = SpatialCoverage
