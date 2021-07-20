@@ -100,6 +100,16 @@ class SpatialCoverageListFilter(django_filters.FilterSet):
             url="archiv-ac:stelle-autocomplete",
         )
     )
+    stelle__text__not_before = django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text="Text not before",
+        label="Text not before"
+    )
+    stelle__text__not_after = django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text="Text not after",
+        label="Text not after"
+    )
     stelle__text__autor = django_filters.ModelMultipleChoiceFilter(
         queryset=Autor.objects.all(),
         help_text="Related Authors",
@@ -269,6 +279,16 @@ class KeyWordListFilter(django_filters.FilterSet):
             url="archiv-ac:ort-autocomplete",
         )
     )
+    rvn_stelle_key_word_keyword__text__not_before = django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text="Text not before",
+        label="Text not before"
+    )
+    rvn_stelle_key_word_keyword__text__not_after = django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text="Text not after",
+        label="Text not after"
+    )
 
     class Meta:
         model = KeyWord
@@ -281,7 +301,9 @@ class KeyWordListFilter(django_filters.FilterSet):
             'art',
             'wurzel',
             'kommentar',
-            'varianten'
+            'varianten',
+            'rvn_stelle_key_word_keyword__text__not_before',
+            'rvn_stelle_key_word_keyword__text__not_after'
         ]
 
 
@@ -466,15 +488,15 @@ class TextListFilter(django_filters.FilterSet):
         help_text=Text._meta.get_field('jahrhundert').help_text,
         label=Text._meta.get_field('jahrhundert').verbose_name
     )
-    start_date = django_filters.LookupChoiceFilter(
+    not_before = django_filters.LookupChoiceFilter(
         lookup_choices=DATE_LOOKUP_CHOICES,
-        help_text=Text._meta.get_field('start_date').help_text,
-        label=Text._meta.get_field('start_date').verbose_name
+        help_text=Text._meta.get_field('not_before').help_text,
+        label=Text._meta.get_field('not_before').verbose_name
     )
-    end_date = django_filters.LookupChoiceFilter(
+    not_after = django_filters.LookupChoiceFilter(
         lookup_choices=DATE_LOOKUP_CHOICES,
-        help_text=Text._meta.get_field('end_date').help_text,
-        label=Text._meta.get_field('end_date').verbose_name
+        help_text=Text._meta.get_field('not_after').help_text,
+        label=Text._meta.get_field('not_after').verbose_name
     )
     edition = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
