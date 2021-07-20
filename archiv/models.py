@@ -3,6 +3,7 @@ import logging
 
 from django.db import models
 from django.urls import reverse
+from django.contrib.gis.geos import Polygon
 from django.contrib.gis.db.models import PolygonField
 from django.utils.functional import cached_property
 
@@ -299,6 +300,30 @@ class SpatialCoverage(models.Model):
                 kwargs={'pk': prev.first().id}
             )
         return False
+
+    def get_author_coords(self):
+        cur_item = SpatialCoverage.objects.filter(id=self.id)
+        items = cur_item.values_list(
+            'stelle__text__autor__ort__long',
+            'stelle__text__autor__ort__lat',
+        )
+        no_blanks = [x for x in items if x[0]]
+        return no_blanks
+
+    def geom_points(self):
+        try:
+            return list(self.fuzzy_geom.coords[0])
+        except AttributeError:
+            return []
+
+    def new_coords(self):
+        poly_cords = self.geom_points()
+        new_coords = poly_cords[:1] + self.get_author_coords() + poly_cords[1:]
+        return new_coords
+
+    def convex_hull(self):
+        poly = Polygon(self.new_coords())
+        return poly.convex_hull.geojson
 
 
 class Autor(models.Model):
