@@ -19,7 +19,7 @@ class KeyWordEndpoint(ListView):
 
     def render_to_response(self, context, **kwargs):
         qs = self.get_queryset().distinct().order_by('id')
-        if qs.count() < 400:
+        if qs.count() < 100:
             df = graph_table(qs)
         else:
             df = graph_table(qs.reverse()[:500])
