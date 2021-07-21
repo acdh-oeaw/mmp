@@ -3,7 +3,6 @@ from django.http import JsonResponse
 
 from archiv.models import KeyWord
 from archiv.filters import KeyWordListFilter
-
 from archiv.network_utils import create_graph, graph_table
 
 
