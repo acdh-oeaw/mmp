@@ -171,6 +171,7 @@ class SpatialCoverageListView(GenericListView):
         'id', 'stelle', 'key_word',
     ]
     enable_merge = False
+    template_name = 'archiv/spatial_list.html'
 
 
 class SpatialCoverageDelete(DeleteView):
