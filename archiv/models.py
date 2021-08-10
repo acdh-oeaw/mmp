@@ -7,11 +7,12 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.gis.db.models import PolygonField
 from django.utils.functional import cached_property
-from django.contrib.auth.models import User
 
 from vocabs.models import SkosConcept
 
 from browsing.browsing_utils import model_to_dict
+
+from tei.archiv_utils import MakeTeiDoc
 
 logger = logging.getLogger(__name__)
 
@@ -1231,12 +1232,6 @@ class Text(models.Model):
     ).set_extra(
         is_public=True
     )
-    # creators = models.ManyToManyField(
-    #     User, blank=True,
-    #     verbose_name="Verantwortlich",
-    #     help_text="Verantwortlich für die Erzeugung dieses Datensatzes",
-    #     related_name="created_text"
-    # )
 
     class Meta:
 
@@ -1253,6 +1248,25 @@ class Text(models.Model):
 
     def field_dict(self):
         return model_to_dict(self)
+
+    def get_tei_url(self):
+        return reverse('archiv:text_xml', kwargs={'pk': self.id})
+
+    def as_tei_node(self):
+        my_node = MakeTeiDoc(self)
+        return my_node.export_full_doc()
+
+    def as_tei(self):
+        return ET.tostring(self.as_tei_node(), pretty_print=True, encoding='UTF-8')
+
+    def save_tei(self, file=None):
+        my_node = MakeTeiDoc(self)
+        if file is not None:
+            pass
+        else:
+            file = f"{self.id}.xml"
+        my_node.export_full_doc_str(file)
+        return file
 
     @classmethod
     def get_listview_url(self):

@@ -3,6 +3,8 @@ from django.conf.urls import url
 from . import views
 from archiv.endpoint_views import KeyWordEndpoint
 
+from . import tei_views
+
 
 app_name = 'archiv'
 urlpatterns = [
@@ -184,6 +186,11 @@ urlpatterns = [
         views.TextDelete.as_view(),
         name='text_delete'),
     url(
+        r'^text/xml-tei/(?P<pk>[0-9]+)$',
+        tei_views.text_as_tei,
+        name='text_xml'
+    ),       
+    url(
         r'^event/$',
         views.EventListView.as_view(),
         name='event_browse'
@@ -207,5 +214,5 @@ urlpatterns = [
         r'^event/delete/(?P<pk>[0-9]+)$',
         views.EventDelete.as_view(),
         name='event_delete'
-    ),
+    ), 
 ]

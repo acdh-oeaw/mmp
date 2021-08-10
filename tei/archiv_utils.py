@@ -1,5 +1,4 @@
 import lxml.etree as ET
-import datetime
 
 from webpage.metadata import PROJECT_METADATA
 from tei.partials import TEI_NSMAP, custom_escape
@@ -19,9 +18,8 @@ class MakeTeiDoc():
         else:
             self.next = ""
         self.text_url = f"{self.base}{self.text.get_absolute_url()}"
-        # self.creators = " ".join(["#{}".format(x.username) for x in self.text.creators.all()])
         if self.text.jahrhundert:
-            self.jarhhundert = self.text.jahrhundert
+            self.jahrhundert = self.text.jahrhundert
         else:
             self.jahrhundert = ""
 
@@ -34,40 +32,87 @@ class MakeTeiDoc():
             return self.text.end_date
         elif self.not_before is not None:
             return self.not_before()
+
+    def text_lang(self):
+        if self.text.text_lang is not None:
+            return self.text.text_lang
+        else:
+            return "lat"
                 
     def populate_header(self):
+        text_url = f"https://mmp.acdh-dev.oeaw.ac.at{self.text.get_absolute_url()}"
         header = f"""
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="archesource-{self.res.id}" {self.prev} {self.next} xml:base="{self.base}">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="archesource-{self.text.id}" {self.prev} {self.next} xml:base="{self.base}">
   <teiHeader>
       <fileDesc>
          <titleStmt>
             <title type="main">{self.text.title}</title>
-            <title type="sub">{self.project_md['subtitle']}</title>
-            <principal ref="WP">Walter Pohl</principal>
-            <principal ref="VW">Veronika Wieser</principal>
+            <title type="alt">{self.text.alt_title}</title>
+            <principal ref="#WP">Walter Pohl</principal>
+            <principal ref="#VW">Veronika Wieser</principal>
             <respStmt>
                 <resp>Researcher</resp>
-                <name ref="WP">Walter Pohl</name>
-                <name ref="VW">Veronika Wieser</name> 
+                <name ref="#WP">Walter Pohl</name>
+                <name ref="#VW">Veronika Wieser</name> 
             </respStmt>
             <respStmt>
                 <resp>TEI conform Transformation</resp>
-                <name ref="PA">Peter Andorfer</name>
+                <name ref="#PA">Peter Andorfer</name>
             </respStmt>
          </titleStmt>
+         <editionStmt>
+            <p>{self.text.edition}</p>
+         </editionStmt>
+         <notesStmt>
+            <note>{self.text.kommentar}</note>
+         </notesStmt>
          <publicationStmt>
-            <publisher>Austrian Centre for Digital Humanities</publisher>
-            <idno type="django_id">{self.text_url}</idno>
+            <publisher>Austrian Centre for Digital Humanities and Cultural Heritage (ACDH-CH)</publisher>
+            <pubPlace>Vienna</pubPlace>
+            <date when="2021">2021</date>
+            <availability>
+                <licence target="https://creativecommons.org/licenses/by/4.0"/>
+                <p>The Creative Commons Attribution 4.0 International (CC BY 4.0) License applies to this document.</p>
+                <p>Copyright (c) 2021 Austrian Centre for Digital Humanities at the Austrian Academy of Sciences</p>
+                <p>
+                    You are free to:
+                    Share — copy and redistribute the material in any medium or format
+                    Adapt — remix, transform, and build upon the material
+                    for any purpose, even commercially.
+                </p>
+                <p>
+                    Under the following terms:
+                    Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. 
+                    You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.       
+                    No additional restrictions — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
+                </p>
+            </availability>
+            <idno type="django_id">{text_url}</idno>
          </publicationStmt>
          <sourceDesc>
+            <bibl>
+                <title type="main">{self.project_md['title']}</title>
+                <title type="sub">{self.project_md['subtitle']}</title>
+                <author ref="#PA">{self.project_md['author']}</author>
+                <publisher>Austrian Centre for Digital Humanities and Cultural Heritage (ACDH-CH)</publisher>
+                <date when="2021">2021</date>
+                <decoNote type="abstract">
+                    <p>
+                        {self.project_md['description']}
+                    </p>
+                </decoNote>
+            </bibl>
             <msDesc>
                <msIdentifier>
-                    <repository>{}</repository>
-                    <msName>{}</msName>
+                    <repository>ARCHE - A Resource Centre for Humanities Related Research in Austria</repository>
+                    <msName>Austrian Centre for Digital Humanities and Cultural Heritage (ACDH-CH)</msName>
                </msIdentifier>
+               <msContents>
+                    <textLang mainLang="{self.text_lang()}"/>
+               </msContents>
                <physDesc>
                     <typeDesc>
-                        <p>{}</p>
+                        <p>{self.text.art}</p>
                     </typeDesc>
                </physDesc>
             </msDesc>
@@ -94,13 +139,35 @@ class MakeTeiDoc():
             <head>Erwähnte Orte</head>
             <place/>
          </listPlace>
-         <listOrg>
-            <head>Erwähnte Institutionen</head>
-            <org/>
-         </listOrg>
       </back>
   </text>
 </TEI>
 """
         return header
 
+    def create_header_node(self):
+        header = ET.fromstring(self.populate_header())
+        return header
+
+    def pop_mentions(self):
+        cur_doc = self.create_header_node()
+
+        if self.text.autor:            
+            titleStmt = cur_doc.xpath(".//tei:titleStmt", namespaces=self.nsmap)[0]
+            autor = ET.Element("{http://www.tei-c.org/ns/1.0}author")
+            for x in self.text.autor.all():
+                persName = ET.Element("{http://www.tei-c.org/ns/1.0}persName")
+                persName.text = x.name + ", "
+                persName.attrib["ref"] = "#person__" + f"{x.id}"
+                autor.append(persName)
+            titleStmt.insert(2, autor)
+
+        return cur_doc
+
+    def export_full_doc(self):
+        return self.pop_mentions()
+
+    def export_full_doc_str(self, file="temp.xml"):
+        with open(file, 'wb') as f:
+            f.write(ET.tostring(self.pop_mentions(), pretty_print=True, encoding='UTF-8'))
+        return file

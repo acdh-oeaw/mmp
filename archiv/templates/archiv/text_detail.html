@@ -41,6 +41,13 @@
                     <i data-feather="edit"></i>
                     </a>
                 {% endif %}
+                {% if object.get_tei_url %}
+                    <small>
+                        <a href="{{ object.get_tei_url }}" title="download as XML/TEI">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </small>
+                {% endif %}
                 {% if 'archeutils' in APPS %}
                 <a href="{% url 'archeutils:res_as_arche_graph' app_name=app_name model_name=class_name|lower pk=object.id %}" title="As ARCHE-RDF">
                     <i data-feather="download"></i>
