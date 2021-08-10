@@ -128,7 +128,6 @@ class MakeTeiDoc():
   </teiHeader>
   <text>
       <body>
-         <p></p>
       </body>
       <back>
          <listPerson>
@@ -149,6 +148,26 @@ class MakeTeiDoc():
 
     def pop_mentions(self):
         cur_doc = self.create_header_node()
+
+        body = cur_doc.xpath(".//tei:body", namespaces=self.nsmap)[0]
+        for x in self.text.rvn_stelle_text_text.all():
+            div = ET.Element("{http://www.tei-c.org/ns/1.0}div")
+            div.attrib["{https://www.w3.org/XML/1998/namespace}id"] = "cite__" + str(x.id)
+            index = ET.Element("{http://www.tei-c.org/ns/1.0}index")
+            for k in x.key_word.all():
+                term = ET.Element("{http://www.tei-c.org/ns/1.0}term")
+                term.text = k.stichwort
+                index.append(term)
+            div.append(index)
+            cit = ET.Element("{http://www.tei-c.org/ns/1.0}cit")
+            pb = ET.Element("{http://www.tei-c.org/ns/1.0}pb")
+            pb.text = x.zitat_stelle
+            cit.append(pb)
+            quote = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
+            quote.text = x.zitat
+            cit.append(quote)
+            div.append(cit)
+            body.append(div)
 
         if self.text.autor:
             titleStmt = cur_doc.xpath(".//tei:titleStmt", namespaces=self.nsmap)[0]
