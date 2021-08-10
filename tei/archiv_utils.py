@@ -292,6 +292,80 @@ class MakeTeiDoc():
                 listPerson.insert(2, person)
             titleStmt.insert(2, autor)
 
+        if self.text.ort:
+            listPlace = cur_doc.xpath(".//tei:listPlace", namespaces=self.nsmap)[0]
+            for x in self.text.ort.all():
+                place = ET.Element("{http://www.tei-c.org/ns/1.0}place")
+                place.attrib["{https://www.w3.org/XML/1998/namespace}id"] = "place__{}".format(
+                    x.id
+                )
+                # placeName in lang "en"
+                if x.name:
+                    placeName = ET.Element("{http://www.tei-c.org/ns/1.0}placeName")
+                    placeName.text = x.name
+                    placeName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "en"
+                    place.append(placeName)
+                # persName in lang "antik"
+                if x.name_antik:
+                    placeName = ET.Element("{http://www.tei-c.org/ns/1.0}placeName")
+                    placeName.text = x.name_antik
+                    placeName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "antik"
+                    place.append(placeName)
+                # persName in lang "de"
+                if x.name_de:
+                    placeName = ET.Element("{http://www.tei-c.org/ns/1.0}placeName")
+                    placeName.text = x.name_de
+                    placeName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "de"
+                    place.append(placeName)
+                # persName in lang "fr"
+                if x.name_fr:
+                    placeName = ET.Element("{http://www.tei-c.org/ns/1.0}placeName")
+                    placeName.text = x.name_fr
+                    placeName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "fr"
+                    place.append(placeName)
+                # persName in lang "it"
+                if x.name_it:
+                    placeName = ET.Element("{http://www.tei-c.org/ns/1.0}placeName")
+                    placeName.text = x.name_it
+                    placeName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "it"
+                    place.append(placeName)
+                # persName in lang "gr"
+                if x.name_gr:
+                    placeName = ET.Element("{http://www.tei-c.org/ns/1.0}placeName")
+                    placeName.text = x.name_gr
+                    placeName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "gr"
+                    place.append(placeName)
+                if x.long or x.lat:
+                    location = ET.Element("{http://www.tei-c.org/ns/1.0}location")
+                    geo = ET.Element("{http://www.tei-c.org/ns/1.0}geo")
+                    geo.text = str(x.lat) + ' ' + str(x.long)
+                    geo.attrib['decls'] = "latLong"
+                    location.append(geo)
+                    place.append(location)
+                if x.norm_id:
+                    idno = ET.Element("{http://www.tei-c.org/ns/1.0}idno")
+                    idno.text = x.norm_id
+                    idno.attrib["type"] = "ID"
+                    place.append(idno)
+                noteGrp = ET.Element("{http://www.tei-c.org/ns/1.0}noteGrp")
+                if x.kommentar:
+                    noteComment = ET.Element("{http://www.tei-c.org/ns/1.0}note")
+                    noteComment.text = x.kommentar
+                    noteComment.attrib["type"] = "comment"
+                    noteGrp.append(noteComment)
+                if f"{x.art}":
+                    noteType = ET.Element("{http://www.tei-c.org/ns/1.0}note")
+                    noteType.text = f"{x.art}"
+                    noteType.attrib["type"] = "type"
+                    noteGrp.append(noteType)
+                if f"{x.kategorie}":
+                    noteCategory = ET.Element("{http://www.tei-c.org/ns/1.0}note")
+                    noteCategory.text = f"{x.kategorie}"
+                    noteCategory.attrib["type"] = "category"
+                    noteGrp.append(noteCategory)
+                place.append(noteGrp)
+                listPlace.insert(2, place)
+
         return cur_doc
 
     def export_full_doc(self):
