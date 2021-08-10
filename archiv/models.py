@@ -1340,7 +1340,7 @@ class Text(models.Model):
         prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
         if prev:
             return prev.first().id
-            
+
         return False
 
 

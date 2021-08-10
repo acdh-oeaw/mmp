@@ -10,14 +10,14 @@ class MakeTeiDoc():
         self.base = "https://id.acdh.oeaw.ac.at/mmp/archiv/text"
         self.text = text
         if self.text.get_prev():
-            self.prev = f'prev="{self.base}{self.text.get_prev_id()}"'
+            self.prev = f'prev="{self.base}/{self.text.get_prev_id()}"'
         else:
             self.prev = ""
         if self.text.get_next():
-            self.next = f'next="{self.base}{self.text.get_next_id()}"'
+            self.next = f'next="{self.base}/{self.text.get_next_id()}"'
         else:
             self.next = ""
-        self.text_url = f"{self.base}{self.text.get_absolute_url()}"
+        self.text_url = f"{self.base}/{self.text.get_absolute_url()}"
         if self.text.jahrhundert:
             self.jahrhundert = self.text.jahrhundert
         else:
@@ -38,11 +38,11 @@ class MakeTeiDoc():
             return self.text.text_lang
         else:
             return "lat"
-                
+
     def populate_header(self):
         text_url = f"https://mmp.acdh-dev.oeaw.ac.at{self.text.get_absolute_url()}"
         header = f"""
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="archesource-{self.text.id}" {self.prev} {self.next} xml:base="{self.base}">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="textid-{self.text.id}" {self.prev} {self.next} xml:base="{self.base}">
   <teiHeader>
       <fileDesc>
          <titleStmt>
@@ -132,12 +132,10 @@ class MakeTeiDoc():
       </body>
       <back>
          <listPerson>
-            <head>Erwähnte Personen</head>
-            <person/>
+            <head>Autor/en</head>
          </listPerson>
          <listPlace>
             <head>Erwähnte Orte</head>
-            <place/>
          </listPlace>
       </back>
   </text>
@@ -152,15 +150,61 @@ class MakeTeiDoc():
     def pop_mentions(self):
         cur_doc = self.create_header_node()
 
-        if self.text.autor:            
+        if self.text.autor:        
             titleStmt = cur_doc.xpath(".//tei:titleStmt", namespaces=self.nsmap)[0]
-            autor = ET.Element("{http://www.tei-c.org/ns/1.0}author")
+            listPerson = cur_doc.xpath(".//tei:listPerson", namespaces=self.nsmap)[0]
+            autor = ET.Element("{http://www.tei-c.org/ns/1.0}author")            
             for x in self.text.autor.all():
+                person = ET.Element("{http://www.tei-c.org/ns/1.0}person")
                 persName = ET.Element("{http://www.tei-c.org/ns/1.0}persName")
-                persName.text = x.name + ", "
-                persName.attrib["ref"] = "#person__" + f"{x.id}"
+                ListPersName = ET.Element("{http://www.tei-c.org/ns/1.0}persName")
+                forename = ET.Element("{http://www.tei-c.org/ns/1.0}forename")
+                surname = ET.Element("{http://www.tei-c.org/ns/1.0}surname")
+                forename.text = x.name.split(' ', 1)[0]
+                surname.text = x.name.split(' ', 1)[1]                
+                persName.text = x.name
+                persName.attrib["ref"] = "#person__{}".format(
+                    x.id
+                )
                 autor.append(persName)
+                person.attrib["{https://www.w3.org/XML/1998/namespace}id"] = "person__{}".format(
+                    x.id
+                )
+                ListPersName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "de"
+                ListPersName.append(forename)
+                ListPersName.append(surname)
+                person.append(ListPersName)
+                if x.start_date:
+                    birth = ET.Element("{http://www.tei-c.org/ns/1.0}birth")
+                    date = ET.Element("{http://www.tei-c.org/ns/1.0}date")
+                    date.text = x.start_date
+                    birth.attrib["when"] = x.start_date
+                    birth.append(date)
+                    person.append(birth)
+                if x.end_date:
+                    death = ET.Element("{http://www.tei-c.org/ns/1.0}death")
+                    date = ET.Element("{http://www.tei-c.org/ns/1.0}date")
+                    date.text = x.end_date
+                    death.attrib["when"] = x.end_date
+                    death.append(date)
+                    person.append(death)
+                if x.gnd_id:
+                    idno = ET.Element("{http://www.tei-c.org/ns/1.0}idno")
+                    idno.text = x.gnd_id
+                    idno.attrib["type"] = "GND"
+                    person.append(idno)
+                if f"{x.ort}":
+                    residence = ET.Element("{http://www.tei-c.org/ns/1.0}residence")
+                    residence.text = f"{x.ort}"
+                    person.append(residence)
+                if x.kommentar:
+                    note = ET.Element("{http://www.tei-c.org/ns/1.0}note")
+                    note.text = x.kommentar
+                    person.append(note)
+                listPerson.insert(2, person)
             titleStmt.insert(2, autor)
+            
+
 
         return cur_doc
 
