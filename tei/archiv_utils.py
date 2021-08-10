@@ -53,7 +53,7 @@ class MakeTeiDoc():
             <respStmt>
                 <resp>Researcher</resp>
                 <name ref="#WP">Walter Pohl</name>
-                <name ref="#VW">Veronika Wieser</name> 
+                <name ref="#VW">Veronika Wieser</name>
             </respStmt>
             <respStmt>
                 <resp>TEI conform Transformation</resp>
@@ -82,8 +82,8 @@ class MakeTeiDoc():
                 </p>
                 <p>
                     Under the following terms:
-                    Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. 
-                    You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.       
+                    Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made.
+                    You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
                     No additional restrictions — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
                 </p>
             </availability>
@@ -150,30 +150,118 @@ class MakeTeiDoc():
     def pop_mentions(self):
         cur_doc = self.create_header_node()
 
-        if self.text.autor:        
+        if self.text.autor:
             titleStmt = cur_doc.xpath(".//tei:titleStmt", namespaces=self.nsmap)[0]
             listPerson = cur_doc.xpath(".//tei:listPerson", namespaces=self.nsmap)[0]
-            autor = ET.Element("{http://www.tei-c.org/ns/1.0}author")            
+            autor = ET.Element("{http://www.tei-c.org/ns/1.0}author")
             for x in self.text.autor.all():
-                person = ET.Element("{http://www.tei-c.org/ns/1.0}person")
                 persName = ET.Element("{http://www.tei-c.org/ns/1.0}persName")
-                ListPersName = ET.Element("{http://www.tei-c.org/ns/1.0}persName")
-                forename = ET.Element("{http://www.tei-c.org/ns/1.0}forename")
-                surname = ET.Element("{http://www.tei-c.org/ns/1.0}surname")
-                forename.text = x.name.split(' ', 1)[0]
-                surname.text = x.name.split(' ', 1)[1]                
                 persName.text = x.name
                 persName.attrib["ref"] = "#person__{}".format(
                     x.id
                 )
                 autor.append(persName)
+                # person for tei:back tei:listPerson
+                person = ET.Element("{http://www.tei-c.org/ns/1.0}person")
                 person.attrib["{https://www.w3.org/XML/1998/namespace}id"] = "person__{}".format(
                     x.id
                 )
-                ListPersName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "de"
-                ListPersName.append(forename)
-                ListPersName.append(surname)
-                person.append(ListPersName)
+                # persName in lang "de"
+                if x.name:
+                    ListPersName = ET.Element("{http://www.tei-c.org/ns/1.0}persName")
+                    forename = ET.Element("{http://www.tei-c.org/ns/1.0}forename")
+                    surname = ET.Element("{http://www.tei-c.org/ns/1.0}surname")
+                    names = x.name.split(' ', 1)
+                    if len(names) == 2:
+                        forename.text = names[0]
+                        surname.text = names[1]
+                    else:
+                        forename.text = names[0]
+                        surname.text = ""
+                    ListPersName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "de"
+                    ListPersName.append(forename)
+                    ListPersName.append(surname)
+                    person.append(ListPersName)
+                # persName in lang "lat"
+                if x.name_lat:
+                    ListPersName = ET.Element("{http://www.tei-c.org/ns/1.0}persName")
+                    forename = ET.Element("{http://www.tei-c.org/ns/1.0}forename")
+                    surname = ET.Element("{http://www.tei-c.org/ns/1.0}surname")
+                    names = x.name_lat.split(' ', 1)
+                    if len(names) == 2:
+                        forename.text = names[0]
+                        surname.text = names[1]
+                    else:
+                        forename.text = names[0]
+                        surname.text = ""
+                    ListPersName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "lat"
+                    ListPersName.append(forename)
+                    ListPersName.append(surname)
+                    person.append(ListPersName)
+                # persName in lang "en"
+                if x.name_en:
+                    ListPersName = ET.Element("{http://www.tei-c.org/ns/1.0}persName")
+                    forename = ET.Element("{http://www.tei-c.org/ns/1.0}forename")
+                    surname = ET.Element("{http://www.tei-c.org/ns/1.0}surname")
+                    names = x.name_en.split(' ', 1)
+                    if len(names) == 2:
+                        forename.text = names[0]
+                        surname.text = names[1]
+                    else:
+                        forename.text = names[0]
+                        surname.text = ""
+                    ListPersName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "en"
+                    ListPersName.append(forename)
+                    ListPersName.append(surname)
+                    person.append(ListPersName)
+                # persName in lang "fr"
+                if x.name_fr:
+                    ListPersName = ET.Element("{http://www.tei-c.org/ns/1.0}persName")
+                    forename = ET.Element("{http://www.tei-c.org/ns/1.0}forename")
+                    surname = ET.Element("{http://www.tei-c.org/ns/1.0}surname")
+                    names = x.name_fr.split(' ', 1)
+                    if len(names) == 2:
+                        forename.text = names[0]
+                        surname.text = names[1]
+                    else:
+                        forename.text = names[0]
+                        surname.text = ""
+                    ListPersName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "fr"
+                    ListPersName.append(forename)
+                    ListPersName.append(surname)
+                    person.append(ListPersName)
+                # persName in lang "it"
+                if x.name_it:
+                    ListPersName = ET.Element("{http://www.tei-c.org/ns/1.0}persName")
+                    forename = ET.Element("{http://www.tei-c.org/ns/1.0}forename")
+                    surname = ET.Element("{http://www.tei-c.org/ns/1.0}surname")
+                    names = x.name_it.split(' ', 1)
+                    if len(names) == 2:
+                        forename.text = names[0]
+                        surname.text = names[1]
+                    else:
+                        forename.text = names[0]
+                        surname.text = ""
+                    ListPersName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "it"
+                    ListPersName.append(forename)
+                    ListPersName.append(surname)
+                    person.append(ListPersName)
+                # persName in lang "gr"
+                if x.name_gr:
+                    ListPersName = ET.Element("{http://www.tei-c.org/ns/1.0}persName")
+                    forename = ET.Element("{http://www.tei-c.org/ns/1.0}forename")
+                    surname = ET.Element("{http://www.tei-c.org/ns/1.0}surname")
+                    names = x.name_gr.split(' ', 1)
+                    if len(names) == 2:
+                        forename.text = names[0]
+                        surname.text = names[1]
+                    else:
+                        forename.text = names[0]
+                        surname.text = ""
+                    ListPersName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "gr"
+                    ListPersName.append(forename)
+                    ListPersName.append(surname)
+                    person.append(ListPersName)
                 if x.start_date:
                     birth = ET.Element("{http://www.tei-c.org/ns/1.0}birth")
                     date = ET.Element("{http://www.tei-c.org/ns/1.0}date")
@@ -203,8 +291,6 @@ class MakeTeiDoc():
                     person.append(note)
                 listPerson.insert(2, person)
             titleStmt.insert(2, autor)
-            
-
 
         return cur_doc
 
