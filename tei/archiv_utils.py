@@ -156,8 +156,16 @@ class MakeTeiDoc():
             index = ET.Element("{http://www.tei-c.org/ns/1.0}index")
             for k in x.key_word.all():
                 term = ET.Element("{http://www.tei-c.org/ns/1.0}term")
+                termGr = ET.Element("{http://www.tei-c.org/ns/1.0}term")
                 term.text = k.stichwort
+                term.attrib["type"] = k.art
+                term.attrib["ana"] = k.wurzel
                 index.append(term)
+                if k.name_gr:
+                    termGr.text = k.name_gr
+                    termGr.attrib["type"] = k.art
+                    termGr.attrib["ana"] = k.wurzel         
+                    index.append(termGr)
             div.append(index)
             cit = ET.Element("{http://www.tei-c.org/ns/1.0}cit")
             pb = ET.Element("{http://www.tei-c.org/ns/1.0}pb")
@@ -167,6 +175,10 @@ class MakeTeiDoc():
             quote.text = x.zitat
             cit.append(quote)
             div.append(cit)
+            note = ET.Element("{http://www.tei-c.org/ns/1.0}note")
+            if x.kommentar:
+                note.text = x.kommentar
+                div.append(note)
             body.append(div)
 
         if self.text.autor:
