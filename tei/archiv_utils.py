@@ -4,7 +4,7 @@ import re
 from datetime import date
 
 from webpage.metadata import PROJECT_METADATA
-from tei.partials import TEI_NSMAP#, custom_escape
+from tei.partials import TEI_NSMAP
 
 
 class MakeTeiDoc():
