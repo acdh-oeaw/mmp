@@ -158,7 +158,7 @@ class MakeTeiDoc():
             index = ET.Element("{http://www.tei-c.org/ns/1.0}index")
             for k in x.key_word.all():
                 term = ET.Element("{http://www.tei-c.org/ns/1.0}term")
-                termGr = ET.Element("{http://www.tei-c.org/ns/1.0}term")
+                term.attrib["n"] = "keyword__" + str(k.id)
                 term.text = k.stichwort
                 if k.art:
                     term.attrib["type"] = k.art
@@ -166,20 +166,52 @@ class MakeTeiDoc():
                     term.attrib["ana"] = k.wurzel
                 index.append(term)
                 if k.name_gr:
+                    termGr = ET.Element("{http://www.tei-c.org/ns/1.0}term")
                     termGr.text = k.name_gr
                     if k.art:
                         termGr.attrib["type"] = k.art
                     if k.wurzel:
                         termGr.attrib["ana"] = k.wurzel
                     index.append(termGr)
+                if k.varianten:
+                    indexVarianten = ET.Element("{http://www.tei-c.org/ns/1.0}index")
+                    varianten = k.varianten.split(";")
+                    for v in varianten:
+                        termVarianten = ET.Element("{http://www.tei-c.org/ns/1.0}term")
+                        termVarianten.attrib["type"] = "variant"
+                        termVarianten.text = v
+                        indexVarianten.append(termVarianten)
+                    term.append(indexVarianten)
             div.append(index)
+            # original citation in lang text_lang() default "lat"
             cit = ET.Element("{http://www.tei-c.org/ns/1.0}cit")
-            pb = ET.Element("{http://www.tei-c.org/ns/1.0}pb")
-            pb.attrib["n"] = x.zitat_stelle
-            cit.append(pb)
+            cit.attrib["type"] = "original"
             quote = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
+            quote.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = self.text_lang()
             quote.text = x.zitat
+            ref = ET.Element("{http://www.tei-c.org/ns/1.0}ref")
+            ref.text = x.zitat_stelle
             cit.append(quote)
+            cit.append(ref)
+            # translation of original citation in lang "de"
+            if x.translation:
+                citTranslation = ET.Element("{http://www.tei-c.org/ns/1.0}cit")
+                citTranslation.attrib["type"] = "translation"
+                quoteTranslation = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
+                quoteTranslation.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "mix"
+                quoteTranslation.text = x.translation
+                citTranslation.append(quoteTranslation)
+                cit.append(citTranslation)
+            # summary of original citation in lang "de"
+            if x.summary:
+                citSummary = ET.Element("{http://www.tei-c.org/ns/1.0}cit")
+                citSummary.attrib["type"] = "summary"
+                quoteSummary = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
+                quoteSummary.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "mix"
+                quoteSummary.text = x.summary
+                citSummary.append(quoteSummary)
+                cit.append(citSummary)
+            # adding all original, translation and summary quote to div
             div.append(cit)
             note = ET.Element("{http://www.tei-c.org/ns/1.0}note")
             if x.kommentar:
@@ -189,7 +221,7 @@ class MakeTeiDoc():
 
         if self.text.autor:
             titleStmt = cur_doc.xpath(".//tei:titleStmt", namespaces=self.nsmap)[0]
-            back = cur_doc.xpath(".//tei:back", namespaces=self.nsmap)
+            back = cur_doc.xpath(".//tei:back", namespaces=self.nsmap)[0]
             listPerson = ET.Element("{http://www.tei-c.org/ns/1.0}listPerson")
             autor = ET.Element("{http://www.tei-c.org/ns/1.0}author")
             for x in self.text.autor.all():
@@ -327,8 +359,8 @@ class MakeTeiDoc():
                     note = ET.Element("{http://www.tei-c.org/ns/1.0}note")
                     note.text = x.kommentar
                     person.append(note)
-                listPerson.insert(1, person)
-                back.insert(1, listPerson)
+                listPerson.append(person)
+            back.append(listPerson)
             titleStmt.insert(2, autor)
 
         if self.text.ort:
