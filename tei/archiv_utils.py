@@ -4,7 +4,7 @@ import re
 from datetime import date
 
 from webpage.metadata import PROJECT_METADATA
-from tei.partials import TEI_NSMAP, custom_escape
+# from tei.partials import TEI_NSMAP, custom_escape
 
 
 class MakeTeiDoc():
@@ -87,9 +87,13 @@ class MakeTeiDoc():
                 </p>
                 <p>
                     Under the following terms:
-                    Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made.
-                    You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
-                    No additional restrictions — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
+                    Attribution — You must give appropriate credit, 
+                    provide a link to the license, and indicate if changes were made.
+                    You may do so in any reasonable manner, 
+                    but not in any way that suggests the licensor endorses you or your use.
+                    No additional restrictions — 
+                    You may not apply legal terms or technological measures that legally 
+                    restrict others from doing anything the license permits.
                 </p>
             </availability>
             <idno type="django_id">{text_url}</idno>
