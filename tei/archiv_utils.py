@@ -113,6 +113,7 @@ class MakeTeiDoc():
                         {self.project_md['description']}
                     </p>
                 </decoNote>
+                <idno type="django_id">{text_url}</idno>
             </bibl>
             <msDesc>
                <msIdentifier>
@@ -202,7 +203,7 @@ class MakeTeiDoc():
                 citTranslation = ET.Element("{http://www.tei-c.org/ns/1.0}cit")
                 citTranslation.attrib["type"] = "translation"
                 quoteTranslation = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
-                quoteTranslation.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "mix"
+                quoteTranslation.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "und"
                 quoteTranslation.text = x.translation
                 citTranslation.append(quoteTranslation)
                 cit.append(citTranslation)
@@ -211,7 +212,7 @@ class MakeTeiDoc():
                 citSummary = ET.Element("{http://www.tei-c.org/ns/1.0}cit")
                 citSummary.attrib["type"] = "summary"
                 quoteSummary = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
-                quoteSummary.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "mix"
+                quoteSummary.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "und"
                 quoteSummary.text = x.summary
                 citSummary.append(quoteSummary)
                 cit.append(citSummary)
