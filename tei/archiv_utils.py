@@ -160,13 +160,17 @@ class MakeTeiDoc():
                 term = ET.Element("{http://www.tei-c.org/ns/1.0}term")
                 termGr = ET.Element("{http://www.tei-c.org/ns/1.0}term")
                 term.text = k.stichwort
-                term.attrib["type"] = k.art
-                term.attrib["ana"] = k.wurzel
+                if k.art:
+                    term.attrib["type"] = k.art
+                if k.wurzel:
+                    term.attrib["ana"] = k.wurzel
                 index.append(term)
                 if k.name_gr:
                     termGr.text = k.name_gr
-                    termGr.attrib["type"] = k.art
-                    termGr.attrib["ana"] = k.wurzel
+                    if k.art:
+                        termGr.attrib["type"] = k.art
+                    if k.wurzel:
+                        termGr.attrib["ana"] = k.wurzel
                     index.append(termGr)
             div.append(index)
             cit = ET.Element("{http://www.tei-c.org/ns/1.0}cit")
