@@ -340,14 +340,14 @@ class MakeTeiDoc():
                     birth = ET.Element("{http://www.tei-c.org/ns/1.0}birth")
                     date = ET.Element("{http://www.tei-c.org/ns/1.0}date")
                     date.text = x.start_date
-                    birth.attrib["when"] = x.start_date
+                    birth.attrib["when"] = re.search(r'\d+', x.start_date).group()
                     birth.append(date)
                     person.append(birth)
                 if x.end_date:
                     death = ET.Element("{http://www.tei-c.org/ns/1.0}death")
                     date = ET.Element("{http://www.tei-c.org/ns/1.0}date")
                     date.text = x.end_date
-                    death.attrib["when"] = x.end_date
+                    death.attrib["when"] = re.search(r'\d+', x.end_date).group()
                     death.append(date)
                     person.append(death)
                 if x.gnd_id:
