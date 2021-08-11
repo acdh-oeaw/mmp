@@ -1,7 +1,11 @@
 import lxml.etree as ET
+import re
+
+from datetime import date
 
 from webpage.metadata import PROJECT_METADATA
 from tei.partials import TEI_NSMAP, custom_escape
+
 
 class MakeTeiDoc():
     def __init__(self, text, PROJECT_METADATA=PROJECT_METADATA):
@@ -24,17 +28,21 @@ class MakeTeiDoc():
             self.jahrhundert = ""
 
     def not_before(self):
-        if self.text.start_date is not None:
-            return self.text.start_date
+        if self.text.start_date:
+            start_date = re.search(r'\d+', self.text.start_date).group()
+            return date(int(start_date), int(1), int(1)).isoformat()
+        else:
+            return self.not_after()
 
     def not_after(self):
-        if self.text.end_date is not None:
-            return self.text.end_date
-        elif self.not_before is not None:
+        if self.text.end_date:
+            end_date = re.search(r'\d+', self.text.end_date).group()
+            return date(int(end_date), int(1), int(1)).isoformat()
+        else:
             return self.not_before()
 
     def text_lang(self):
-        if self.text.text_lang is not None:
+        if self.text.text_lang:
             return self.text.text_lang
         else:
             return "lat"
@@ -63,9 +71,6 @@ class MakeTeiDoc():
          <editionStmt>
             <p>{self.text.edition}</p>
          </editionStmt>
-         <notesStmt>
-            <note>{self.text.kommentar}</note>
-         </notesStmt>
          <publicationStmt>
             <publisher>Austrian Centre for Digital Humanities and Cultural Heritage (ACDH-CH)</publisher>
             <pubPlace>Vienna</pubPlace>
@@ -89,6 +94,9 @@ class MakeTeiDoc():
             </availability>
             <idno type="django_id">{text_url}</idno>
          </publicationStmt>
+         <notesStmt>
+            <note>{self.text.kommentar}</note>
+         </notesStmt>
          <sourceDesc>
             <bibl>
                 <title type="main">{self.project_md['title']}</title>
@@ -130,12 +138,6 @@ class MakeTeiDoc():
       <body>
       </body>
       <back>
-         <listPerson>
-            <head>Autor/en</head>
-         </listPerson>
-         <listPlace>
-            <head>Erwähnte Orte</head>
-         </listPlace>
       </back>
   </text>
 </TEI>
@@ -152,7 +154,7 @@ class MakeTeiDoc():
         body = cur_doc.xpath(".//tei:body", namespaces=self.nsmap)[0]
         for x in self.text.rvn_stelle_text_text.all():
             div = ET.Element("{http://www.tei-c.org/ns/1.0}div")
-            div.attrib["{https://www.w3.org/XML/1998/namespace}id"] = "cite__" + str(x.id)
+            div.attrib["{http://www.w3.org/XML/1998/namespace}id"] = "cite__" + str(x.id)
             index = ET.Element("{http://www.tei-c.org/ns/1.0}index")
             for k in x.key_word.all():
                 term = ET.Element("{http://www.tei-c.org/ns/1.0}term")
@@ -164,12 +166,12 @@ class MakeTeiDoc():
                 if k.name_gr:
                     termGr.text = k.name_gr
                     termGr.attrib["type"] = k.art
-                    termGr.attrib["ana"] = k.wurzel         
+                    termGr.attrib["ana"] = k.wurzel
                     index.append(termGr)
             div.append(index)
             cit = ET.Element("{http://www.tei-c.org/ns/1.0}cit")
             pb = ET.Element("{http://www.tei-c.org/ns/1.0}pb")
-            pb.text = x.zitat_stelle
+            pb.attrib["n"] = x.zitat_stelle
             cit.append(pb)
             quote = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
             quote.text = x.zitat
@@ -183,7 +185,8 @@ class MakeTeiDoc():
 
         if self.text.autor:
             titleStmt = cur_doc.xpath(".//tei:titleStmt", namespaces=self.nsmap)[0]
-            listPerson = cur_doc.xpath(".//tei:listPerson", namespaces=self.nsmap)[0]
+            back = cur_doc.xpath(".//tei:back", namespaces=self.nsmap)
+            listPerson = ET.Element("{http://www.tei-c.org/ns/1.0}listPerson")
             autor = ET.Element("{http://www.tei-c.org/ns/1.0}author")
             for x in self.text.autor.all():
                 persName = ET.Element("{http://www.tei-c.org/ns/1.0}persName")
@@ -194,7 +197,7 @@ class MakeTeiDoc():
                 autor.append(persName)
                 # person for tei:back tei:listPerson
                 person = ET.Element("{http://www.tei-c.org/ns/1.0}person")
-                person.attrib["{https://www.w3.org/XML/1998/namespace}id"] = "person__{}".format(
+                person.attrib["{http://www.w3.org/XML/1998/namespace}id"] = "person__{}".format(
                     x.id
                 )
                 # persName in lang "de"
@@ -209,7 +212,7 @@ class MakeTeiDoc():
                     else:
                         forename.text = names[0]
                         surname.text = ""
-                    ListPersName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "de"
+                    ListPersName.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "de"
                     ListPersName.append(forename)
                     ListPersName.append(surname)
                     person.append(ListPersName)
@@ -225,7 +228,7 @@ class MakeTeiDoc():
                     else:
                         forename.text = names[0]
                         surname.text = ""
-                    ListPersName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "lat"
+                    ListPersName.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "lat"
                     ListPersName.append(forename)
                     ListPersName.append(surname)
                     person.append(ListPersName)
@@ -241,7 +244,7 @@ class MakeTeiDoc():
                     else:
                         forename.text = names[0]
                         surname.text = ""
-                    ListPersName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "en"
+                    ListPersName.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "en"
                     ListPersName.append(forename)
                     ListPersName.append(surname)
                     person.append(ListPersName)
@@ -257,7 +260,7 @@ class MakeTeiDoc():
                     else:
                         forename.text = names[0]
                         surname.text = ""
-                    ListPersName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "fr"
+                    ListPersName.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "fr"
                     ListPersName.append(forename)
                     ListPersName.append(surname)
                     person.append(ListPersName)
@@ -273,7 +276,7 @@ class MakeTeiDoc():
                     else:
                         forename.text = names[0]
                         surname.text = ""
-                    ListPersName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "it"
+                    ListPersName.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "it"
                     ListPersName.append(forename)
                     ListPersName.append(surname)
                     person.append(ListPersName)
@@ -289,7 +292,7 @@ class MakeTeiDoc():
                     else:
                         forename.text = names[0]
                         surname.text = ""
-                    ListPersName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "gr"
+                    ListPersName.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "gr"
                     ListPersName.append(forename)
                     ListPersName.append(surname)
                     person.append(ListPersName)
@@ -320,51 +323,53 @@ class MakeTeiDoc():
                     note = ET.Element("{http://www.tei-c.org/ns/1.0}note")
                     note.text = x.kommentar
                     person.append(note)
-                listPerson.insert(2, person)
+                listPerson.insert(1, person)
+                back.insert(1, listPerson)
             titleStmt.insert(2, autor)
 
         if self.text.ort:
-            listPlace = cur_doc.xpath(".//tei:listPlace", namespaces=self.nsmap)[0]
+            back = cur_doc.xpath(".//tei:back", namespaces=self.nsmap)[0]
+            listPlace = ET.Element("{http://www.tei-c.org/ns/1.0}listPlace")
             for x in self.text.ort.all():
                 place = ET.Element("{http://www.tei-c.org/ns/1.0}place")
-                place.attrib["{https://www.w3.org/XML/1998/namespace}id"] = "place__{}".format(
+                place.attrib["{http://www.w3.org/XML/1998/namespace}id"] = "place__{}".format(
                     x.id
                 )
                 # placeName in lang "en"
                 if x.name:
                     placeName = ET.Element("{http://www.tei-c.org/ns/1.0}placeName")
                     placeName.text = x.name
-                    placeName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "en"
+                    placeName.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "en"
                     place.append(placeName)
                 # persName in lang "antik"
                 if x.name_antik:
                     placeName = ET.Element("{http://www.tei-c.org/ns/1.0}placeName")
                     placeName.text = x.name_antik
-                    placeName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "antik"
+                    placeName.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "antik"
                     place.append(placeName)
                 # persName in lang "de"
                 if x.name_de:
                     placeName = ET.Element("{http://www.tei-c.org/ns/1.0}placeName")
                     placeName.text = x.name_de
-                    placeName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "de"
+                    placeName.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "de"
                     place.append(placeName)
                 # persName in lang "fr"
                 if x.name_fr:
                     placeName = ET.Element("{http://www.tei-c.org/ns/1.0}placeName")
                     placeName.text = x.name_fr
-                    placeName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "fr"
+                    placeName.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "fr"
                     place.append(placeName)
                 # persName in lang "it"
                 if x.name_it:
                     placeName = ET.Element("{http://www.tei-c.org/ns/1.0}placeName")
                     placeName.text = x.name_it
-                    placeName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "it"
+                    placeName.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "it"
                     place.append(placeName)
                 # persName in lang "gr"
                 if x.name_gr:
                     placeName = ET.Element("{http://www.tei-c.org/ns/1.0}placeName")
                     placeName.text = x.name_gr
-                    placeName.attrib["{https://www.w3.org/XML/1998/namespace}lang"] = "gr"
+                    placeName.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "gr"
                     place.append(placeName)
                 if x.long or x.lat:
                     location = ET.Element("{http://www.tei-c.org/ns/1.0}location")
@@ -378,24 +383,25 @@ class MakeTeiDoc():
                     idno.text = x.norm_id
                     idno.attrib["type"] = "ID"
                     place.append(idno)
-                noteGrp = ET.Element("{http://www.tei-c.org/ns/1.0}noteGrp")
+                # noteGrp = ET.Element("{http://www.tei-c.org/ns/1.0}noteGrp")
                 if x.kommentar:
                     noteComment = ET.Element("{http://www.tei-c.org/ns/1.0}note")
                     noteComment.text = x.kommentar
                     noteComment.attrib["type"] = "comment"
-                    noteGrp.append(noteComment)
+                    place.append(noteComment)
                 if f"{x.art}":
                     noteType = ET.Element("{http://www.tei-c.org/ns/1.0}note")
                     noteType.text = f"{x.art}"
                     noteType.attrib["type"] = "type"
-                    noteGrp.append(noteType)
+                    place.append(noteType)
                 if f"{x.kategorie}":
                     noteCategory = ET.Element("{http://www.tei-c.org/ns/1.0}note")
                     noteCategory.text = f"{x.kategorie}"
                     noteCategory.attrib["type"] = "category"
-                    noteGrp.append(noteCategory)
-                place.append(noteGrp)
+                    place.append(noteCategory)
+                # place.append(noteGrp)
                 listPlace.insert(2, place)
+            back.insert(2, listPlace)
 
         return cur_doc
 
