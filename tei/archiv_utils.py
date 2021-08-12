@@ -32,20 +32,20 @@ class MakeTeiDoc():
             start_date = re.search(r'\d+', self.text.start_date).group()
             return date(int(start_date), int(1), int(1)).isoformat()
         else:
-            return self.not_after()
+            return "0000-00-00"
 
     def not_after(self):
         if self.text.end_date:
             end_date = re.search(r'\d+', self.text.end_date).group()
             return date(int(end_date), int(1), int(1)).isoformat()
         else:
-            return self.not_before()
+            return "0000-00-00"
 
     def text_lang(self):
         if self.text.text_lang:
             return self.text.text_lang
         else:
-            return "lat"
+            return "0000-00-00"
 
     def populate_header(self):
         text_url = f"https://mmp.acdh-dev.oeaw.ac.at{self.text.get_absolute_url()}"
@@ -64,7 +64,7 @@ class MakeTeiDoc():
                 <name ref="#VW">Veronika Wieser</name>
             </respStmt>
             <respStmt>
-                <resp>TEI conform Transformation</resp>
+                <resp>TEI conform data markup</resp>
                 <name ref="#PA">Peter Andorfer</name>
             </respStmt>
          </titleStmt>
@@ -134,7 +134,7 @@ class MakeTeiDoc():
      <profileDesc>
         <creation>
             <date notBefore="{self.not_before()}" notAfter="{self.not_after()}">
-                {self.jahrhundert}
+                {self.jahrhundert + " century"}
             </date>
         </creation>
      </profileDesc>

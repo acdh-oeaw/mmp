@@ -264,16 +264,23 @@
             <div class="col-md-12">
                 <script type="text/javascript">
                     function map_init_basic(map, options) {
+                        var markers = L.marker();
+                        var bounds = [];
                         {% for x in object.ort.all %}
                         {% if x.lat %}
                             var placeName = "<a href='{{ x.get_absolute_url }}'>{{ x.name }}</a>"
                             var lat = "{{ x.lat }}"
                             var lng = "{{ x.long }}"
-                            var markers = L.marker([parseFloat(lat), parseFloat(lng)]).addTo(map);
-                            markers.bindPopup(placeName)
-                                .openPopup();
+                            markers += L.marker([parseFloat(lat), parseFloat(lng)]).addTo(map).bindPopup(placeName).openPopup(); 
+                            bounds.push([parseFloat(lat), parseFloat(lng)]);                      
                         {% endif %}
-                        {% endfor %}
+                        {% endfor %}        
+                        map.setView(bounds[0], 6)
+                        try {
+                            map.fitBounds(bounds);
+                        } catch (err) {
+                            console.log(err);
+                        }
                     };   
                 </script>
                 <div class="row">
@@ -350,11 +357,13 @@
                             {% endfor %}
                         </div>
                     </div>
+                    {% if object.ort.all %}
                     <div class="col-md-6">
                         <div style="padding:0;">
                             {% leaflet_map "yourmap_text" callback="window.map_init_basic" %}
                         </div>
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
