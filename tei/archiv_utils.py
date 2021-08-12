@@ -49,6 +49,7 @@ class MakeTeiDoc():
 
     def populate_header(self):
         text_url = f"https://mmp.acdh-dev.oeaw.ac.at{self.text.get_absolute_url()}"
+        project_url = f"https://mmp.acdh-dev.oeaw.ac.at"
         header = f"""
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="textid-{self.text.id}" {self.prev} {self.next} xml:base="{self.base}">
   <teiHeader>
@@ -113,7 +114,7 @@ class MakeTeiDoc():
                         {self.project_md['description']}
                     </p>
                 </decoNote>
-                <idno type="django_id">{text_url}</idno>
+                <idno type="django_id">{project_url}</idno>
             </bibl>
             <msDesc>
                <msIdentifier>
@@ -161,6 +162,8 @@ class MakeTeiDoc():
             div = ET.Element("{http://www.tei-c.org/ns/1.0}div")
             div.attrib["{http://www.w3.org/XML/1998/namespace}id"] = "cite__" + str(x.id)
             index = ET.Element("{http://www.tei-c.org/ns/1.0}index")
+            variantlist = []
+            wurzellist = []
             for k in x.key_word.all():
                 term = ET.Element("{http://www.tei-c.org/ns/1.0}term")
                 term.attrib["n"] = "keyword__" + str(k.id)
@@ -169,6 +172,8 @@ class MakeTeiDoc():
                     term.attrib["type"] = k.art
                 if k.wurzel:
                     term.attrib["ana"] = k.wurzel
+                    wurzel = k.wurzel
+                    wurzellist.append(wurzel)
                 index.append(term)
                 if k.name_gr:
                     termGr = ET.Element("{http://www.tei-c.org/ns/1.0}term")
@@ -185,15 +190,28 @@ class MakeTeiDoc():
                         termVarianten = ET.Element("{http://www.tei-c.org/ns/1.0}term")
                         termVarianten.attrib["type"] = "variant"
                         termVarianten.text = v
+                        variantkey = v
                         indexVarianten.append(termVarianten)
+                        variantlist.append(variantkey)
                     term.append(indexVarianten)
             div.append(index)
+            cite_text = x.zitat
+            if k.wurzel:
+                for w in wurzellist:
+                    if w in cite_text:
+                        cite_text = re.sub(rf"({w}\w+)([\s,\\.,\\,,\\!,\\?])", "<term>" + r"\1" + "</term>" + r"\2", cite_text, flags=re.IGNORECASE)
+            else:
+                for v in variantlist:
+                    if v in cite_text:
+                        # keywordnode = ET.Element("{http://www.tei-c.org/ns/1.0}term")
+                        # keywordnode.text = k
+                        cite_text = re.sub(rf"({v}\w+)([\s,\\.,\\,,\\!,\\?])", "<term>" + r"\1" + "</term>" + r"\2", cite_text, flags=re.IGNORECASE)
             # original citation in lang text_lang() default "lat"
             cit = ET.Element("{http://www.tei-c.org/ns/1.0}cit")
             cit.attrib["type"] = "original"
             quote = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
             quote.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = self.text_lang()
-            quote.text = x.zitat
+            quote.text = cite_text
             ref = ET.Element("{http://www.tei-c.org/ns/1.0}ref")
             ref.text = x.zitat_stelle
             cit.append(quote)
