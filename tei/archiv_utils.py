@@ -379,15 +379,28 @@ class MakeTeiDoc():
                     birth = ET.Element("{http://www.tei-c.org/ns/1.0}birth")
                     date_b = ET.Element("{http://www.tei-c.org/ns/1.0}date")
                     date_b.text = x.start_date
-                    birth.attrib["when"] = date(int(re.search(r'\d+', x.start_date).group()), int(1), int(1)).isoformat()
+                    if len(x.start_date) == 3:
+                        birth.attrib["when"] = "0" + re.search(r'\d+', x.start_date).group()
+                    elif len(x.start_date) == 2:
+                        birth.attrib["when"] = "00" + re.search(r'\d+', x.start_date).group()
+                    elif len(x.start_date) == 1:
+                        birth.attrib["when"] = "000" + re.search(r'\d+', x.start_date).group()
+                    else:
+                        birth.attrib["when"] = re.search(r'\d+', x.start_date).group()
                     birth.append(date_b)
                     person.append(birth)
                 if x.end_date:
                     death = ET.Element("{http://www.tei-c.org/ns/1.0}death")
                     date_d = ET.Element("{http://www.tei-c.org/ns/1.0}date")
                     date_d.text = x.end_date
-                    #date_att = re.search(r'\d+', x.end_date).group()
-                    death.attrib["when"] = date(int(re.search(r'\d+', x.end_date).group()), int(1), int(1)).isoformat()
+                    if len(x.end_date) == 3:
+                            death.attrib["when"] = "0" + re.search(r'\d+', x.end_date).group()
+                    elif len(x.end_date) == 2:
+                        death.attrib["when"] = "00" + re.search(r'\d+', x.end_date).group()
+                    elif len(x.end_date) == 1:
+                        death.attrib["when"] = "000" + re.search(r'\d+', x.end_date).group()
+                    else:
+                        death.attrib["when"] = re.search(r'\d+', x.end_date).group()
                     death.append(date_d)
                     person.append(death)
                 if x.gnd_id:
@@ -404,7 +417,7 @@ class MakeTeiDoc():
                     note.text = x.kommentar
                     person.append(note)
                 listPerson.append(person)
-                if person:
+                if person is not None:
                     back.append(listPerson)
             titleStmt.insert(2, autor)
 
@@ -480,7 +493,7 @@ class MakeTeiDoc():
                     noteCategory.attrib["type"] = "category"
                     place.append(noteCategory)
                 listPlace.insert(2, place)
-                if place:
+                if place is not None:
                     back.insert(2, listPlace)
 
         return cur_doc
