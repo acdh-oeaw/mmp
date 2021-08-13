@@ -382,28 +382,30 @@ class MakeTeiDoc():
                     birth = ET.Element("{http://www.tei-c.org/ns/1.0}birth")
                     date_b = ET.Element("{http://www.tei-c.org/ns/1.0}date")
                     date_b.text = x.start_date
+                    date_att = re.search(r'\d+', x.start_date).group()
                     if len(x.start_date) == 3:
-                        birth.attrib["when"] = "0" + re.search(r'\d+', x.start_date).group()
+                        birth.attrib["when"] = "0" + date_att
                     elif len(x.start_date) == 2:
-                        birth.attrib["when"] = "00" + re.search(r'\d+', x.start_date).group()
+                        birth.attrib["when"] = "00" + date_att
                     elif len(x.start_date) == 1:
-                        birth.attrib["when"] = "000" + re.search(r'\d+', x.start_date).group()
+                        birth.attrib["when"] = "000" + date_att
                     else:
-                        birth.attrib["when"] = re.search(r'\d+', x.start_date).group()
+                        birth.attrib["when"] = date_att
                     birth.append(date_b)
                     person.append(birth)
                 if x.end_date:
                     death = ET.Element("{http://www.tei-c.org/ns/1.0}death")
                     date_d = ET.Element("{http://www.tei-c.org/ns/1.0}date")
                     date_d.text = x.end_date
+                    date_att = re.search(r'\d+', x.end_date).group()
                     if len(x.end_date) == 3:
-                        death.attrib["when"] = "0" + re.search(r'\d+', x.end_date).group()
+                        death.attrib["when"] = "0" + date_att
                     elif len(x.end_date) == 2:
-                        death.attrib["when"] = "00" + re.search(r'\d+', x.end_date).group()
+                        death.attrib["when"] = "00" + date_att
                     elif len(x.end_date) == 1:
-                        death.attrib["when"] = "000" + re.search(r'\d+', x.end_date).group()
+                        death.attrib["when"] = "000" + date_att
                     else:
-                        death.attrib["when"] = re.search(r'\d+', x.end_date).group()
+                        death.attrib["when"] = date_att
                     death.append(date_d)
                     person.append(death)
                 if x.gnd_id:
