@@ -201,10 +201,12 @@ class MakeTeiDoc():
                     # annotate keywords within cite (Stelle) as <term>
                     if k.wurzel:
                         for i, w in wurzellist:
-                            cite_text = re.sub(rf"({w}\w+?)([\s,\\.,\\,,\\!,\\?])",
-                            "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2",
-                            cite_text,
-                            flags=re.IGNORECASE)
+                            cite_text = re.sub(
+                                                rf"({w}\w+?)([\s,\\.,\\,,\\!,\\?])",
+                                                "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2",
+                                                cite_text,
+                                                flags=re.IGNORECASE
+                                            )
                             # for match in re.finditer(rf"{w}\w+?[\s,\\.,\\,,\\!,\\?]", cite_text, flags=re.IGNORECASE):
                             #     a,b = match.span()
                             #     t = cite_text
@@ -213,10 +215,12 @@ class MakeTeiDoc():
                             #     print(cite_text)
                     else:
                         for i, v in variantlist:
-                            cite_text = re.sub(rf"({v}\w+)([\s,\\.,\\,,\\!,\\?])",
-                            "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2",
-                            cite_text,
-                            flags=re.IGNORECASE)
+                            cite_text = re.sub(
+                                                rf"({v}\w+)([\s,\\.,\\,,\\!,\\?])",
+                                                "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2",
+                                                cite_text,
+                                                flags=re.IGNORECASE
+                                            )
                             # for match in re.finditer(rf"{v}\w+?[\s,\\.,\\,,\\!,\\?]", cite_text, flags=re.IGNORECASE):
                             #     a,b = match.span()
                             #     t = cite_text
