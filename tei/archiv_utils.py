@@ -141,10 +141,6 @@ class MakeTeiDoc():
      </profileDesc>
   </teiHeader>
   <text>
-      <body>
-      </body>
-      <back>
-      </back>
   </text>
 </TEI>
 """
@@ -157,102 +153,114 @@ class MakeTeiDoc():
     def pop_mentions(self):
         cur_doc = self.create_header_node()
 
-        body = cur_doc.xpath(".//tei:body", namespaces=self.nsmap)[0]
-        for x in self.text.rvn_stelle_text_text.all():
-            div = ET.Element("{http://www.tei-c.org/ns/1.0}div")
-            div.attrib["{http://www.w3.org/XML/1998/namespace}id"] = "cite__" + str(x.id)
-            index = ET.Element("{http://www.tei-c.org/ns/1.0}index")
-            variantlist = []
-            wurzellist = []
-            for k in x.key_word.all():
-                term = ET.Element("{http://www.tei-c.org/ns/1.0}term")
-                term.attrib["n"] = "keyword__" + str(k.id)
-                term.text = k.stichwort
-                if k.art:
-                    term.attrib["type"] = k.art
-                if k.wurzel:
-                    term.attrib["ana"] = k.wurzel
-                    wurzel = k.wurzel
-                    wurzellist.append([str(k.id), wurzel])
-                    #wurzellist.append(wurzel)
-                index.append(term)
-                if k.name_gr:
-                    termGr = ET.Element("{http://www.tei-c.org/ns/1.0}term")
-                    termGr.text = k.name_gr
+        text = cur_doc.xpath(".//tei:text", namespaces=self.nsmap)[0]
+        if self.text.rvn_stelle_text_text.all():
+            body = ET.Element("{http://www.tei-c.org/ns/1.0}body")
+            for x in self.text.rvn_stelle_text_text.all():
+                div = ET.Element("{http://www.tei-c.org/ns/1.0}div")
+                div.attrib["{http://www.w3.org/XML/1998/namespace}id"] = "cite__" + str(x.id)
+                index = ET.Element("{http://www.tei-c.org/ns/1.0}index")
+                variantlist = []
+                wurzellist = []
+                for k in x.key_word.all():
+                    term = ET.Element("{http://www.tei-c.org/ns/1.0}term")
+                    term.attrib["n"] = "keyword__" + str(k.id)
+                    term.text = k.stichwort
                     if k.art:
-                        termGr.attrib["type"] = k.art
+                        term.attrib["type"] = k.art
                     if k.wurzel:
-                        termGr.attrib["ana"] = k.wurzel
-                    index.append(termGr)
-                if k.varianten:
-                    indexVarianten = ET.Element("{http://www.tei-c.org/ns/1.0}index")
-                    varianten = k.varianten.split(";")
-                    for v in varianten:
-                        termVarianten = ET.Element("{http://www.tei-c.org/ns/1.0}term")
-                        termVarianten.attrib["type"] = "variant"
-                        termVarianten.text = v
-                        variantkey = v
-                        indexVarianten.append(termVarianten)
-                        variantlist.append([str(k.id), variantkey])
-                        #variantlist.append(variantkey)
-                    term.append(indexVarianten)
-            div.append(index)
-            # original citation in lang text_lang() default "lat"
-            cite_text = x.zitat
-            cit = ET.Element("{http://www.tei-c.org/ns/1.0}cit")
-            cit.attrib["type"] = "original"
-            if x.zitat:
+                        term.attrib["ana"] = k.wurzel
+                        wurzel = k.wurzel
+                        wurzellist.append([str(k.id), wurzel])
+                        #wurzellist.append(wurzel)
+                    index.append(term)
+                    if k.name_gr:
+                        termGr = ET.Element("{http://www.tei-c.org/ns/1.0}term")
+                        termGr.text = k.name_gr
+                        if k.art:
+                            termGr.attrib["type"] = k.art
+                        if k.wurzel:
+                            termGr.attrib["ana"] = k.wurzel
+                        index.append(termGr)
+                    if k.varianten:
+                        indexVarianten = ET.Element("{http://www.tei-c.org/ns/1.0}index")
+                        varianten = k.varianten.split(";")
+                        for v in varianten:
+                            termVarianten = ET.Element("{http://www.tei-c.org/ns/1.0}term")
+                            termVarianten.attrib["type"] = "variant"
+                            termVarianten.text = v
+                            variantkey = v
+                            indexVarianten.append(termVarianten)
+                            variantlist.append([str(k.id), variantkey])
+                            #variantlist.append(variantkey)
+                        term.append(indexVarianten)
+                div.append(index)
+                # original citation in lang text_lang() default "lat"
                 cite_text = x.zitat
-                # annotate keywords within cite (Stelle) as <term>
-                if k.wurzel:
-                    for i, w in wurzellist:
-                        # cite_text = re.sub(rf"({w}\w+)([\s,\\.,\\,,\\!,\\?])", "<term>" + r"\1" + "</term>" + r"\2", cite_text, flags=re.IGNORECASE)
-                        for match in re.finditer(rf"{w}\w+?[\s,\\.,\\,,\\!,\\?]", cite_text, flags=re.IGNORECASE):
-                            a,b = match.span()
-                            t = cite_text
-                            l = [t[:a], "<term ref='keyword__%s'>" % (i), t[a:b], "</term>", t[b:]]
-                            cite_text = "".join(l)
+                cit = ET.Element("{http://www.tei-c.org/ns/1.0}cit")
+                cit.attrib["type"] = "original"
+                if x.zitat:
+                    cite_text = x.zitat
+                    # annotate keywords within cite (Stelle) as <term>
+                    if k.wurzel:
+                        for i, w in wurzellist:
+                            cite_text = re.sub(rf"({w}\w+?)([\s,\\.,\\,,\\!,\\?])", "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2", cite_text, flags=re.IGNORECASE)
+                            # for match in re.finditer(rf"{w}\w+?[\s,\\.,\\,,\\!,\\?]", cite_text, flags=re.IGNORECASE):
+                            #     a,b = match.span()
+                            #     t = cite_text
+                            #     l = [t[:a], "<term ref='#keyword__%s'>" % (i), t[a:b], "</term>", t[b:]]
+                            #     cite_text = "".join(l)
+                            #     print(cite_text)
+                    else:
+                        for i, v in variantlist:
+                            cite_text = re.sub(rf"({v}\w+)([\s,\\.,\\,,\\!,\\?])", "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2", cite_text, flags=re.IGNORECASE)
+                            # for match in re.finditer(rf"{v}\w+?[\s,\\.,\\,,\\!,\\?]", cite_text, flags=re.IGNORECASE):
+                            #     a,b = match.span()
+                            #     t = cite_text
+                            #     l = [t[:a], "<term ref='#keyword__%s'>" % (i), t[a:b], "</term>", t[b:]]
+                            #     cite_text = "".join(l)
+                            #     print(cite_text)
+                    print(str(x.id))
+                    print(cite_text)
+                    cit.append(ET.fromstring("<quote>" + cite_text + "</quote>"))
                 else:
-                    for i, v in variantlist:
-                        # cite_text = re.sub(rf"({w}\w+)([\s,\\.,\\,,\\!,\\?])", "<term>" + r"\1" + "</term>" + r"\2", cite_text, flags=re.IGNORECASE)
-                        for match in re.finditer(rf"{v}\w+?[\s,\\.,\\,,\\!,\\?]", cite_text, flags=re.IGNORECASE):
-                            a,b = match.span()
-                            t = cite_text
-                            l = [t[:a], "<term ref='keyword__%s'>" % (i), t[a:b], "</term>", t[b:]]
-                            cite_text = "".join(l)
-                cit.append(ET.fromstring("<quote>" + cite_text + "</quote>"))
-            else:
-                quote = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
-                cit.append(quote)
-            cit[0].attrib["{http://www.w3.org/XML/1998/namespace}lang"] = self.text_lang()
-            ref = ET.Element("{http://www.tei-c.org/ns/1.0}ref")
-            ref.text = x.zitat_stelle
-            cit.append(ref)
-            # translation of original citation in lang "de"
-            if x.translation:
-                citTranslation = ET.Element("{http://www.tei-c.org/ns/1.0}cit")
-                citTranslation.attrib["type"] = "translation"
-                quoteTranslation = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
-                quoteTranslation.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "und"
-                quoteTranslation.text = x.translation
-                citTranslation.append(quoteTranslation)
-                cit.append(citTranslation)
-            # summary of original citation in lang "de"
-            if x.summary:
-                citSummary = ET.Element("{http://www.tei-c.org/ns/1.0}cit")
-                citSummary.attrib["type"] = "summary"
-                quoteSummary = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
-                quoteSummary.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "und"
-                quoteSummary.text = x.summary
-                citSummary.append(quoteSummary)
-                cit.append(citSummary)
-            # adding all original, translation and summary quote to div
-            div.append(cit)
-            note = ET.Element("{http://www.tei-c.org/ns/1.0}note")
-            if x.kommentar:
-                note.text = x.kommentar
-                div.append(note)
-            body.append(div)
+                    quote = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
+                    cit.append(quote)
+                cit[0].attrib["{http://www.w3.org/XML/1998/namespace}lang"] = self.text_lang()
+                ref = ET.Element("{http://www.tei-c.org/ns/1.0}ref")
+                ref.text = x.zitat_stelle
+                cit.append(ref)
+                # translation of original citation in lang "de"
+                if x.translation:
+                    citTranslation = ET.Element("{http://www.tei-c.org/ns/1.0}cit")
+                    citTranslation.attrib["type"] = "translation"
+                    quoteTranslation = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
+                    quoteTranslation.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "und"
+                    quoteTranslation.text = x.translation
+                    citTranslation.append(quoteTranslation)
+                    cit.append(citTranslation)
+                # summary of original citation in lang "de"
+                if x.summary:
+                    citSummary = ET.Element("{http://www.tei-c.org/ns/1.0}cit")
+                    citSummary.attrib["type"] = "summary"
+                    quoteSummary = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
+                    quoteSummary.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "und"
+                    quoteSummary.text = x.summary
+                    citSummary.append(quoteSummary)
+                    cit.append(citSummary)
+                # adding all original, translation and summary quote to div
+                div.append(cit)
+                note = ET.Element("{http://www.tei-c.org/ns/1.0}note")
+                if x.kommentar:
+                    note.text = x.kommentar
+                    div.append(note)
+                body.append(div)
+            text.insert(1, body)
+
+        if self.text.autor or self.text.ort:
+            back = ET.Element("{http://www.tei-c.org/ns/1.0}back")
+            text = cur_doc.xpath(".//tei:text", namespaces=self.nsmap)[0]
+            text.append(back)
 
         if self.text.autor:
             titleStmt = cur_doc.xpath(".//tei:titleStmt", namespaces=self.nsmap)[0]
@@ -369,17 +377,18 @@ class MakeTeiDoc():
                     person.append(ListPersName)
                 if x.start_date:
                     birth = ET.Element("{http://www.tei-c.org/ns/1.0}birth")
-                    date = ET.Element("{http://www.tei-c.org/ns/1.0}date")
-                    date.text = x.start_date
-                    birth.attrib["when"] = re.search(r'\d+', x.start_date).group()
-                    birth.append(date)
+                    date_b = ET.Element("{http://www.tei-c.org/ns/1.0}date")
+                    date_b.text = x.start_date
+                    birth.attrib["when"] = date(int(re.search(r'\d+', x.start_date).group()), int(1), int(1)).isoformat()
+                    birth.append(date_b)
                     person.append(birth)
                 if x.end_date:
                     death = ET.Element("{http://www.tei-c.org/ns/1.0}death")
-                    date = ET.Element("{http://www.tei-c.org/ns/1.0}date")
-                    date.text = x.end_date
-                    death.attrib["when"] = re.search(r'\d+', x.end_date).group()
-                    death.append(date)
+                    date_d = ET.Element("{http://www.tei-c.org/ns/1.0}date")
+                    date_d.text = x.end_date
+                    #date_att = re.search(r'\d+', x.end_date).group()
+                    death.attrib["when"] = date(int(re.search(r'\d+', x.end_date).group()), int(1), int(1)).isoformat()
+                    death.append(date_d)
                     person.append(death)
                 if x.gnd_id:
                     idno = ET.Element("{http://www.tei-c.org/ns/1.0}idno")
@@ -395,7 +404,8 @@ class MakeTeiDoc():
                     note.text = x.kommentar
                     person.append(note)
                 listPerson.append(person)
-            back.append(listPerson)
+                if person:
+                    back.append(listPerson)
             titleStmt.insert(2, autor)
 
         if self.text.ort:
@@ -454,7 +464,6 @@ class MakeTeiDoc():
                     idno.text = x.norm_id
                     idno.attrib["type"] = "ID"
                     place.append(idno)
-                # noteGrp = ET.Element("{http://www.tei-c.org/ns/1.0}noteGrp")
                 if x.kommentar:
                     noteComment = ET.Element("{http://www.tei-c.org/ns/1.0}note")
                     noteComment.text = x.kommentar
@@ -470,9 +479,9 @@ class MakeTeiDoc():
                     noteCategory.text = f"{x.kategorie}"
                     noteCategory.attrib["type"] = "category"
                     place.append(noteCategory)
-                # place.append(noteGrp)
                 listPlace.insert(2, place)
-            back.insert(2, listPlace)
+                if place:
+                    back.insert(2, listPlace)
 
         return cur_doc
 
