@@ -198,7 +198,6 @@ class MakeTeiDoc():
                     term.append(indexVarianten)
             div.append(index)
             # original citation in lang text_lang() default "lat"
-            
             cite_text = x.zitat
             cit = ET.Element("{http://www.tei-c.org/ns/1.0}cit")
             cit.attrib["type"] = "original"
@@ -206,26 +205,26 @@ class MakeTeiDoc():
                 cite_text = x.zitat
                 # annotate keywords within cite (Stelle) as <term>
                 if k.wurzel:
-                    for i, w in wurzellist:  
+                    for i, w in wurzellist:
                         # cite_text = re.sub(rf"({w}\w+)([\s,\\.,\\,,\\!,\\?])", "<term>" + r"\1" + "</term>" + r"\2", cite_text, flags=re.IGNORECASE)
                         for match in re.finditer(rf"{w}\w+?[\s,\\.,\\,,\\!,\\?]", cite_text, flags=re.IGNORECASE):
                             a,b = match.span()
                             t = cite_text
-                            l = [t[:a], "<term ref='keyword__%s'>" % (i), t[a:b], "</term>", t[b:]] 
+                            l = [t[:a], "<term ref='keyword__%s'>" % (i), t[a:b], "</term>", t[b:]]
                             cite_text = "".join(l)
                 else:
-                    for i, v in variantlist:  
+                    for i, v in variantlist:
                         # cite_text = re.sub(rf"({w}\w+)([\s,\\.,\\,,\\!,\\?])", "<term>" + r"\1" + "</term>" + r"\2", cite_text, flags=re.IGNORECASE)
                         for match in re.finditer(rf"{v}\w+?[\s,\\.,\\,,\\!,\\?]", cite_text, flags=re.IGNORECASE):
                             a,b = match.span()
                             t = cite_text
-                            l = [t[:a], "<term ref='keyword__%s'>" % (i), t[a:b], "</term>", t[b:]] 
+                            l = [t[:a], "<term ref='keyword__%s'>" % (i), t[a:b], "</term>", t[b:]]
                             cite_text = "".join(l)
                 cit.append(ET.fromstring("<quote>" + cite_text + "</quote>"))
             else:
                 quote = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
                 cit.append(quote)
-            cit[0].attrib["{http://www.w3.org/XML/1998/namespace}lang"] = self.text_lang() 
+            cit[0].attrib["{http://www.w3.org/XML/1998/namespace}lang"] = self.text_lang()
             ref = ET.Element("{http://www.tei-c.org/ns/1.0}ref")
             ref.text = x.zitat_stelle
             cit.append(ref)
