@@ -162,8 +162,8 @@ class MakeTeiDoc():
             div = ET.Element("{http://www.tei-c.org/ns/1.0}div")
             div.attrib["{http://www.w3.org/XML/1998/namespace}id"] = "cite__" + str(x.id)
             index = ET.Element("{http://www.tei-c.org/ns/1.0}index")
-            # variantlist = []
-            # wurzellist = []
+            variantlist = []
+            wurzellist = []
             for k in x.key_word.all():
                 term = ET.Element("{http://www.tei-c.org/ns/1.0}term")
                 term.attrib["n"] = "keyword__" + str(k.id)
@@ -173,7 +173,8 @@ class MakeTeiDoc():
                 if k.wurzel:
                     term.attrib["ana"] = k.wurzel
                     wurzel = k.wurzel
-                    # wurzellist.append(wurzel)
+                    wurzellist.append([str(k.id), wurzel])
+                    #wurzellist.append(wurzel)
                 index.append(term)
                 if k.name_gr:
                     termGr = ET.Element("{http://www.tei-c.org/ns/1.0}term")
@@ -190,52 +191,43 @@ class MakeTeiDoc():
                         termVarianten = ET.Element("{http://www.tei-c.org/ns/1.0}term")
                         termVarianten.attrib["type"] = "variant"
                         termVarianten.text = v
-                        #variantkey = v
+                        variantkey = v
                         indexVarianten.append(termVarianten)
+                        variantlist.append([str(k.id), variantkey])
                         #variantlist.append(variantkey)
                     term.append(indexVarianten)
             div.append(index)
-            # cite_text = x.zitat
-            # cite_text_prev = ""
-            # cite_keyword = ""
-            # cite_text_after = ""
-            # if k.wurzel:
-            #     for w in wurzellist:
-            #         if w in cite_text:
-            #             pattern = re.compile(rf"(.*)({w}\w+)([\s,\\.,\\,,\\!,\\?])(.*)")
-            #             for match in pattern.finditer(cite_text):
-            #                 cite_text_prev += match.group(1)
-            #                 cite_keyword += match.group(2)
-            #                 cite_text_after += match.group(3) + match.group(4)
-            #                 #cite_text = re.sub(rf"({w}\w+)([\s,\\.,\\,,\\!,\\?])", "<term>" + r"\1" + "</term>" + r"\2", cite_text, flags=re.IGNORECASE)
-            # else:
-            #     for v in variantlist:
-            #         if v in cite_text:
-            #             pattern = re.compile(rf"(.*)({v}\w+)([\s,\\.,\\,,\\!,\\?])(.*)")
-            #             for match in pattern.finditer(cite_text):
-            #                 cite_text_prev += match.group(1)
-            #                 cite_keyword += match.group(2)
-            #                 cite_text_after += match.group(3) + match.group(4)
-                            # cite_text = re.sub(rf"({v}\w+)([\s,\\.,\\,,\\!,\\?])", "<term>" + r"\1" + "</term>" + r"\2", cite_text, flags=re.IGNORECASE)
             # original citation in lang text_lang() default "lat"
+            
+            cite_text = x.zitat
             cit = ET.Element("{http://www.tei-c.org/ns/1.0}cit")
             cit.attrib["type"] = "original"
-            quote = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
-            quote.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = self.text_lang()
-            # quote.text = cite_text_prev
-            # p = ET.Element("{http://www.tei-c.org/ns/1.0}p")
-            # p.text = cite_text_prev
-            # quote.append(p)
-            # term_keyword = ET.Element("{http://www.tei-c.org/ns/1.0}term")            
-            # term_keyword.text = cite_keyword
-            # quote.append(term_keyword)
-            # p = ET.Element("{http://www.tei-c.org/ns/1.0}p")
-            # p.text = cite_text_after
-            # quote.append(p)
-            quote.text = x.zitat
+            if x.zitat:
+                cite_text = x.zitat
+                # annotate keywords within cite (Stelle) as <term>
+                if k.wurzel:
+                    for i, w in wurzellist:  
+                        # cite_text = re.sub(rf"({w}\w+)([\s,\\.,\\,,\\!,\\?])", "<term>" + r"\1" + "</term>" + r"\2", cite_text, flags=re.IGNORECASE)
+                        for match in re.finditer(rf"{w}\w+?[\s,\\.,\\,,\\!,\\?]", cite_text, flags=re.IGNORECASE):
+                            a,b = match.span()
+                            t = cite_text
+                            l = [t[:a], "<term ref='keyword__%s'>" % (i), t[a:b], "</term>", t[b:]] 
+                            cite_text = "".join(l)
+                else:
+                    for i, v in variantlist:  
+                        # cite_text = re.sub(rf"({w}\w+)([\s,\\.,\\,,\\!,\\?])", "<term>" + r"\1" + "</term>" + r"\2", cite_text, flags=re.IGNORECASE)
+                        for match in re.finditer(rf"{v}\w+?[\s,\\.,\\,,\\!,\\?]", cite_text, flags=re.IGNORECASE):
+                            a,b = match.span()
+                            t = cite_text
+                            l = [t[:a], "<term ref='keyword__%s'>" % (i), t[a:b], "</term>", t[b:]] 
+                            cite_text = "".join(l)
+                cit.append(ET.fromstring("<quote>" + cite_text + "</quote>"))
+            else:
+                quote = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
+                cit.append(quote)
+            cit[0].attrib["{http://www.w3.org/XML/1998/namespace}lang"] = self.text_lang() 
             ref = ET.Element("{http://www.tei-c.org/ns/1.0}ref")
             ref.text = x.zitat_stelle
-            cit.append(quote)
             cit.append(ref)
             # translation of original citation in lang "de"
             if x.translation:
