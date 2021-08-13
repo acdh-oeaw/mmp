@@ -49,7 +49,6 @@ class MakeTeiDoc():
 
     def populate_header(self):
         text_url = f"https://mmp.acdh-dev.oeaw.ac.at{self.text.get_absolute_url()}"
-        project_url = f"https://mmp.acdh-dev.oeaw.ac.at"
         header = f"""
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="textid-{self.text.id}" {self.prev} {self.next} xml:base="{self.base}">
   <teiHeader>
@@ -114,7 +113,7 @@ class MakeTeiDoc():
                         {self.project_md['description']}
                     </p>
                 </decoNote>
-                <idno type="django_id">{project_url}</idno>
+                <idno type="django_id">https://mmp.acdh-dev.oeaw.ac.at</idno>
             </bibl>
             <msDesc>
                <msIdentifier>
@@ -172,7 +171,6 @@ class MakeTeiDoc():
                         term.attrib["ana"] = k.wurzel
                         wurzel = k.wurzel
                         wurzellist.append([str(k.id), wurzel])
-                        #wurzellist.append(wurzel)
                     index.append(term)
                     if k.name_gr:
                         termGr = ET.Element("{http://www.tei-c.org/ns/1.0}term")
@@ -192,7 +190,6 @@ class MakeTeiDoc():
                             variantkey = v
                             indexVarianten.append(termVarianten)
                             variantlist.append([str(k.id), variantkey])
-                            #variantlist.append(variantkey)
                         term.append(indexVarianten)
                 div.append(index)
                 # original citation in lang text_lang() default "lat"
@@ -204,7 +201,10 @@ class MakeTeiDoc():
                     # annotate keywords within cite (Stelle) as <term>
                     if k.wurzel:
                         for i, w in wurzellist:
-                            cite_text = re.sub(rf"({w}\w+?)([\s,\\.,\\,,\\!,\\?])", "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2", cite_text, flags=re.IGNORECASE)
+                            cite_text = re.sub(rf"({w}\w+?)([\s,\\.,\\,,\\!,\\?])",
+                            "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2",
+                            cite_text,
+                            flags=re.IGNORECASE)
                             # for match in re.finditer(rf"{w}\w+?[\s,\\.,\\,,\\!,\\?]", cite_text, flags=re.IGNORECASE):
                             #     a,b = match.span()
                             #     t = cite_text
@@ -213,7 +213,10 @@ class MakeTeiDoc():
                             #     print(cite_text)
                     else:
                         for i, v in variantlist:
-                            cite_text = re.sub(rf"({v}\w+)([\s,\\.,\\,,\\!,\\?])", "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2", cite_text, flags=re.IGNORECASE)
+                            cite_text = re.sub(rf"({v}\w+)([\s,\\.,\\,,\\!,\\?])",
+                            "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2",
+                            cite_text,
+                            flags=re.IGNORECASE)
                             # for match in re.finditer(rf"{v}\w+?[\s,\\.,\\,,\\!,\\?]", cite_text, flags=re.IGNORECASE):
                             #     a,b = match.span()
                             #     t = cite_text
@@ -394,7 +397,7 @@ class MakeTeiDoc():
                     date_d = ET.Element("{http://www.tei-c.org/ns/1.0}date")
                     date_d.text = x.end_date
                     if len(x.end_date) == 3:
-                            death.attrib["when"] = "0" + re.search(r'\d+', x.end_date).group()
+                        death.attrib["when"] = "0" + re.search(r'\d+', x.end_date).group()
                     elif len(x.end_date) == 2:
                         death.attrib["when"] = "00" + re.search(r'\d+', x.end_date).group()
                     elif len(x.end_date) == 1:
