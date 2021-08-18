@@ -50,26 +50,32 @@ class MakeTeiDoc():
     def populate_header(self):
         text_url = f"https://mmp.acdh-dev.oeaw.ac.at{self.text.get_absolute_url()}"
         header = f"""
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="textid-{self.text.id}" {self.prev} {self.next} xml:base="{self.base}">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="archetext__{self.text.id}" {self.prev} {self.next} xml:base="{self.base}">
   <teiHeader>
       <fileDesc>
          <titleStmt>
-            <title type="main">{self.text.title}</title>
-            <title type="alt">{self.text.alt_title}</title>
+            <title type="main">
+                Digitized text passages (citations) of <title type="original">{self.text.title}</title>
+                <title type="alt">{self.text.alt_title}</title> from <author></author>
+            </title>
+            <title type="sub">{self.project_md['subtitle']}</title>
             <principal ref="#WP">Walter Pohl</principal>
             <principal ref="#VW">Veronika Wieser</principal>
             <respStmt>
-                <resp>Researcher</resp>
+                <resp>Data Collection and Analysis</resp>
                 <name ref="#WP">Walter Pohl</name>
                 <name ref="#VW">Veronika Wieser</name>
             </respStmt>
             <respStmt>
-                <resp>TEI conform data markup</resp>
-                <name ref="#PA">Peter Andorfer</name>
+                <resp>Technical Lead: Digital Edition (WebApp) and Database</resp>
+                <name ref="#PA">{self.project_md['author']}</name>
             </respStmt>
          </titleStmt>
          <editionStmt>
-            <p>{self.text.edition}</p>
+            <edition>digital edition <date when="2021">2021</date></edition>
+            <funder ref="https://www.oeaw.ac.at/foerderungen/innovationsfonds-forschung-wissenschaft-und-gesellschaft">
+                OEAW Innovation Fund "Research, Science and Society"
+            </funder>
          </editionStmt>
          <publicationStmt>
             <publisher>Austrian Centre for Digital Humanities and Cultural Heritage (ACDH-CH)</publisher>
@@ -102,36 +108,46 @@ class MakeTeiDoc():
             <note>{self.text.kommentar}</note>
          </notesStmt>
          <sourceDesc>
-            <bibl>
-                <title type="main">{self.project_md['title']}</title>
-                <title type="sub">{self.project_md['subtitle']}</title>
-                <author ref="#PA">{self.project_md['author']}</author>
-                <publisher>Austrian Centre for Digital Humanities and Cultural Heritage (ACDH-CH)</publisher>
-                <date when="2021">2021</date>
-                <decoNote type="abstract">
-                    <p>
-                        {self.project_md['description']}
-                    </p>
-                </decoNote>
-                <idno type="django_id">https://mmp.acdh-dev.oeaw.ac.at</idno>
-            </bibl>
-            <msDesc>
-               <msIdentifier>
-                    <repository>ARCHE - A Resource Centre for Humanities Related Research in Austria</repository>
-                    <msName>Austrian Centre for Digital Humanities and Cultural Heritage (ACDH-CH)</msName>
-               </msIdentifier>
-               <msContents>
-                    <textLang mainLang="{self.text_lang()}"/>
-               </msContents>
-               <physDesc>
-                    <typeDesc>
-                        <p>{self.text.art}</p>
-                    </typeDesc>
-               </physDesc>
-            </msDesc>
+            <bibl xml:id="text__{self.text.id}" type="short">{self.text.edition}</bibl>
          </sourceDesc>
-      </fileDesc>
+     </fileDesc>
+     <encodingDesc>
+        <projectDesc>
+            <p>
+                {self.project_md['description']}
+            </p>
+        </projectDesc>
+        <editorialDecl>
+            <p>
+                From the original text of the edition <ref>#text__{self.text.id}</ref> different text
+                passages (citations) were taken and further analyzed.
+            </p>
+            <normalization>
+                <p>Text passages (citations) were translated in modern british english or german.</p>
+                <p>
+                    Keywords of text passages were collected and origanized containing the keyword,
+                    lemma (Wurzel) and different variants of the keyword.
+                </p>
+                <p>Person-Names in different languages, birth and death dates were collected.</p>
+                <p>
+                    Place-Names in different languages, category and geographical information
+                    like latitude and longitude were collected.
+                </p>
+            </normalization>
+            <interpretation>
+                <p>A summary of each text passage (citation) was created.</p>
+            </interpretation>
+        </editorialDecl>
+     </encodingDesc>
      <profileDesc>
+        <textDesc>
+            <domain type="{self.text.art}"/>
+            <channel mode="w">written</channel>
+            <derivation type="revision" source="#text__{self.text.id}"/>
+        </textDesc>
+        <langUsage>
+            <language ident="{self.text_lang()}"/>
+        </langUsage>
         <creation>
             <date notBefore="{self.not_before()}" notAfter="{self.not_after()}">
                 {self.jahrhundert + " century"}
@@ -164,7 +180,7 @@ class MakeTeiDoc():
                 for k in x.key_word.all():
                     term = ET.Element("{http://www.tei-c.org/ns/1.0}term")
                     term.attrib["n"] = "keyword__" + str(k.id)
-                    term.text = k.stichwort
+                    term.attrib["key"] = k.stichwort
                     if k.art:
                         term.attrib["type"] = k.art
                     if k.wurzel:
@@ -202,9 +218,9 @@ class MakeTeiDoc():
                     if k.wurzel:
                         for i, w in wurzellist:
                             cite_text = re.sub(rf"({w}\w+?)([\s,\\.,\\,,\\!,\\?])",
-                                            "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2",
-                                            cite_text,
-                                            flags=re.IGNORECASE)
+                                                "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2",
+                                                cite_text,
+                                                flags=re.IGNORECASE)
                             # for match in re.finditer(rf"{w}\w+?[\s,\\.,\\,,\\!,\\?]", cite_text, flags=re.IGNORECASE):
                             #     a,b = match.span()
                             #     t = cite_text
@@ -214,17 +230,17 @@ class MakeTeiDoc():
                     else:
                         for i, v in variantlist:
                             cite_text = re.sub(rf"({v}\w+)([\s,\\.,\\,,\\!,\\?])",
-                                            "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2",
-                                            cite_text,
-                                            flags=re.IGNORECASE)
+                                                "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2",
+                                                cite_text,
+                                                flags=re.IGNORECASE)
                             # for match in re.finditer(rf"{v}\w+?[\s,\\.,\\,,\\!,\\?]", cite_text, flags=re.IGNORECASE):
                             #     a,b = match.span()
                             #     t = cite_text
                             #     l = [t[:a], "<term ref='#keyword__%s'>" % (i), t[a:b], "</term>", t[b:]]
                             #     cite_text = "".join(l)
                             #     print(cite_text)
-                    print(str(x.id))
-                    print(cite_text)
+                    # print(str(x.id))
+                    # print(cite_text)
                     cit.append(ET.fromstring("<quote>" + cite_text + "</quote>"))
                 else:
                     quote = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
@@ -266,17 +282,16 @@ class MakeTeiDoc():
             text.append(back)
 
         if self.text.autor:
-            titleStmt = cur_doc.xpath(".//tei:titleStmt", namespaces=self.nsmap)[0]
+            author = cur_doc.xpath(".//tei:title/tei:author", namespaces=self.nsmap)[0]
             back = cur_doc.xpath(".//tei:back", namespaces=self.nsmap)[0]
             listPerson = ET.Element("{http://www.tei-c.org/ns/1.0}listPerson")
-            autor = ET.Element("{http://www.tei-c.org/ns/1.0}author")
+            # autor = ET.Element("{http://www.tei-c.org/ns/1.0}author")
             for x in self.text.autor.all():
                 persName = ET.Element("{http://www.tei-c.org/ns/1.0}persName")
                 persName.text = x.name
                 persName.attrib["ref"] = "#person__{}".format(
                     x.id
                 )
-                autor.append(persName)
                 # person for tei:back tei:listPerson
                 person = ET.Element("{http://www.tei-c.org/ns/1.0}person")
                 person.attrib["{http://www.w3.org/XML/1998/namespace}id"] = "person__{}".format(
@@ -424,7 +439,7 @@ class MakeTeiDoc():
                 listPerson.append(person)
                 if person is not None:
                     back.append(listPerson)
-            titleStmt.insert(2, autor)
+            author.append(persName)
 
         if self.text.ort:
             back = cur_doc.xpath(".//tei:back", namespaces=self.nsmap)[0]
