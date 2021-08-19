@@ -30,22 +30,22 @@ class MakeTeiDoc():
     def not_before(self):
         if self.text.start_date:
             start_date = re.search(r'\d+', self.text.start_date).group()
-            return date(int(start_date), int(1), int(1)).isoformat()
+            return "notBefore='" +  date(int(start_date), int(1), int(1)).isoformat() + "'"
         else:
-            return "0000-00-00"
+            return ""
 
     def not_after(self):
         if self.text.end_date:
             end_date = re.search(r'\d+', self.text.end_date).group()
-            return date(int(end_date), int(1), int(1)).isoformat()
+            return "notAfter='" + date(int(end_date), int(1), int(1)).isoformat() + "'"
         else:
-            return "0000-00-00"
+            return ""
 
     def text_lang(self):
         if self.text.text_lang:
             return self.text.text_lang
         else:
-            return "0000-00-00"
+            return "lat"
 
     def populate_header(self):
         text_url = f"https://mmp.acdh-dev.oeaw.ac.at{self.text.get_absolute_url()}"
@@ -55,8 +55,8 @@ class MakeTeiDoc():
       <fileDesc>
          <titleStmt>
             <title type="main">
-                Digitized text passages (citations) of <title type="original">{self.text.title}</title>
-                <title type="alt">{self.text.alt_title}</title> from <author></author>
+                Digital Edition with text passages (citations) derived from <title type="original">{self.text.title}</title>
+                <title type="alt">{self.text.alt_title}</title> by author 
             </title>
             <title type="sub">{self.project_md['subtitle']}</title>
             <principal ref="#WP">Walter Pohl</principal>
@@ -67,7 +67,7 @@ class MakeTeiDoc():
                 <name ref="#VW">Veronika Wieser</name>
             </respStmt>
             <respStmt>
-                <resp>Technical Lead: Digital Edition (WebApp) and Database</resp>
+                <resp>Digital Edition (WebApp) and Database</resp>
                 <name ref="#PA">{self.project_md['author']}</name>
             </respStmt>
          </titleStmt>
@@ -101,8 +101,8 @@ class MakeTeiDoc():
                     You may not apply legal terms or technological measures that legally
                     restrict others from doing anything the license permits.
                 </p>
+                <p>The text of the Digital Edition is available at <ref type="django_text_id">{text_url}</ref></p>
             </availability>
-            <idno type="django_id">{text_url}</idno>
          </publicationStmt>
          <notesStmt>
             <note>{self.text.kommentar}</note>
@@ -119,20 +119,17 @@ class MakeTeiDoc():
         </projectDesc>
         <editorialDecl>
             <p>
-                From the original text of the edition <ref>#text__{self.text.id}</ref> different text
-                passages (citations) were taken and further analyzed.
+                {self.text.title} was found in the edition <ref>#text__{self.text.id}</ref>.
+                Various text passages (citations) were chosen and further analyzed.
+                These original text passages (citations) were often but not always digitized.
             </p>
             <normalization>
                 <p>Text passages (citations) were translated in modern british english or german.</p>
-                <p>
-                    Keywords of text passages were collected and origanized containing the keyword,
-                    lemma (Wurzel) and different variants of the keyword.
-                </p>
+                <p>Keywords of text passages were collected and origanized containing the keyword,
+                    lemma (Wurzel) and different variants of the keyword.</p>
                 <p>Person-Names in different languages, birth and death dates were collected.</p>
-                <p>
-                    Place-Names in different languages, category and geographical information
-                    like latitude and longitude were collected.
-                </p>
+                <p>Place-Names in different languages, category and geographical information
+                    like latitude and longitude were collected.</p>
             </normalization>
             <interpretation>
                 <p>A summary of each text passage (citation) was created.</p>
@@ -140,16 +137,18 @@ class MakeTeiDoc():
         </editorialDecl>
      </encodingDesc>
      <profileDesc>
-        <textDesc>
-            <domain type="{self.text.art}"/>
-            <channel mode="w">written</channel>
-            <derivation type="revision" source="#text__{self.text.id}"/>
-        </textDesc>
+        <textClass>
+            <keywords>
+                <term>{self.text.art}</term>
+            </keywords>
+        </textClass>
         <langUsage>
-            <language ident="{self.text_lang()}"/>
+            <language xml:id="{self.text_lang()}__{self.text.id}" ident="{self.text_lang()}"/>
+            <language xml:id="de__{self.text.id}" ident="de"/>
+            <language xml:id="en__{self.text.id}" ident="en"/>
         </langUsage>
         <creation>
-            <date notBefore="{self.not_before()}" notAfter="{self.not_after()}">
+            <date {self.not_before()} {self.not_after()}>
                 {self.jahrhundert + " century"}
             </date>
         </creation>
@@ -177,10 +176,12 @@ class MakeTeiDoc():
                 index = ET.Element("{http://www.tei-c.org/ns/1.0}index")
                 variantlist = []
                 wurzellist = []
+                keywordlist = []
                 for k in x.key_word.all():
                     term = ET.Element("{http://www.tei-c.org/ns/1.0}term")
                     term.attrib["n"] = "keyword__" + str(k.id)
                     term.attrib["key"] = k.stichwort
+                    keywordlist.append([str(k.id), k.stichwort])
                     if k.art:
                         term.attrib["type"] = k.art
                     if k.wurzel:
@@ -217,7 +218,7 @@ class MakeTeiDoc():
                     # annotate keywords within cite (Stelle) as <term>
                     if k.wurzel:
                         for i, w in wurzellist:
-                            cite_text = re.sub(rf"({w}\w+?)([\s,\\.,\\,,\\!,\\?])",
+                            cite_text = re.sub(rf"({w}\w+?)([\s,\.,\,,\!,\?])",
                                                 "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2",
                                                 cite_text,
                                                 flags=re.IGNORECASE)
@@ -229,7 +230,7 @@ class MakeTeiDoc():
                             #     print(cite_text)
                     else:
                         for i, v in variantlist:
-                            cite_text = re.sub(rf"({v}\w+)([\s,\\.,\\,,\\!,\\?])",
+                            cite_text = re.sub(rf"({v}\w+)([\s,\.,\,,\!,\?])",
                                                 "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2",
                                                 cite_text,
                                                 flags=re.IGNORECASE)
@@ -241,34 +242,86 @@ class MakeTeiDoc():
                             #     print(cite_text)
                     # print(str(x.id))
                     # print(cite_text)
+                    for i, key in keywordlist:
+                        cite_text = re.sub(rf"([\",′,\s,\(])({key})([′,\s,\.,\,,\!,\?,\),\"])",
+                                    r"\1" + "<foreign ref='#keyword__%s #%s__%s'>" % (i, self.text_lang(), str(self.text.id)) + r"\2" + "</foreign>" + r"\3",
+                                    cite_text,
+                                    flags=re.IGNORECASE)
                     cit.append(ET.fromstring("<quote>" + cite_text + "</quote>"))
                 else:
                     quote = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
                     cit.append(quote)
                 cit[0].attrib["{http://www.w3.org/XML/1998/namespace}lang"] = self.text_lang()
+                cit[0].attrib["ref"] = "#" + self.text_lang() + "__" + str(self.text.id)
                 ref = ET.Element("{http://www.tei-c.org/ns/1.0}ref")
                 ref.text = x.zitat_stelle
                 cit.append(ref)
-                # translation of original citation in lang "de"
-                if x.translation:
-                    citTranslation = ET.Element("{http://www.tei-c.org/ns/1.0}cit")
-                    citTranslation.attrib["type"] = "translation"
-                    quoteTranslation = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
-                    quoteTranslation.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "und"
-                    quoteTranslation.text = x.translation
-                    citTranslation.append(quoteTranslation)
-                    cit.append(citTranslation)
-                # summary of original citation in lang "de"
-                if x.summary:
-                    citSummary = ET.Element("{http://www.tei-c.org/ns/1.0}cit")
-                    citSummary.attrib["type"] = "summary"
-                    quoteSummary = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
-                    quoteSummary.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "und"
-                    quoteSummary.text = x.summary
-                    citSummary.append(quoteSummary)
-                    cit.append(citSummary)
-                # adding all original, translation and summary quote to div
                 div.append(cit)
+                # translation of original citation in lang "?"
+                if x.translation:
+                    divTranslation = ET.Element("{http://www.tei-c.org/ns/1.0}div")
+                    divTranslation.attrib["type"] = "translation"
+                    t = x.translation
+                    if k.wurzel:
+                        for i, w in wurzellist:
+                            t = re.sub(rf"([\",′,\s,\(])({w})([′,\s,\.,\,,\!,\?,\),\"])",
+                                        r"\1" + "<foreign ref='#keyword__%s #%s__%s'>" % (i, self.text_lang(), str(self.text.id)) + r"\2" + "</foreign>" + r"\3",
+                                        t,
+                                        flags=re.IGNORECASE)
+                            print([i, w])
+                            print(t)
+                    else:
+                        for i, v in variantlist:
+                            t = re.sub(rf"([\",′,\s,\(])({v})([′,\s,\.,\,,\!,\?,\),\"])",
+                                        r"\1" + "<foreign ref='#keyword__%s #%s__%s'>" % (i, self.text_lang(), str(self.text.id)) + r"\2" + "</foreign>" + r"\3",
+                                        t,
+                                        flags=re.IGNORECASE)
+                            print([i, v])
+                            print(t)
+                    for i, key in keywordlist:
+                        t = re.sub(rf"([\",′,\s,\(])({key})([′,\s,\.,\,,\!,\?,\),\"])",
+                                    r"\1" + "<foreign ref='#keyword__%s #%s__%s'>" % (i, self.text_lang(), str(self.text.id)) + r"\2" + "</foreign>" + r"\3",
+                                    t,
+                                    flags=re.IGNORECASE)
+                        print([i, key])
+                        print(t)
+                    divTranslation.append(ET.fromstring("<p>" + t + "</p>"))
+                    divTranslation.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "mix"
+                    divTranslation.attrib["ref"] = "#de__" + str(self.text.id) + " #en__" + str(self.text.id)
+                    div.append(divTranslation)
+                # summary of original citation in lang "?"
+                if x.summary:
+                    divSummary = ET.Element("{http://www.tei-c.org/ns/1.0}div")
+                    divSummary.attrib["type"] = "summary"
+                    s = x.summary
+                    if k.wurzel:
+                        for i, w in wurzellist:
+                            s = re.sub(rf"([\",′,\s,\(])({w})([′,\s,\.,\,,\!,\?,\),\"])",
+                                        r"\1" + "<foreign ref='#keyword__%s #%s__%s'>" % (i, self.text_lang(), str(self.text.id)) + r"\2" + "</foreign>" + r"\3",
+                                        s,
+                                        flags=re.IGNORECASE)
+                            print([i, w])
+                            print(s)
+                    else:
+                        for i, v in variantlist:
+                            s = re.sub(rf"([\",′,\s,\(])({v})([′,\s,\.,\,,\!,\?,\),\"])",
+                                        r"\1" + "<foreign ref='#keyword__%s #%s__%s'>" % (i, self.text_lang(), str(self.text.id)) + r"\2" + "</foreign>" + r"\3",
+                                        s,
+                                        flags=re.IGNORECASE)
+                            print([i, v])
+                            print(s)
+                    for i, key in keywordlist:
+                        s = re.sub(rf"([\",′,\s,\(])({key})([′,\s,\.,\,,\!,\?,\),\"])",
+                                    r"\1" + "<foreign ref='#keyword__%s #%s__%s'>" % (i, self.text_lang(), str(self.text.id)) + r"\2" + "</foreign>" + r"\3",
+                                    s,
+                                    flags=re.IGNORECASE)
+                        print([i, key])
+                        print(s)
+                    divSummary.append(ET.fromstring("<p>" + s + "</p>"))
+                    divSummary.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "mix"
+                    divSummary.attrib["ref"] = "#de__" + str(self.text.id) + " #en__" + str(self.text.id)
+                    div.append(divSummary)
+                # adding all original, translation and summary quote to div
                 note = ET.Element("{http://www.tei-c.org/ns/1.0}note")
                 if x.kommentar:
                     note.text = x.kommentar
@@ -282,7 +335,7 @@ class MakeTeiDoc():
             text.append(back)
 
         if self.text.autor:
-            author = cur_doc.xpath(".//tei:title/tei:author", namespaces=self.nsmap)[0]
+            author = cur_doc.xpath(".//tei:titleStmt/tei:title", namespaces=self.nsmap)[0]
             back = cur_doc.xpath(".//tei:back", namespaces=self.nsmap)[0]
             listPerson = ET.Element("{http://www.tei-c.org/ns/1.0}listPerson")
             # autor = ET.Element("{http://www.tei-c.org/ns/1.0}author")
