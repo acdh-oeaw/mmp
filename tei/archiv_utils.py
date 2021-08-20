@@ -30,14 +30,28 @@ class MakeTeiDoc():
     def not_before(self):
         if self.text.start_date:
             start_date = re.search(r'\d+', self.text.start_date).group()
-            return "notBefore='" +  date(int(start_date), int(1), int(1)).isoformat() + "'"
+            if len(start_date) == 3:
+                return "notBefore='0" +  start_date + "'"
+            elif len(start_date) == 2:
+                return "notBefore='00" +  start_date + "'"
+            elif len(start_date) == 1:
+                return "notBefore='000" +  start_date + "'"
+            else:
+                "notBefore='" +  start_date + "'"
         else:
             return ""
 
     def not_after(self):
         if self.text.end_date:
             end_date = re.search(r'\d+', self.text.end_date).group()
-            return "notAfter='" + date(int(end_date), int(1), int(1)).isoformat() + "'"
+            if len(end_date) == 3:
+                return "notAfter='0" +  end_date + "'"
+            elif len(end_date) == 2:
+                return "notAfter='00" +  end_date + "'"
+            elif len(end_date) == 1:
+                return "notAfter='000" +  end_date + "'"
+            else:
+                "notAfter='" +  end_date + "'"
         else:
             return ""
 
