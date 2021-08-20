@@ -152,7 +152,7 @@ class MakeTeiDoc():
      </encodingDesc>
      <profileDesc>
         <textClass>
-            <keywords>
+            <keywords scheme="http://www.w3.org/2004/02/skos/core#Concept">
                 <term>{self.text.art}</term>
             </keywords>
         </textClass>
@@ -230,17 +230,17 @@ class MakeTeiDoc():
                 if x.zitat:
                     cite_text = x.zitat
                     cite_text = re.sub(r"<",
-                                "",
+                                "[",
                                 cite_text,
                                 flags=re.IGNORECASE)
                     cite_text = re.sub(r">",
-                                "",
+                                "]",
                                 cite_text,
                                 flags=re.IGNORECASE)
                     # annotate keywords within cite (Stelle) as <term>
                     if k.wurzel:
                         for i, w in wurzellist:
-                            cite_text = re.sub(rf"({w}\w+?)([′,\s,\.,\,,\!,\?,\),\",'])",
+                            cite_text = re.sub(rf"({w}\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
                                                 "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2",
                                                 cite_text,
                                                 flags=re.IGNORECASE)
@@ -252,7 +252,7 @@ class MakeTeiDoc():
                             #     print(cite_text)
                     else:
                         for i, v in variantlist:
-                            cite_text = re.sub(rf"({v}\w+?)([′,\s,\.,\,,\!,\?,\),\",'])",
+                            cite_text = re.sub(rf"({v}\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
                                                 "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2",
                                                 cite_text,
                                                 flags=re.IGNORECASE)
@@ -265,7 +265,7 @@ class MakeTeiDoc():
                     # print(str(x.id))
                     # print(cite_text)
                     for i, key in keywordlist:
-                        cite_text = re.sub(rf"([\",′,\s,\(,'])({key})([′,\s,\.,\,,\!,\?,\),\",'])",
+                        cite_text = re.sub(rf"([“,,\",′,\s,\(,',‘])({key})([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
                                     r"\1" + "<term ref='#keyword__%s'>" % (i) + r"\2" + "</term>" + r"\3",
                                     cite_text,
                                     flags=re.IGNORECASE)
@@ -285,27 +285,27 @@ class MakeTeiDoc():
                     divTranslation.attrib["type"] = "translation"
                     t = x.translation
                     t = re.sub(r"<",
-                                "",
+                                "[",
                                 t,
                                 flags=re.IGNORECASE)
                     t = re.sub(r">",
-                                "",
+                                "]",
                                 t,
                                 flags=re.IGNORECASE)
                     if k.wurzel:
                         for i, w in wurzellist:
-                            t = re.sub(rf"({w}\w+?)([′,\s,\.,\,,\!,\?,\),\",'])",
+                            t = re.sub(rf"({w}\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
                                         "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\1" + "</foreign>"  + r"\2",
                                         t,
                                         flags=re.IGNORECASE)
                     else:
                         for i, v in variantlist:
-                            t = re.sub(rf"({v}\w+?)([′,\s,\.,\,,\!,\?,\),\",'])",
+                            t = re.sub(rf"({v}\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
                                         "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\1" + "</foreign>"  + r"\2",
                                         t,
                                         flags=re.IGNORECASE)
                     for i, key in keywordlist:
-                        t = re.sub(rf"([\",′,\s,\(,'])({key})([′,\s,\.,\,,\!,\?,\),\",'])",
+                        t = re.sub(rf"([“,,\",′,\s,\(,',‘])({key})([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
                                     r"\1" + "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\2" + "</foreign>" + r"\3",
                                     t,
                                     flags=re.IGNORECASE)
@@ -319,27 +319,27 @@ class MakeTeiDoc():
                     divSummary.attrib["type"] = "summary"
                     s = x.summary
                     s = re.sub(r"<",
-                                "",
+                                "[",
                                 s,
                                 flags=re.IGNORECASE)
                     s = re.sub(r">",
-                                "",
+                                "]",
                                 s,
                                 flags=re.IGNORECASE)
                     if k.wurzel:
                         for i, w in wurzellist:
-                            s = re.sub(rf"({w}\w+?)([′,\s,\.,\,,\!,\?,\),\",'])",
+                            s = re.sub(rf"({w}\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
                                         "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\1" + "</foreign>"  + r"\2",
                                         s,
                                         flags=re.IGNORECASE)
                     else:
                         for i, v in variantlist:
-                            s = re.sub(rf"({v}\w+?)([′,\s,\.,\,,\!,\?,\),\",'])",
+                            s = re.sub(rf"({v}\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
                                         "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\1" + "</foreign>"  + r"\2",
                                         s,
                                         flags=re.IGNORECASE)
                     for i, key in keywordlist:
-                        s = re.sub(rf"([\",′,\s,\(,'])({key})([′,\s,\.,\,,\!,\?,\),\",'])",
+                        s = re.sub(rf"([“,,\",′,\s,\(,',‘])({key})([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
                                     r"\1" + "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\2" + "</foreign>" + r"\3",
                                     s,
                                     flags=re.IGNORECASE)
