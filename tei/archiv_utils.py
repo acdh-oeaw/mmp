@@ -252,7 +252,7 @@ class MakeTeiDoc():
                     # print(cite_text)
                     for i, key in keywordlist:
                         cite_text = re.sub(rf"([\",′,\s,\(,'])({key})([′,\s,\.,\,,\!,\?,\),\",'])",
-                                    r"\1" + "<foreign ref='#keyword__%s #%s__%s'>" % (i, self.text_lang(), str(self.text.id)) + r"\2" + "</foreign>" + r"\3",
+                                    r"\1" + "<term ref='#keyword__%s'>" % (i) + r"\2" + "</term>" + r"\3",
                                     cite_text,
                                     flags=re.IGNORECASE)
                     cit.append(ET.fromstring("<quote>" + cite_text + "</quote>"))
@@ -260,7 +260,7 @@ class MakeTeiDoc():
                     quote = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
                     cit.append(quote)
                 cit[0].attrib["{http://www.w3.org/XML/1998/namespace}lang"] = self.text_lang()
-                cit[0].attrib["ref"] = "#" + self.text_lang() + "__" + str(self.text.id)
+                # cit[0].attrib["ref"] = "#" + self.text_lang() + "__" + str(self.text.id)
                 ref = ET.Element("{http://www.tei-c.org/ns/1.0}ref")
                 ref.text = x.zitat_stelle
                 cit.append(ref)
@@ -281,23 +281,23 @@ class MakeTeiDoc():
                     if k.wurzel:
                         for i, w in wurzellist:
                             t = re.sub(rf"({w}\w+?)([′,\s,\.,\,,\!,\?,\),\",'])",
-                                        "<foreign ref='#keyword__%s #%s__%s'>" % (i, self.text_lang(), str(self.text.id)) + r"\1" + "</foreign>"  + r"\2",
+                                        "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\1" + "</foreign>"  + r"\2",
                                         t,
                                         flags=re.IGNORECASE)
                     else:
                         for i, v in variantlist:
                             t = re.sub(rf"({v}\w+?)([′,\s,\.,\,,\!,\?,\),\",'])",
-                                        "<foreign ref='#keyword__%s #%s__%s'>" % (i, self.text_lang(), str(self.text.id)) + r"\1" + "</foreign>"  + r"\2",
+                                        "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\1" + "</foreign>"  + r"\2",
                                         t,
                                         flags=re.IGNORECASE)
                     for i, key in keywordlist:
                         t = re.sub(rf"([\",′,\s,\(,'])({key})([′,\s,\.,\,,\!,\?,\),\",'])",
-                                    r"\1" + "<foreign ref='#keyword__%s #%s__%s'>" % (i, self.text_lang(), str(self.text.id)) + r"\2" + "</foreign>" + r"\3",
+                                    r"\1" + "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\2" + "</foreign>" + r"\3",
                                     t,
                                     flags=re.IGNORECASE)
                     divTranslation.append(ET.fromstring("<p>" + t + "</p>"))
-                    divTranslation.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "mix"
-                    divTranslation.attrib["ref"] = "#de__" + str(self.text.id) + " #en__" + str(self.text.id)
+                    divTranslation[0].attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "mix"
+                    # divTranslation[0].attrib["ref"] = "#de__" + str(self.text.id) + " #en__" + str(self.text.id)
                     div.append(divTranslation)
                 # summary of original citation in lang "?"
                 if x.summary:
@@ -315,23 +315,23 @@ class MakeTeiDoc():
                     if k.wurzel:
                         for i, w in wurzellist:
                             s = re.sub(rf"({w}\w+?)([′,\s,\.,\,,\!,\?,\),\",'])",
-                                        "<foreign ref='#keyword__%s #%s__%s'>" % (i, self.text_lang(), str(self.text.id)) + r"\1" + "</foreign>"  + r"\2",
+                                        "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\1" + "</foreign>"  + r"\2",
                                         s,
                                         flags=re.IGNORECASE)
                     else:
                         for i, v in variantlist:
                             s = re.sub(rf"({v}\w+?)([′,\s,\.,\,,\!,\?,\),\",'])",
-                                        "<foreign ref='#keyword__%s #%s__%s'>" % (i, self.text_lang(), str(self.text.id)) + r"\1" + "</foreign>"  + r"\2",
+                                        "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\1" + "</foreign>"  + r"\2",
                                         s,
                                         flags=re.IGNORECASE)
                     for i, key in keywordlist:
                         s = re.sub(rf"([\",′,\s,\(,'])({key})([′,\s,\.,\,,\!,\?,\),\",'])",
-                                    r"\1" + "<foreign ref='#keyword__%s #%s__%s'>" % (i, self.text_lang(), str(self.text.id)) + r"\2" + "</foreign>" + r"\3",
+                                    r"\1" + "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\2" + "</foreign>" + r"\3",
                                     s,
                                     flags=re.IGNORECASE)
                     divSummary.append(ET.fromstring("<p>" + s + "</p>"))
-                    divSummary.attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "mix"
-                    divSummary.attrib["ref"] = "#de__" + str(self.text.id) + " #en__" + str(self.text.id)
+                    divSummary[0].attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "mix"
+                    # divSummary[0].attrib["ref"] = "#de__" + str(self.text.id) + " #en__" + str(self.text.id)
                     div.append(divSummary)
                 # adding all original, translation and summary quote to div
                 note = ET.Element("{http://www.tei-c.org/ns/1.0}note")
