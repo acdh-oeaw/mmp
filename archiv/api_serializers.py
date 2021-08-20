@@ -83,7 +83,7 @@ class StelleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Stelle
         fields = "__all__"
-        depth = 1
+        depth = 2
 
 
 class TextSerializer(serializers.HyperlinkedModelSerializer):
