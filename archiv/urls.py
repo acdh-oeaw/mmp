@@ -92,11 +92,6 @@ urlpatterns = [
         name='keyword_data'
     ),
     url(
-        r'^cone-data/$',
-        KeyWordEndpoint.as_view(),
-        name='keyword_data'
-    ),
-    url(
         r'^keyword/detail/(?P<pk>[0-9]+)$',
         views.KeyWordDetailView.as_view(),
         name='keyword_detail'
