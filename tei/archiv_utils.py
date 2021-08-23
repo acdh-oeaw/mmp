@@ -35,7 +35,7 @@ class MakeTeiDoc():
             elif len(start_date) == 1:
                 return "notBefore='000" + start_date + "'"
             else:
-                "notBefore='" + start_date + "'"
+                return "notBefore='" + start_date + "'"
         else:
             return ""
 
@@ -49,7 +49,7 @@ class MakeTeiDoc():
             elif len(end_date) == 1:
                 return "notAfter='000" + end_date + "'"
             else:
-                "notAfter='" + end_date + "'"
+                return "notAfter='" + end_date + "'"
         else:
             return ""
 
@@ -63,7 +63,7 @@ class MakeTeiDoc():
         text_url = f"https://mmp.acdh-dev.oeaw.ac.at{self.text.get_absolute_url()}"
         header = f"""
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="archetext__{self.text.id}"
-    {self.prev} {self.next} xml:base="{self.base}">
+{self.prev} {self.next} xml:base="{self.base}">
   <teiHeader>
       <fileDesc>
          <titleStmt>
