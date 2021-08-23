@@ -320,7 +320,7 @@ class MakeTeiDoc():
                     for i, key in keywordlist:
                         s = re.sub(rf"([“,,\",′,\s,\(,',‘])({key})([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
                                    r"\1" + "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\2" +
-                                   "</foreign>" +r"\3",
+                                   "</foreign>" + r"\3",
                                    s,
                                    flags=re.IGNORECASE)
                     divSummary.append(ET.fromstring("<p>" + s + "</p>"))
