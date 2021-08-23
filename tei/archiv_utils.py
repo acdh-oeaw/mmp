@@ -29,13 +29,13 @@ class MakeTeiDoc():
         if self.text.start_date:
             start_date = re.search(r'\d+', self.text.start_date).group()
             if len(start_date) == 3:
-                return "notBefore='0" +  start_date + "'"
+                return "notBefore='0" + start_date + "'"
             elif len(start_date) == 2:
-                return "notBefore='00" +  start_date + "'"
+                return "notBefore='00" + start_date + "'"
             elif len(start_date) == 1:
-                return "notBefore='000" +  start_date + "'"
+                return "notBefore='000" + start_date + "'"
             else:
-                "notBefore='" +  start_date + "'"
+                "notBefore='" + start_date + "'"
         else:
             return ""
 
@@ -43,13 +43,13 @@ class MakeTeiDoc():
         if self.text.end_date:
             end_date = re.search(r'\d+', self.text.end_date).group()
             if len(end_date) == 3:
-                return "notAfter='0" +  end_date + "'"
+                return "notAfter='0" + end_date + "'"
             elif len(end_date) == 2:
-                return "notAfter='00" +  end_date + "'"
+                return "notAfter='00" + end_date + "'"
             elif len(end_date) == 1:
-                return "notAfter='000" +  end_date + "'"
+                return "notAfter='000" + end_date + "'"
             else:
-                "notAfter='" +  end_date + "'"
+                "notAfter='" + end_date + "'"
         else:
             return ""
 
@@ -62,7 +62,8 @@ class MakeTeiDoc():
     def populate_header(self):
         text_url = f"https://mmp.acdh-dev.oeaw.ac.at{self.text.get_absolute_url()}"
         header = f"""
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="archetext__{self.text.id}" {self.prev} {self.next} xml:base="{self.base}">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="archetext__{self.text.id}"
+    {self.prev} {self.next} xml:base="{self.base}">
   <teiHeader>
       <fileDesc>
          <titleStmt>
@@ -234,9 +235,9 @@ class MakeTeiDoc():
                     if k.wurzel:
                         for i, w in wurzellist:
                             cite_text = re.sub(rf"({w}\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
-                                            "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2",
-                                            cite_text,
-                                            flags=re.IGNORECASE)
+                                                "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2",
+                                                cite_text,
+                                                flags=re.IGNORECASE)
                         # for match in re.finditer(rf"{w}\w+?[\s,\\.,\\,,\\!,\\?]", cite_text, flags=re.IGNORECASE):
                         #     a,b = match.span()
                         #     t = cite_text
@@ -244,9 +245,9 @@ class MakeTeiDoc():
                     else:
                         for i, v in variantlist:
                             cite_text = re.sub(rf"({v}\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
-                                            "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2",
-                                            cite_text,
-                                            flags=re.IGNORECASE)
+                                                "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2",
+                                                cite_text,
+                                                flags=re.IGNORECASE)
                         # for match in re.finditer(rf"{v}\w+?[\s,\\.,\\,,\\!,\\?]", cite_text, flags=re.IGNORECASE):
                         #     a,b = match.span()
                         #     t = cite_text
@@ -255,9 +256,9 @@ class MakeTeiDoc():
                         #     print(cite_text)
                     for i, key in keywordlist:
                         cite_text = re.sub(rf"([“,,\",′,\s,\(,',‘])({key})([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
-                                        r"\1" + "<term ref='#keyword__%s'>" % (i) + r"\2" + "</term>" + r"\3",
-                                        cite_text,
-                                        flags=re.IGNORECASE)
+                                            r"\1" + "<term ref='#keyword__%s'>" % (i) + r"\2" + "</term>" + r"\3",
+                                            cite_text,
+                                            flags=re.IGNORECASE)
                     cit.append(ET.fromstring("<quote>" + cite_text + "</quote>"))
                 else:
                     quote = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
@@ -278,20 +279,20 @@ class MakeTeiDoc():
                     if k.wurzel:
                         for i, w in wurzellist:
                             t = re.sub(rf"({w}\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
-                                    "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\1" + "</foreign>"  + r"\2",
-                                    t,
-                                    flags=re.IGNORECASE)
+                                        "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\1" + "</foreign>"  + r"\2",
+                                        t,
+                                        flags=re.IGNORECASE)
                     else:
                         for i, v in variantlist:
                             t = re.sub(rf"({v}\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
-                                    "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\1" + "</foreign>"  + r"\2",
-                                    t,
-                                    flags=re.IGNORECASE)
+                                        "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\1" + "</foreign>"  + r"\2",
+                                        t,
+                                        flags=re.IGNORECASE)
                     for i, key in keywordlist:
                         t = re.sub(rf"([“,,\",′,\s,\(,',‘])({key})([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
-                                r"\1" + "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\2" + "</foreign>" + r"\3",
-                                t,
-                                flags=re.IGNORECASE)
+                                    r"\1" + "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\2" + "</foreign>" + r"\3",
+                                    t,
+                                    flags=re.IGNORECASE)
                     divTranslation.append(ET.fromstring("<p>" + t + "</p>"))
                     divTranslation[0].attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "mix"
                     # divTranslation[0].attrib["ref"] = "#de__" + str(self.text.id) + " #en__" + str(self.text.id)
@@ -306,20 +307,20 @@ class MakeTeiDoc():
                     if k.wurzel:
                         for i, w in wurzellist:
                             s = re.sub(rf"({w}\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
-                                    "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\1" + "</foreign>"  + r"\2",
-                                    s,
-                                    flags=re.IGNORECASE)
+                                        "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\1" + "</foreign>"  + r"\2",
+                                        s,
+                                        flags=re.IGNORECASE)
                     else:
                         for i, v in variantlist:
                             s = re.sub(rf"({v}\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
-                                    "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\1" + "</foreign>"  + r"\2",
-                                    s,
-                                    flags=re.IGNORECASE)
+                                        "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\1" + "</foreign>"  + r"\2",
+                                        s,
+                                        flags=re.IGNORECASE)
                     for i, key in keywordlist:
                         s = re.sub(rf"([“,,\",′,\s,\(,',‘])({key})([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
-                                r"\1" + "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\2" + "</foreign>" + r"\3",
-                                s,
-                                flags=re.IGNORECASE)
+                                    r"\1" + "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\2" + "</foreign>" + r"\3",
+                                    s,
+                                    flags=re.IGNORECASE)
                     divSummary.append(ET.fromstring("<p>" + s + "</p>"))
                     divSummary[0].attrib["{http://www.w3.org/XML/1998/namespace}lang"] = "mix"
                     # divSummary[0].attrib["ref"] = "#de__" + str(self.text.id) + " #en__" + str(self.text.id)
