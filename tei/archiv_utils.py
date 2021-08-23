@@ -290,7 +290,8 @@ class MakeTeiDoc():
                                        flags=re.IGNORECASE)
                     for i, key in keywordlist:
                         t = re.sub(rf"([“,,\",′,\s,\(,',‘])({key})([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
-                                   r"\1" + "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\2" + "</foreign>" + r"\3",
+                                   r"\1" + "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\2" +
+                                   "</foreign>" + r"\3",
                                    t,
                                    flags=re.IGNORECASE)
                     divTranslation.append(ET.fromstring("<p>" + t + "</p>"))
@@ -318,7 +319,8 @@ class MakeTeiDoc():
                                        flags=re.IGNORECASE)
                     for i, key in keywordlist:
                         s = re.sub(rf"([“,,\",′,\s,\(,',‘])({key})([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
-                                   r"\1" + "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\2" + "</foreign>" + r"\3",
+                                   r"\1" + "<foreign xml:lang='%s'>" % (self.text_lang()) + r"\2" +
+                                   "</foreign>" +r"\3",
                                    s,
                                    flags=re.IGNORECASE)
                     divSummary.append(ET.fromstring("<p>" + s + "</p>"))
