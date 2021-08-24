@@ -13,6 +13,8 @@ from vocabs.models import SkosConcept
 from browsing.browsing_utils import model_to_dict
 
 from tei.archiv_utils import MakeTeiDoc
+from webpage.metadata import PROJECT_METADATA
+
 
 logger = logging.getLogger(__name__)
 
@@ -1324,6 +1326,10 @@ class Text(models.Model):
             return prev.first().id
 
         return False
+
+    def get_project_metadata(self):
+        metadata = PROJECT_METADATA
+        return metadata
 
 
 class Event(models.Model):
