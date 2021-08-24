@@ -1293,24 +1293,6 @@ class Text(models.Model):
     def get_edit_url(self):
         return reverse('archiv:text_edit', kwargs={'pk': self.id})
 
-    # def get_next(self):
-    #     next = self.__class__.objects.filter(id__gt=self.id)
-    #     if next:
-    #         return reverse(
-    #             'archiv:text_detail',
-    #             kwargs={'pk': next.first().id}
-    #         )
-    #     return False
-
-    # def get_prev(self):
-    #     prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
-    #     if prev:
-    #         return reverse(
-    #             'archiv:text_detail',
-    #             kwargs={'pk': prev.first().id}
-    #         )
-    #     return False
-
     def get_next(self):
         next = self.get_next_id()
         if next:
