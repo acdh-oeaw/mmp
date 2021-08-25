@@ -526,6 +526,14 @@ class TextListFilter(django_filters.FilterSet):
         help_text=Text._meta.get_field('kommentar').help_text,
         label=Text._meta.get_field('kommentar').verbose_name
     )
+    rvn_stelle_text_text__key_word = django_filters.ModelMultipleChoiceFilter(
+        queryset=KeyWord.objects.all(),
+        help_text='Keyword',
+        label='Keyword',
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:ort-autocomplete",
+        )
+    )
 
     class Meta:
         model = Text

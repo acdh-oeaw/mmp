@@ -382,6 +382,7 @@ class TextFilterFormHelper(FormHelper):
                     'legacy_pk',
                     'autor',
                     'title',
+                    'rvn_stelle_text_text__key_word',
                     'jahrhundert',
                     'not_before',
                     'not_after',
