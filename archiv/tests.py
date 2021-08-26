@@ -100,3 +100,8 @@ class ArchivTestCase(TestCase):
         url = reverse('archiv:usecase_timetable_json', kwargs={'pk': item.id})
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
+
+    def test_008_keyword_data_endpoint(self):
+        url = f"{reverse('archiv:keyword_data')}?rvn_stelle_key_word_keyword__text__autor=40"
+        response = client.get(url)
+        self.assertEqual(response.status_code, 200)
