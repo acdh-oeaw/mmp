@@ -105,6 +105,16 @@ class SpatialCoverageListFilter(django_filters.FilterSet):
             url="archiv-ac:stelle-autocomplete",
         )
     )
+    stelle__start_date = django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text="Stelle not before",
+        label="Stelle not before"
+    )
+    stelle__end_date = django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text="Stelle not after",
+        label="Stelle not after"
+    )
     stelle__text__not_before = django_filters.LookupChoiceFilter(
         lookup_choices=DATE_LOOKUP_CHOICES,
         help_text="Text not before",
@@ -301,6 +311,16 @@ class KeyWordListFilter(django_filters.FilterSet):
         help_text="Text not after",
         label="Text not after"
     )
+    rvn_stelle_key_word_keyword__start_date = django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text="Stelle not before",
+        label="Stelle not before"
+    )
+    rvn_stelle_key_word_keyword__end_date = django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text="Stelle not after",
+        label="Stelle not after"
+    )
 
     class Meta:
         model = KeyWord
@@ -464,6 +484,16 @@ class StelleListFilter(django_filters.FilterSet):
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=Stelle._meta.get_field('kommentar').help_text,
         label=Stelle._meta.get_field('kommentar').verbose_name
+    )
+    start_date = django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text="Stelle not before",
+        label="Stelle not before"
+    )
+    end_date = django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text="Stelle not after",
+        label="Stelle not after"
     )
 
     class Meta:

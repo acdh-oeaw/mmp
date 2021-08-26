@@ -109,6 +109,8 @@ class SpatialCoverageFilterFormHelper(FormHelper):
                 'id',
                 'key_word',
                 'stelle',
+                'stelle__start_date',
+                'stelle__start_date',
                 'stelle__text__autor',
                 'stelle__text__not_before',
                 'stelle__text__not_after',
@@ -191,6 +193,8 @@ class KeyWordFilterFormHelper(FormHelper):
             Fieldset(
                 'Basic search options',
                 'id',
+                'rvn_stelle_key_word_keyword__start_date',
+                'rvn_stelle_key_word_keyword__end_date',
                 'rvn_stelle_key_word_keyword__text__not_before',
                 'rvn_stelle_key_word_keyword__text__not_after',
                 css_id="basic_search_fields"
@@ -318,6 +322,8 @@ class StelleFilterFormHelper(FormHelper):
                 'text__autor',
                 'key_word',
                 'use_case',
+                'start_date',
+                'end_date',
                 css_id="basic_search_fields"
             ),
             Accordion(
