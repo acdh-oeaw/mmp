@@ -140,7 +140,7 @@ class MakeTeiDoc():
         </projectDesc>
         <editorialDecl>
             <p>
-                {self.text.title} was found in 
+                {self.text.title} was found in
                 <rs type="bibl" ref="#text__{self.text.id}">{self.text.edition}</rs>.
                 Various text passages (citations) were chosen and further analyzed.
                 These original text passages (citations) were often but not always digitized.
@@ -232,7 +232,7 @@ class MakeTeiDoc():
                             term.append(termVarianten)
                 div.append(index)
                 # original citation in lang text_lang() default "lat"
-                cite_text = x.zitat
+                # cite_text = x.zitat
                 cit = ET.Element("{http://www.tei-c.org/ns/1.0}cit")
                 cit.attrib["type"] = "original"
                 if x.zitat:
@@ -246,22 +246,16 @@ class MakeTeiDoc():
                     #                            "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2",
                     #                            cite_text,
                     #                            flags=re.IGNORECASE)
-                        # for match in re.finditer(rf"{w}\w+?[\s,\\.,\\,,\\!,\\?]", cite_text, flags=re.IGNORECASE):
-                        #     a,b = match.span()
-                        #     t = cite_text
-                        #     l = [t[:a], "<term ref='#keyword__%s'>" % (i), t[a:b], "</term>", t[b:]]
+                    # for match in re.finditer(rf"{w}\w+?[\s,\\.,\\,,\\!,\\?]", cite_text, flags=re.IGNORECASE):
+                    #     a,b = match.span()
+                    #     t = cite_text
+                    #     l = [t[:a], "<term ref='#keyword__%s'>" % (i), t[a:b], "</term>", t[b:]]
                     # else:
                     #     for i, v in variantlist:
                     #         cite_text = re.sub(rf"({v}\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
                     #                            "<term ref='#keyword__%s'>" % (i) + r"\1" + "</term>" + r"\2",
                     #                            cite_text,
                     #                            flags=re.IGNORECASE)
-                        # for match in re.finditer(rf"{v}\w+?[\s,\\.,\\,,\\!,\\?]", cite_text, flags=re.IGNORECASE):
-                        #     a,b = match.span()
-                        #     t = cite_text
-                        #     l = [t[:a], "<term ref='#keyword__%s'>" % (i), t[a:b], "</term>", t[b:]]
-                        #     cite_text = "".join(l)
-                        #     print(cite_text)
                     # for i, key in keywordlist:
                     #     cite_text = re.sub(rf"([“,,\",′,\s,\(,',‘])({key})([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
                     #                        r"\1" + "<term ref='#keyword__%s'>" % (i) + r"\2" + "</term>" + r"\3",
@@ -271,7 +265,7 @@ class MakeTeiDoc():
                     quote = ET.Element("{http://www.tei-c.org/ns/1.0}quote")
                     quote.text = x.zitat
                     cit.append(quote)
-                    cit[0].attrib["{http://www.w3.org/XML/1998/namespace}lang"] = self.text_lang() 
+                    cit[0].attrib["{http://www.w3.org/XML/1998/namespace}lang"] = self.text_lang()
                 ref = ET.Element("{http://www.tei-c.org/ns/1.0}ref")
                 ref.text = x.zitat_stelle
                 cit.append(ref)
