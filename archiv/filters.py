@@ -87,8 +87,8 @@ class UseCaseListFilter(django_filters.FilterSet):
 
 
 class SpatialCoverageListFilter(django_filters.FilterSet):
-    conjoined=True,
     key_word = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
         queryset=KeyWord.objects.all(),
         help_text=SpatialCoverage._meta.get_field('key_word').help_text,
         label=SpatialCoverage._meta.get_field('key_word').verbose_name,
