@@ -95,8 +95,7 @@ class UseCaseListView(GenericListView):
     init_columns = [
         'id', 'title', 'principal_investigator'
     ]
-    enable_merge = False,
-    template_name = 'archiv/overrides-genericlistviews.html'
+    enable_merge = False
 
 
 class UseCaseDelete(DeleteView):
@@ -171,8 +170,8 @@ class SpatialCoverageListView(GenericListView):
     init_columns = [
         'id', 'stelle', 'key_word',
     ]
-    enable_merge = False,
-    template_name = 'archiv/overrides-genericlistviews.html'
+    enable_merge = False
+    template_name = 'archiv/spatial_list.html'
 
 
 class SpatialCoverageDelete(DeleteView):
@@ -194,8 +193,7 @@ class AutorListView(GenericListView):
     init_columns = [
         'id', 'name',
     ]
-    enable_merge = False,
-    template_name = 'archiv/overrides-genericlistviews.html'
+    enable_merge = False
 
 
 class AutorDetailView(BaseDetailView):
@@ -243,7 +241,7 @@ class KeyWordListView(GenericListView):
     init_columns = [
         'id', 'stichwort', 'wurzel', 'varianten'
     ]
-    enable_merge = False,
+    enable_merge = False
     template_name = 'archiv/keyword_list.html'
 
 
@@ -292,8 +290,7 @@ class OrtListView(GenericListView):
     init_columns = [
         'id', 'name', 'long', 'lat'
     ]
-    enable_merge = False,
-    template_name = 'archiv/overrides-genericlistviews.html'
+    enable_merge = False
 
 
 class OrtDetailView(BaseDetailView):
@@ -341,8 +338,7 @@ class StelleListView(GenericListView):
     init_columns = [
         'id', 'display_label',
     ]
-    enable_merge = False,
-    template_name = 'archiv/overrides-genericlistviews.html'
+    enable_merge = False
 
 
 class StelleDetailView(BaseDetailView):
@@ -392,8 +388,7 @@ class TextListView(GenericListView):
     init_columns = [
         'id', 'title',
     ]
-    enable_merge = False,
-    template_name = 'archiv/overrides-genericlistviews.html'
+    enable_merge = False
 
 
 class TextDetailView(BaseDetailView):
@@ -441,8 +436,7 @@ class EventListView(GenericListView):
     init_columns = [
         'id', 'title',
     ]
-    enable_merge = False,
-    template_name = 'archiv/overrides-genericlistviews.html'
+    enable_merge = False
 
 
 class EventDetailView(BaseDetailView):

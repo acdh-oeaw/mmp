@@ -1,5 +1,6 @@
 import pandas as pd
 
+from netvis.utils import as_node
 
 generic_property_table = [
     ('stichwort', 's'),
@@ -24,38 +25,32 @@ def graph_table(qs, prop_table=generic_property_table):
     return df
 
 
-def create_graph(df, qs):
+def create_graph(df, ItemClass):
+    app_name = ItemClass._meta.app_label
+    model_name = ItemClass._meta.model_name
+    all_ids = df[['s_id', 't_id']].values.tolist()
+    ids = list(set([item for sublist in all_ids for item in sublist]))
+    qs = ItemClass.objects.filter(id__in=ids)
     edges = []
     nodes = []
     for i, row in df.iterrows():
         edges.append(
             {
                 "id": i,
-                "source": row['s_id'],
-                "target": row['t_id'],
+                "source": f"{app_name}__{model_name}__{row['s_id']}",
+                "target": f"{app_name}__{model_name}__{row['t_id']}",
                 "type": 'e'
             }
         )
     for x in qs:
+        node = as_node(x)
         nodes.append(
-            {
-                "id": x.id,
-                "label": x.stichwort,
-                "type": 'n'
-            }
-        )
-    for i, row in df.groupby(['t_id', 't']).size().reset_index(name="occ").iterrows():
-        nodes.append(
-            {
-                "id": row['t_id'],
-                "label": row['t'],
-                "type": 'n'
-            }
+            node
         )
     g_types = {
         "nodes": [
             {
-                'id': 'n',
+                'id': f"{app_name}__{model_name}",
                 'label': 'Keyword',
                 'color': '#006699'
             },

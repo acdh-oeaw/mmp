@@ -1,14 +1,11 @@
 {% extends "webpage/base.html" %}
 {% load static %}
+{% load netvis_extras %}
 {% load webpage_extras %}
 {% block title %}{{ object.name }}{% endblock %}
 {% block scriptHeader %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
-<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/three@0.126.1/build/three.min.js"></script>
-<script crossorigin src="https://unpkg.com/@acdh/network-visualization@latest/lib/network-visualization.umd.js"></script>
-<script src="{% static 'netvis/js/netvis.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'netvis/css/netvis.css' %}" /> <!-- optional -->
+  {% load_netvis_js %}
 {% endblock %}
 {% block content %}
 <!-- <div class="container"> -->
@@ -137,9 +134,10 @@
             </table>
         </div>
         <div class="col-md-6">
-          <div id="visualization" style="position: relative; height: 700px; background: #fafafa;"></div>
+          <div id="visualization"></div>
+          <script src="{% static 'netvis/js/netvis.js' %}"></script>
           <script type="text/javascript">
-            showGraph("{% url 'netvis:graph' app_name=app_name model_name=class_name|lower pk=object.id %}", "visualization")
+            showGraph("visualization", "{% url 'netvis:graph' app_name=app_name model_name=class_name|lower pk=object.id %}")
           </script>
       </div>
 

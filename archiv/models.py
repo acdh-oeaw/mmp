@@ -5,12 +5,13 @@ import lxml.etree as ET
 
 from django.db import models
 from django.urls import reverse
+from django.contrib.gis.geos import Polygon
 from django.contrib.gis.db.models import PolygonField
 from django.utils.functional import cached_property
 
-from vocabs.models import SkosConcept
-
+from archiv.utils import parse_date
 from browsing.browsing_utils import model_to_dict
+from vocabs.models import SkosConcept
 
 from tei.archiv_utils import MakeTeiDoc
 from webpage.metadata import PROJECT_METADATA
@@ -305,6 +306,31 @@ class SpatialCoverage(models.Model):
                 kwargs={'pk': prev.first().id}
             )
         return False
+
+    def get_author_coords(self):
+        cur_item = SpatialCoverage.objects.filter(id=self.id)
+        items = cur_item.values_list(
+            'stelle__text__autor__ort__long',
+            'stelle__text__autor__ort__lat',
+        )
+        no_blanks = [x for x in items if x[0]]
+        return no_blanks
+
+    def geom_points(self):
+        try:
+            return list(self.fuzzy_geom.coords[0])
+        except AttributeError:
+            return []
+
+    def new_coords(self):
+        poly_cords = self.geom_points()
+        new_coords = poly_cords[:1] + self.get_author_coords() + poly_cords[1:]
+        return new_coords
+
+    @cached_property
+    def convex_hull(self):
+        poly = Polygon(self.new_coords()).convex_hull
+        return poly
 
 
 class Autor(models.Model):
@@ -1187,6 +1213,18 @@ class Text(models.Model):
         is_public=True,
         data_lookup="tzeitbis",
     )
+    not_before = models.IntegerField(
+        blank=True,
+        null=True,
+        verbose_name="not before",
+        help_text="YYY or YYYY"
+    )
+    not_after = models.IntegerField(
+        blank=True,
+        null=True,
+        verbose_name="not after",
+        help_text="YYY or YYYY"
+    )
     edition = models.CharField(
         max_length=350,
         blank=True,
@@ -1330,6 +1368,17 @@ class Text(models.Model):
     def get_project_metadata(self):
         metadata = PROJECT_METADATA
         return metadata
+
+    def save(self, *args, **kwargs):
+        if self.start_date and not self.not_before:
+            self.not_before = parse_date(self.start_date)
+        if self.end_date and not self.not_after:
+            self.not_after = parse_date(self.end_date, default=2000)
+        if not self.start_date and not self.not_before:
+            self.not_before = -100
+        if not self.end_date and not self.not_after:
+            self.not_after = 2020
+        super(Text, self).save(*args, **kwargs)
 
 
 class Event(models.Model):

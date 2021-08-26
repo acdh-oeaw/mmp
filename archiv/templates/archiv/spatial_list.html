@@ -1,0 +1,61 @@
+{% extends "browsing/generic_list.html" %}
+{% load static %}
+{% load leaflet_tags %}
+{% block scriptHeader %}
+{% leaflet_js %}
+{% leaflet_css %}
+    <style type="text/css">
+        #yourmap_text{
+            min-height:600px;
+        }
+    </style>
+{% endblock %}
+
+{% block pagination.allpages %}
+<h3>MAP</h3>
+<div style="padding:0;">
+    {% leaflet_map "yourmap_text" callback="window.map_init_basic" %}
+</div>
+{% endblock pagination.allpages %}
+
+
+{% block scripts2 %}
+<script type="text/javascript">
+
+    function createTableRows(propertyObject){
+        var returnTable = "<table class='table table-hover table-striped table-condensed'>";
+        var linkToObject = "#";
+        returnTable += "<tr><td>linkToObject</td><td><a href='"+linkToObject+"'>follow link</a></td></tr>";
+        for (var [key, value] of Object.entries(propertyObject.key_word)) {
+            returnTable += "<tr><td>"+key+"</td><td>"+value+"</td></tr>";
+        };
+        return returnTable += "</table>";
+    };
+  
+    function onEachFeature(feature, layer) {
+        if (feature.properties) {
+            var popupContent = createTableRows(feature.properties);
+            layer.bindPopup(popupContent);
+        }
+    };
+  
+    function map_init_basic (map, options) {
+        const cur_params = window.location.search;
+        const cone_ep = `/api/cones/${cur_params}`;
+        console.log(cone_ep);
+        $.ajax({
+            dataType: "json",
+            url: cone_ep,
+            success: function(data) {
+                var geojsonFeature = data;
+                var geojsonLayer = L.geoJson(geojsonFeature, {
+                    onEachFeature: onEachFeature
+                }).addTo(map);
+                map.fitBounds(geojsonLayer.getBounds());
+            }
+            });
+    }
+  </script>
+    <script src="{% static 'archiv/js/set-form-attributes.js' %}"></script>
+    <script src="{% static 'archiv/js/filter-for-blank-fields.js' %}"></script>
+{% endblock scripts2 %}

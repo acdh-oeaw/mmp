@@ -28,7 +28,7 @@ a generic djangobaseproject port of https://gitlab.com/acdh-oeaw/imafo/gens, cre
 * start dev-server `python manage.py runserver ---settings=djangobaseproject.settings.dev`
 * open http://127.0.0.1:8000/
 
-### use a db-dumpt
+### use a db-dump
 
 * get a dump
 * create a new postgres-db name e.g. `mmp`

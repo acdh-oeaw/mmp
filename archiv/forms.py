@@ -109,6 +109,9 @@ class SpatialCoverageFilterFormHelper(FormHelper):
                 'id',
                 'key_word',
                 'stelle',
+                'stelle__text__autor',
+                'stelle__text__not_before',
+                'stelle__text__not_after',
                 css_id="basic_search_fields"
             ),
         )
@@ -188,6 +191,8 @@ class KeyWordFilterFormHelper(FormHelper):
             Fieldset(
                 'Basic search options',
                 'id',
+                'rvn_stelle_key_word_keyword__text__not_before',
+                'rvn_stelle_key_word_keyword__text__not_after',
                 css_id="basic_search_fields"
             ),
             Accordion(
@@ -308,7 +313,9 @@ class StelleFilterFormHelper(FormHelper):
             Fieldset(
                 'Basic search options',
                 'id',
+                'zitat',
                 'text',
+                'text__autor',
                 'key_word',
                 'use_case',
                 css_id="basic_search_fields"
@@ -318,7 +325,6 @@ class StelleFilterFormHelper(FormHelper):
                     'Advanced search',
                     'legacy_pk',
                     'summary',
-                    'zitat',
                     'translation',
                     'kommentar',
                     css_id="more"
@@ -376,9 +382,10 @@ class TextFilterFormHelper(FormHelper):
                     'legacy_pk',
                     'autor',
                     'title',
+                    'rvn_stelle_text_text__key_word',
                     'jahrhundert',
-                    'start_date',
-                    'end_date',
+                    'not_before',
+                    'not_after',
                     'edition',
                     'art',
                     'ort',

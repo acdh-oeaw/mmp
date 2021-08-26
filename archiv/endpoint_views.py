@@ -3,7 +3,6 @@ from django.http import JsonResponse
 
 from archiv.models import KeyWord
 from archiv.filters import KeyWordListFilter
-
 from archiv.network_utils import create_graph, graph_table
 
 
@@ -13,15 +12,15 @@ class KeyWordEndpoint(ListView):
     filter_class = KeyWordListFilter
 
     def get_queryset(self, **kwargs):
-        qs = super(KeyWordEndpoint, self).get_queryset()
+        qs = super(KeyWordEndpoint, self).get_queryset().distinct()
         self.filter = self.filter_class(self.request.GET, queryset=qs)
-        return self.filter.qs
+        return self.filter.qs.distinct()
 
     def render_to_response(self, context, **kwargs):
-        qs = self.get_queryset()
-        if qs.count() < 70:
+        qs = self.get_queryset().distinct().order_by('id')
+        if qs.count() < 100:
             df = graph_table(qs)
         else:
-            df = graph_table(qs[:70])
-        data = create_graph(df, qs)
+            df = graph_table(qs.reverse()[:500])
+        data = create_graph(df, KeyWord)
         return JsonResponse(data)
