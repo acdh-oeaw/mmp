@@ -75,7 +75,7 @@
          </notesStmt>
          {% endif %}
          <sourceDesc>
-            <bibl xml:id="text__{self.text.id}" type="short">{{ object.edition }}</bibl>
+            <bibl xml:id="text__{{ object.id }}" type="short">{{ object.edition }}</bibl>
          </sourceDesc>
      </fileDesc>
      <encodingDesc>
@@ -86,7 +86,7 @@
         </projectDesc>
         <editorialDecl>
             <p>
-                {self.text.title} was found in 
+                {{ object.title }} was found in 
                 <rs type="bibl" ref="#text__{{ object.id }}">{{ object.edition }}</rs>.
                 Various text passages (citations) were chosen and further analyzed.
                 These original text passages (citations) were often but not always digitized.
@@ -111,12 +111,16 @@
             </keywords>
         </textClass>
         <langUsage>
-            <language ident="{self.text_lang()}"/>
+            {% if object.text_lang %}
+            <language ident="{{ object.text_lang }}"/>
+            {% else %} 
+            <language ident="lat"/>
+            {% endif %}
             <language ident="de"/>
             <language ident="en"/>
         </langUsage>
         <creation>
-            <date {self.not_before()} {self.not_after()}>
+            <date>
                 {{ object.jahrhundert }} century
             </date>
         </creation>
