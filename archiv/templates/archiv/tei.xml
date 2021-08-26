@@ -1,0 +1,131 @@
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="archetext__{{ object.id }}" prev="https://id.acdh.oeaw.ac.at/mmp/archiv/text/{{ object.get_prev_id }}" next="https://id.acdh.oeaw.ac.at/mmp/archiv/text/{{ object.get_next_id }}" xml:base="https://id.acdh.oeaw.ac.at/mmp/archiv/text/">
+  <teiHeader>
+      <fileDesc>
+         <titleStmt>
+            <title type="main">
+                Digital Edition of cited texts from "{{ object.title }}"
+            </title>
+            <title type="fullquote">
+               <bibl>
+                {% if object.autor %}
+                    {{ object.autor }}: 
+                {% else %}
+                    Unknown 
+                {% endif %}
+                {{ object.title }} , 
+                {% if object.alt_title %}
+                    {{ object.alt_title }},
+                {% endif %}
+                in: {{ object.edition }}
+               </bibl>
+            </title>
+            <title type="sub">{{ object.get_project_metadata['subtitle'] }}</title>
+            <principal ref="#WP">Walter Pohl</principal>
+            <principal ref="#VW">Veronika Wieser</principal>
+            <respStmt>
+                <resp>Data Collection and Analysis</resp>
+                <name ref="#WP">Walter Pohl</name>
+                <name ref="#VW">Veronika Wieser</name>
+            </respStmt>
+            <respStmt>
+                <resp>Digital Edition (WebApp) and Database</resp>
+                <name ref="#PA">{{ object.get_project_metadata['author'] }}</name>
+            </respStmt>
+            <respStmt>
+                <resp>TEI/XML conform markup</resp>
+                <name ref="#DST">Daniel Stoxreiter</name>
+            </respStmt>
+         </titleStmt>
+         <editionStmt>
+            <edition>digital edition <date when="2021">2021</date></edition>
+            <funder ref="https://www.oeaw.ac.at/foerderungen/innovationsfonds-forschung-wissenschaft-und-gesellschaft">
+                OEAW Innovation Fund "Research, Science and Society"
+            </funder>
+         </editionStmt>
+         <publicationStmt>
+            <publisher>Austrian Centre for Digital Humanities and Cultural Heritage (ACDH-CH)</publisher>
+            <pubPlace>Vienna</pubPlace>
+            <date when="2021">2021</date>
+            <availability>
+                <licence target="https://creativecommons.org/licenses/by/4.0"/>
+                <p>The Creative Commons Attribution 4.0 International (CC BY 4.0) License applies to this document.</p>
+                <p>Copyright (c) 2021 Austrian Centre for Digital Humanities at the Austrian Academy of Sciences</p>
+                <p>
+                    You are free to:
+                    Share — copy and redistribute the material in any medium or format
+                    Adapt — remix, transform, and build upon the material
+                    for any purpose, even commercially.
+                </p>
+                <p>
+                    Under the following terms:
+                    Attribution — You must give appropriate credit,
+                    provide a link to the license, and indicate if changes were made.
+                    You may do so in any reasonable manner,
+                    but not in any way that suggests the licensor endorses you or your use.
+                    No additional restrictions —
+                    You may not apply legal terms or technological measures that legally
+                    restrict others from doing anything the license permits.
+                </p>
+                <p>The text of the Digital Edition is available at <ref type="django_text_id">https://id.acdh.oeaw.ac.at/mmp/archiv/text/{{ object.id }}</ref></p>
+            </availability>
+         </publicationStmt>
+         {% if object.kommentar %}
+         <notesStmt>
+            <note>{{ object.kommentar }}</note>
+         </notesStmt>
+         {% endif %}
+         <sourceDesc>
+            <bibl xml:id="text__{{ object.id }}" type="short">{{ object.edition }}</bibl>
+         </sourceDesc>
+     </fileDesc>
+     <encodingDesc>
+        <projectDesc>
+            <p>
+                {{ object.get_project_metadata['description'] }}
+            </p>
+        </projectDesc>
+        <editorialDecl>
+            <p>
+                {{ object.title }} was found in 
+                <rs type="bibl" ref="#text__{{ object.id }}">{{ object.edition }}</rs>.
+                Various text passages (citations) were chosen and further analyzed.
+                These original text passages (citations) were often but not always digitized.
+            </p>
+            <normalization>
+                <p>Some text passages (citations) were translated in modern british english or german.</p>
+                <p>Keywords of text passages were collected and origanized containing the keyword,
+                    lemma (Wurzel) and different variants of the keyword.</p>
+                <p>Person-Names in different languages, birth and death dates were collected.</p>
+                <p>Place-Names in different languages, category and geographical information
+                    like latitude and longitude were collected.</p>
+            </normalization>
+            <interpretation>
+                <p>Some text passages (citations) were summarized.</p>
+            </interpretation>
+        </editorialDecl>
+     </encodingDesc>
+     <profileDesc>
+        <textClass>
+            <keywords scheme="http://www.w3.org/2004/02/skos/core#Concept">
+                <term>{{ object.art }}</term>
+            </keywords>
+        </textClass>
+        <langUsage>
+            {% if object.text_lang %}
+            <language ident="{{ object.text_lang }}"/>
+            {% else %} 
+            <language ident="lat"/>
+            {% endif %}
+            <language ident="de"/>
+            <language ident="en"/>
+        </langUsage>
+        <creation>
+            <date>
+                {{ object.jahrhundert }} century
+            </date>
+        </creation>
+     </profileDesc>
+  </teiHeader>
+  <text>
+  </text>
+</TEI>

@@ -1,5 +1,9 @@
 import os
 
+import sys
+
+sys.modules['fontawesome_free'] = __import__('fontawesome-free')
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(
     os.path.dirname(os.path.abspath(os.path.join(__file__, '../')))
@@ -43,6 +47,7 @@ INSTALLED_APPS = [
     'vocabs',
     'infos',
     'archiv',
+    'fontawesome_free',
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"

@@ -12,6 +12,8 @@
 <script crossorigin src="https://unpkg.com/three@0.126.1/build/three.min.js"></script>
 <script crossorigin src="https://unpkg.com/@acdh/network-visualization@latest/lib/network-visualization.umd.js"></script>
 <script src="{% static 'netvis/js/netvis.js' %}"></script>
+<script src="{% static 'fontawesome_free/js/all.min.js' %}"></script>
+<link href="{% static 'fontawesome_free/css/all.min.css' %}" rel="stylesheet" type="text/css">
 <style type="text/css">
     #yourmap_text{
         min-height:600px;
@@ -41,6 +43,13 @@
                     <i data-feather="edit"></i>
                     </a>
                 {% endif %}
+                {% if object.get_tei_url %}
+                    <small>
+                        <a href="{{ object.get_tei_url }}" title="download as XML/TEI">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </small>
+                {% endif %}
                 {% if 'archeutils' in APPS %}
                 <a href="{% url 'archeutils:res_as_arche_graph' app_name=app_name model_name=class_name|lower pk=object.id %}" title="As ARCHE-RDF">
                     <i data-feather="download"></i>
@@ -60,17 +69,17 @@
             <div class="col-md-12">
                 <div class="row">
                     <legend style="border-radius:5px;background-color:#F1F1F1;margin:.5em;padding:.3em;font-size:28px;">Metadaten zum Text</legend>
-                    <div class="col-md-6" style="margin-left:auto;margin-right:auto;">                        
-                        <table class="table table-sm table-hover">                        
-                            <tbody style="text-align:left;">                    
+                    <div class="col-md-6" style="margin-left:auto;margin-right:auto;">
+                        <table class="table table-sm table-hover">
+                            <tbody style="text-align:left;">
                             {% for x in object.field_dict %}
                                 {% if x.value %}
                                         {% if x.verbose_name != 'ID' and x.verbose_name != 'rvn_stelle_text_text' and x.verbose_name != 'Titel' %}
                                             <tr>
                                                 {% if x.help_text %}
-                                                <th style="width:20%"><abbr title="{{ x.help_text }}">{{ x.verbose_name }}</abbr></th>                      
+                                                <th style="width:20%"><abbr title="{{ x.help_text }}">{{ x.verbose_name }}</abbr></th>
                                                 {% else %}
-                                                <th style="width:20%">{{ x.verbose_name }}</th>                      
+                                                <th style="width:20%">{{ x.verbose_name }}</th>
                                                 {% endif %}
                                                 <td>
                                                     {% if x.f_type == 'M2M' %}
@@ -88,12 +97,12 @@
                                                     {% elif  x.f_type == 'SIMPLE' %}
                                                         {{ x.value }}
                                                     {% endif %}
-                                                </td>                                                
+                                                </td>
                                             </tr>
                                         {% endif %}
                                     {% endif %}
-                            {% endfor %}                    
-                            </tbody>                        
+                            {% endfor %}
+                            </tbody>
                         </table>
                     </div>
                     <div class="col-md-6" style="margin-left:auto;margin-right:auto;">
@@ -103,29 +112,29 @@
                         </script>
                     </div>
                 </div>
-            </div>    
-        </div>        
-    </div> 
+            </div>
+        </div>
+    </div>
     <div class="card-body">
         <div class="row">
-            <legend style="border-radius:5px;background-color:#F1F1F1;margin:.5em;padding:.3em;font-size:28px;">Textstellen</legend> 
+            <legend style="border-radius:5px;background-color:#F1F1F1;margin:.5em;padding:.3em;font-size:28px;">Textstellen</legend>
             {% for x in object.rvn_stelle_text_text.all %}
             {% if x %}
-            <div class="col-md-3">                
+            <div class="col-md-3">
                 <div class="card" style="margin-bottom:1em;border:1px solid #F1F1F1;border-radius:5px;">
                     <div class="card-header">
                         <h4 style="text-align:center;"><a href="{{ x.get_absolute_url }}">{{ x.display_label }}</a></h4>
                     </div>
                     <div class="card-body">
                         <table class="table table-sm table-hover">
-                            <tbody>                                
+                            <tbody>
                                 <tr>
                                     <th><abbr title="Stichworte">Stichwort(e)</abbr></th>
                                     <td>
                                         <ul>
-                                        {% for k in x.key_word.all %}                                        
-                                            <li><a href="{{ k.get_absolute_url }}">{{ k }}</a></li>                                        
-                                        {% endfor %}                                
+                                        {% for k in x.key_word.all %}
+                                            <li><a href="{{ k.get_absolute_url }}">{{ k }}</a></li>
+                                        {% endfor %}
                                         </ul>
                                     </td>
                                 </tr>
@@ -140,131 +149,138 @@
             </div>
             {% endif %}
             {% endfor %}
-        </div>            
+        </div>
         <div class="row">
             <legend style="border-radius:5px;background-color:#F1F1F1;margin:.5em;padding:.3em;font-size:28px;">Autoren</legend>
             {% for x in object.autor.all %}
             {% if x.name %}
-            <div class="col-md-3">                
+            <div class="col-md-3">
                 <div class="card" style="margin-bottom:1em;border:1px solid #F1F1F1;border-radius:5px;">
-                    <div class="card-header">                                                           
-                        <h4 style="text-align:center;"><a href="{{ x.get_absolute_url }}">{{ x.name }}</a></h4>   
+                    <div class="card-header">
+                        <h4 style="text-align:center;"><a href="{{ x.get_absolute_url }}">{{ x.name }}</a></h4>
                     </div>
-                    <div class="card-body">                                  
+                    <div class="card-body">
                         <legend>Basic Information</legend>
-                        <table class="table table-sm table-hover">  
+                        <table class="table table-sm table-hover">
                         <tbody>
                             <tr>
                                 <th>
                                     <abbr title="Legacy ID">ID</abbr>
                                 </th>
                                 <td>{{ x.legacy_id }}</td>
-                            </tr>                            
+                            </tr>
                             <tr>
                                 <th>
                                     <abbr title="Primärschlüssel Alt">PK</abbr>
                                 </th>
                                 <td>{{ x.legacy_pk }}</td>
-                            </tr>                            
+                            </tr>
                             <tr>
                                 <th>
                                     <abbr title="Name in deutsch">Name (de)</abbr>
                                 </th>
                                 <td>{{ x.name }}</td>
-                            </tr>                            
+                            </tr>
                             <tr>
                                 <th>
                                     <abbr title="Name in englisch">Name (en)</abbr>
                                 </th>
                                 <td>{{ x.name_lat }}</td>
-                            </tr>                            
+                            </tr>
                             <tr>
                                 <th>
                                     <abbr title="Name in lateinisch">Name (lat)</abbr>
                                 </th>
                                 <td>{{ x.name_en }}</td>
-                            </tr>                            
+                            </tr>
                             <tr>
                                 <th>
                                     <abbr title="Name in französisch">Name (fr)</abbr>
                                 </th>
                                 <td>{{ x.name_fr }}</td>
-                            </tr>                            
+                            </tr>
                             <tr>
                                 <th>
                                     <abbr title="Name in italienisch">Name (it)</abbr>
                                 </th>
                                 <td>{{ x.name_it }}</td>
-                            </tr>                            
+                            </tr>
                             <tr>
                                 <th>
                                     <abbr title="Name in griechisch">Name (gr)</abbr>
                                 </th>
                                 <td>{{ x.name_gr }}</td>
-                            </tr>                            
+                            </tr>
                             <tr>
                                 <th>
                                     <abbr title="Jahrhundert">Jahrhundert</abbr>
                                 </th>
                                 <td>{{ x.jahrhundert }}</td>
-                            </tr>                            
+                            </tr>
                             <tr>
                                 <th>
                                     <abbr title="von">von</abbr>
                                 </th>
                                 <td>{{ x.start_date }}</td>
-                            </tr>                            
+                            </tr>
                             <tr>
                                 <th>
                                     <abbr title="bis">bis</abbr>
                                 </th>
                                 <td>{{ x.end_date }}</td>
-                            </tr>                            
+                            </tr>
                             <tr>
                                 <th>
                                     <abbr title="Ort">Ort</abbr>
                                 </th>
                                 <td><a href="{{ x.ort.get_absolute_url }}">{{ x.ort }}</a></td>
-                            </tr>                            
+                            </tr>
                             <tr>
                                 <th>
                                     <abbr title="GND">GND</abbr>
                                 </th>
                                 <td>{{ x.gnd_id }}</td>
-                            </tr>                            
+                            </tr>
                             <tr>
                                 <th>
                                     <abbr title="Kommentar">Kommentar</abbr>
                                 </th>
                                 <td>{{ x.kommentar }}</td>
-                            </tr>                            
-                        </tbody>                        
-                        </table>               
+                            </tr>
+                        </tbody>
+                        </table>
                     </div>
-                </div>                          
+                </div>
             </div>
             {% else %}
             <div class="col-md-12" style="margin:1em;text-align:center;">
                 <p>Keine Autoren gefunden!</p>
             </div>
             {% endif %}
-            {% endfor %} 
+            {% endfor %}
         </div>
         <div class="row">
-            <legend style="border-radius:5px;background-color:#F1F1F1;margin:.5em;padding:.3em;font-size:28px;">Orte</legend> 
+            <legend style="border-radius:5px;background-color:#F1F1F1;margin:.5em;padding:.3em;font-size:28px;">Orte</legend>
             <div class="col-md-12">
                 <script type="text/javascript">
                     function map_init_basic(map, options) {
+                        var markers = L.marker();
+                        var bounds = [];
                         {% for x in object.ort.all %}
                         {% if x.lat %}
                             var placeName = "<a href='{{ x.get_absolute_url }}'>{{ x.name }}</a>"
                             var lat = "{{ x.lat }}"
                             var lng = "{{ x.long }}"
-                            var markers = L.marker([parseFloat(lat), parseFloat(lng)]).addTo(map);
-                            markers.bindPopup(placeName)
-                                .openPopup();                               
+                            markers += L.marker([parseFloat(lat), parseFloat(lng)]).addTo(map).bindPopup(placeName).openPopup(); 
+                            bounds.push([parseFloat(lat), parseFloat(lng)]);                      
                         {% endif %}
-                        {% endfor %}                           
+                        {% endfor %}        
+                        map.setView(bounds[0], 6)
+                        try {
+                            map.fitBounds(bounds);
+                        } catch (err) {
+                            console.log(err);
+                        }
                     };   
                 </script>
                 <div class="row">
@@ -279,73 +295,75 @@
                                     </div>
                                     <div class="card-body">
                                         <table class="table table-sm table-hover">
-                                            <tbody>                                
+                                            <tbody>
                                                 <tr>
                                                     <th><abbr title="ID">ID</abbr></th>
                                                     <td>{{ x.legacy_id }}</td>
                                                 </tr>
-                                                <tr>    
+                                                <tr>
                                                     <th><abbr title="PK">PK</abbr></th>
                                                     <td>{{ x.legacy_pk }}</td> 
                                                 </tr>
                                                 <tr>
                                                     <th><abbr title="Antiker Name">Name (antik)</abbr></th>
-                                                    <td>{{ x.name_antik }}</td>                                    
+                                                    <td>{{ x.name_antik }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th><abbr title="Name in deutsch">Name (de)</abbr></th>
-                                                    <td>{{ x.name_de }}</td>                                    
+                                                    <td>{{ x.name_de }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th><abbr title="Name in französisch">Name (fr)</abbr></th>
-                                                    <td>{{ x.name_fr }}</td>                                    
+                                                    <td>{{ x.name_fr }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th><abbr title="Name in italienisch">Name (it)</abbr></th>
-                                                    <td>{{ x.name_it }}</td>                                    
+                                                    <td>{{ x.name_it }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th><abbr title="Name in griechisch">Name (gr)</abbr></th>
-                                                    <td>{{ x.name_gr }}</td>                                    
+                                                    <td>{{ x.name_gr }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th><abbr title="Längengrad">Längengrad</abbr></th>
-                                                    <td>{{ x.long }}</td>                                    
+                                                    <td>{{ x.long }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th><abbr title="Breitengrad">Breitengrad</abbr></th>
-                                                    <td>{{ x.lat }}</td>                                    
+                                                    <td>{{ x.lat }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th><abbr title="Art des Ortes">Art des Ortes</abbr></th>
-                                                    <td>{{ x.art }}</td>                                    
+                                                    <td>{{ x.art }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th><abbr title="Kategorie des Ortes">Kategorie</abbr></th>
-                                                    <td>{{ x.kategorie }}</td>                                    
+                                                    <td>{{ x.kategorie }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th><abbr title="Kommentar">Kommentar</abbr></th>
-                                                    <td>{{ x.kommentar }}</td>                                    
+                                                    <td>{{ x.kommentar }}</td>
                                                 </tr>
                                                 <tr>
                                                     <th><abbr title="The original data">CSV</abbr></th>
-                                                    <td>{{ x.orig_data_csv }}</td>                                    
+                                                    <td>{{ x.orig_data_csv }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
-                                </div> 
-                            </div>                    
+                                </div>
+                            </div>
                             {% endif %}
                             {% endfor %}
                         </div>
                     </div>
+                    {% if object.ort.all %}
                     <div class="col-md-6">
-                        <div style="padding:0;">
+                        <div style="padding:0;margin:0;border-radius:5px;border:1px solid lightgrey;">
                             {% leaflet_map "yourmap_text" callback="window.map_init_basic" %}
                         </div>
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -355,8 +373,8 @@
                 <i data-feather="delete"></i>
             </a>
         </div>
-        {% endif %}  
-    </div> 
-</div>  
+        {% endif %}
+    </div>
+</div>
 
 {% endblock content %}
