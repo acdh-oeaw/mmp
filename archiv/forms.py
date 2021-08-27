@@ -110,7 +110,7 @@ class SpatialCoverageFilterFormHelper(FormHelper):
                 'key_word',
                 'stelle',
                 'stelle__start_date',
-                'stelle__start_date',
+                'stelle__end_date',
                 'stelle__text__autor',
                 'stelle__text__not_before',
                 'stelle__text__not_after',
@@ -193,6 +193,7 @@ class KeyWordFilterFormHelper(FormHelper):
             Fieldset(
                 'Basic search options',
                 'id',
+                'stichwort',
                 'rvn_stelle_key_word_keyword__start_date',
                 'rvn_stelle_key_word_keyword__end_date',
                 'rvn_stelle_key_word_keyword__text__not_before',

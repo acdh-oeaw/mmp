@@ -12,3 +12,13 @@ def parse_date(input, default=1):
     except (ValueError, TypeError):
         out = default
     return out
+
+
+def cent_from_year(year):
+    """ takes an integer and returns the matching century """
+    if year == 0:
+        return 1
+    elif year < 0:
+        return -(year - 1) // -100
+    else:
+        return (year - 1) // 100 + 1

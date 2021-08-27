@@ -3,7 +3,7 @@ from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.urls import reverse
 from archiv.models import KeyWord, UseCase
-from archiv.utils import parse_date
+from archiv.utils import parse_date, cent_from_year
 
 MODELS = list(apps.all_models['archiv'].values())
 
@@ -19,6 +19,18 @@ DATES = [
     ['800', 800],
     ['asfd800? ? ', 800],
     ['', DATES_DEFAULT]
+]
+
+CENTURY_TEST_DATA = [
+    [0, 1],
+    [-1, -1],
+    [-40, -1],
+    [-101, -2],
+    [40, 1],
+    [100, 1],
+    [101, 2],
+    [1000, 10],
+    [1001, 11]
 ]
 
 
@@ -105,3 +117,13 @@ class ArchivTestCase(TestCase):
         url = f"{reverse('archiv:keyword_data')}?rvn_stelle_key_word_keyword__text__autor=40"
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
+
+    def test_009_centuries(self):
+        for x in CENTURY_TEST_DATA:
+            self.assertEqual(cent_from_year(x[0]), x[1])
+
+    def test_010_kw_cent_ep(self):
+        for x in KeyWord.objects.all():
+            url = reverse('archiv:keyword_by_century', kwargs={'pk': x.id})
+            response = client.get(url)
+            self.assertEqual(response.status_code, 200)

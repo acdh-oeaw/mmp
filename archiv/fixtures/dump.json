@@ -469,6 +469,8 @@
             "kommentar": "The place of origin of the text is uncertain.",
             "legacy_id": "144.0",
             "legacy_pk": 144,
+            "not_after": 1100,
+            "not_before": 982,
             "orig_data_csv": "{\"tid\": 144, \"tautor\": null, \"tautor2\": \"\", \"tautor3\": \"\", \"ttitel\": \"Annales Lobienses\", \"tzeitvon\": \"982\", \"tzeitbis\": \"1100\", \"tjh\": \"10th-11th.\", \"tedition1\": \"MGH, SS, Supplementa tomorum 13, 1881 (G. Waitz), p. 226-235\", \"tedition2\": \"\", \"tart1\": \"5\", \"tkommentar\": \"The place of origin of the text is uncertain.\", \"tort\": \"61\", \"tort2\": \"22\", \"tort3\": \"\", \"tort4\": \"\", \"tort5\": \"\", \"tort6\": \"\", \"tautor1\": \"0\"}",
             "ort": [
                 4,
@@ -612,6 +614,8 @@
             "kommentar": "",
             "legacy_id": "19.0",
             "legacy_pk": 19,
+            "not_after": 775,
+            "not_before": 765,
             "orig_data_csv": "{\"tid\": 19, \"tautor\": null, \"tautor2\": \"\", \"tautor3\": \"\", \"ttitel\": \"Vita Haimhrammi/Emmerami\", \"tzeitvon\": \"765\", \"tzeitbis\": \"775\", \"tjh\": \"late 8th \", \"tedition1\": \"Erlangen 1953 (B. Bischoff)\", \"tedition2\": \"MGH, SS in usum Scholarum 13, 1920 (B. Krusch), p. 26-99 (column A)\", \"tart1\": \"2\", \"tkommentar\": \"\", \"tort\": \"18\", \"tort2\": \"\", \"tort3\": \"\", \"tort4\": \"\", \"tort5\": \"\", \"tort6\": \"\", \"tautor1\": \"12\"}",
             "ort": [
                 11
@@ -716,6 +720,8 @@
             "kommentar": "The place of origin of the text is uncertain.",
             "legacy_id": "60.0",
             "legacy_pk": 60,
+            "not_after": 860,
+            "not_before": 840,
             "orig_data_csv": "{\"tid\": 60, \"tautor\": null, \"tautor2\": \"\", \"tautor3\": \"\", \"ttitel\": \"Vita Haimhrammi/Emmerami recensio B\", \"tzeitvon\": \"840\", \"tzeitbis\": \"860\", \"tjh\": \"mid 9th\", \"tedition1\": \"MGH Scriptores Rerum Germanicarum in usum scholarum separatim editi 13, 1920 (B. Krusch), p. 26-99 \", \"tedition2\": \"Vita et passio Sancti Haimhrammi, Leben und Leiden des hl. Emmeram, lat.-deutsch, M\\u00fcnchen 1953, p. 7-83 (B. Bischoff) \", \"tart1\": \"2\", \"tkommentar\": \"The place of origin of the text is uncertain.\", \"tort\": \"18\", \"tort2\": \"\", \"tort3\": \"\", \"tort4\": \"\", \"tort5\": \"\", \"tort6\": \"\", \"tautor1\": \"36\"}",
             "ort": [
                 11
