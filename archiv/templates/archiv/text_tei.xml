@@ -119,8 +119,8 @@
             <language ident="de"/>
             <language ident="en"/>
         </langUsage>
-        <creation>
-            <date notBefore="{{ object.no_before }}" notAfter="{{ object.not_after }}">
+        <creation>            
+            <date>
                 {{ object.jahrhundert }} century
             </date>
         </creation>
