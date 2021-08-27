@@ -190,6 +190,11 @@ urlpatterns = [
         name='text_xml'
     ),
     url(
+        r'^text/xml-tei-template/(?P<pk>[0-9]+)$',
+        tei_views.text_to_tei_template,
+        name='text_xml_template'
+    ),
+    url(
         r'^event/$',
         views.EventListView.as_view(),
         name='event_browse'

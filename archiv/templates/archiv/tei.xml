@@ -19,7 +19,7 @@
                 in: {{ object.edition }}
                </bibl>
             </title>
-            <title type="sub">{{ object.get_project_metadata['subtitle'] }}</title>
+            <title type="sub">{{ object.get_project_metadata.subtitle }}</title>
             <principal ref="#WP">Walter Pohl</principal>
             <principal ref="#VW">Veronika Wieser</principal>
             <respStmt>
@@ -29,7 +29,7 @@
             </respStmt>
             <respStmt>
                 <resp>Digital Edition (WebApp) and Database</resp>
-                <name ref="#PA">{{ object.get_project_metadata['author'] }}</name>
+                <name ref="#PA">{{ object.get_project_metadata.author }}</name>
             </respStmt>
             <respStmt>
                 <resp>TEI/XML conform markup</resp>
@@ -81,7 +81,7 @@
      <encodingDesc>
         <projectDesc>
             <p>
-                {{ object.get_project_metadata['description'] }}
+                {{ object.get_project_metadata.description }}
             </p>
         </projectDesc>
         <editorialDecl>
@@ -120,7 +120,7 @@
             <language ident="en"/>
         </langUsage>
         <creation>
-            <date>
+            <date notBefore="{{ object.no_before }}" notAfter="{{ object.not_after }}">
                 {{ object.jahrhundert }} century
             </date>
         </creation>

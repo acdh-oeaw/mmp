@@ -1292,6 +1292,9 @@ class Text(models.Model):
     def get_tei_url(self):
         return reverse('archiv:text_xml', kwargs={'pk': self.id})
 
+    def get_tei_url_template(self):
+        return reverse('archiv:text_xml_template', kwargs={'pk': self.id})       
+
     def as_tei_node(self):
         my_node = MakeTeiDoc(self)
         return my_node.export_full_doc()
