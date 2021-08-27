@@ -14,6 +14,6 @@ def text_as_tei(request, pk):
 def text_to_tei_template(request, pk):
     full = request.GET.get('full')
     res = get_object_or_404(Text, pk=pk)
-    doc = get_node_from_template('archiv/tei.xml', res, full=full)
+    doc = get_node_from_template('archiv/text_tei.xml', res, full=full)
     tei = ET.tostring(doc, pretty_print=True, encoding='UTF-8')
     return HttpResponse(tei, content_type="application/xml")
