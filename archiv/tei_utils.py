@@ -8,6 +8,7 @@ def get_context(res):
     context['object'] = res
     return context
 
+
 def get_node_from_template(template_path, res, full=True):
     template = get_template(template_path)
     context = get_context(res)

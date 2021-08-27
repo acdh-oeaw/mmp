@@ -11,6 +11,7 @@ def text_as_tei(request, pk):
     mytei = obj.as_tei()
     return HttpResponse(mytei, content_type="text/xml")
 
+
 def text_to_tei_template(request, pk):
     full = request.GET.get('full')
     res = get_object_or_404(Text, pk=pk)
