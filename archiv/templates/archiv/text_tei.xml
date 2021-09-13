@@ -191,7 +191,7 @@
                                 </persName>
                             {% else %}
                                 <persName xml:lang="{{ lang }}">
-                                    {% with x.name_fr|split_one:" " as names %}
+                                    {% with x.name_lang|split_one:" " as names %}
                                     <forename>{{ names.0 }}</forename>
                                     <surname>{{ names.1 }}</surname>                                    
                                     {% endwith %}
@@ -224,9 +224,7 @@
                 <placeName xml:lang="gr">{{ x.name_gr }}</placeName>
                 {% if x.lat or x.long %}
                 <location>
-                    <geo decls="latLong">
-                        {{ x.lat }} {{ x.long }}
-                    </geo>
+                    <geo decls="latLong">{{ x.lat }} {{ x.long }}</geo>
                 </location>
                 {% endif %}
                 {%  if x.norm_id %}
