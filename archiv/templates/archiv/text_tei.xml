@@ -1,3 +1,5 @@
+{% load webpage_extras %}
+
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="archetext__{{ object.id }}" prev="https://id.acdh.oeaw.ac.at/mmp/archiv/text/{{ object.get_prev_id }}" next="https://id.acdh.oeaw.ac.at/mmp/archiv/text/{{ object.get_next_id }}" xml:base="https://id.acdh.oeaw.ac.at/mmp/archiv/text/">
   <teiHeader>
       <fileDesc>
@@ -8,11 +10,11 @@
             <title type="fullquote">
                <bibl>
                 {% if object.autor %}
-                    {{ object.autor }}: 
+                    {{ object.autor }}:
                 {% else %}
-                    Unknown 
+                    Unknown
                 {% endif %}
-                {{ object.title }} , 
+                {{ object.title }} ,
                 {% if object.alt_title %}
                     {{ object.alt_title }},
                 {% endif %}
@@ -113,19 +115,38 @@
         <langUsage>
             {% if object.text_lang %}
             <language ident="{{ object.text_lang }}"/>
-            {% else %} 
+            {% else %}
             <language ident="lat"/>
             {% endif %}
             <language ident="de"/>
             <language ident="en"/>
         </langUsage>
-        <creation>            
-            <date>
+        <creation>
+            <date notBefore="{{ object.not_before }}" notAfter="{{ object.not_after }}">
                 {{ object.jahrhundert }} century
             </date>
         </creation>
      </profileDesc>
   </teiHeader>
   <text>
+    <body>
+        {% for x in object.rvn_stelle_text_text.all %}
+            <div xml:id="cite__{{ x.id }}">
+                <index>
+                    {% for k in x.key_word.all %}
+                        <term key="keyword__{{ k.id }}" {% if k.art %} type="{{ k.art }}" {% endif %} {% if k.wurzel %} n="{{ k.wurzel }}" {% endif %}>
+                            {% if k.varianten %}
+                                {% with k.varianten|split:";" as variants %}
+                                    {% for v in variants %}
+                                        <term type="variant">{{ v }}</term>
+                                    {% endfor %}
+                                {% endwith %}
+                            {% endif %}
+                        </term>
+                    {% endfor %}
+                </index>
+            </div>
+        {% endfor %}
+    </body>
   </text>
 </TEI>

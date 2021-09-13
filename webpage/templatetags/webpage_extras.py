@@ -50,3 +50,11 @@ def social_media(context):
     values['sm_items'] = PM['social_media']
     values['sm_len'] = len(PM['social_media'])
     return values
+
+
+@register.filter(name='split')
+def split(value, key):
+    """
+        Returns the value turned into a list.
+    """
+    return value.split(key)
