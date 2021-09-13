@@ -214,7 +214,35 @@
         {% endif %}
         {% if object.ort %}
         <listPlace>
-
+            {% for x in object.ort.all %}
+            <place xml:id="place__{{ x.id }}">
+                <placeName xml:lang="en">{{ x.name }}</placeName>
+                <placeName xml:lang="de">{{ x.name_de }}</placeName>
+                <placeName xml:lang="lat">{{ x.name_antik }}</placeName>
+                <placeName xml:lang="fr">{{ x.name_fr }}</placeName>
+                <placeName xml:lang="it">{{ x.name_it }}</placeName>
+                <placeName xml:lang="gr">{{ x.name_gr }}</placeName>
+                {% if x.lat or x.long %}
+                <location>
+                    <geo decls="latLong">
+                        {{ x.lat }} {{ x.long }}
+                    </geo>
+                </location>
+                {% endif %}
+                {%  if x.norm_id %}
+                    <idno type="ID">{{ x.norm_id }}</idno>
+                {% endif %}
+                {%  if x.kommentar %}
+                    <note>{{ x.kommentar }}</note>
+                {% endif %}
+                {%  if x.art %}
+                    <note type="type">{{ x.art }}</note>
+                {% endif %}
+                {%  if x.kategorie %}
+                    <note type="category">{{ x.kategorie }}</note>
+                {% endif %}
+            </place>
+            {% endfor %}
         </listPlace>
         {% endif %}
     </back>

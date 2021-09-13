@@ -497,6 +497,7 @@ class MakeTeiDoc():
                 if person is not None:
                     back.append(listPerson)
                 author.insert(0, persName)
+                
         if self.text.ort:
             back = cur_doc.xpath(".//tei:back", namespaces=self.nsmap)[0]
             listPlace = ET.Element("{http://www.tei-c.org/ns/1.0}listPlace")
