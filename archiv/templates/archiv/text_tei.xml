@@ -88,7 +88,7 @@
         </projectDesc>
         <editorialDecl>
             <p>
-                {{ object.title }} was found in 
+                {{ object.title }} was found in
                 <rs type="bibl" ref="#text__{{ object.id }}">{{ object.edition }}</rs>.
                 Various text passages (citations) were chosen and further analyzed.
                 These original text passages (citations) were often but not always digitized.
@@ -175,5 +175,39 @@
             </div>
         {% endfor %}
     </body>
+    <back>
+        {% if object.autor %}
+        <listPerson>
+            {% for x in object.autor.all %}
+                <person xml:id="person__{{ x.id }}">
+                    {% with "de;en;lat;fr;it;gr"|split:";" as languages %}
+                        {% for lang in languages %}
+                            {% if lang == "de" %}
+                                <persName xml:lang="{{ lang }}">
+                                    {% with x.name|split_one:" " as names %}
+                                    <forename>{{ names.0 }}</forename>
+                                    <surname>{{ names.1 }}</surname>
+                                    {% endwith %}
+                                </persName>
+                            {% else %}
+                                <persName xml:lang="{{ lang }}">
+                                    {% with x.name_fr|split_one:" " as names %}
+                                    <forename>{{ names.0 }}</forename>
+                                    <surname>{{ names.1 }}</surname>                                    
+                                    {% endwith %}
+                                </persName>
+                            {% endif %}
+                        {% endfor %}
+                    {% endwith %}
+                </person>
+            {% endfor %}
+        </listPerson>
+        {% endif %}
+        {% if object.ort %}
+        <listPlace>
+
+        </listPlace>
+        {% endif %}
+    </back>
   </text>
 </TEI>

@@ -58,3 +58,11 @@ def split(value, key):
         Returns the value turned into a list.
     """
     return value.split(key)
+
+
+@register.filter(name='split_one')
+def split_one(value, key):
+    """
+        Returns the value turned into a list.
+    """
+    return value.split(key, 1)
