@@ -199,6 +199,15 @@
                             {% endif %}
                         {% endfor %}
                     {% endwith %}
+                    {% if x.gnd_id %}
+                        <idno type="GND">{{ x.gnd_id }}</idno>
+                    {% endif %}
+                    {% if x.ort %}
+                        <residence>{{ x.ort }}</residence>
+                    {% endif %}
+                    {% if x.kommentar %}
+                        <note>{{ x.kommentar }}</note>
+                    {% endif %}
                 </person>
             {% endfor %}
         </listPerson>
