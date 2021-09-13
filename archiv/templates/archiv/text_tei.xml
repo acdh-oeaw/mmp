@@ -145,6 +145,33 @@
                         </term>
                     {% endfor %}
                 </index>
+                <cit type="original">
+                    <quote {% if object.text_lang %} xml:lang="{{ object.text_lang }}" {% else %} xml:lang="lat" {% endif %}>
+                        {{ x.zitat }}
+                        {% if x.zitat_stelle %}
+                            <ref>{{ x.zitat_stelle }}</ref>
+                        {% endif %}
+                    </quote>
+                </cit>
+                {% if x.translation %}
+                    <div type="translation">
+                        <p xml:lang="mix">
+                            {{ x.translation }}
+                        </p>
+                    </div>
+                {% endif %}
+                {% if x.summary %}
+                    <div type="summary">
+                        <p xml:lang="mix">
+                            {{ x.summary }}
+                        </p>
+                    </div>
+                {% endif %}
+                {% if x.kommentar %}
+                    <note>
+                        {{ x.kommentar }}
+                    </note>
+                {% endif %}
             </div>
         {% endfor %}
     </body>
