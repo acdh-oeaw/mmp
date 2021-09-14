@@ -1168,6 +1168,36 @@ class Stelle(models.Model):
                 kwargs={'pk': prev.first().id}
             )
         return False
+    
+    def tei_markup_foreign(self, res):
+        t = res
+        if self.key_word:
+            for k in self.key_word.all():
+                if k.wurzel:
+                    t = re.sub(rf"({k.wurzel}\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
+                                "<foreign xml:lang='%s'>" % ("lat") + r"\1" + "</foreign>" + r"\2",
+                                t,
+                                flags=re.IGNORECASE)
+                else:
+                    t = re.sub(rf"({k.varianten}\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
+                                "<foreign xml:lang='%s'>" % ("lat") + r"\1" + "</foreign>" + r"\2",
+                                t,
+                                flags=re.IGNORECASE)
+                if k.stichwort:
+                    t = re.sub(rf"([“,,\",′,\s,\(,',‘])({k.stichwort})([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
+                                r"\1" + "<foreign xml:lang='%s'>" % ("lat") + r"\2" +
+                                "</foreign>" + r"\3",
+                                t,
+                                flags=re.IGNORECASE)
+            return ET.fromstring("<p xml:lang='mix'>" + t + "</p>")
+
+    def translation_markup(self):
+        res = self.translation
+        return self.tei_markup_foreign(res)
+
+    def summary_markup(self):
+        res = self.summary
+        return self.tei_markup_foreign(res)
 
 
 class Text(models.Model):

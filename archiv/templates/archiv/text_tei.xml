@@ -157,16 +157,15 @@
                 </cit>
                 {% if x.translation %}
                     <div type="translation">
-                        <p xml:lang="mix">
-                            {{ x.translation }}
-                        </p>
+
+                            {{ x.translation_markup }}
                     </div>
                 {% endif %}
                 {% if x.summary %}
                     <div type="summary">
-                        <p xml:lang="mix">
-                            {{ x.summary }}
-                        </p>
+
+                            {{ x.summary_markup }}
+
                     </div>
                 {% endif %}
                 {% if x.kommentar %}
@@ -177,7 +176,7 @@
             </div>
         {% endfor %}
     </body>
-    <back>        
+    <back>
         {% for x in object.autor.all %}
             {% if x != None %}
             <listPerson>
