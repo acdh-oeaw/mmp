@@ -105,3 +105,14 @@ class ArchivTestCase(TestCase):
         url = f"{reverse('archiv:keyword_data')}?rvn_stelle_key_word_keyword__text__autor=40"
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
+
+    def test_009_text_tei_view(self):
+        for x in MODELS:
+            item = x.objects.first()
+            try:
+                url = item.get_tei_url_template()
+            except AttributeError:
+                url = False
+            if url:
+                response = client.get(url, {'pk': item.id})
+                self.assertEqual(response.status_code, 200)
