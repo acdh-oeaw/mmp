@@ -9,16 +9,18 @@
             </title>
             <title type="fullquote">
                <bibl>
-                {% if object.autor %}
-                    {{ object.autor }}:
-                {% else %}
-                    Unknown
-                {% endif %}
-                {{ object.title }} ,
+                {% for x in object.autor.all %}
+                    {% if x != None %}
+                        {{ x }}:
+                    {% else %}
+                        Unknown:
+                    {% endif %}
+                {% endfor %}
+                {{ object.title }}.
                 {% if object.alt_title %}
-                    {{ object.alt_title }},
+                    {{ object.alt_title }}.
                 {% endif %}
-                in: {{ object.edition }}
+                In: {{ object.edition }}
                </bibl>
             </title>
             <title type="sub">{{ object.get_project_metadata.subtitle }}</title>
@@ -175,10 +177,10 @@
             </div>
         {% endfor %}
     </body>
-    <back>
-        {% if object.autor %}
-        <listPerson>
-            {% for x in object.autor.all %}
+    <back>        
+        {% for x in object.autor.all %}
+            {% if x != None %}
+            <listPerson>
                 <person xml:id="person__{{ x.id }}">
                     {% for key in x.get_names_list %}
                         <persName xml:lang="{{ key.0 }}">{{ key.1 }}</persName>
@@ -203,37 +205,37 @@
                         <note>{{ x.kommentar }}</note>
                     {% endif %}
                 </person>
-            {% endfor %}
-        </listPerson>
-        {% endif %}
-        {% if object.ort %}
-        <listPlace>
-            {% for x in object.ort.all %}
-            <place xml:id="place__{{ x.id }}">
-                {% for key in x.get_names_list %}
-                    <placeName xml:lang="{{ key.0 }}">{{ key.1 }}</placeName>
-                {% endfor %}
-                {% if x.lat or x.long %}
-                <location>
-                    <geo decls="latLong">{{ x.lat }} {{ x.long }}</geo>
-                </location>
-                {% endif %}
-                {%  if x.norm_id %}
-                    <idno type="ID">{{ x.norm_id }}</idno>
-                {% endif %}
-                {%  if x.kommentar %}
-                    <note>{{ x.kommentar }}</note>
-                {% endif %}
-                {%  if x.art %}
-                    <note type="type">{{ x.art }}</note>
-                {% endif %}
-                {%  if x.kategorie %}
-                    <note type="category">{{ x.kategorie }}</note>
-                {% endif %}
-            </place>
-            {% endfor %}
-        </listPlace>
-        {% endif %}
+            </listPerson>
+            {% endif %}
+        {% endfor %}
+        {% for x in object.ort.all %}
+            {% if x != None %}
+            <listPlace>
+                <place xml:id="place__{{ x.id }}">
+                    {% for key in x.get_names_list %}
+                        <placeName xml:lang="{{ key.0 }}">{{ key.1 }}</placeName>
+                    {% endfor %}
+                    {% if x.lat or x.long %}
+                    <location>
+                        <geo decls="latLong">{{ x.lat }} {{ x.long }}</geo>
+                    </location>
+                    {% endif %}
+                    {%  if x.norm_id %}
+                        <idno type="ID">{{ x.norm_id }}</idno>
+                    {% endif %}
+                    {%  if x.kommentar %}
+                        <note>{{ x.kommentar }}</note>
+                    {% endif %}
+                    {%  if x.art %}
+                        <note type="type">{{ x.art }}</note>
+                    {% endif %}
+                    {%  if x.kategorie %}
+                        <note type="category">{{ x.kategorie }}</note>
+                    {% endif %}
+                </place>
+            </listPlace>
+            {% endif %}
+        {% endfor %}
     </back>
   </text>
 </TEI>
