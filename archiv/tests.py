@@ -106,7 +106,7 @@ class ArchivTestCase(TestCase):
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
 
-    def test_009_text_tei_view(self):
+    def test_011_text_tei_view(self):
         for x in MODELS:
             item = x.objects.first()
             try:
