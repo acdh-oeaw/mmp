@@ -547,6 +547,19 @@ class Autor(models.Model):
             )
         return False
 
+    def get_names_list(self):
+        name_list = []
+        for attr in self._meta.get_fields():
+            if attr.name.startswith("name_"):
+                name_list.append([
+                    attr.name.split("_")[1], getattr(self, attr.name)
+                ])
+            elif attr.name == "name":
+                name_list.append([
+                    "de", getattr(self, attr.name)
+                ])
+        return name_list
+
 
 class KeyWord(models.Model):
     """ Keyword """
@@ -921,6 +934,19 @@ class Ort(models.Model):
                 kwargs={'pk': prev.first().id}
             )
         return False
+
+    def get_names_list(self):
+        name_list = []
+        for attr in self._meta.get_fields():
+            if attr.name.startswith("name_"):
+                name_list.append([
+                    attr.name.split("_")[1], getattr(self, attr.name)
+                ])
+            elif attr.name == "name":
+                name_list.append([
+                    "en", getattr(self, attr.name)
+                ])
+        return name_list
 
 
 class Stelle(models.Model):

@@ -180,25 +180,9 @@
         <listPerson>
             {% for x in object.autor.all %}
                 <person xml:id="person__{{ x.id }}">
-                    {% with "de;en;lat;fr;it;gr"|split:";" as languages %}
-                        {% for lang in languages %}
-                            {% if lang == "de" %}
-                                <persName xml:lang="{{ lang }}">
-                                    {% with x.name|split_one:" " as names %}
-                                    <forename>{{ names.0 }}</forename>
-                                    <surname>{{ names.1 }}</surname>
-                                    {% endwith %}
-                                </persName>
-                            {% else %}
-                                <persName xml:lang="{{ lang }}">
-                                    {% with x.name_lang|split_one:" " as names %}
-                                    <forename>{{ names.0 }}</forename>
-                                    <surname>{{ names.1 }}</surname>                                    
-                                    {% endwith %}
-                                </persName>
-                            {% endif %}
-                        {% endfor %}
-                    {% endwith %}
+                    {% for key in x.get_names_list %}
+                        <persName xml:lang="{{ key.0 }}">{{ key.1 }}</persName>
+                    {% endfor %}
                     {% if x.gnd_id %}
                         <idno type="GND">{{ x.gnd_id }}</idno>
                     {% endif %}
@@ -216,12 +200,9 @@
         <listPlace>
             {% for x in object.ort.all %}
             <place xml:id="place__{{ x.id }}">
-                <placeName xml:lang="en">{{ x.name }}</placeName>
-                <placeName xml:lang="de">{{ x.name_de }}</placeName>
-                <placeName xml:lang="lat">{{ x.name_antik }}</placeName>
-                <placeName xml:lang="fr">{{ x.name_fr }}</placeName>
-                <placeName xml:lang="it">{{ x.name_it }}</placeName>
-                <placeName xml:lang="gr">{{ x.name_gr }}</placeName>
+                {% for key in x.get_names_list %}
+                    <placeName xml:lang="{{ key.0 }}">{{ key.1 }}</placeName>
+                {% endfor %}
                 {% if x.lat or x.long %}
                 <location>
                     <geo decls="latLong">{{ x.lat }} {{ x.long }}</geo>
