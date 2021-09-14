@@ -122,7 +122,7 @@
             <language ident="en"/>
         </langUsage>
         <creation>
-            <date notBefore="{{ object.not_before }}" notAfter="{{ object.not_after }}">
+            <date notBefore="{{ object.not_before_tei_normalized }}" notAfter="{{ object.not_after_tei_normalized }}">
                 {{ object.jahrhundert }} century
             </date>
         </creation>
@@ -183,6 +183,16 @@
                     {% for key in x.get_names_list %}
                         <persName xml:lang="{{ key.0 }}">{{ key.1 }}</persName>
                     {% endfor %}
+                    {% if x.start_date %}
+                        <birth when="{{ x.start_date_tei_normalized }}">
+                            <date>{{ x.start_date }}</date>
+                        </birth>
+                    {% endif %}
+                    {% if x.end_date %}
+                        <death when="{{ x.end_date_tei_normalized }}">
+                            <date>{{ x.end_date }}</date>
+                        </death>
+                    {% endif %}
                     {% if x.gnd_id %}
                         <idno type="GND">{{ x.gnd_id }}</idno>
                     {% endif %}
