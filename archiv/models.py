@@ -1168,7 +1168,7 @@ class Stelle(models.Model):
                 kwargs={'pk': prev.first().id}
             )
         return False
-    
+
     def tei_markup_foreign(self, res):
         t = res
         if self.key_word:
@@ -1189,7 +1189,8 @@ class Stelle(models.Model):
                                 "</foreign>" + r"\3",
                                 t,
                                 flags=re.IGNORECASE)
-            return ET.fromstring("<p xml:lang='mix'>" + t + "</p>")
+            # return ET.fromstring("<p xml:lang='mix'>" + t + "</p>")
+            return t
 
     def translation_markup(self):
         res = self.translation
