@@ -1192,16 +1192,21 @@ class Stelle(models.Model):
                                "</foreign>" + r"\3",
                                text,
                                flags=re.IGNORECASE)
-            p = ET.fromstring(f"<p xml:lang='mix'>{ text }</p>")
-            return p
+            return text
 
     def translation_markup(self):
-        res = self.translation
-        return self.tei_markup_foreign(res)
+        if self.translation:
+            res = self.translation
+            return self.tei_markup_foreign(res)
+        else:
+            return ""
 
     def summary_markup(self):
-        res = self.summary
-        return self.tei_markup_foreign(res)
+        if self.summary:
+            res = self.summary
+            return self.tei_markup_foreign(res)
+        else:
+            return ""
 
 
 class Text(models.Model):

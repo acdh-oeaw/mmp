@@ -157,12 +157,12 @@
                 </cit>
                 {% if x.translation %}
                     <div type="translation">
-                        {{ x.translation_markup }}
+                        <p>{{ x.translation_markup|safe|escape  }}</p>
                     </div>
                 {% endif %}
                 {% if x.summary %}
                     <div type="summary">
-                        {{ x.summary_markup }}
+                        <p>{{ x.summary_markup|safe|escape  }}</p>
                     </div>
                 {% endif %}
                 {% if x.kommentar %}
