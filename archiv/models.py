@@ -1171,6 +1171,8 @@ class Stelle(models.Model):
 
     def tei_markup_foreign(self, res):
         text = res
+        text = re.sub(r"<", "[", text, flags=re.IGNORECASE)
+        text = re.sub(r">", "]", text, flags=re.IGNORECASE)
         language = "lat"
         if self.key_word:
             for k in self.key_word.all():
