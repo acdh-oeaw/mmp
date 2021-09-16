@@ -1180,23 +1180,29 @@ class Stelle(models.Model):
         if self.key_word:
             for k in self.key_word.all():
                 if k.wurzel:
-                    text = re.sub(rf"({ k.wurzel }\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
-                               "<foreign xml:lang='%s'>" % (language) + r"\1" + "</foreign>" + r"\2",
-                               text,
-                               flags=re.IGNORECASE)
+                    text = re.sub(
+                        rf"({ k.wurzel }\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
+                        "<foreign xml:lang='%s'>" % (language) + r"\1" + "</foreign>" + r"\2",
+                        text,
+                        flags=re.IGNORECASE
+                    )
                 else:
                     variants = k.varianten.split(";")
                     for v in variants:
-                        text = re.sub(rf"({ v }\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
-                                "<foreign xml:lang='%s'>" % (language) + r"\1" + "</foreign>" + r"\2",
-                                text,
-                                flags=re.IGNORECASE)
+                        text = re.sub(
+                            rf"({ v }\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
+                            "<foreign xml:lang='%s'>" % (language) + r"\1" + "</foreign>" + r"\2",
+                            text,
+                            flags=re.IGNORECASE
+                        )
                 if k.stichwort:
-                    text = re.sub(rf"([“,,\",′,\s,\(,',‘])({ k.stichwort })([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
-                               r"\1" + "<foreign xml:lang='%s'>" % (language) + r"\2" +
-                               "</foreign>" + r"\3",
-                               text,
-                               flags=re.IGNORECASE)
+                    text = re.sub(
+                        rf"([“,,\",′,\s,\(,',‘])({ k.stichwort })([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
+                        r"\1" + "<foreign xml:lang='%s'>" % (language) + r"\2" +
+                        "</foreign>" + r"\3",
+                        text,
+                        flags=re.IGNORECASE
+                    )
             return text
 
     def translation_markup(self):
