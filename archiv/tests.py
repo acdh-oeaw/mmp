@@ -133,3 +133,4 @@ class ArchivTestCase(TestCase):
             url = x.get_tei_url_template()
             response = client.get(url, {'pk': x.id})
             self.assertEqual(response.status_code, 200)
+            self.assertTrue(f'{x.title}' in response.content.decode())
