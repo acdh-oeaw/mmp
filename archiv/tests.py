@@ -2,7 +2,7 @@ from django.apps import apps
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.urls import reverse
-from archiv.models import KeyWord, UseCase
+from archiv.models import KeyWord, UseCase, Text
 from archiv.utils import parse_date, cent_from_year
 
 MODELS = list(apps.all_models['archiv'].values())
@@ -129,12 +129,7 @@ class ArchivTestCase(TestCase):
             self.assertEqual(response.status_code, 200)
 
     def test_011_text_tei_view(self):
-        for x in MODELS:
-            item = x.objects.first()
-            try:
-                url = item.get_tei_url_template()
-            except AttributeError:
-                url = False
-            if url:
-                response = client.get(url, {'pk': item.id})
-                self.assertEqual(response.status_code, 200)
+        for x in Text.objects.all():
+            url = x.get_tei_url_template()
+            response = client.get(url, {'pk': x.id})
+            self.assertEqual(response.status_code, 200)
