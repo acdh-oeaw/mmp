@@ -127,3 +127,14 @@ class ArchivTestCase(TestCase):
             url = reverse('archiv:keyword_by_century', kwargs={'pk': x.id})
             response = client.get(url)
             self.assertEqual(response.status_code, 200)
+
+    def test_011_text_tei_view(self):
+        for x in MODELS:
+            item = x.objects.first()
+            try:
+                url = item.get_tei_url_template()
+            except AttributeError:
+                url = False
+            if url:
+                response = client.get(url, {'pk': item.id})
+                self.assertEqual(response.status_code, 200)

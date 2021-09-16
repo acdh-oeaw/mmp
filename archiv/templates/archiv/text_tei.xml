@@ -1,3 +1,5 @@
+{% load webpage_extras %}
+
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="archetext__{{ object.id }}" prev="https://id.acdh.oeaw.ac.at/mmp/archiv/text/{{ object.get_prev_id }}" next="https://id.acdh.oeaw.ac.at/mmp/archiv/text/{{ object.get_next_id }}" xml:base="https://id.acdh.oeaw.ac.at/mmp/archiv/text/">
   <teiHeader>
       <fileDesc>
@@ -7,19 +9,21 @@
             </title>
             <title type="fullquote">
                <bibl>
-                {% if object.autor %}
-                    {{ object.autor }}: 
-                {% else %}
-                    Unknown 
-                {% endif %}
-                {{ object.title }} , 
+                {% for x in object.autor.all %}
+                    {% if x != None %}
+                        {{ x }}:
+                    {% else %}
+                        Unknown:
+                    {% endif %}
+                {% endfor %}
+                {{ object.title }}.
                 {% if object.alt_title %}
-                    {{ object.alt_title }},
+                    {{ object.alt_title }}.
                 {% endif %}
-                in: {{ object.edition }}
+                In: {{ object.edition }}
                </bibl>
             </title>
-            <title type="sub">{{ object.get_project_metadata['subtitle'] }}</title>
+            <title type="sub">{{ object.get_project_metadata.subtitle }}</title>
             <principal ref="#WP">Walter Pohl</principal>
             <principal ref="#VW">Veronika Wieser</principal>
             <respStmt>
@@ -29,7 +33,7 @@
             </respStmt>
             <respStmt>
                 <resp>Digital Edition (WebApp) and Database</resp>
-                <name ref="#PA">{{ object.get_project_metadata['author'] }}</name>
+                <name ref="#PA">{{ object.get_project_metadata.author }}</name>
             </respStmt>
             <respStmt>
                 <resp>TEI/XML conform markup</resp>
@@ -81,12 +85,12 @@
      <encodingDesc>
         <projectDesc>
             <p>
-                {{ object.get_project_metadata['description'] }}
+                {{ object.get_project_metadata.description }}
             </p>
         </projectDesc>
         <editorialDecl>
             <p>
-                {{ object.title }} was found in 
+                {{ object.title }} was found in
                 <rs type="bibl" ref="#text__{{ object.id }}">{{ object.edition }}</rs>.
                 Various text passages (citations) were chosen and further analyzed.
                 These original text passages (citations) were often but not always digitized.
@@ -113,19 +117,121 @@
         <langUsage>
             {% if object.text_lang %}
             <language ident="{{ object.text_lang }}"/>
-            {% else %} 
+            {% else %}
             <language ident="lat"/>
             {% endif %}
             <language ident="de"/>
             <language ident="en"/>
         </langUsage>
         <creation>
-            <date>
+            <date notBefore="{{ object.not_before_tei_normalized }}" notAfter="{{ object.not_after_tei_normalized }}">
                 {{ object.jahrhundert }} century
             </date>
         </creation>
      </profileDesc>
   </teiHeader>
   <text>
+    <body>
+        {% for x in object.rvn_stelle_text_text.all %}
+            <div xml:id="cite__{{ x.id }}">
+                <index>
+                    {% for k in x.key_word.all %}
+                        <term key="keyword__{{ k.id }}" {% if k.art %} type="{{ k.art }}" {% endif %} {% if k.wurzel %} n="{{ k.wurzel }}" {% endif %}>
+                            {% if k.varianten %}
+                                {% with k.varianten|split:";" as variants %}
+                                    {% for v in variants %}
+                                        <term type="variant">{{ v }}</term>
+                                    {% endfor %}
+                                {% endwith %}
+                            {% endif %}
+                        </term>
+                    {% endfor %}
+                </index>
+                <cit type="original">
+                    <quote {% if object.text_lang %} xml:lang="{{ object.text_lang }}" {% else %} xml:lang="lat" {% endif %}>
+                        {{ x.zitat }}
+                        {% if x.zitat_stelle %}
+                            <ref>{{ x.zitat_stelle }}</ref>
+                        {% endif %}
+                    </quote>
+                </cit>
+                {% if x.translation %}
+                    <div type="translation">
+                        <p>{{ x.translation_markup|safe|escape  }}</p>
+                    </div>
+                {% endif %}
+                {% if x.summary %}
+                    <div type="summary">
+                        <p>{{ x.summary_markup|safe|escape  }}</p>
+                    </div>
+                {% endif %}
+                {% if x.kommentar %}
+                    <note>
+                        {{ x.kommentar }}
+                    </note>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </body>
+    <back>
+        {% for x in object.autor.all %}
+            {% if x != None %}
+            <listPerson>
+                <person xml:id="person__{{ x.id }}">
+                    {% for key in x.get_names_list %}
+                        <persName xml:lang="{{ key.0 }}">{{ key.1 }}</persName>
+                    {% endfor %}
+                    {% if x.start_date %}
+                        <birth when="{{ x.start_date_tei_normalized }}">
+                            <date>{{ x.start_date }}</date>
+                        </birth>
+                    {% endif %}
+                    {% if x.end_date %}
+                        <death when="{{ x.end_date_tei_normalized }}">
+                            <date>{{ x.end_date }}</date>
+                        </death>
+                    {% endif %}
+                    {% if x.gnd_id %}
+                        <idno type="GND">{{ x.gnd_id }}</idno>
+                    {% endif %}
+                    {% if x.ort %}
+                        <residence>{{ x.ort }}</residence>
+                    {% endif %}
+                    {% if x.kommentar %}
+                        <note>{{ x.kommentar }}</note>
+                    {% endif %}
+                </person>
+            </listPerson>
+            {% endif %}
+        {% endfor %}
+        {% for x in object.ort.all %}
+            {% if x != None %}
+            <listPlace>
+                <place xml:id="place__{{ x.id }}">
+                    {% for key in x.get_names_list %}
+                        <placeName xml:lang="{{ key.0 }}">{{ key.1 }}</placeName>
+                    {% endfor %}
+                    {% if x.lat or x.long %}
+                    <location>
+                        <geo decls="latLong">{{ x.lat }} {{ x.long }}</geo>
+                    </location>
+                    {% endif %}
+                    {%  if x.norm_id %}
+                        <idno type="ID">{{ x.norm_id }}</idno>
+                    {% endif %}
+                    {%  if x.kommentar %}
+                        <note>{{ x.kommentar }}</note>
+                    {% endif %}
+                    {%  if x.art %}
+                        <note type="type">{{ x.art }}</note>
+                    {% endif %}
+                    {%  if x.kategorie %}
+                        <note type="category">{{ x.kategorie }}</note>
+                    {% endif %}
+                </place>
+            </listPlace>
+            {% endif %}
+        {% endfor %}
+    </back>
   </text>
 </TEI>
