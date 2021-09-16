@@ -2,8 +2,8 @@ from django.apps import apps
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.urls import reverse
-from archiv.models import KeyWord, UseCase
-from archiv.utils import parse_date
+from archiv.models import KeyWord, UseCase, Text
+from archiv.utils import parse_date, cent_from_year
 
 MODELS = list(apps.all_models['archiv'].values())
 
@@ -19,6 +19,18 @@ DATES = [
     ['800', 800],
     ['asfd800? ? ', 800],
     ['', DATES_DEFAULT]
+]
+
+CENTURY_TEST_DATA = [
+    [0, 1],
+    [-1, -1],
+    [-40, -1],
+    [-101, -2],
+    [40, 1],
+    [100, 1],
+    [101, 2],
+    [1000, 10],
+    [1001, 11]
 ]
 
 
@@ -106,13 +118,19 @@ class ArchivTestCase(TestCase):
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
 
+    def test_009_centuries(self):
+        for x in CENTURY_TEST_DATA:
+            self.assertEqual(cent_from_year(x[0]), x[1])
+
+    def test_010_kw_cent_ep(self):
+        for x in KeyWord.objects.all():
+            url = reverse('archiv:keyword_by_century', kwargs={'pk': x.id})
+            response = client.get(url)
+            self.assertEqual(response.status_code, 200)
+
     def test_011_text_tei_view(self):
-        for x in MODELS:
-            item = x.objects.first()
-            try:
-                url = item.get_tei_url_template()
-            except AttributeError:
-                url = False
-            if url:
-                response = client.get(url, {'pk': item.id})
-                self.assertEqual(response.status_code, 200)
+        for x in Text.objects.all():
+            url = x.get_tei_url_template()
+            response = client.get(url, {'pk': x.id})
+            self.assertEqual(response.status_code, 200)
+            self.assertTrue(f'{x.title}' in response.content.decode())

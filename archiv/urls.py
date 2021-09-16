@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from . import views
-from archiv.endpoint_views import KeyWordEndpoint
+from archiv.endpoint_views import KeyWordEndpoint, key_word_by_century
 
 from . import tei_views
 
@@ -87,6 +87,11 @@ urlpatterns = [
         r'^keyword/$',
         views.KeyWordListView.as_view(),
         name='keyword_browse'
+    ),
+    url(
+        r'^keyword/century/(?P<pk>[0-9]+)$',
+        key_word_by_century,
+        name='keyword_by_century'
     ),
     url(
         r'^keyword-data/$',

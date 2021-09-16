@@ -720,6 +720,9 @@ class KeyWord(models.Model):
     def get_absolute_url(self):
         return reverse('archiv:keyword_detail', kwargs={'pk': self.id})
 
+    def get_keyword_by_century(self):
+        return reverse('archiv:keyword_by_century', kwargs={'pk': self.id})
+
     def get_delete_url(self):
         return reverse('archiv:keyword_delete', kwargs={'pk': self.id})
 
