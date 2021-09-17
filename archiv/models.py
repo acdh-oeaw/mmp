@@ -1176,21 +1176,24 @@ class Stelle(models.Model):
         text = res
         text = re.sub(r"<", "[", text, flags=re.IGNORECASE)
         text = re.sub(r">", "]", text, flags=re.IGNORECASE)
-        language = "lat"
+        language = self.text.text_lang
         if self.key_word:
             for k in self.key_word.all():
                 if k.wurzel:
-                    text = re.sub(rf"({ k.wurzel }\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
-                                  "<foreign xml:lang='%s'>" % (language) + r"\1" + "</foreign>" + r"\2",
+                    text = re.sub(rf"([“,,\",′,\s,\(,',‘])({ k.wurzel }\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
+                                  r"\1" + "<foreign xml:lang='%s'>" % (language) + r"\2" +
+                                  "</foreign>" + r"\3",
                                   text,
                                   flags=re.IGNORECASE)
                 else:
                     variants = k.varianten.split(";")
                     for v in variants:
-                        text = re.sub(rf"({ v }\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
-                                      "<foreign xml:lang='%s'>" % (language) + r"\1" + "</foreign>" + r"\2",
-                                      text,
-                                      flags=re.IGNORECASE)
+                        if len(v) != 0:
+                            text = re.sub(rf"([“,,\",′,\s,\(,',‘])({ v }\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
+                                          r"\1" + "<foreign xml:lang='%s'>" % (language) + r"\2" +
+                                          "</foreign>" + r"\3",
+                                          text,
+                                          flags=re.IGNORECASE)
                 if k.stichwort:
                     text = re.sub(rf"([“,,\",′,\s,\(,',‘])({ k.stichwort })([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
                                   r"\1" + "<foreign xml:lang='%s'>" % (language) + r"\2" +
