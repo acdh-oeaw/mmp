@@ -1,4 +1,3 @@
-from logging import error
 import lxml.etree as ET
 
 from django.http import HttpResponse
