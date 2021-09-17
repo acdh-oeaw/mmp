@@ -1452,7 +1452,10 @@ class Text(models.Model):
     def not_before_tei_normalized(self):
         if self.not_before:
             notBefore = self.not_before
-            return f"{notBefore:04}"
+            if str(notBefore).startswith("-"):
+                return f"{notBefore:05}"
+            else:
+                return f"{notBefore:04}"
         else:
             return ""
 
