@@ -191,13 +191,8 @@ urlpatterns = [
         name='text_delete'),
     url(
         r'^text/xml-tei/(?P<pk>[0-9]+)$',
-        tei_views.text_as_tei,
+        tei_views.text_to_tei,
         name='text_xml'
-    ),
-    url(
-        r'^text/xml-tei-template/(?P<pk>[0-9]+)$',
-        tei_views.text_to_tei_template,
-        name='text_xml_template'
     ),
     url(
         r'^event/$',

@@ -130,7 +130,7 @@ class ArchivTestCase(TestCase):
 
     def test_011_text_tei_view(self):
         for x in Text.objects.all():
-            url = x.get_tei_url_template()
+            url = x.get_tei_url()
             response = client.get(url, {'pk': x.id})
             self.assertEqual(response.status_code, 200)
             self.assertTrue(f'{x.title}' in response.content.decode())
