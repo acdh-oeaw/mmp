@@ -13,7 +13,6 @@ from archiv.utils import parse_date
 from browsing.browsing_utils import model_to_dict
 from vocabs.models import SkosConcept
 
-from tei.archiv_utils import MakeTeiDoc
 from webpage.metadata import PROJECT_METADATA
 
 
@@ -1378,25 +1377,6 @@ class Text(models.Model):
 
     def get_tei_url(self):
         return reverse('archiv:text_xml', kwargs={'pk': self.id})
-
-    def get_tei_url_template(self):
-        return reverse('archiv:text_xml_template', kwargs={'pk': self.id})
-
-    def as_tei_node(self):
-        my_node = MakeTeiDoc(self)
-        return my_node.export_full_doc()
-
-    def as_tei(self):
-        return ET.tostring(self.as_tei_node(), pretty_print=True, encoding='UTF-8')
-
-    def save_tei(self, file=None):
-        my_node = MakeTeiDoc(self)
-        if file is not None:
-            pass
-        else:
-            file = f"{self.id}.xml"
-        my_node.export_full_doc_str(file)
-        return file
 
     @classmethod
     def get_listview_url(self):
