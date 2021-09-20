@@ -137,6 +137,9 @@
                 <index>
                     {% for k in x.key_word.all %}
                         <term key="keyword__{{ k.id }}" {% if k.art %} type="{{ k.art }}" {% endif %} {% if k.wurzel %} n="{{ k.wurzel }}" {% endif %}>
+                            {% if k.stichwort %}
+                                {{ k.stichwort }}
+                            {% endif %}
                             {% if k.varianten %}
                                 {% with k.varianten|split:";" as variants %}
                                     {% for v in variants %}
