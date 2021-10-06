@@ -16,7 +16,7 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS += [
     # 'fixture_magic',
-    'django_extensions',
+    # 'django_extensions',
 ]
 
 DATABASES = {
