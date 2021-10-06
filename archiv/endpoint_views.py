@@ -11,7 +11,7 @@ from archiv.network_utils import create_graph, graph_table
 from archiv.utils import cent_from_year
 
 default = [
-    [x, 0] for x in range(1,15)
+    [x, 0] for x in range(1, 15)
 ]
 
 
@@ -23,15 +23,7 @@ def key_word_by_century(request, pk):
     ).distinct().order_by('not_before').values_list(*props)
     if items:
         df = pd.DataFrame(items, columns=props)
-        try:
-            df['century_start'] = df.apply(lambda x: cent_from_year(x['not_before']), axis=1)
-        except:
-            result = {
-                'id': pk,
-                'title': kw.stichwort,
-                'data': default
-            }
-            return JsonResponse(result)
+        df['century_start'] = df.apply(lambda x: cent_from_year(x['not_before']), axis=1)
         data = df.groupby(
             'century_start',
             as_index=False, group_keys=False, sort=False
