@@ -38,6 +38,7 @@ CHAR_LOOKUP_CHOICES = [
 
 
 class UseCaseListFilter(django_filters.FilterSet):
+    ids = django_filters.CharFilter(method=filter_by_ids)
     title = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=UseCase._meta.get_field('title').help_text,
