@@ -58,6 +58,7 @@ class UseCaseFilterFormHelper(FormHelper):
             Accordion(
                 AccordionGroup(
                     'Advanced search',
+                    'id',
                     'pi_norm_id',
                     'description',
                     'has_stelle__text',

@@ -88,7 +88,7 @@ class UseCaseListFilter(django_filters.FilterSet):
 
     class Meta:
         model = UseCase
-        fields = '__all__'
+        fields = ['id', ]
 
 
 class SpatialCoverageListFilter(django_filters.FilterSet):
