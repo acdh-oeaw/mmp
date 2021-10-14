@@ -356,6 +356,15 @@ class KeyWordListFilter(django_filters.FilterSet):
         help_text="Stelle not after",
         label="Stelle not after"
     )
+    rvn_stelle_key_word_keyword__use_case = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=UseCase.objects.all(),
+        label="Use Case",
+        help_text="Use Case",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:usecase-autocomplete",
+        )
+    )
 
     class Meta:
         model = KeyWord

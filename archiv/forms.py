@@ -198,6 +198,7 @@ class KeyWordFilterFormHelper(FormHelper):
                 'Basic search options',
                 'id',
                 'stichwort',
+                'rvn_stelle_key_word_keyword__use_case',
                 'rvn_stelle_key_word_keyword__start_date',
                 'rvn_stelle_key_word_keyword__end_date',
                 'rvn_stelle_key_word_keyword__text__not_before',
