@@ -457,6 +457,15 @@ class StelleListFilter(django_filters.FilterSet):
             url="archiv-ac:autor-autocomplete",
         )
     )
+    ort = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=Ort.objects.all(),
+        help_text="Related Places",
+        label="Places",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:ort-autocomplete",
+        )
+    )
     summary = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=Stelle._meta.get_field('summary').help_text,
@@ -504,6 +513,16 @@ class StelleListFilter(django_filters.FilterSet):
         lookup_choices=DATE_LOOKUP_CHOICES,
         help_text="Stelle not after",
         label="Stelle not after"
+    )
+    text__start_date = django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text="Text not before",
+        label="Text not before"
+    )
+    text__end_date = django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text="Text not after",
+        label="Text not after"
     )
 
     class Meta:

@@ -323,11 +323,18 @@ class StelleFilterFormHelper(FormHelper):
                 'text__autor',
                 'key_word',
                 'use_case',
-                'start_date',
-                'end_date',
+                'ort',
                 css_id="basic_search_fields"
             ),
             Accordion(
+                AccordionGroup(
+                    'Filter by Date',
+                    'start_date',
+                    'end_date',
+                    'text__start_date',
+                    'text__end_date',
+                    css_id="time_filter"
+                ),
                 AccordionGroup(
                     'Advanced search',
                     'legacy_pk',
@@ -356,6 +363,9 @@ class StelleForm(forms.ModelForm):
             ),
             'key_word': autocomplete.ModelSelect2Multiple(
                 url='archiv-ac:keyword-autocomplete'
+            ),
+            'ort': autocomplete.ModelSelect2(
+                url='archiv-ac:ort-autocomplete'
             )
         }
 
