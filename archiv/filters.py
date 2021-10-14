@@ -111,6 +111,33 @@ class SpatialCoverageListFilter(django_filters.FilterSet):
             url="archiv-ac:stelle-autocomplete",
         )
     )
+    stelle__use_case = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=UseCase.objects.all(),
+        help_text="Usecase",
+        label="Usecase",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:usecase-autocomplete",
+        )
+    )
+    stelle__ort = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=Ort.objects.all(),
+        help_text="Place mentioned in Stelle",
+        label="Place mentioned in Stelle",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:ort-autocomplete",
+        )
+    )
+    stelle__text__ort = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=Ort.objects.all(),
+        help_text="Place mentioned in related Text",
+        label="Place mentioned in related Text",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:ort-autocomplete",
+        )
+    )
     stelle__start_date = django_filters.LookupChoiceFilter(
         lookup_choices=DATE_LOOKUP_CHOICES,
         help_text="Stelle not before",
