@@ -584,6 +584,16 @@ class TextListFilter(django_filters.FilterSet):
         help_text=Text._meta.get_field('legacy_id').help_text,
         label=Text._meta.get_field('legacy_id').verbose_name
     )
+    start_date = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=Text._meta.get_field('start_date').help_text,
+        label=Text._meta.get_field('start_date').verbose_name
+    )
+    end_date = django_filters.CharFilter(
+        lookup_expr='icontains',
+        help_text=Text._meta.get_field('end_date').help_text,
+        label=Text._meta.get_field('end_date').verbose_name
+    )
     autor = django_filters.ModelMultipleChoiceFilter(
         conjoined=True,
         queryset=Autor.objects.all(),

@@ -394,28 +394,34 @@ class TextFilterFormHelper(FormHelper):
         self.layout = Layout(
             Fieldset(
                 'Basic search options',
-                'id',
+                'title',
+                'autor',
                 css_id="basic_search_fields"
             ),
             Accordion(
                 AccordionGroup(
-                    'Advanced search',
+                    'Content',
                     'legacy_pk',
-                    'autor',
-                    'title',
                     'rvn_stelle_text_text__key_word',
-                    'jahrhundert',
-                    'not_before',
-                    'not_after',
                     'edition',
                     'art',
                     'ort',
-                    'kommentar',
-                    css_id="more"
+                    css_id="entities"
+                ),
+                AccordionGroup(
+                    'Dates',
+                    'jahrhundert',
+                    'not_before',
+                    'not_after',
+                    'start_date',
+                    'end_date',
+                    css_id="dates"
                 ),
                 AccordionGroup(
                     'admin',
+                    'id',
                     'legacy_id',
+                    'kommentar',
                     css_id="admin_search"
                 ),
             )
