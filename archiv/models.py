@@ -1352,6 +1352,14 @@ class Text(models.Model):
         is_public=True,
         data_lookup="tort",
     )
+    lang = models.CharField(
+        max_length=3,
+        default=LANG_CHOICES[0][0],
+        choices=LANG_CHOICES,
+        blank=True, null=True,
+        verbose_name="Language of the Text",
+        help_text="ISO-639 Code for the main language of the text"
+    )
     kommentar = models.TextField(
         blank=True, null=True,
         verbose_name="Kommentar",
