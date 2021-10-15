@@ -25,6 +25,12 @@ def set_extra(self, **kwargs):
 
 models.Field.set_extra = set_extra
 
+LANG_CHOICES = (
+    ('lat', 'lat'),
+    ('gre', 'gre'),
+    ('und', 'und')
+)
+
 
 class UseCase(models.Model):
     """ Use Case in regards of a specific research questions """
@@ -1095,6 +1101,11 @@ class Stelle(models.Model):
         help_text="Verwendet in Use Case",
     ).set_extra(
         is_public=True,
+    )
+    lemmata = models.TextField(
+        blank=True, null=True,
+        verbose_name="A lemmatized version of the quote",
+        help_text="A lemmatized version of the quote"
     )
 
     class Meta:
