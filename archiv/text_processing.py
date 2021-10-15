@@ -9,7 +9,7 @@ for x in to_remove:
     cltk_nlp_lat.pipeline.processes.remove(x)
 
 
-def string_to_dict(my_text, lang_model=cltk_nlp_lat):
+def process_text(my_text, lang_model=cltk_nlp_lat):
     cltk_doc = lang_model.analyze(text=my_text)
     processed_text = [
         {

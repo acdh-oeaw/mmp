@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from archiv.models import KeyWord, UseCase, Text
 from archiv.utils import parse_date, cent_from_year
+from archiv.text_processing import process_text
 
 MODELS = list(apps.all_models['archiv'].values())
 
@@ -134,3 +135,8 @@ class ArchivTestCase(TestCase):
             response = client.get(url, {'pk': x.id})
             self.assertEqual(response.status_code, 200)
             self.assertTrue(f'{x.title}' in response.content.decode())
+
+    def test_012_string_to_dict(self):
+        my_text = "De palatio venio Caroli et Carolus fuit mihi locutus"
+        processed = process_text(my_text)
+        self.assertIsInstance(processed, list)
