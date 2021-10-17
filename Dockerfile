@@ -18,6 +18,7 @@ RUN pip install -r requirements.txt --no-cache-dir
 COPY . /opt/app/djangobaseproject/
 
 RUN chown -R www-data:www-data /opt/app
+RUN python /opt/app/djangobaseproject/dl_cltk_models.py
 
 # start server
 EXPOSE 80
