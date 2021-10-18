@@ -139,4 +139,5 @@ class ArchivTestCase(TestCase):
     def test_012_string_to_dict(self):
         my_text = "De palatio venio Caroli et Carolus fuit mihi locutus"
         processed = process_text(my_text)
-        self.assertIsInstance(processed, list)
+        self.assertIsInstance(processed, dict)
+        self.assertTrue('NER' in processed.keys())

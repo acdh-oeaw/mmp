@@ -9,6 +9,8 @@ from django.contrib.gis.db.models import PolygonField
 from django.utils.functional import cached_property
 
 from archiv.utils import parse_date
+from archiv.text_processing import process_text
+
 from browsing.browsing_utils import model_to_dict
 from vocabs.models import SkosConcept
 
@@ -1102,7 +1104,7 @@ class Stelle(models.Model):
     ).set_extra(
         is_public=True,
     )
-    lemmata = models.TextField(
+    lemmata = models.JSONField(
         blank=True, null=True,
         verbose_name="A lemmatized version of the quote",
         help_text="A lemmatized version of the quote"
@@ -1117,6 +1119,8 @@ class Stelle(models.Model):
 
     def save(self, *args, **kwargs):
         self.display_label = self.make_label()
+        if self.zitat:
+            self.lemmata = process_text(self.zitat)
         super(Stelle, self).save(*args, **kwargs)
 
     def make_label(self):
@@ -1351,14 +1355,6 @@ class Text(models.Model):
     ).set_extra(
         is_public=True,
         data_lookup="tort",
-    )
-    lang = models.CharField(
-        max_length=3,
-        default=LANG_CHOICES[0][0],
-        choices=LANG_CHOICES,
-        blank=True, null=True,
-        verbose_name="Language of the Text",
-        help_text="ISO-639 Code for the main language of the text"
     )
     kommentar = models.TextField(
         blank=True, null=True,
