@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 # start-server.sh
 
-echo "download clt models"
-python /opt/app/djangobaseproject/dl_cltk_models.py
+echo "changed owner test"
 
 if [ -n "$DJANGO_SUPERUSER_USERNAME" ] && [ -n "$DJANGO_SUPERUSER_PASSWORD" ] ; then
     (echo "creating superuser ${DJANGO_SUPERUSER_USERNAME}" && python djangobaseproject/manage.py createsuperuser --no-input --noinput --email 'blank@email.com' --settings=djangobaseproject.settings.docker)
