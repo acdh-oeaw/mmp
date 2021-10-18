@@ -11,11 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: docker build
-        run: docker build -t acdhch/nabucco .
+        run: docker build -t acdhch/mmp .
       - name: docker push
         run: |
           docker login -u "${{ secrets.DOCKER_USERNAME }}" -p "${{ secrets.DOCKER_PASSWORD }}" 
-          docker push acdhch/nabucco
+          docker push acdhch/mmp
   rancher:
     needs: push_to_registry
     name: Deploy to rancher
