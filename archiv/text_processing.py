@@ -1,6 +1,6 @@
 import cltk
 from cltk import NLP
-cltk_nlp_lat = NLP(language="lat")
+cltk_nlp_lat = NLP(language="lat", suppress_banner=True)
 to_remove = [
     cltk.lexicon.processes.LatinLexiconProcess,
     cltk.embeddings.processes.LatinEmbeddingsProcess,
