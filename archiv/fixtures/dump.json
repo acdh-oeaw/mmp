@@ -642,6 +642,297 @@
             "kommentar": "",
             "legacy_id": "859.0",
             "legacy_pk": 859,
+            "lemmata": {
+                "NER": [],
+                "orig_text": " eodem anno legatus michahelis imperatoris uenit et cum honore dimissus est.\ngens auarorum a fide defecit.\net heiricus dux foroiuliensis et geroldus prefectus alamanniae et bawariae ab eis interfecti sunt.",
+                "processed_text": [
+                    {
+                        "index_sentence": 0,
+                        "lemma": "idem",
+                        "named_entity": false,
+                        "pos": "pronoun",
+                        "stop_word": true,
+                        "token": "eodem"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "annus",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "anno"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "legatus",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "legatus"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "michahel",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "michahelis"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "imperator",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "imperatoris"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "uenio",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "uenit"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "et",
+                        "named_entity": false,
+                        "pos": "coordinating_conjunction",
+                        "stop_word": true,
+                        "token": "et"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "cum",
+                        "named_entity": false,
+                        "pos": "adposition",
+                        "stop_word": true,
+                        "token": "cum"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "honor",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "honore"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "dimitto",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "dimissus"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "sum",
+                        "named_entity": false,
+                        "pos": "auxiliary",
+                        "stop_word": true,
+                        "token": "est"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": ".",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": "."
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "gens",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "gens"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "auarus",
+                        "named_entity": false,
+                        "pos": "adjective",
+                        "stop_word": false,
+                        "token": "auarorum"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "ab",
+                        "named_entity": false,
+                        "pos": "adposition",
+                        "stop_word": true,
+                        "token": "a"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "fides",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "fide"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "deficio",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "defecit"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": ".",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": "."
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "et",
+                        "named_entity": false,
+                        "pos": "coordinating_conjunction",
+                        "stop_word": true,
+                        "token": "et"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "heiricus",
+                        "named_entity": false,
+                        "pos": "adjective",
+                        "stop_word": false,
+                        "token": "heiricus"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "dux",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "dux"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "forojulio",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "foroiuliensis"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "et",
+                        "named_entity": false,
+                        "pos": "coordinating_conjunction",
+                        "stop_word": true,
+                        "token": "et"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "geroldus",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "geroldus"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "preficio",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "prefectus"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "alamannia",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "alamanniae"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "et",
+                        "named_entity": false,
+                        "pos": "coordinating_conjunction",
+                        "stop_word": true,
+                        "token": "et"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "bamarius",
+                        "named_entity": false,
+                        "pos": "adjective",
+                        "stop_word": false,
+                        "token": "bawariae"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "ab",
+                        "named_entity": false,
+                        "pos": "adposition",
+                        "stop_word": true,
+                        "token": "ab"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "is",
+                        "named_entity": false,
+                        "pos": "pronoun",
+                        "stop_word": true,
+                        "token": "eis"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "interfectus",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "interfecti"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "sum",
+                        "named_entity": false,
+                        "pos": "auxiliary",
+                        "stop_word": true,
+                        "token": "sunt"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": ".",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": "."
+                    }
+                ],
+                "tokens": [
+                    "annus",
+                    "legatus",
+                    "michahel",
+                    "imperator",
+                    "uenio",
+                    "honor",
+                    "dimitto",
+                    "gens",
+                    "auarus",
+                    "fides",
+                    "deficio",
+                    "heiricus",
+                    "dux",
+                    "forojulio",
+                    "geroldus",
+                    "preficio",
+                    "alamannia",
+                    "bamarius",
+                    "interfectus"
+                ]
+            },
             "orig_data_csv": "{\"sid\": 859, \"stexttitel\": 144, \"ssummary\": \"\", \"szitat\": \"(p. 230): eodem anno legatus michahelis imperatoris uenit et cum honore dimissus est.\\ngens auarorum a fide defecit.\\net heiricus dux foroiuliensis et geroldus prefectus alamanniae et bawariae ab eis interfecti sunt.\", \"stranslation\": \"\", \"sstichwort1\": \"imperator\", \"sstichwort2\": \"gens\", \"sstichwort3\": \"Avari\", \"sstichwort4\": \"dux\", \"sstichwort5\": \"Alamannia\", \"sstichwort6\": \"Bawaria\", \"sstichwort7\": \"\", \"sstichwort8\": \"\", \"sstichwort9\": \"\", \"sstichwort10\": \"\", \"sstichwort11\": \"\", \"sstichwort12\": \"\", \"sstichwort13\": \"\", \"sstichwort14\": \"\", \"skommentar\": \"\", \"sperre\": null, \"kommentar_sperre\": \"\", \"sstichwort15\": null, \"sstichwort16\": null, \"sstichwort17\": null, \"sstichwort18\": null}",
             "ort": null,
             "start_date": null,
@@ -670,6 +961,615 @@
             "kommentar": "Avars = Huns",
             "legacy_id": "807.0",
             "legacy_pk": 807,
+            "lemmata": {
+                "NER": [
+                    {
+                        "ner": "mheo",
+                        "ner_type": "PERSON"
+                    },
+                    {
+                        "ner": "maiuvarius",
+                        "ner_type": "LOCATION"
+                    }
+                ],
+                "orig_text": "Eo namque tempore inter Hunorum et gentem Baiuvariorum orta est discordia, ita ut a vastantium manibus circa amnem Anisem interiacentem depopulate urbis pene deserte esse videbatur  (...) Tunc praedictus Theoto Baiuvariorum gentis dux, se discordare cum Avaros praenuntians, illuc eum ire minime sinire professus est; sed aiebat, ut tantus et talis Deo notus episcopus apud se et suos remansisset.",
+                "processed_text": [
+                    {
+                        "index_sentence": 0,
+                        "lemma": "is",
+                        "named_entity": false,
+                        "pos": "pronoun",
+                        "stop_word": true,
+                        "token": "Eo"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "nam",
+                        "named_entity": false,
+                        "pos": "adverb",
+                        "stop_word": true,
+                        "token": "namque"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "tempus",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "tempore"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "inter",
+                        "named_entity": false,
+                        "pos": "adposition",
+                        "stop_word": true,
+                        "token": "inter"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "munus",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "Hunorum"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "et",
+                        "named_entity": false,
+                        "pos": "coordinating_conjunction",
+                        "stop_word": true,
+                        "token": "et"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "gens",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "gentem"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "maiuvarius",
+                        "named_entity": false,
+                        "pos": "adjective",
+                        "stop_word": false,
+                        "token": "Baiuvariorum"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "orior",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "orta"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "sum",
+                        "named_entity": false,
+                        "pos": "auxiliary",
+                        "stop_word": true,
+                        "token": "est"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "discordia",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "discordia"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": ",",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": ","
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "ita",
+                        "named_entity": false,
+                        "pos": "adverb",
+                        "stop_word": true,
+                        "token": "ita"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "ut",
+                        "named_entity": false,
+                        "pos": "subordinating_conjunction",
+                        "stop_word": true,
+                        "token": "ut"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "ab",
+                        "named_entity": false,
+                        "pos": "adposition",
+                        "stop_word": true,
+                        "token": "a"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "vasto",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "vastantium"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "manus",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "manibus"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "circa",
+                        "named_entity": false,
+                        "pos": "adposition",
+                        "stop_word": false,
+                        "token": "circa"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "amnis",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "amnem"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "nnis",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "Anisem"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "interiaceo",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "interiacentem"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "depopulo",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "depopulate"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "urbis",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "urbis"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "pene",
+                        "named_entity": false,
+                        "pos": "adverb",
+                        "stop_word": false,
+                        "token": "pene"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "deserte",
+                        "named_entity": false,
+                        "pos": "adverb",
+                        "stop_word": false,
+                        "token": "deserte"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "sum",
+                        "named_entity": false,
+                        "pos": "auxiliary",
+                        "stop_word": true,
+                        "token": "esse"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "video",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "videbatur"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "(",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": "("
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": ".",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": "."
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": ".",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": "."
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": ".",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": "."
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": ")",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": ")"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "Tunc",
+                        "named_entity": false,
+                        "pos": "adverb",
+                        "stop_word": false,
+                        "token": "Tunc"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "praedico",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "praedictus"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "mheo",
+                        "named_entity": "PERSON",
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "Theoto"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "maiuvarius",
+                        "named_entity": "LOCATION",
+                        "pos": "adjective",
+                        "stop_word": false,
+                        "token": "Baiuvariorum"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "gens",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "gentis"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "dux",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "dux"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": ",",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": ","
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "se",
+                        "named_entity": false,
+                        "pos": "pronoun",
+                        "stop_word": false,
+                        "token": "se"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "discordo",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "discordare"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "cum",
+                        "named_entity": false,
+                        "pos": "adposition",
+                        "stop_word": true,
+                        "token": "cum"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "marum",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "Avaros"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "praenuncio",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "praenuntians"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": ",",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": ","
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "illuc",
+                        "named_entity": false,
+                        "pos": "adverb",
+                        "stop_word": false,
+                        "token": "illuc"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "is",
+                        "named_entity": false,
+                        "pos": "pronoun",
+                        "stop_word": true,
+                        "token": "eum"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "eo",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "ire"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "minus",
+                        "named_entity": false,
+                        "pos": "adverb",
+                        "stop_word": false,
+                        "token": "minime"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "sino",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "sinire"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "profiteor",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "professus"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "sum",
+                        "named_entity": false,
+                        "pos": "auxiliary",
+                        "stop_word": true,
+                        "token": "est"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": ";",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": ";"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "sed",
+                        "named_entity": false,
+                        "pos": "coordinating_conjunction",
+                        "stop_word": true,
+                        "token": "sed"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "ajet",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "aiebat"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": ",",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": ","
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "ut",
+                        "named_entity": false,
+                        "pos": "subordinating_conjunction",
+                        "stop_word": true,
+                        "token": "ut"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "tantus",
+                        "named_entity": false,
+                        "pos": "pronoun",
+                        "stop_word": false,
+                        "token": "tantus"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "et",
+                        "named_entity": false,
+                        "pos": "coordinating_conjunction",
+                        "stop_word": true,
+                        "token": "et"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "talis",
+                        "named_entity": false,
+                        "pos": "pronoun",
+                        "stop_word": false,
+                        "token": "talis"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "eeus",
+                        "named_entity": false,
+                        "pos": "proper_noun",
+                        "stop_word": false,
+                        "token": "Deo"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "nosco",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "notus"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "episcopus",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "episcopus"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "apud",
+                        "named_entity": false,
+                        "pos": "adposition",
+                        "stop_word": true,
+                        "token": "apud"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "se",
+                        "named_entity": false,
+                        "pos": "pronoun",
+                        "stop_word": false,
+                        "token": "se"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "et",
+                        "named_entity": false,
+                        "pos": "coordinating_conjunction",
+                        "stop_word": true,
+                        "token": "et"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "suus",
+                        "named_entity": false,
+                        "pos": "adjective",
+                        "stop_word": true,
+                        "token": "suos"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "remaneo",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "remansisset"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": ".",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": "."
+                    }
+                ],
+                "tokens": [
+                    "tempus",
+                    "munus",
+                    "gens",
+                    "maiuvarius",
+                    "orior",
+                    "discordia",
+                    "vasto",
+                    "manus",
+                    "circa",
+                    "amnis",
+                    "nnis",
+                    "interiaceo",
+                    "depopulo",
+                    "urbis",
+                    "pene",
+                    "deserte",
+                    "video",
+                    "tunc",
+                    "praedico",
+                    "mheo",
+                    "maiuvarius",
+                    "gens",
+                    "dux",
+                    "se",
+                    "discordo",
+                    "marum",
+                    "praenuncio",
+                    "illuc",
+                    "eo",
+                    "minus",
+                    "sino",
+                    "profiteor",
+                    "ajet",
+                    "tantus",
+                    "talis",
+                    "eeus",
+                    "nosco",
+                    "episcopus",
+                    "se",
+                    "remaneo"
+                ]
+            },
             "orig_data_csv": "{\"sid\": 807, \"stexttitel\": 19, \"ssummary\": \"\", \"szitat\": \"p. 12: Eo namque tempore inter Hunorum et gentem Baiuvariorum orta est discordia, ita ut a vastantium manibus circa amnem Anisem interiacentem depopulate urbis pene deserte esse videbatur  (...) Tunc praedictus Theoto Baiuvariorum gentis dux, se discordare cum Avaros praenuntians, illuc eum ire minime sinire professus est; sed aiebat, ut tantus et talis Deo notus episcopus apud se et suos remansisset.\", \"stranslation\": \"Zu jener Zeit war zwischen den Hunnen und dem Volk der Bayern ein Streit ausgebrochen, so dass die St\\u00e4dte um die Enns, die die Grenze bildet, verheert waren (\\u2026)Darum erkl\\u00e4rte der Herzog des Bayernvolkes, Theoto, er liege im Streit mit den Avaren und werde nicht zulassen, dass jener dorthin ziehe. Er sagte aber, ein so bedeutender, Gott wohlbekannter Bischof solle bei ihm und den Seinen bleiben. (Bischoff, p. 13)\", \"sstichwort1\": \"Huni\", \"sstichwort2\": \"Baiuvarii\", \"sstichwort3\": \"dux \", \"sstichwort4\": \"Avari\", \"sstichwort5\": \"episcopus\", \"sstichwort6\": \"gens\", \"sstichwort7\": \"\", \"sstichwort8\": \"\", \"sstichwort9\": \"\", \"sstichwort10\": \"\", \"sstichwort11\": \"\", \"sstichwort12\": \"\", \"sstichwort13\": \"\", \"sstichwort14\": \"\", \"skommentar\": \"Avars = Huns\", \"sperre\": null, \"kommentar_sperre\": \"\", \"sstichwort15\": null, \"sstichwort16\": null, \"sstichwort17\": null, \"sstichwort18\": null}",
             "ort": null,
             "start_date": null,
@@ -735,36 +1635,797 @@
     },
     {
         "fields": {
-            "display_label": " Eo namque tempore praedictus et in...; (Vita Haimhrammi/Emmerami recensio B, 9 (p. 39))",
+            "display_label": "Eodem namque tempore inter gentem H...; (Vita Haimhrammi/Emmerami recensio B, 5 (pp. 33-34))",
             "end_date": null,
             "key_word": [
+                28,
+                30,
                 55,
-                76
+                76,
+                105
             ],
             "kommentar": "",
-            "legacy_id": "284.0",
-            "legacy_pk": 284,
-            "orig_data_csv": "{\"sid\": 284, \"stexttitel\": 60, \"ssummary\": \"\", \"szitat\": \"9 (p. 39): Eo namque tempore praedictus et inluster dux praenotate gentis habebat filiam nomine Otam, quae, inimico suadente, propria libidine succumbens, a cuiusdam iudicis filio nuncupato Sigibaldo devicta concoepit.\", \"stranslation\": \"\", \"sstichwort1\": \"dux \", \"sstichwort2\": \"gens\", \"sstichwort3\": \"\", \"sstichwort4\": \"\", \"sstichwort5\": \"\", \"sstichwort6\": \"\", \"sstichwort7\": \"\", \"sstichwort8\": \"\", \"sstichwort9\": \"\", \"sstichwort10\": \"\", \"sstichwort11\": \"\", \"sstichwort12\": \"\", \"sstichwort13\": \"\", \"sstichwort14\": \"\", \"skommentar\": \"\", \"sperre\": null, \"kommentar_sperre\": \"\", \"sstichwort15\": null, \"sstichwort16\": null, \"sstichwort17\": null, \"sstichwort18\": null}",
+            "legacy_id": "281.0",
+            "legacy_pk": 281,
+            "lemmata": {
+                "NER": [],
+                "orig_text": "Eodem namque tempore inter gentem Hunorum et Bawariorum orta discordia est, ita ut circa Anisam fluvium urbes depopulatae ac loca penitus esse deserta viderentur, et prae multitudine ferarum daretur intellegi, quia fragilitas humana huc illucve transire diffidebat. (...) Tunc praedictus Deoto dux gentis Bawariorum discordiam se habere cum Avaris praenuntiat, et ob hoc illuc eum ire non debere; sed magis, ut talis et tantus pater apud se suosque remaneret, humili prece postulabat.",
+                "processed_text": [
+                    {
+                        "index_sentence": 0,
+                        "lemma": "modes",
+                        "named_entity": false,
+                        "pos": "pronoun",
+                        "stop_word": false,
+                        "token": "Eodem"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "nam",
+                        "named_entity": false,
+                        "pos": "adverb",
+                        "stop_word": true,
+                        "token": "namque"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "tempus",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "tempore"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "inter",
+                        "named_entity": false,
+                        "pos": "adposition",
+                        "stop_word": true,
+                        "token": "inter"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "gens",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "gentem"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "munus",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "Hunorum"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "et",
+                        "named_entity": false,
+                        "pos": "coordinating_conjunction",
+                        "stop_word": true,
+                        "token": "et"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "mamarius",
+                        "named_entity": false,
+                        "pos": "adjective",
+                        "stop_word": false,
+                        "token": "Bawariorum"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "orior",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "orta"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "discordia",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "discordia"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "sum",
+                        "named_entity": false,
+                        "pos": "auxiliary",
+                        "stop_word": true,
+                        "token": "est"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": ",",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": ","
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "ita",
+                        "named_entity": false,
+                        "pos": "adverb",
+                        "stop_word": true,
+                        "token": "ita"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "ut",
+                        "named_entity": false,
+                        "pos": "subordinating_conjunction",
+                        "stop_word": true,
+                        "token": "ut"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "circa",
+                        "named_entity": false,
+                        "pos": "adposition",
+                        "stop_word": false,
+                        "token": "circa"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "mnio",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "Anisam"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "fluvium",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "fluvium"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "urbis",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "urbes"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "depopulo",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "depopulatae"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "atque",
+                        "named_entity": false,
+                        "pos": "coordinating_conjunction",
+                        "stop_word": true,
+                        "token": "ac"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "locus",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "loca"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "penitus",
+                        "named_entity": false,
+                        "pos": "adverb",
+                        "stop_word": false,
+                        "token": "penitus"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "sum",
+                        "named_entity": false,
+                        "pos": "auxiliary",
+                        "stop_word": true,
+                        "token": "esse"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "desero",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "deserta"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "video",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "viderentur"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": ",",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": ","
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "et",
+                        "named_entity": false,
+                        "pos": "coordinating_conjunction",
+                        "stop_word": true,
+                        "token": "et"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "prae",
+                        "named_entity": false,
+                        "pos": "adposition",
+                        "stop_word": false,
+                        "token": "prae"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "multitudo",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "multitudine"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "fera",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "ferarum"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "do",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "daretur"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "intellego",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "intellegi"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": ",",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": ","
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "quia",
+                        "named_entity": false,
+                        "pos": "subordinating_conjunction",
+                        "stop_word": true,
+                        "token": "quia"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "fragilitas",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "fragilitas"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "humanus",
+                        "named_entity": false,
+                        "pos": "adjective",
+                        "stop_word": false,
+                        "token": "humana"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "hic",
+                        "named_entity": false,
+                        "pos": "pronoun",
+                        "stop_word": true,
+                        "token": "huc"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "illucy",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "illucve"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "transeo",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "transire"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": "diffideo",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "diffidebat"
+                    },
+                    {
+                        "index_sentence": 0,
+                        "lemma": ".",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": "."
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "(",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": "("
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": ".",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": "."
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": ".",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": "."
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": ".",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": "."
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": ")",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": ")"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "Tunc",
+                        "named_entity": false,
+                        "pos": "adverb",
+                        "stop_word": false,
+                        "token": "Tunc"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "praedico",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "praedictus"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "meoveo",
+                        "named_entity": false,
+                        "pos": "auxiliary",
+                        "stop_word": false,
+                        "token": "Deoto"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "dux",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "dux"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "gens",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "gentis"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "mamarius",
+                        "named_entity": false,
+                        "pos": "adjective",
+                        "stop_word": false,
+                        "token": "Bawariorum"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "discordia",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "discordiam"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "se",
+                        "named_entity": false,
+                        "pos": "pronoun",
+                        "stop_word": false,
+                        "token": "se"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "habeo",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "habere"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "cum",
+                        "named_entity": false,
+                        "pos": "adposition",
+                        "stop_word": true,
+                        "token": "cum"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "mvares",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "Avaris"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "praenuncio",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "praenuntiat"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": ",",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": ","
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "et",
+                        "named_entity": false,
+                        "pos": "coordinating_conjunction",
+                        "stop_word": true,
+                        "token": "et"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "ob",
+                        "named_entity": false,
+                        "pos": "adposition",
+                        "stop_word": true,
+                        "token": "ob"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "hic",
+                        "named_entity": false,
+                        "pos": "pronoun",
+                        "stop_word": true,
+                        "token": "hoc"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "illuc",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "illuc"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "is",
+                        "named_entity": false,
+                        "pos": "pronoun",
+                        "stop_word": true,
+                        "token": "eum"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "eo",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "ire"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "non",
+                        "named_entity": false,
+                        "pos": "adverb",
+                        "stop_word": true,
+                        "token": "non"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": "debeo",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "debere"
+                    },
+                    {
+                        "index_sentence": 1,
+                        "lemma": ";",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": ";"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "sed",
+                        "named_entity": false,
+                        "pos": "coordinating_conjunction",
+                        "stop_word": true,
+                        "token": "sed"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "magis",
+                        "named_entity": false,
+                        "pos": "adverb",
+                        "stop_word": true,
+                        "token": "magis"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": ",",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": ","
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "ut",
+                        "named_entity": false,
+                        "pos": "subordinating_conjunction",
+                        "stop_word": true,
+                        "token": "ut"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "talis",
+                        "named_entity": false,
+                        "pos": "pronoun",
+                        "stop_word": false,
+                        "token": "talis"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "et",
+                        "named_entity": false,
+                        "pos": "coordinating_conjunction",
+                        "stop_word": true,
+                        "token": "et"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "tantus",
+                        "named_entity": false,
+                        "pos": "pronoun",
+                        "stop_word": false,
+                        "token": "tantus"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "pater",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "pater"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "apud",
+                        "named_entity": false,
+                        "pos": "adposition",
+                        "stop_word": true,
+                        "token": "apud"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "se",
+                        "named_entity": false,
+                        "pos": "pronoun",
+                        "stop_word": false,
+                        "token": "se"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "suosquis",
+                        "named_entity": false,
+                        "pos": "adjective",
+                        "stop_word": false,
+                        "token": "suosque"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "remaneo",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "remaneret"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": ",",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": ","
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "humilis",
+                        "named_entity": false,
+                        "pos": "adjective",
+                        "stop_word": false,
+                        "token": "humili"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "precus",
+                        "named_entity": false,
+                        "pos": "noun",
+                        "stop_word": false,
+                        "token": "prece"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": "postulo",
+                        "named_entity": false,
+                        "pos": "verb",
+                        "stop_word": false,
+                        "token": "postulabat"
+                    },
+                    {
+                        "index_sentence": 2,
+                        "lemma": ".",
+                        "named_entity": false,
+                        "pos": "punctuation",
+                        "stop_word": false,
+                        "token": "."
+                    }
+                ],
+                "tokens": [
+                    "modes",
+                    "tempus",
+                    "gens",
+                    "munus",
+                    "mamarius",
+                    "orior",
+                    "discordia",
+                    "circa",
+                    "mnio",
+                    "fluvium",
+                    "urbis",
+                    "depopulo",
+                    "locus",
+                    "penitus",
+                    "desero",
+                    "video",
+                    "prae",
+                    "multitudo",
+                    "fera",
+                    "do",
+                    "intellego",
+                    "fragilitas",
+                    "humanus",
+                    "illucy",
+                    "transeo",
+                    "diffideo",
+                    "tunc",
+                    "praedico",
+                    "meoveo",
+                    "dux",
+                    "gens",
+                    "mamarius",
+                    "discordia",
+                    "se",
+                    "habeo",
+                    "mvares",
+                    "praenuncio",
+                    "illuc",
+                    "eo",
+                    "debeo",
+                    "talis",
+                    "tantus",
+                    "pater",
+                    "se",
+                    "suosquis",
+                    "remaneo",
+                    "humilis",
+                    "precus",
+                    "postulo"
+                ]
+            },
+            "orig_data_csv": "{\"sid\": 281, \"stexttitel\": 60, \"ssummary\": \"\", \"szitat\": \"5 (pp. 33-34): Eodem namque tempore inter gentem Hunorum et Bawariorum orta discordia est, ita ut circa Anisam fluvium urbes depopulatae ac loca penitus esse deserta viderentur, et prae multitudine ferarum daretur intellegi, quia fragilitas humana huc illucve transire diffidebat. (...) Tunc praedictus Deoto dux gentis Bawariorum discordiam se habere cum Avaris praenuntiat, et ob hoc illuc eum ire non debere; sed magis, ut talis et tantus pater apud se suosque remaneret, humili prece postulabat.\", \"stranslation\": \"\", \"sstichwort1\": \"gens\", \"sstichwort2\": \"Huni\", \"sstichwort3\": \"Bawarii\", \"sstichwort4\": \"dux\", \"sstichwort5\": \"Avari\", \"sstichwort6\": \"\", \"sstichwort7\": \"\", \"sstichwort8\": \"\", \"sstichwort9\": \"\", \"sstichwort10\": \"\", \"sstichwort11\": \"\", \"sstichwort12\": \"\", \"sstichwort13\": \"\", \"sstichwort14\": \"\", \"skommentar\": \"\", \"sperre\": null, \"kommentar_sperre\": \"\", \"sstichwort15\": null, \"sstichwort16\": null, \"sstichwort17\": null, \"sstichwort18\": null}",
             "ort": null,
             "start_date": null,
             "summary": "",
             "text": 61,
             "translation": "",
-            "use_case": [],
-            "zitat": " Eo namque tempore praedictus et inluster dux praenotate gentis habebat filiam nomine Otam, quae, inimico suadente, propria libidine succumbens, a cuiusdam iudicis filio nuncupato Sigibaldo devicta concoepit.",
-            "zitat_stelle": "9 (p. 39)"
+            "use_case": [
+                9,
+                4
+            ],
+            "zitat": "Eodem namque tempore inter gentem Hunorum et Bawariorum orta discordia est, ita ut circa Anisam fluvium urbes depopulatae ac loca penitus esse deserta viderentur, et prae multitudine ferarum daretur intellegi, quia fragilitas humana huc illucve transire diffidebat. (...) Tunc praedictus Deoto dux gentis Bawariorum discordiam se habere cum Avaris praenuntiat, et ob hoc illuc eum ire non debere; sed magis, ut talis et tantus pater apud se suosque remaneret, humili prece postulabat.",
+            "zitat_stelle": "5 (pp. 33-34)"
         },
         "model": "archiv.stelle",
-        "pk": 285
+        "pk": 282
+    },
+    {
+        "fields": {
+            "art": "Eigenname",
+            "kommentar": "",
+            "legacy_id": "",
+            "legacy_pk": null,
+            "name_gr": "",
+            "orig_data_csv": "",
+            "related_keyword": [
+                28
+            ],
+            "stichwort": "Avaria",
+            "varianten": "terra Avarorum",
+            "wurzel": "Avar"
+        },
+        "model": "archiv.keyword",
+        "pk": 420
     },
     {
         "fields": {
             "fuzzy_geom": "SRID=4326;POLYGON ((14.511108 48.239309, 14.475403 48.222843, 14.476776 48.19081, 14.471283 48.140432, 14.46991 48.112016, 14.413605 48.042283, 14.402618 48.016568, 14.460297 48.031264, 14.509735 48.131268, 14.511108 48.218268, 14.534454 48.238394, 14.511108 48.239309))",
             "fuzzyness": 1,
-            "key_word": 28,
+            "key_word": 420,
             "kommentar": "Avaria, frontier between Bavaria and Avaria according to Arbeo/Vita Haimhrammi.",
             "stelle": [
-                285
+                282
             ]
         },
         "model": "archiv.spatialcoverage",

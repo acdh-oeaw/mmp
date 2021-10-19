@@ -5,14 +5,31 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 
 
-from archiv.models import KeyWord, Text
-from archiv.filters import KeyWordListFilter
+from archiv.models import KeyWord, Text, Stelle
+from archiv.filters import KeyWordListFilter, StelleListFilter
 from archiv.network_utils import create_graph, graph_table
 from archiv.utils import cent_from_year
+from archiv.nlp_utils import get_nlp_data
 
 default = [
     [x, 0] for x in range(1, 15)
 ]
+
+
+class NlpDataStelle(ListView):
+
+    model = Stelle
+    filter_class = StelleListFilter
+
+    def get_queryset(self, **kwargs):
+        qs = super(NlpDataStelle, self).get_queryset().distinct()
+        self.filter = self.filter_class(self.request.GET, queryset=qs)
+        return self.filter.qs.distinct()
+
+    def render_to_response(self, context, **kwargs):
+        qs = self.get_queryset().distinct().order_by('id')
+        data = get_nlp_data(qs)
+        return JsonResponse(data)
 
 
 def key_word_by_century(request, pk):

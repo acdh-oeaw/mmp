@@ -1,6 +1,8 @@
 from django.conf.urls import url
+
+from archiv.filters import StelleListFilter
 from . import views
-from archiv.endpoint_views import KeyWordEndpoint, key_word_by_century
+from archiv.endpoint_views import KeyWordEndpoint, NlpDataStelle, key_word_by_century
 
 from . import tei_views
 
@@ -218,5 +220,10 @@ urlpatterns = [
         r'^event/delete/(?P<pk>[0-9]+)$',
         views.EventDelete.as_view(),
         name='event_delete'
+    ),
+    url(
+        r'^nlp-data/$',
+        NlpDataStelle.as_view(),
+        name='nlp_data'
     ),
 ]

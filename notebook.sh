@@ -1,1 +1,1 @@
-python manage.py shell_plus --notebook --settings=djangobaseproject.settings.pg_local
+python manage.py shell_plus --notebook --settings=djangobaseproject.settings.dev
