@@ -1,6 +1,5 @@
 from django.conf.urls import url
 
-from archiv.filters import StelleListFilter
 from . import views
 from archiv.endpoint_views import KeyWordEndpoint, NlpDataStelle, key_word_by_century
 
