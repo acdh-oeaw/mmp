@@ -9,14 +9,18 @@ class ModelingProcess(models.Model):
     param = models.JSONField()
 
     def __str__(self):
-        return "{self.modeling_type}, created: {self.created_at}"
+        return f"{self.modeling_type}, created: {self.created_at}"
 
 
 class Topic(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
-    word = models.JSONField
+    word = models.JSONField()
     title = models.CharField(max_length=250)
     weight = models.FloatField(blank=True, null=True)
     process = models.ForeignKey(
         'ModelingProcess', on_delete=models.CASCADE
     )
+    topic_index = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.title}"
