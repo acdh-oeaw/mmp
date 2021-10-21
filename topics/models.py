@@ -5,7 +5,7 @@ class ModelingProcess(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     process_start = models.DateTimeField()
     process_end = models.DateTimeField()
-    modeling_type = models.CharField(max_length=250)
+    modeling_type = models.CharField(max_length=250, default="gensim.models.LdaModel")
     param = models.JSONField()
 
     def __str__(self):
