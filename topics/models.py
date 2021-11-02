@@ -1,5 +1,7 @@
 from django.db import models
 
+from archiv.models import Stelle
+
 
 class ModelingProcess(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -20,7 +22,26 @@ class Topic(models.Model):
     process = models.ForeignKey(
         'ModelingProcess', on_delete=models.CASCADE
     )
-    topic_index = models.IntegerField()
+    topic_index = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.title}"
+
+
+class TextTopicRelation(models.Model):
+    text = models.ForeignKey(
+        Stelle,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='has_topics'
+    )
+    topic = models.ForeignKey(
+        Topic,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='has_related_texts'
+    )
+    weight = models.FloatField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.text} <> {self.topic}"
