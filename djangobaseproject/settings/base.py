@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework_gis',
     'reversion',
+    'ckeditor',
+    'ckeditor_uploader',
     'crispy_forms',
     'django_filters',
     'django_tables2',
@@ -171,3 +173,4 @@ LEAFLET_CONFIG = {
 # default empty choice label = '-----'; if set to None it is removed as option
 # https://django-filter.readthedocs.io/en/stable/ref/settings.html#filters-empty-choice-label
 FILTERS_EMPTY_CHOICE_LABEL = None
+CKEDITOR_UPLOAD_PATH = "uploads/"

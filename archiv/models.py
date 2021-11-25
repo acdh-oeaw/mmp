@@ -8,6 +8,8 @@ from django.contrib.gis.geos import Polygon
 from django.contrib.gis.db.models import PolygonField
 from django.utils.functional import cached_property
 
+from ckeditor_uploader.fields import RichTextUploadingField
+
 from archiv.utils import parse_date
 from archiv.text_processing import process_text
 from archiv.nlp_utils import get_nlp_data
@@ -71,6 +73,12 @@ class UseCase(models.Model):
     ).set_extra(
         is_public=True,
         arche_prop="hasDescription",
+    )
+    story_map = RichTextUploadingField(
+        blank=True,
+        null=True,
+        verbose_name="Story Map",
+        help_text="Story Map"
     )
 
     class Meta:
