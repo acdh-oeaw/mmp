@@ -12,7 +12,8 @@ from archiv.api_serializers import (
     TextSerializer,
     SpatialCoverageSerializer,
     UseCaseSerializer,
-    ConeSerializer
+    ConeSerializer,
+    GeoJsonOrtSerializer
 )
 from archiv.models import (
     Autor,
@@ -74,6 +75,13 @@ class KeyWordViewSet(viewsets.ModelViewSet):
 class OrtViewSet(viewsets.ModelViewSet):
     queryset = Ort.objects.all()
     serializer_class = OrtSerializer
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filter_class = OrtListFilter
+
+
+class GeoJsonOrtSerializerViewSet(viewsets.ModelViewSet):
+    queryset = Ort.objects.all()
+    serializer_class = GeoJsonOrtSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filter_class = OrtListFilter
 

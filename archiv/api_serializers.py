@@ -78,6 +78,20 @@ class OrtSerializer(serializers.HyperlinkedModelSerializer):
         fields = "__all__"
 
 
+class GeoJsonOrtSerializer(
+    GeoFeatureModelSerializer, serializers.HyperlinkedModelSerializer
+):
+
+    class Meta:
+        model = Ort
+        geo_field = 'coords'
+        fields = [
+            'name', 'name_antik', 'name_de',
+            'name_fr', 'name_gr', 'art', 'kategorie'
+        ]
+        depth = 0
+
+
 class StelleSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
