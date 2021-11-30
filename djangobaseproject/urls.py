@@ -25,7 +25,7 @@ router.register(r'text-topic-relation', topics_api_views.TextTopicRelationViewSe
 router.register(r'modeling-process', topics_api_views.ModelingProcessViewSet)
 
 urlpatterns = [
-    url(r'^api/', include(router.urls)),
+    url(r'^api/', include(router.urls), name="api-root"),
     url('api-docs/', include_docs_urls(title='MMP-API')),
     url(
         r'^api-auth/',

@@ -11,7 +11,8 @@ BASE_URL = 'https://mpp.acdh.oeaw.ac.at'
 
 
 ALLOWED_HOSTS = [
-    "127.0.0.1"
+    "127.0.0.1",
+    "testserver",
 ]
 
 INSTALLED_APPS += [

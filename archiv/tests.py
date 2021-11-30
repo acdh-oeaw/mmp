@@ -146,3 +146,7 @@ class ArchivTestCase(TestCase):
         url = reverse('archiv:nlp_data')
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
+
+    # def test_014_api(self):
+    #     response = client.get(f"{reverse('api-root')}&format=json", content_type='application/json').json()
+    #     print(response)

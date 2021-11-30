@@ -96,6 +96,7 @@
     {
         "fields": {
             "art": null,
+            "coords": null,
             "kategorie": null,
             "kommentar": null,
             "lat": null,
@@ -181,6 +182,7 @@
     {
         "fields": {
             "art": 4,
+            "coords": "SRID=4326;POINT (11.166667 46.666667)",
             "kategorie": 7,
             "kommentar": "",
             "lat": 46.666667,
@@ -242,6 +244,7 @@
     {
         "fields": {
             "art": 4,
+            "coords": "SRID=4326;POINT (5.57 50.6425)",
             "kategorie": 6,
             "kommentar": "",
             "lat": 50.6425,
@@ -263,6 +266,7 @@
     {
         "fields": {
             "art": 4,
+            "coords": "SRID=4326;POINT (4.267 50.333)",
             "kategorie": 5,
             "kommentar": "",
             "lat": 50.333,
@@ -337,6 +341,7 @@
     {
         "fields": {
             "art": 4,
+            "coords": "SRID=4326;POINT (11.748889 48.402778)",
             "kategorie": 6,
             "kommentar": "",
             "lat": 48.402778,
@@ -488,6 +493,7 @@
             "description": "This usecase will investigate the Avar realm in Carolingian times, spanning from the last appearances of the Avar army in the mid 8th c. to the conquest in 796 by Charlemagne  and his son Pippin. Finally, it will map the subsequent attempt to create a provinicia avaria in the early 9th century, an attempt that ultimately failed.",
             "pi_norm_id": "",
             "principal_investigator": "Katharina Winckler",
+            "story_map": null,
             "title": "The Carolingian Avaria: Katharina Winckler"
         },
         "model": "archiv.usecase",
@@ -498,6 +504,7 @@
             "description": "",
             "pi_norm_id": "",
             "principal_investigator": "",
+            "story_map": null,
             "title": "Steppe Peoples 5: View from the \"West\" (5th-10th c.)"
         },
         "model": "archiv.usecase",
