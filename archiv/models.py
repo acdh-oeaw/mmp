@@ -4,7 +4,7 @@ import re
 
 from django.db import models
 from django.urls import reverse
-from django.contrib.gis.geos import Polygon
+from django.contrib.gis.geos import Polygon, Point
 from django.contrib.gis.db.models import PolygonField, PointField
 from django.utils.functional import cached_property
 
@@ -926,6 +926,11 @@ class Ort(models.Model):
             return "{}".format(self.name)
         else:
             return "{}".format(self.legacy_id)
+
+    def save(self, *args, **kwargs):
+        if self.long and self.lat:
+            self.coords = Point(self.long, self.lat)
+        super(Ort, self).save(*args, **kwargs)
 
     def field_dict(self):
         return model_to_dict(self)
