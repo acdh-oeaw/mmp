@@ -5,7 +5,7 @@ import re
 from django.db import models
 from django.urls import reverse
 from django.contrib.gis.geos import Polygon
-from django.contrib.gis.db.models import PolygonField
+from django.contrib.gis.db.models import PolygonField, PointField
 from django.utils.functional import cached_property
 
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -866,6 +866,12 @@ class Ort(models.Model):
     ).set_extra(
         is_public=True,
         data_lookup="KoordN",
+    )
+    coords = PointField(
+        blank=True,
+        null=True,
+        help_text="automatically populated",
+        verbose_name="Coordinates"
     )
     art = models.ForeignKey(
         SkosConcept,

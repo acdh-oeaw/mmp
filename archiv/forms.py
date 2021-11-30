@@ -298,7 +298,7 @@ class OrtForm(forms.ModelForm):
 
     class Meta:
         model = Ort
-        fields = "__all__"
+        exclude = ['coords', ]
 
     def __init__(self, *args, **kwargs):
         super(OrtForm, self).__init__(*args, **kwargs)
