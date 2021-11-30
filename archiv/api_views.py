@@ -1,5 +1,6 @@
 # API views for archiv created by appcreator
 import django_filters.rest_framework
+from rest_framework.filters import OrderingFilter
 from rest_framework import viewsets
 from rest_framework_gis.pagination import GeoJsonPagination
 
@@ -38,14 +39,20 @@ from archiv.filters import (
 class UseCaseViewSet(viewsets.ModelViewSet):
     queryset = UseCase.objects.all()
     serializer_class = UseCaseSerializer
-    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filter_backends = [
+        django_filters.rest_framework.DjangoFilterBackend,
+        OrderingFilter
+    ]
     filter_class = UseCaseListFilter
 
 
 class SpatialCoverageViewSet(viewsets.ModelViewSet):
     queryset = SpatialCoverage.objects.all()
     serializer_class = SpatialCoverageSerializer
-    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filter_backends = [
+        django_filters.rest_framework.DjangoFilterBackend,
+        OrderingFilter
+    ]
     filter_class = SpatialCoverageListFilter
     pagination_class = GeoJsonPagination
 
@@ -53,7 +60,10 @@ class SpatialCoverageViewSet(viewsets.ModelViewSet):
 class ConeViewSet(viewsets.ModelViewSet):
     queryset = SpatialCoverage.objects.exclude(fuzzy_geom=None)
     serializer_class = ConeSerializer
-    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filter_backends = [
+        django_filters.rest_framework.DjangoFilterBackend,
+        OrderingFilter
+    ]
     filter_class = SpatialCoverageListFilter
     pagination_class = GeoJsonPagination
 
@@ -61,42 +71,60 @@ class ConeViewSet(viewsets.ModelViewSet):
 class AutorViewSet(viewsets.ModelViewSet):
     queryset = Autor.objects.all()
     serializer_class = AutorSerializer
-    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filter_backends = [
+        django_filters.rest_framework.DjangoFilterBackend,
+        OrderingFilter
+    ]
     filter_class = AutorListFilter
 
 
 class KeyWordViewSet(viewsets.ModelViewSet):
     queryset = KeyWord.objects.all()
     serializer_class = KeyWordSerializer
-    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filter_backends = [
+        django_filters.rest_framework.DjangoFilterBackend,
+        OrderingFilter
+    ]
     filter_class = KeyWordListFilter
 
 
 class OrtViewSet(viewsets.ModelViewSet):
     queryset = Ort.objects.all()
     serializer_class = OrtSerializer
-    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filter_backends = [
+        django_filters.rest_framework.DjangoFilterBackend,
+        OrderingFilter
+    ]
     filter_class = OrtListFilter
 
 
-class GeoJsonOrtSerializerViewSet(viewsets.ModelViewSet):
+class GeoJsonOrtViewSet(viewsets.ModelViewSet):
     queryset = Ort.objects.all()
     serializer_class = GeoJsonOrtSerializer
-    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filter_backends = [
+        django_filters.rest_framework.DjangoFilterBackend,
+        OrderingFilter
+    ]
     filter_class = OrtListFilter
 
 
 class StelleViewSet(viewsets.ModelViewSet):
     queryset = Stelle.objects.all()
     serializer_class = StelleSerializer
-    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filter_backends = [
+        django_filters.rest_framework.DjangoFilterBackend,
+        OrderingFilter
+    ]
     filter_class = StelleListFilter
 
 
 class TextViewSet(viewsets.ModelViewSet):
     queryset = Text.objects.all()
     serializer_class = TextSerializer
-    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filter_backends = [
+        django_filters.rest_framework.DjangoFilterBackend,
+        OrderingFilter
+    ]
     filter_class = TextListFilter
 
 

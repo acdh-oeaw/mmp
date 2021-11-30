@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'guardian',
     'rest_framework_gis',
     'reversion',
     'ckeditor',
@@ -54,6 +55,7 @@ INSTALLED_APPS = [
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend', 'guardian.backends.ObjectPermissionBackend')
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
