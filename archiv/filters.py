@@ -659,7 +659,7 @@ class TextListFilter(django_filters.FilterSet):
         help_text='Keyword',
         label='Keyword',
         widget=autocomplete.Select2Multiple(
-            url="archiv-ac:ort-autocomplete",
+            url="archiv-ac:keyword-autocomplete",
         )
     )
 
