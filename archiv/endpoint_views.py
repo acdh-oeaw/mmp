@@ -1,6 +1,5 @@
 import pandas as pd
 from collections import Counter, defaultdict
-from django.db.models import Count
 from django.views.generic.list import ListView
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
