@@ -1,6 +1,8 @@
 server {
     listen 8020;
     client_max_body_size 30M;
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-Frame-Options https://acdh-oeaw.github.io/;
 
     location /static/ {
         autoindex on;

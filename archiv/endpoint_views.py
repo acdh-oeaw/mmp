@@ -1,5 +1,6 @@
 import pandas as pd
-from collections import defaultdict
+from collections import Counter, defaultdict
+from django.db.models import Count
 from django.views.generic.list import ListView
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
@@ -14,6 +15,27 @@ from archiv.nlp_utils import get_nlp_data
 default = [
     [x, 0] for x in range(1, 15)
 ]
+
+
+class KeyWordStelle(ListView):
+
+    model = Stelle
+    filter_class = StelleListFilter
+
+    def get_queryset(self, **kwargs):
+        qs = super(KeyWordStelle, self).get_queryset().distinct()
+        self.filter = self.filter_class(self.request.GET, queryset=qs)
+        return self.filter.qs.distinct()
+
+    def render_to_response(self, context, **kwargs):
+        qs = self.get_queryset().distinct().order_by('id')
+        key_words = [x[0] for x in list(qs.values_list('key_word__stichwort'))]
+        key_word_counter = Counter(key_words)
+        data = {
+            "token_dict":
+            [{x[0]: x[1]} for x in key_word_counter.most_common(len(key_words))]
+        }
+        return JsonResponse(data)
 
 
 class NlpDataStelle(ListView):

@@ -1,7 +1,9 @@
 from django.conf.urls import url
 
 from . import views
-from archiv.endpoint_views import KeyWordEndpoint, NlpDataStelle, key_word_by_century
+from archiv.endpoint_views import (
+    KeyWordEndpoint, NlpDataStelle, key_word_by_century, KeyWordStelle
+)
 
 from . import tei_views
 
@@ -224,5 +226,10 @@ urlpatterns = [
         r'^nlp-data/$',
         NlpDataStelle.as_view(),
         name='nlp_data'
+    ),
+    url(
+        r'^kw-stelle/$',
+        KeyWordStelle.as_view(),
+        name='keyword_stelle'
     ),
 ]
