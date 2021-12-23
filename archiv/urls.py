@@ -2,7 +2,7 @@ from django.conf.urls import url
 
 from . import views
 from archiv.endpoint_views import (
-    KeyWordEndpoint, NlpDataStelle, key_word_by_century, KeyWordStelle
+    KeyWordEndpoint, NlpDataStelle, key_word_by_century, KeyWordStelle, StopWordListView
 )
 
 from . import tei_views
@@ -231,5 +231,10 @@ urlpatterns = [
         r'^kw-stelle/$',
         KeyWordStelle.as_view(),
         name='keyword_stelle'
+    ),
+    url(
+        r'^stopwords/$',
+        StopWordListView.as_view(),
+        name='stopwords'
     ),
 ]

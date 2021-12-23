@@ -10,10 +10,25 @@ from archiv.filters import KeyWordListFilter, StelleListFilter
 from archiv.network_utils import create_graph, graph_table
 from archiv.utils import cent_from_year
 from archiv.nlp_utils import get_nlp_data
+from topics.models import StopWord
+
 
 default = [
     [x, 0] for x in range(1, 15)
 ]
+
+
+class StopWordListView(ListView):
+
+    model = StopWord
+
+    def render_to_response(self, context, **kwargs):
+        qs = self.get_queryset().distinct().order_by('id')
+        words = [x[0] for x in qs.values_list('word')]
+        data = {
+            'result': words
+        }
+        return JsonResponse(data)
 
 
 class KeyWordStelle(ListView):
