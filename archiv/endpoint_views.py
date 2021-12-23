@@ -18,15 +18,17 @@ default = [
 ]
 
 
+STOP_WORDS = [x[0] for x in StopWord.objects.all().values_list('word')]
+
+
 class StopWordListView(ListView):
 
     model = StopWord
 
     def render_to_response(self, context, **kwargs):
-        qs = self.get_queryset().distinct().order_by('id')
-        words = [x[0] for x in qs.values_list('word')]
+
         data = {
-            'result': words
+            'result': STOP_WORDS
         }
         return JsonResponse(data)
 
@@ -65,7 +67,14 @@ class NlpDataStelle(ListView):
     def render_to_response(self, context, **kwargs):
         qs = self.get_queryset().distinct().order_by('id')
         data = get_nlp_data(qs)
-        return JsonResponse(data)
+        clean_token = [x for x in data['token'] if x not in STOP_WORDS]
+        clean_data = {
+            "token": clean_token,
+            "token_dict": dict(Counter(clean_token)),
+            "token_count": len(clean_token),
+            "unique_token_count": len(set(clean_token))
+        }
+        return JsonResponse(clean_data)
 
 
 def key_word_by_century(request, pk):
