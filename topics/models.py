@@ -45,3 +45,16 @@ class TextTopicRelation(models.Model):
 
     def __str__(self):
         return f"{self.text} <> {self.topic}"
+
+
+class StopWord(models.Model):
+    word = models.CharField(
+        blank=True,
+        null=True,
+        max_length=250,
+        verbose_name="stop word",
+        help_text="Word/Token to be excluded from any processing"
+    )
+
+    def __str__(self):
+        return f"{self.word}"
