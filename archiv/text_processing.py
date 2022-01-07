@@ -19,6 +19,9 @@ def clean_token(token_dict):
     if token_dict['named_entity']:
         name = f"{token_dict['token'][0]}{token_dict['lemma'][1:]}".lower()
         return name
+    if token_dict['pos'] in ['adjective', 'noun']:
+        name = f"{token_dict['token'][0]}{token_dict['lemma'][1:]}".lower()
+        return name
     return token_dict['lemma'].lower()
 
 
