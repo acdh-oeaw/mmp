@@ -36,6 +36,7 @@ urlpatterns = [
     ),
     url(r'^admin/', admin.site.urls),
     url(r'^browsing/', include('browsing.urls', namespace='browsing')),
+    url(r'^story-maps/', include('story_map.urls', namespace='story_map')),
     url(r'^netvis/', include('netvis.urls', namespace="netvis")),
     url(r'^info/', include('infos.urls', namespace='info')),
     url(r'^archiv/', include('archiv.urls', namespace='archiv')),

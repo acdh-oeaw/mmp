@@ -16,6 +16,7 @@ from archiv.nlp_utils import get_nlp_data
 
 from browsing.browsing_utils import model_to_dict
 from vocabs.models import SkosConcept
+from story_map.models import Story
 
 from webpage.metadata import PROJECT_METADATA
 
@@ -79,6 +80,15 @@ class UseCase(models.Model):
         null=True,
         verbose_name="Story Map",
         help_text="Story Map"
+    )
+    knightlab_stoy_map = models.ManyToManyField(
+        Story,
+        related_name='has_use_case',
+        blank=True,
+        verbose_name="Knightlab Story Map",
+        help_text="Knightlab Story Map",
+    ).set_extra(
+        is_public=True,
     )
 
     class Meta:

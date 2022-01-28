@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'archiv',
     'fontawesome_free',
     'topics',
+    'story_map'
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
