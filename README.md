@@ -78,3 +78,10 @@ REDMINE_ID=12345
 ### dev notes
 
 `python manage.py remove_stale_contenttypes`
+
+
+### cheat sheet
+
+http://127.0.0.1:8000/archiv-ac/schlagwort-autocomplete/
+http://127.0.0.1:8000/archiv-ac/eigenname-autocomplete/
+http://127.0.0.1:8000/story-maps/data/1/

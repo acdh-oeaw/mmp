@@ -10,6 +10,23 @@ from archiv.models import (
     SpatialCoverage,
     UseCase,
 )
+from story_map.models import Story, Slide
+
+
+class StorySerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Story
+        fields = "__all__"
+        depth = 2
+
+
+class SlideSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Slide
+        fields = "__all__"
+        depth = 1
 
 
 class UseCaseSerializer(serializers.HyperlinkedModelSerializer):

@@ -15,6 +15,16 @@ urlpatterns = [
         name='keyword-autocomplete'
     ),
     url(
+        r'^schlagwort-autocomplete/$',
+        dal_views.Schlagwort.as_view(),
+        name='schlagwort-autocomplete'
+    ),
+    url(
+        r'^eigenname-autocomplete/$',
+        dal_views.Eigenname.as_view(),
+        name='eigenname-autocomplete'
+    ),
+    url(
         r'^ort-autocomplete/$',
         dal_views.OrtAC.as_view(),
         name='ort-autocomplete'

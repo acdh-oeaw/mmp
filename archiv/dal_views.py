@@ -42,6 +42,34 @@ class KeyWordAC(autocomplete.Select2QuerySetView):
         return qs
 
 
+class Eigenname(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = KeyWord.objects.filter(art="Eigenname")
+
+        if self.q:
+            qs = qs.filter(
+                Q(legacy_id__icontains=self.q) |
+                Q(stichwort__icontains=self.q) |
+                Q(wurzel__icontains=self.q) |
+                Q(varianten__icontains=self.q)
+            )
+        return qs
+
+
+class Schlagwort(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        qs = KeyWord.objects.filter(art="Schlagwort")
+
+        if self.q:
+            qs = qs.filter(
+                Q(legacy_id__icontains=self.q) |
+                Q(stichwort__icontains=self.q) |
+                Q(wurzel__icontains=self.q) |
+                Q(varianten__icontains=self.q)
+            )
+        return qs
+
+
 class OrtAC(autocomplete.Select2QuerySetView):
     def get_queryset(self):
         qs = Ort.objects.all()

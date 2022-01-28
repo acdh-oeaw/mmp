@@ -14,7 +14,9 @@ from archiv.api_serializers import (
     SpatialCoverageSerializer,
     UseCaseSerializer,
     ConeSerializer,
-    GeoJsonOrtSerializer
+    GeoJsonOrtSerializer,
+    StorySerializer,
+    SlideSerializer
 )
 from archiv.models import (
     Autor,
@@ -34,6 +36,26 @@ from archiv.filters import (
     SpatialCoverageListFilter,
     UseCaseListFilter
 )
+
+from story_map.models import Story, Slide
+
+
+class StoryViewSet(viewsets.ModelViewSet):
+    queryset = Story.objects.all()
+    serializer_class = StorySerializer
+    filter_backends = [
+        django_filters.rest_framework.DjangoFilterBackend,
+        OrderingFilter
+    ]
+
+
+class SlideViewSet(viewsets.ModelViewSet):
+    queryset = Slide.objects.all()
+    serializer_class = SlideSerializer
+    filter_backends = [
+        django_filters.rest_framework.DjangoFilterBackend,
+        OrderingFilter
+    ]
 
 
 class UseCaseViewSet(viewsets.ModelViewSet):

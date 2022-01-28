@@ -23,6 +23,8 @@ router.register(r'usecase', archiv_api_views.UseCaseViewSet)
 router.register(r'topics', topics_api_views.TopicViewSet)
 router.register(r'text-topic-relation', topics_api_views.TextTopicRelationViewSet)
 router.register(r'modeling-process', topics_api_views.ModelingProcessViewSet)
+router.register(r'stories', archiv_api_views.StoryViewSet)
+router.register(r'slides', archiv_api_views.SlideViewSet)
 
 urlpatterns = [
     url(r'^api/', include(router.urls), name="api-root"),
