@@ -17,17 +17,17 @@ from topics.api_serializers import (
 
 
 class ModelingProcessViewSet(viewsets.ModelViewSet):
-    queryset = ModelingProcess.objects.all()
+    queryset = ModelingProcess.objects.all().distinct()
     serializer_class = ModelingProcessSerializer
 
 
 class TopicViewSet(viewsets.ModelViewSet):
-    queryset = Topic.objects.all()
+    queryset = Topic.objects.all().distinct()
     serializer_class = TopicSerializer
 
 
 class TextTopicRelationViewSet(viewsets.ModelViewSet):
-    queryset = TextTopicRelation.objects.all()
+    queryset = TextTopicRelation.objects.all().distinct()
     serializer_class = TextTopicRelationSerializer
     filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
     filter_class = TextTopicRelationListFilter

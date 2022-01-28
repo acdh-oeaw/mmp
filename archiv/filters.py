@@ -517,14 +517,14 @@ class StelleListFilter(django_filters.FilterSet):
         help_text=Stelle._meta.get_field('translation').help_text,
         label=Stelle._meta.get_field('translation').verbose_name
     )
-    key_word = django_filters.ModelMultipleChoiceFilter(
-        conjoined=True,
-        queryset=KeyWord.objects.all(),
-        help_text=Stelle._meta.get_field('key_word').help_text,
-        label=Stelle._meta.get_field('key_word').verbose_name,
-        widget=autocomplete.Select2Multiple(
-            url="archiv-ac:keyword-autocomplete",
-        )
+    key_word__art = django_filters.ChoiceFilter(
+        choices=(
+            ('Schlagwort', 'Schlagwort'),
+            ('Eigenname', 'Eigenname')
+        ),
+        empty_label='---',
+        help_text="Type of Keyword, choose 'Schlagwort' or 'Eigenname'",
+        label="Type of Keyword"
     )
     use_case = django_filters.ModelMultipleChoiceFilter(
         conjoined=True,

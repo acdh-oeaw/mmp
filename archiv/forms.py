@@ -327,6 +327,7 @@ class StelleFilterFormHelper(FormHelper):
                 'text__autor',
                 'key_word',
                 'use_case',
+                'key_word__art',
                 'ort',
                 css_id="basic_search_fields"
             ),

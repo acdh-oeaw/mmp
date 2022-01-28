@@ -85,3 +85,9 @@ REDMINE_ID=12345
 http://127.0.0.1:8000/archiv-ac/schlagwort-autocomplete/
 http://127.0.0.1:8000/archiv-ac/eigenname-autocomplete/
 http://127.0.0.1:8000/story-maps/data/1/
+
+http://127.0.0.1:8000/api/stelle/?key_word__art=Schlagwort
+http://127.0.0.1:8000/api/stelle/?key_word__art=Eigenname
+http://127.0.0.1:8000/api/keyword/?art=Eigenname
+127.0.0.1:8000/api/keyword/?art=Schlagwort
+

@@ -41,7 +41,7 @@ from story_map.models import Story, Slide
 
 
 class StoryViewSet(viewsets.ModelViewSet):
-    queryset = Story.objects.all()
+    queryset = Story.objects.all().distinct()
     serializer_class = StorySerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
@@ -50,7 +50,7 @@ class StoryViewSet(viewsets.ModelViewSet):
 
 
 class SlideViewSet(viewsets.ModelViewSet):
-    queryset = Slide.objects.all()
+    queryset = Slide.objects.all().distinct()
     serializer_class = SlideSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
@@ -59,7 +59,7 @@ class SlideViewSet(viewsets.ModelViewSet):
 
 
 class UseCaseViewSet(viewsets.ModelViewSet):
-    queryset = UseCase.objects.all()
+    queryset = UseCase.objects.all().distinct()
     serializer_class = UseCaseSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
@@ -69,7 +69,7 @@ class UseCaseViewSet(viewsets.ModelViewSet):
 
 
 class SpatialCoverageViewSet(viewsets.ModelViewSet):
-    queryset = SpatialCoverage.objects.all()
+    queryset = SpatialCoverage.objects.all().distinct()
     serializer_class = SpatialCoverageSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
@@ -91,7 +91,7 @@ class ConeViewSet(viewsets.ModelViewSet):
 
 
 class AutorViewSet(viewsets.ModelViewSet):
-    queryset = Autor.objects.all()
+    queryset = Autor.objects.all().distinct()
     serializer_class = AutorSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
@@ -101,7 +101,7 @@ class AutorViewSet(viewsets.ModelViewSet):
 
 
 class KeyWordViewSet(viewsets.ModelViewSet):
-    queryset = KeyWord.objects.all()
+    queryset = KeyWord.objects.all().distinct()
     serializer_class = KeyWordSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
@@ -111,7 +111,7 @@ class KeyWordViewSet(viewsets.ModelViewSet):
 
 
 class OrtViewSet(viewsets.ModelViewSet):
-    queryset = Ort.objects.all()
+    queryset = Ort.objects.all().distinct()
     serializer_class = OrtSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
@@ -121,7 +121,7 @@ class OrtViewSet(viewsets.ModelViewSet):
 
 
 class GeoJsonOrtViewSet(viewsets.ModelViewSet):
-    queryset = Ort.objects.all()
+    queryset = Ort.objects.all().distinct()
     serializer_class = GeoJsonOrtSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
@@ -131,7 +131,7 @@ class GeoJsonOrtViewSet(viewsets.ModelViewSet):
 
 
 class StelleViewSet(viewsets.ModelViewSet):
-    queryset = Stelle.objects.all()
+    queryset = Stelle.objects.all().distinct()
     serializer_class = StelleSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
@@ -141,7 +141,7 @@ class StelleViewSet(viewsets.ModelViewSet):
 
 
 class TextViewSet(viewsets.ModelViewSet):
-    queryset = Text.objects.all()
+    queryset = Text.objects.all().distinct()
     serializer_class = TextSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
