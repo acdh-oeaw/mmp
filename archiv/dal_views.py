@@ -18,7 +18,12 @@ class AutorAC(autocomplete.Select2QuerySetView):
         if self.q:
             qs = qs.filter(
                 Q(legacy_id__icontains=self.q) |
-                Q(name__icontains=self.q)
+                Q(name__icontains=self.q) |
+                Q(name_lat__icontains=self.q) |
+                Q(name_en__icontains=self.q) |
+                Q(name_fr__icontains=self.q) |
+                Q(name_it__icontains=self.q) |
+                Q(name_gr__icontains=self.q)
             )
         return qs
 
