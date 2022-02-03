@@ -158,6 +158,16 @@ class SpatialCoverageListFilter(django_filters.FilterSet):
         help_text="Text not after",
         label="Text not after"
     )
+    stelle__text__autor__start_date_year = django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text="Autor not before",
+        label="Autor not before"
+    )
+    stelle__text__autor__end_date_year = django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text="Autor not after",
+        label="Autor not after"
+    )
     stelle__text__autor = django_filters.ModelMultipleChoiceFilter(
         conjoined=True,
         queryset=Autor.objects.all(),
@@ -252,6 +262,16 @@ class AutorListFilter(django_filters.FilterSet):
             url="archiv-ac:keyword-autocomplete",
         )
     )
+    start_date_year = django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text=Autor._meta.get_field('start_date_year').help_text,
+        label=Autor._meta.get_field('start_date_year').verbose_name
+    )
+    end_date_year = django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text=Autor._meta.get_field('end_date_year').help_text,
+        label=Autor._meta.get_field('end_date_year').verbose_name
+    )
 
     class Meta:
         model = Autor
@@ -335,6 +355,16 @@ class KeyWordListFilter(django_filters.FilterSet):
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:ort-autocomplete",
         )
+    )
+    rvn_stelle_key_word_keyword__text__autor__start_date_year = django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text="Autor not before",
+        label="Autor not before"
+    )
+    rvn_stelle_key_word_keyword__text__autor__end_date_year = django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text="Autor not after",
+        label="Autor not after"
     )
     rvn_stelle_key_word_keyword__text__not_before = django_filters.LookupChoiceFilter(
         lookup_choices=DATE_LOOKUP_CHOICES,
@@ -560,6 +590,16 @@ class StelleListFilter(django_filters.FilterSet):
         help_text="Text not after",
         label="Text not after"
     )
+    text__autor__start_date_year = django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text="Autor not before",
+        label="Autor not before"
+    )
+    text__autor__end_date_year = django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text="Autor not after",
+        label="Autor not after"
+    )
 
     class Meta:
         model = Stelle
@@ -602,6 +642,16 @@ class TextListFilter(django_filters.FilterSet):
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:autor-autocomplete",
         )
+    )
+    autor__start_date_year = django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text="Autor not before",
+        label="Autor not before"
+    )
+    autor__end_date_year = django_filters.LookupChoiceFilter(
+        lookup_choices=DATE_LOOKUP_CHOICES,
+        help_text="Autor not after",
+        label="Autor not after"
     )
     title = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,

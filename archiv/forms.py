@@ -118,6 +118,8 @@ class SpatialCoverageFilterFormHelper(FormHelper):
                 'stelle__text__autor',
                 'stelle__text__not_before',
                 'stelle__text__not_after',
+                'stelle__text__autor__start_date_year',
+                'stelle__text__autor__end_date_year',
                 css_id="basic_search_fields"
             ),
         )
@@ -149,8 +151,8 @@ class AutorFilterFormHelper(FormHelper):
                     'name_fr',
                     'name_it',
                     'jahrhundert',
-                    'start_date',
-                    'end_date',
+                    'start_date_year',
+                    'end_date_year',
                     'kommentar',
                     'rvn_text_autor_autor__rvn_stelle_text_text__key_word',
                     css_id="more"
@@ -217,6 +219,8 @@ class KeyWordFilterFormHelper(FormHelper):
                     'rvn_stelle_key_word_keyword',
                     'rvn_stelle_key_word_keyword__text',
                     'rvn_stelle_key_word_keyword__text__autor__ort',
+                    'rvn_stelle_key_word_keyword__text__autor__start_date_year',
+                    'rvn_stelle_key_word_keyword__text__autor__end_date_year',
                     css_id="more"
                 ),
                 AccordionGroup(
@@ -338,6 +342,8 @@ class StelleFilterFormHelper(FormHelper):
                     'end_date',
                     'text__start_date',
                     'text__end_date',
+                    'text__autor__start_date_year',
+                    'text__autor__end_date_year',
                     css_id="time_filter"
                 ),
                 AccordionGroup(
@@ -416,6 +422,8 @@ class TextFilterFormHelper(FormHelper):
                     'not_after',
                     'start_date',
                     'end_date',
+                    'autor__start_date_year',
+                    'autor__end_date_year',
                     css_id="dates"
                 ),
                 AccordionGroup(
