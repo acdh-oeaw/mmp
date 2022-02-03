@@ -470,7 +470,7 @@ class Autor(models.Model):
         is_public=True,
         data_lookup="abis",
     )
-    start_date_year = models.PositiveSmallIntegerField(
+    start_date_year = models.SmallIntegerField(
         blank=True, null=True,
         verbose_name="Start Date",
         help_text="e.g. '300'; Muss (!) als Zahl eingegeben werden"
@@ -478,7 +478,7 @@ class Autor(models.Model):
         is_public=True,
         arche_prop="hasCoverageStartDate"
     )
-    end_date_year = models.PositiveSmallIntegerField(
+    end_date_year = models.SmallIntegerField(
         blank=True, null=True,
         verbose_name="End Date",
         help_text="e.g. '350', Muss (!) als Zahl eingegeben werden"
@@ -560,6 +560,19 @@ class Autor(models.Model):
             rvn_stelle_key_word_keyword__in=self.get_stellen
         ).distinct()
         return keywords
+
+    def save(self, *args, **kwargs):
+        if self.start_date and not self.start_date_year:
+            try:
+                self.start_date_year = int(self.start_date)
+            except ValueError:
+                pass
+        if self.end_date and not self.end_date_year:
+            try:
+                self.end_date_year = int(self.end_date)
+            except ValueError:
+                pass
+        super(Autor, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('archiv:autor_detail', kwargs={'pk': self.id})
