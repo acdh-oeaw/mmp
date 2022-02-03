@@ -311,13 +311,7 @@ class KeyWordListFilter(django_filters.FilterSet):
     )
     art = django_filters.ChoiceFilter(
         empty_label='-------',
-        choices=(
-            ('Schlagwort', 'Schlagwort'),
-            ('Eigenname', 'Eigenname'),
-            ('Ethonym', 'Ethonym'),
-            ('Region', 'Region'),
-            ('Unsicher', 'Unsicher')
-        ),
+        choices=KeyWord._meta.get_field('art').choices,
         help_text=KeyWord._meta.get_field('art').help_text,
         label=KeyWord._meta.get_field('art').verbose_name
     )
