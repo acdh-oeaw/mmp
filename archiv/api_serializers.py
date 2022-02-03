@@ -66,6 +66,7 @@ class ConeSerializer(
         geo_field = 'cone'
         auto_bbox = False
         fields = (
+            'id',
             'stelle',
             'key_word',
             'fuzzyness'
@@ -103,7 +104,7 @@ class GeoJsonOrtSerializer(
         model = Ort
         geo_field = 'coords'
         fields = [
-            'name', 'name_antik', 'name_de',
+            'id', 'name', 'name_antik', 'name_de',
             'name_fr', 'name_gr', 'art', 'kategorie'
         ]
         depth = 0
