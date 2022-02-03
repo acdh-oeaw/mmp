@@ -641,6 +641,9 @@ class KeyWord(models.Model):
         choices=(
             ('Schlagwort', 'Schlagwort'),
             ('Eigenname', 'Eigenname'),
+            ('Ethonym', 'Ethonym'),
+            ('Region', 'Region'),
+            ('Unsicher', 'Unsicher')
         ),
         verbose_name="Art des Stichworts",
         help_text="Art des Stichworts",
