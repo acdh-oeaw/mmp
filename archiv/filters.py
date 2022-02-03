@@ -309,6 +309,18 @@ class KeyWordListFilter(django_filters.FilterSet):
         help_text=KeyWord._meta.get_field('legacy_id').help_text,
         label=KeyWord._meta.get_field('legacy_id').verbose_name
     )
+    art = django_filters.ChoiceFilter(
+        empty_label='-------',
+        choices=(
+            ('Schlagwort', 'Schlagwort'),
+            ('Eigenname', 'Eigenname'),
+            ('Ethonym', 'Ethonym'),
+            ('Region', 'Region'),
+            ('Unsicher', 'Unsicher')
+        ),
+        help_text=KeyWord._meta.get_field('art').help_text,
+        label=KeyWord._meta.get_field('art').verbose_name
+    )
     stichwort = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=KeyWord._meta.get_field('stichwort').help_text,
