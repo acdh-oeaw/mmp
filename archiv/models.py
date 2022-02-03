@@ -470,6 +470,22 @@ class Autor(models.Model):
         is_public=True,
         data_lookup="abis",
     )
+    start_date_year = models.PositiveSmallIntegerField(
+        blank=True, null=True,
+        verbose_name="Start Date",
+        help_text="e.g. '300'; Muss (!) als Zahl eingegeben werden"
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasCoverageStartDate"
+    )
+    end_date_year = models.PositiveSmallIntegerField(
+        blank=True, null=True,
+        verbose_name="End Date",
+        help_text="e.g. '350', Muss (!) als Zahl eingegeben werden"
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasCoverageEndDate"
+    )
     ort = models.ForeignKey(
         "Ort",
         related_name='rvn_autor_ort_ort',
