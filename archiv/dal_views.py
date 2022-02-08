@@ -29,6 +29,10 @@ class AutorAC(autocomplete.Select2QuerySetView):
 
 
 class KeyWordAC(autocomplete.Select2QuerySetView):
+
+    def get_result_label(self, item):
+        return f"{item.stichwort}, <{item.art}>"
+
     def get_queryset(self):
         qs = KeyWord.objects.all()
 
