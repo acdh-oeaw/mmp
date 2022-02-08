@@ -46,6 +46,7 @@ class SpatialCoverageSerializer(
         geo_field = 'fuzzy_geom'
         auto_bbox = True
         fields = (
+            'id',
             'stelle',
             'key_word',
             'fuzzyness'
