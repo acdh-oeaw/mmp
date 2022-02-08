@@ -46,7 +46,47 @@ class KeyWordAC(autocomplete.Select2QuerySetView):
         return qs
 
 
+class Region(autocomplete.Select2QuerySetView):
+
+    def get_result_label(self, item):
+        return f"{item.stichwort}, <{item.art}>"
+
+    def get_queryset(self):
+        qs = KeyWord.objects.filter(art="Region")
+
+        if self.q:
+            qs = qs.filter(
+                Q(legacy_id__icontains=self.q) |
+                Q(stichwort__icontains=self.q) |
+                Q(wurzel__icontains=self.q) |
+                Q(varianten__icontains=self.q)
+            )
+        return qs
+
+
+class Ethonym(autocomplete.Select2QuerySetView):
+
+    def get_result_label(self, item):
+        return f"{item.stichwort}, <{item.art}>"
+
+    def get_queryset(self):
+        qs = KeyWord.objects.filter(art="Ethonym")
+
+        if self.q:
+            qs = qs.filter(
+                Q(legacy_id__icontains=self.q) |
+                Q(stichwort__icontains=self.q) |
+                Q(wurzel__icontains=self.q) |
+                Q(varianten__icontains=self.q)
+            )
+        return qs
+
+
 class Eigenname(autocomplete.Select2QuerySetView):
+
+    def get_result_label(self, item):
+        return f"{item.stichwort}, <{item.art}>"
+
     def get_queryset(self):
         qs = KeyWord.objects.filter(art="Eigenname")
 

@@ -20,6 +20,16 @@ urlpatterns = [
         name='schlagwort-autocomplete'
     ),
     url(
+        r'^ethonym-autocomplete/$',
+        dal_views.Ethonym.as_view(),
+        name='ethonym-autocomplete'
+    ),
+    url(
+        r'^region-autocomplete/$',
+        dal_views.Region.as_view(),
+        name='retion-autocomplete'
+    ),
+    url(
         r'^eigenname-autocomplete/$',
         dal_views.Eigenname.as_view(),
         name='eigenname-autocomplete'
