@@ -189,6 +189,13 @@ class SpatialCoverageListFilter(django_filters.FilterSet):
 
 class AutorListFilter(django_filters.FilterSet):
     ids = django_filters.CharFilter(method=filter_by_ids)
+    has_usecase = django_filters.BooleanFilter(
+        field_name='rvn_text_autor_autor__rvn_stelle_text_text__use_case',
+        lookup_expr='isnull',
+        exclude=True,
+        label="Related to any UseCase?",
+        help_text="Set 'Yes' to show only objects related to any UseCase"
+    )
     legacy_id = django_filters.CharFilter(
         lookup_expr='icontains',
         help_text=Autor._meta.get_field('legacy_id').help_text,
@@ -295,6 +302,13 @@ class AutorListFilter(django_filters.FilterSet):
 
 class KeyWordListFilter(django_filters.FilterSet):
     ids = django_filters.CharFilter(method=filter_by_ids)
+    has_usecase = django_filters.BooleanFilter(
+        field_name='rvn_stelle_key_word_keyword__use_case',
+        lookup_expr='isnull',
+        exclude=True,
+        label="Related to any UseCase?",
+        help_text="Set 'Yes' to show only objects related to any UseCase"
+    )
     rvn_stelle_key_word_keyword__text__autor = django_filters.ModelMultipleChoiceFilter(
         conjoined=True,
         queryset=Autor.objects.all(),
@@ -506,6 +520,13 @@ class OrtListFilter(django_filters.FilterSet):
 
 class StelleListFilter(django_filters.FilterSet):
     ids = django_filters.CharFilter(method=filter_by_ids)
+    has_usecase = django_filters.BooleanFilter(
+        field_name='use_case',
+        lookup_expr='isnull',
+        exclude=True,
+        label="Related to any UseCase?",
+        help_text="Set 'Yes' to show only objects related to any UseCase"
+    )
     legacy_id = django_filters.CharFilter(
         lookup_expr='icontains',
         help_text=Stelle._meta.get_field('legacy_id').help_text,
@@ -625,6 +646,13 @@ class StelleListFilter(django_filters.FilterSet):
 
 class TextListFilter(django_filters.FilterSet):
     ids = django_filters.CharFilter(method=filter_by_ids)
+    has_usecase = django_filters.BooleanFilter(
+        field_name='rvn_stelle_text_text__use_case',
+        lookup_expr='isnull',
+        exclude=True,
+        label="Related to any UseCase?",
+        help_text="Set 'Yes' to show only objects related to any UseCase"
+    )
     legacy_id = django_filters.CharFilter(
         lookup_expr='icontains',
         help_text=Text._meta.get_field('legacy_id').help_text,

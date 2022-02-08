@@ -137,6 +137,7 @@ class AutorFilterFormHelper(FormHelper):
             Fieldset(
                 'Basic search options',
                 'id',
+                'has_usecase',
                 'name',
                 'gnd_id',
                 'ort',
@@ -200,6 +201,7 @@ class KeyWordFilterFormHelper(FormHelper):
                 'Basic search options',
                 'id',
                 'stichwort',
+                'has_usecase',
                 'rvn_stelle_key_word_keyword__use_case',
                 'rvn_stelle_key_word_keyword__start_date',
                 'rvn_stelle_key_word_keyword__end_date',
@@ -325,6 +327,7 @@ class StelleFilterFormHelper(FormHelper):
         self.layout = Layout(
             Fieldset(
                 'Basic search options',
+                'has_usecase',
                 'id',
                 'zitat',
                 'text',
@@ -403,6 +406,7 @@ class TextFilterFormHelper(FormHelper):
                 'Basic search options',
                 'title',
                 'autor',
+                'has_usecase',
                 css_id="basic_search_fields"
             ),
             Accordion(
