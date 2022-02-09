@@ -5,6 +5,7 @@ from netvis.utils import as_node
 generic_property_table = [
     ('stichwort', 's'),
     ('id', 's_id'),
+    ('art', 'art'),
     ('rvn_stelle_key_word_keyword__id', 'stelle_id'),
     ('rvn_stelle_key_word_keyword__key_word__stichwort', 't'),
     ('rvn_stelle_key_word_keyword__key_word__id', 't_id')
@@ -44,6 +45,7 @@ def create_graph(df, ItemClass):
         )
     for x in qs:
         node = as_node(x)
+        node['keyword_type'] = row['art']
         nodes.append(
             node
         )
