@@ -45,7 +45,7 @@ def create_graph(df, ItemClass):
         )
     for x in qs:
         node = as_node(x)
-        node['keyword_type'] = row['art']
+        node['keyword_type'] = x.art
         nodes.append(
             node
         )
