@@ -7,6 +7,7 @@ django-cors-headers==3.7.0
 django-extensions==3.1.0
 django-mptt==0.11.0
 djangorestframework-gis==0.17
+django-spaghetti-and-meatballs==0.4.2
 django-story-map==0.5.0
 requests>=2.25
 tablib==3.0.0

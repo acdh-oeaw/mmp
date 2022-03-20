@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_filters',
     'django_tables2',
+    'django_spaghetti',
     'rest_framework',
     'mptt',
     'leaflet',
@@ -56,6 +57,11 @@ INSTALLED_APPS = [
 ]
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+SPAGHETTI_SAUCE = {
+    'apps': ['archiv', 'topics'],
+    'show_fields': False,
+    'exclude': {'auth': ['user']},
+}
 AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend', 'guardian.backends.ObjectPermissionBackend')
 
 REST_FRAMEWORK = {
