@@ -242,7 +242,7 @@ class KeyWordListView(GenericListView):
         'id', 'stichwort', 'wurzel', 'varianten'
     ]
     enable_merge = False
-    template_name = 'archiv/keyword_list.html'
+    # template_name = 'archiv/generic_list.html'
 
 
 class KeyWordDetailView(BaseDetailView):

@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.contrib.gis.geos import Polygon, Point
 from django.contrib.gis.db.models import PolygonField, PointField
 from django.utils.functional import cached_property
+from next_prev import next_in_order, prev_in_order
 
 from ckeditor_uploader.fields import RichTextUploadingField
 
@@ -156,21 +157,15 @@ class UseCase(models.Model):
         return reverse('archiv:usecase_edit', kwargs={'pk': self.id})
 
     def get_next(self):
-        next = self.__class__.objects.filter(id__gt=self.id)
+        next = next_in_order(self)
         if next:
-            return reverse(
-                'archiv:usecase_detail',
-                kwargs={'pk': next.first().id}
-            )
+            return next.get_absolute_url()
         return False
 
     def get_prev(self):
-        prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
+        prev = prev_in_order(self)
         if prev:
-            return reverse(
-                'archiv:usecase_detail',
-                kwargs={'pk': prev.first().id}
-            )
+            return prev.get_absolute_url()
         return False
 
     def get_timetable_data(self):
@@ -315,21 +310,15 @@ class SpatialCoverage(models.Model):
         return reverse('archiv:spatialcoverage_edit', kwargs={'pk': self.id})
 
     def get_next(self):
-        next = self.__class__.objects.filter(id__gt=self.id)
+        next = next_in_order(self)
         if next:
-            return reverse(
-                'archiv:spatialcoverage_detail',
-                kwargs={'pk': next.first().id}
-            )
+            return next.get_absolute_url()
         return False
 
     def get_prev(self):
-        prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
+        prev = prev_in_order(self)
         if prev:
-            return reverse(
-                'archiv:spatialcoverage_detail',
-                kwargs={'pk': prev.first().id}
-            )
+            return prev.get_absolute_url()
         return False
 
     def get_author_coords(self):
@@ -518,7 +507,7 @@ class Autor(models.Model):
     class Meta:
 
         ordering = [
-            'legacy_pk',
+            'id',
         ]
         verbose_name = "Autor"
 
@@ -584,21 +573,15 @@ class Autor(models.Model):
         return reverse('archiv:autor_edit', kwargs={'pk': self.id})
 
     def get_next(self):
-        next = self.__class__.objects.filter(id__gt=self.id)
+        next = next_in_order(self)
         if next:
-            return reverse(
-                'archiv:autor_detail',
-                kwargs={'pk': next.first().id}
-            )
+            return next.get_absolute_url()
         return False
 
     def get_prev(self):
-        prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
+        prev = prev_in_order(self)
         if prev:
-            return reverse(
-                'archiv:autor_detail',
-                kwargs={'pk': prev.first().id}
-            )
+            return prev.get_absolute_url()
         return False
 
     def get_names_list(self):
@@ -787,21 +770,15 @@ class KeyWord(models.Model):
         return reverse('archiv:keyword_edit', kwargs={'pk': self.id})
 
     def get_next(self):
-        next = self.__class__.objects.filter(id__gt=self.id)
+        next = next_in_order(self)
         if next:
-            return reverse(
-                'archiv:keyword_detail',
-                kwargs={'pk': next.first().id}
-            )
+            return next.get_absolute_url()
         return False
 
     def get_prev(self):
-        prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
+        prev = prev_in_order(self)
         if prev:
-            return reverse(
-                'archiv:keyword_detail',
-                kwargs={'pk': prev.first().id}
-            )
+            return prev.get_absolute_url()
         return False
 
 
@@ -1003,21 +980,15 @@ class Ort(models.Model):
         return reverse('archiv:ort_edit', kwargs={'pk': self.id})
 
     def get_next(self):
-        next = self.__class__.objects.filter(id__gt=self.id)
+        next = next_in_order(self)
         if next:
-            return reverse(
-                'archiv:ort_detail',
-                kwargs={'pk': next.first().id}
-            )
+            return next.get_absolute_url()
         return False
 
     def get_prev(self):
-        prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
+        prev = prev_in_order(self)
         if prev:
-            return reverse(
-                'archiv:ort_detail',
-                kwargs={'pk': prev.first().id}
-            )
+            return prev.get_absolute_url()
         return False
 
     def get_names_list(self):
@@ -1230,21 +1201,15 @@ class Stelle(models.Model):
         return reverse('archiv:stelle_edit', kwargs={'pk': self.id})
 
     def get_next(self):
-        next = self.__class__.objects.filter(id__gt=self.id)
+        next = next_in_order(self)
         if next:
-            return reverse(
-                'archiv:stelle_detail',
-                kwargs={'pk': next.first().id}
-            )
+            return next.get_absolute_url()
         return False
 
     def get_prev(self):
-        prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
+        prev = prev_in_order(self)
         if prev:
-            return reverse(
-                'archiv:stelle_detail',
-                kwargs={'pk': prev.first().id}
-            )
+            return prev.get_absolute_url()
         return False
 
     def tei_markup_foreign(self, res):
@@ -1480,35 +1445,27 @@ class Text(models.Model):
         return reverse('archiv:text_edit', kwargs={'pk': self.id})
 
     def get_next(self):
-        next = self.get_next_id()
+        next = next_in_order(self)
         if next:
-            return reverse(
-                'archiv:text_detail',
-                kwargs={'pk': next}
-            )
+            return next.get_absolute_url()
         return False
 
     def get_prev(self):
-        prev = self.get_prev_id()
+        prev = prev_in_order(self)
         if prev:
-            return reverse(
-                'archiv:text_detail',
-                kwargs={'pk': prev}
-            )
+            return prev.get_absolute_url()
         return False
 
     def get_next_id(self):
-        next = self.__class__.objects.filter(id__gt=self.id)
+        next = next_in_order(self)
         if next:
-            return next.first().id
-
+            return next.id
         return False
 
     def get_prev_id(self):
-        prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
+        prev = prev_in_order(self)
         if prev:
-            return prev.first().id
-
+            return prev.id
         return False
 
     def get_project_metadata(self):
@@ -1624,19 +1581,13 @@ class Event(models.Model):
         return reverse('archiv:event_edit', kwargs={'pk': self.id})
 
     def get_next(self):
-        next = self.__class__.objects.filter(id__gt=self.id)
+        next = next_in_order(self)
         if next:
-            return reverse(
-                'archiv:event_detail',
-                kwargs={'pk': next.first().id}
-            )
+            return next.get_absolute_url()
         return False
 
     def get_prev(self):
-        prev = self.__class__.objects.filter(id__lt=self.id).order_by('-id')
+        prev = prev_in_order(self)
         if prev:
-            return reverse(
-                'archiv:event_detail',
-                kwargs={'pk': prev.first().id}
-            )
+            return prev.get_absolute_url()
         return False
