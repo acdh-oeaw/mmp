@@ -936,7 +936,7 @@ class Ort(models.Model):
     class Meta:
 
         ordering = [
-            'legacy_pk',
+            'id',
         ]
         verbose_name = "Ort"
 
@@ -1146,7 +1146,7 @@ class Stelle(models.Model):
     class Meta:
 
         ordering = [
-            'legacy_pk',
+            'id',
         ]
         verbose_name = "Stelle"
 
