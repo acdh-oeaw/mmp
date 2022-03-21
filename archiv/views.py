@@ -93,7 +93,7 @@ class UseCaseListView(GenericListView):
     formhelper_class = UseCaseFilterFormHelper
     table_class = UseCaseTable
     init_columns = [
-        'id', 'title', 'principal_investigator'
+        'id', 'quick_edit', 'title', 'principal_investigator',
     ]
     enable_merge = False
 
@@ -168,7 +168,7 @@ class SpatialCoverageListView(GenericListView):
     formhelper_class = SpatialCoverageFilterFormHelper
     table_class = SpatialCoverageTable
     init_columns = [
-        'id', 'stelle', 'key_word',
+        'id', 'quick_edit', 'stelle', 'key_word',
     ]
     enable_merge = False
     template_name = 'archiv/spatial_list.html'
@@ -191,7 +191,7 @@ class AutorListView(GenericListView):
     formhelper_class = AutorFilterFormHelper
     table_class = AutorTable
     init_columns = [
-        'id', 'name',
+        'id', 'quick_edit', 'name',
     ]
     enable_merge = False
 
@@ -239,7 +239,7 @@ class KeyWordListView(GenericListView):
     formhelper_class = KeyWordFilterFormHelper
     table_class = KeyWordTable
     init_columns = [
-        'id', 'stichwort', 'wurzel', 'varianten'
+        'id', 'quick_edit', 'stichwort', 'wurzel', 'varianten'
     ]
     enable_merge = False
     # template_name = 'archiv/generic_list.html'
@@ -288,7 +288,7 @@ class OrtListView(GenericListView):
     formhelper_class = OrtFilterFormHelper
     table_class = OrtTable
     init_columns = [
-        'id', 'name', 'long', 'lat'
+        'id', 'quick_edit', 'name', 'long', 'lat'
     ]
     enable_merge = False
 
@@ -336,7 +336,7 @@ class StelleListView(GenericListView):
     formhelper_class = StelleFilterFormHelper
     table_class = StelleTable
     init_columns = [
-        'id', 'display_label',
+        'id', 'quick_edit', 'display_label',
     ]
     enable_merge = False
 
@@ -386,7 +386,7 @@ class TextListView(GenericListView):
     formhelper_class = TextFilterFormHelper
     table_class = TextTable
     init_columns = [
-        'id', 'title',
+        'id', 'quick_edit', 'title',
     ]
     enable_merge = False
 
@@ -434,7 +434,7 @@ class EventListView(GenericListView):
     formhelper_class = EventFilterFormHelper
     table_class = EventTable
     init_columns = [
-        'id', 'title',
+        'id', 'quick_edit', 'title',
     ]
     enable_merge = False
 

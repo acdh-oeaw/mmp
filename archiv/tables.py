@@ -17,6 +17,11 @@ from . models import (
 class UseCaseTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name='ID')
+    quick_edit = tables.tables.columns.TemplateColumn(
+        template_name="archiv/quickedit.html",
+        orderable=False,
+        verbose_name='Edit/Delete'
+    )
     texte = tables.columns.TemplateColumn(
         template_name="archiv/stelleusecasecol.html",
         orderable=False,
@@ -42,6 +47,11 @@ class UseCaseTable(tables.Table):
 class SpatialCoverageTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name='ID')
+    quick_edit = tables.tables.columns.TemplateColumn(
+        template_name="archiv/quickedit.html",
+        orderable=False,
+        verbose_name='Edit/Delete'
+    )
     stelle = tables.columns.TemplateColumn(
         template_name="archiv/spatialstellecol.html",
         orderable=False,
@@ -57,7 +67,11 @@ class SpatialCoverageTable(tables.Table):
 class AutorTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name='ID')
-    # merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    quick_edit = tables.tables.columns.TemplateColumn(
+        template_name="archiv/quickedit.html",
+        orderable=False,
+        verbose_name='Edit/Delete'
+    )
     stellen = tables.columns.TemplateColumn(
         template_name="archiv/autor_stelle_col.html",
         orderable=False,
@@ -78,7 +92,11 @@ class AutorTable(tables.Table):
 class KeyWordTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name='ID')
-    # merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    quick_edit = tables.tables.columns.TemplateColumn(
+        template_name="archiv/quickedit.html",
+        orderable=False,
+        verbose_name='Edit/Delete'
+    )
     autoren = tables.columns.TemplateColumn(
         template_name="archiv/authorkeywordcol.html",
         orderable=False,
@@ -114,7 +132,11 @@ class KeyWordTable(tables.Table):
 class OrtTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name='ID')
-    # merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    quick_edit = tables.tables.columns.TemplateColumn(
+        template_name="archiv/quickedit.html",
+        orderable=False,
+        verbose_name='Edit/Delete'
+    )
 
     class Meta:
         model = Ort
@@ -125,7 +147,11 @@ class OrtTable(tables.Table):
 class StelleTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name='ID')
-    # merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    quick_edit = tables.tables.columns.TemplateColumn(
+        template_name="archiv/quickedit.html",
+        orderable=False,
+        verbose_name='Edit/Delete'
+    )
     key_word = tables.columns.ManyToManyColumn()
     use_case = tables.columns.ManyToManyColumn()
 
@@ -138,7 +164,11 @@ class StelleTable(tables.Table):
 class TextTable(tables.Table):
 
     id = tables.LinkColumn(verbose_name='ID')
-    # merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    quick_edit = tables.tables.columns.TemplateColumn(
+        template_name="archiv/quickedit.html",
+        orderable=False,
+        verbose_name='Edit/Delete'
+    )
     autor = tables.columns.ManyToManyColumn()
     ort = tables.columns.ManyToManyColumn()
 
@@ -150,7 +180,11 @@ class TextTable(tables.Table):
 
 class EventTable(tables.Table):
     id = tables.LinkColumn(verbose_name='ID')
-    # merge = MergeColumn(verbose_name='keep | remove', accessor='pk')
+    quick_edit = tables.tables.columns.TemplateColumn(
+        template_name="archiv/quickedit.html",
+        orderable=False,
+        verbose_name='Edit/Delete'
+    )
 
     class Meta:
         model = Event
