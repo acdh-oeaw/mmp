@@ -158,7 +158,7 @@ class SpatialCoverageUpdate(BaseUpdateView):
 class SpatialCoverageDetailView(BaseDetailView):
 
     model = SpatialCoverage
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'archiv/spatial_coverage_detail.html'
 
 
 class SpatialCoverageListView(GenericListView):
@@ -171,7 +171,7 @@ class SpatialCoverageListView(GenericListView):
         'id', 'quick_edit', 'stelle', 'key_word',
     ]
     enable_merge = False
-    template_name = 'archiv/spatial_list.html'
+    # template_name = 'archiv/spatial_list.html'
 
 
 class SpatialCoverageDelete(DeleteView):
