@@ -61,6 +61,61 @@
     <legend>Basic Information</legend>
     <div class="row">
         <div class="col-md-6">
+          <table class="table table-responsive table-hover">
+            <tr>
+              <th>Passages</th>
+              <td>
+                <ul>
+                  {% for x in object.stelle.all %}
+                  <li>
+                    Stelle: <a href="{{ x.get_absolute_url }}">{{ x }}</a>
+                    <ul>
+                      <li>from-to: {{ x.start_date }} - {{ x.end_date }}</li> 
+                      <li>Place: <a href="{{ x.place.get_absolute_url }}">{{ x.place }}</a></li>
+                      <li>
+                        Text: <a href="{{ x.text.get_absolute_url }}">{{ x.text }}</a>
+                        <ul>
+                        <li>
+                          <small>from-to:</small> {{ x.text.not_before }} - {{ x.text.not_after }}
+                        </li>
+                        <li>
+                          <small>Text Type</small> <a href="{{ x.text.art.get_absolute_url }}">{{ x.text.art }}</a>
+                        </li>
+                        <li><small>Places:</small></li>
+                        <ul>
+                          {% for pl in x.text.ort.all %}
+                          <li>
+                            <a href="{{ pl.get_absolute_url }}">{{ pl }}</a>
+                          </li>
+                          {% endfor %}
+                        </ul>
+                      </li>
+                      <li>
+                        <small>Author:</small>
+                        <ul>
+                          {% for a in x.text.autor.all %}
+                          <li>
+                            <a href="{{ a.get_absolute_url }}">{{ a }}</a> 
+                            <ul>
+                              <li>
+                                <small>Place:</small> <a href="{{ a.ort.get_absolute_url }}">{{ a.ort }}</a>
+                              </li>
+                              <li>
+                                <small>from-to:</small> {{ a.start_date_year }} - {{ a.end_date_year }}</a>
+                              </li>
+                            </ul>
+                          </li>
+                          {% endfor %}
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                  </ul>
+                  {% endfor %}
+                </ul>
+              </td>
+            </tr>
+          </table>
             <table class="table table-responsive table-hover">
               {% for x in object.field_dict %}
               {% if x.value %}
