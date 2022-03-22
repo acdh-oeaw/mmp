@@ -47,11 +47,26 @@ class SpatialCoverageSerializer(
         auto_bbox = True
         fields = (
             'id',
-            'stelle',
             'key_word',
             'fuzzyness'
         )
-        depth = 3
+        depth = 1
+
+
+class SpatialCoverageGroupSerializer(
+    GeoFeatureModelSerializer, serializers.HyperlinkedModelSerializer
+):
+
+    class Meta:
+        model = SpatialCoverage
+        geo_field = 'geom_collection'
+        auto_bbox = True
+        fields = (
+            'id',
+            'key_word',
+            'fuzzyness'
+        )
+        depth = 1
 
 
 class ConeSerializer(
@@ -68,11 +83,10 @@ class ConeSerializer(
         auto_bbox = False
         fields = (
             'id',
-            'stelle',
             'key_word',
             'fuzzyness'
         )
-        depth = 3
+        depth = 1
 
 
 class AutorSerializer(serializers.HyperlinkedModelSerializer):
@@ -115,7 +129,9 @@ class StelleSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Stelle
-        fields = "__all__"
+        exclude = [
+            'lemmata',
+        ]
         depth = 2
 
 

@@ -19,6 +19,11 @@ router.register(r'stelle', archiv_api_views.StelleViewSet)
 router.register(r'text', archiv_api_views.TextViewSet)
 router.register(r'spatialcoverage', archiv_api_views.SpatialCoverageViewSet)
 router.register(r'cones', archiv_api_views.ConeViewSet, basename='cones-geojson')
+router.register(
+    r'lines-and-points',
+    archiv_api_views.SpatialCoverageGroupViewSet,
+    basename='ines-and-points'
+)
 router.register(r'usecase', archiv_api_views.UseCaseViewSet)
 router.register(r'topics', topics_api_views.TopicViewSet)
 router.register(r'text-topic-relation', topics_api_views.TextTopicRelationViewSet)

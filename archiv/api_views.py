@@ -12,6 +12,7 @@ from archiv.api_serializers import (
     StelleSerializer,
     TextSerializer,
     SpatialCoverageSerializer,
+    SpatialCoverageGroupSerializer,
     UseCaseSerializer,
     ConeSerializer,
     GeoJsonOrtSerializer,
@@ -69,8 +70,19 @@ class UseCaseViewSet(viewsets.ModelViewSet):
 
 
 class SpatialCoverageViewSet(viewsets.ModelViewSet):
-    queryset = SpatialCoverage.objects.all().distinct()
+    queryset = SpatialCoverage.objects.exclude(fuzzy_geom=None).distinct()
     serializer_class = SpatialCoverageSerializer
+    filter_backends = [
+        django_filters.rest_framework.DjangoFilterBackend,
+        OrderingFilter
+    ]
+    filter_class = SpatialCoverageListFilter
+    pagination_class = GeoJsonPagination
+
+
+class SpatialCoverageGroupViewSet(viewsets.ModelViewSet):
+    queryset = SpatialCoverage.objects.exclude(geom_collection__isnull=True).distinct()
+    serializer_class = SpatialCoverageGroupSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
         OrderingFilter

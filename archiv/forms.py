@@ -12,6 +12,8 @@ from dal import autocomplete
 from leaflet.forms.widgets import LeafletWidget
 
 from vocabs.models import SkosConcept
+
+from . widgets import GeoColWidget
 from . models import (
     Autor,
     KeyWord,
@@ -22,6 +24,32 @@ from . models import (
     UseCase,
     Event
 )
+
+
+class SpatialCoverageForm(forms.ModelForm):
+
+    class Meta:
+        model = SpatialCoverage
+        fields = "__all__"
+        widgets = {
+            'stelle': autocomplete.ModelSelect2Multiple(
+                url='archiv-ac:stelle-autocomplete'
+            ),
+            'key_word': autocomplete.ModelSelect2(
+                url='archiv-ac:keyword-autocomplete'
+            ),
+            'fuzzy_geom': LeafletWidget(),
+            'geom_collection': GeoColWidget()
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(SpatialCoverageForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = True
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-md-3'
+        self.helper.field_class = 'col-md-9'
+        self.helper.add_input(Submit('submit', 'save'),)
 
 
 class UseCaseForm(forms.ModelForm):
@@ -68,32 +96,6 @@ class UseCaseFilterFormHelper(FormHelper):
                 )
             )
         )
-
-
-class SpatialCoverageForm(forms.ModelForm):
-
-    class Meta:
-        model = SpatialCoverage
-        fields = "__all__"
-        widgets = {
-            'stelle': autocomplete.ModelSelect2Multiple(
-                url='archiv-ac:stelle-autocomplete'
-            ),
-            'key_word': autocomplete.ModelSelect2(
-                url='archiv-ac:keyword-autocomplete'
-            ),
-            'exactish_geom': LeafletWidget(),
-            'fuzzy_geom': LeafletWidget(),
-        }
-
-    def __init__(self, *args, **kwargs):
-        super(SpatialCoverageForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_tag = True
-        self.helper.form_class = 'form-horizontal'
-        self.helper.label_class = 'col-md-3'
-        self.helper.field_class = 'col-md-9'
-        self.helper.add_input(Submit('submit', 'save'),)
 
 
 class SpatialCoverageFilterFormHelper(FormHelper):

@@ -5,7 +5,7 @@ import re
 from django.db import models
 from django.urls import reverse
 from django.contrib.gis.geos import Polygon, Point
-from django.contrib.gis.db.models import PolygonField, PointField
+from django.contrib.gis.db.models import PolygonField, PointField, GeometryCollectionField
 from django.utils.functional import cached_property
 from next_prev import next_in_order, prev_in_order
 
@@ -257,6 +257,14 @@ class SpatialCoverage(models.Model):
         blank=True, null=True,
         verbose_name="unsichere Ortsangabe",
         help_text="Ungefähre Lokalisierung einer Region",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasWkt",
+    )
+    geom_collection = GeometryCollectionField(
+        blank=True, null=True,
+        verbose_name="Points and lines",
+        help_text="points and lines",
     ).set_extra(
         is_public=True,
         arche_prop="hasWkt",
