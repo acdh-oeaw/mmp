@@ -224,6 +224,30 @@ def df_to_classdicts(df):
         yield class_dict
 
 
+def class_dicst_to_df(app_name):
+    """ creates a DataFrame holding information about Models and Properties """
+    class_dicts = app_to_classdicts(app_name)
+    model_props = [
+        'model_name',
+        'model_verbose_name',
+        'model_helptext',
+    ]
+    data = []
+    for x in class_dicts:
+        for key, value in x.items():
+            if isinstance(value, list):
+                for item in value:
+                    row = {}
+                    for mp in model_props:
+                        row[mp] = x[mp]
+                    for f_key, f_value in item.items():
+                        row[f_key] = f_value
+                    data.append(row)
+
+    df = pd.DataFrame(data)
+    return df
+
+
 def serialize_data_model(dicts, app_name="my_app", file_name='models.py'):
     t = Template(code_templates.MODELS_PY)
     output = t.render(
