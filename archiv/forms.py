@@ -380,7 +380,7 @@ class StelleForm(forms.ModelForm):
             'key_word': autocomplete.ModelSelect2Multiple(
                 url='archiv-ac:keyword-autocomplete'
             ),
-            'ort': autocomplete.ModelSelect2(
+            'ort': autocomplete.ModelSelect2Multiple(
                 url='archiv-ac:ort-autocomplete'
             )
         }

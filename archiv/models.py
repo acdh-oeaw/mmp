@@ -1086,11 +1086,9 @@ class Stelle(models.Model):
         is_public=True,
         arche_prop="hasSubject",
     )
-    ort = models.ForeignKey(
+    ort = models.ManyToManyField(
         "Ort",
         related_name='rvn_stelle_ort_ort',
-        on_delete=models.SET_NULL,
-        null=True,
         blank=True,
         verbose_name="Ort",
         help_text="Ort",
