@@ -154,6 +154,7 @@ class StelleTable(tables.Table):
     )
     key_word = tables.columns.ManyToManyColumn()
     use_case = tables.columns.ManyToManyColumn()
+    ort = tables.columns.ManyToManyColumn()
 
     class Meta:
         model = Stelle

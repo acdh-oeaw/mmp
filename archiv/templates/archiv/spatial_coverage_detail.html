@@ -251,10 +251,14 @@
       $.ajax({
         dataType: "json",
         url: "/api/cones/{{ object.id }}?format=json"
+      }),
+      $.ajax({
+        dataType: "json",
+        url: "/api/lines-and-points/{{ object.id }}?format=json"
       })
     )
     .then(
-      function(data, data1) {
+      function(data, data1, data2) {
         var geojsonFeature = data;
         var geojsonLayer = L.geoJson(geojsonFeature, {
             onEachFeature: onEachFeature
@@ -265,6 +269,12 @@
             onEachFeature: onEachFeature
         }).addTo(map);
         map.fitBounds(geojsonLayer1.getBounds());
+
+        var geojsonFeature2 = data2;
+        var geojsonLayer2 = L.geoJson(geojsonFeature2, {
+            onEachFeature: onEachFeature
+        }).addTo(map);
+        map.fitBounds(geojsonLayer2.getBounds());
       })
   }
 </script>
