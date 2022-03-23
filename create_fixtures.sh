@@ -8,7 +8,7 @@ echo "create fixtures_stelle"
 python manage.py dump_object archiv.stelle 808 860 --settings=djangobaseproject.settings.dev > fixtures_stelle.json
 
 echo "create fixtures_spatialcoverage"
-python manage.py dump_object archiv.spatialcoverage 4 --settings=djangobaseproject.settings.dev > fixtures_spatialcoverage.json
+python manage.py dump_object archiv.spatialcoverage 4 5 --settings=djangobaseproject.settings.dev > fixtures_spatialcoverage.json
 
 echo "create fixtures_keyword"
 python manage.py dump_object archiv.keyword 28 --settings=djangobaseproject.settings.dev > fixtures_keyword.json
