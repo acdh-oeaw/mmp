@@ -355,13 +355,42 @@ class SpatialCoverage(models.Model):
         return poly
 
     @cached_property
+    def stellen_objects(self):
+        return self.stelle.all()
+
+    @cached_property
     def stellen(self):
-        return [x.id for x in self.stelle.all()]
+        return [x.id for x in self.stellen_objects]
 
     @cached_property
     def texts(self):
-        t = [x.text for x in self.stelle.all()]
-        texts = [{"title": x.title, "id": x.id} for x in t]
+        t = [x.text for x in self.stellen_objects]
+        texts = [
+            {
+                "title": x.title,
+                "id": x.id,
+                "places": [
+                    {
+                        "id": p.id,
+                        "name": p.name,
+                        "lat": p.lat,
+                        "lng": p.long
+                    } for p in x.ort.all()
+                ],
+                "authors": [
+                    {
+                        "id": p.id,
+                        "name": p.name,
+                        "place": {
+                            "id": p.ort.id,
+                            "name": p.ort.name,
+                            "lat": p.ort.lat,
+                            "lng": p.ort.long
+                        }
+                    } for p in x.autor.all()
+                ]
+            } for x in t
+        ]
         return texts
 
 
