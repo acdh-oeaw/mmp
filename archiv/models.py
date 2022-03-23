@@ -221,179 +221,6 @@ class UseCase(models.Model):
         return sorted(time_table_data, key=lambda k: k['start_date'])
 
 
-class SpatialCoverage(models.Model):
-    """ Spatial Coverage of a Keyword bound to a specifc source document"""
-    stelle = models.ManyToManyField(
-        "Stelle",
-        related_name='has_spatial_coverage',
-        blank=True,
-        verbose_name="Stelle",
-        help_text="Stelle",
-    ).set_extra(
-        is_public=True,
-    )
-    key_word = models.ForeignKey(
-        "KeyWord",
-        related_name='has_spatial_coverage',
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        verbose_name="Stichwort",
-        help_text="Stichwort",
-    ).set_extra(
-        is_public=True,
-        arche_prop="hasSubject",
-    )
-
-    kommentar = models.TextField(
-        blank=True, null=True,
-        verbose_name="Kommentar",
-        help_text="Kommentar",
-    ).set_extra(
-        is_public=True,
-        arche_prop="hasNote",
-    )
-    fuzzy_geom = PolygonField(
-        blank=True, null=True,
-        verbose_name="unsichere Ortsangabe",
-        help_text="Ungefähre Lokalisierung einer Region",
-    ).set_extra(
-        is_public=True,
-        arche_prop="hasWkt",
-    )
-    geom_collection = GeometryCollectionField(
-        blank=True, null=True,
-        verbose_name="Points and lines",
-        help_text="points and lines",
-    ).set_extra(
-        is_public=True,
-        arche_prop="hasWkt",
-    )
-    fuzzyness = models.IntegerField(
-        choices=[(i, i) for i in range(1, 11)],
-        blank=True,
-        default=1,
-        verbose_name="Sicherheitsindikator",
-        help_text="1 sehr sicher, 10 sehr unsicher"
-    ).set_extra(
-        is_public=True,
-    )
-
-    class Meta:
-
-        ordering = [
-            'id',
-        ]
-        verbose_name = "Spatial Coverage"
-
-    def __str__(self):
-        return f"{self.stelle.all()} - {self.key_word}"
-
-    def field_dict(self):
-        return model_to_dict(self)
-
-    @classmethod
-    def get_source_table(self):
-        return None
-
-    @classmethod
-    def get_listview_url(self):
-        return reverse('archiv:spatialcoverage_browse')
-
-    @classmethod
-    def get_natural_primary_key(self):
-        return "id"
-
-    @classmethod
-    def get_createview_url(self):
-        return reverse('archiv:spatialcoverage_create')
-
-    def get_absolute_url(self):
-        return reverse('archiv:spatialcoverage_detail', kwargs={'pk': self.id})
-
-    def get_delete_url(self):
-        return reverse('archiv:spatialcoverage_delete', kwargs={'pk': self.id})
-
-    def get_edit_url(self):
-        return reverse('archiv:spatialcoverage_edit', kwargs={'pk': self.id})
-
-    def get_next(self):
-        next = next_in_order(self)
-        if next:
-            return next.get_absolute_url()
-        return False
-
-    def get_prev(self):
-        prev = prev_in_order(self)
-        if prev:
-            return prev.get_absolute_url()
-        return False
-
-    def get_author_coords(self):
-        cur_item = SpatialCoverage.objects.filter(id=self.id)
-        items = cur_item.values_list(
-            'stelle__text__ort__long',
-            'stelle__text__ort__lat',
-        )
-        no_blanks = [x for x in items if x[0]]
-        return no_blanks
-
-    def geom_points(self):
-        try:
-            return list(self.fuzzy_geom.coords[0])
-        except AttributeError:
-            return []
-
-    def new_coords(self):
-        poly_cords = self.geom_points()
-        new_coords = poly_cords[:1] + self.get_author_coords() + poly_cords[1:]
-        return new_coords
-
-    @cached_property
-    def convex_hull(self):
-        poly = Polygon(self.new_coords()).convex_hull
-        return poly
-
-    @cached_property
-    def stellen_objects(self):
-        return self.stelle.all()
-
-    @cached_property
-    def stellen(self):
-        return [x.id for x in self.stellen_objects]
-
-    @cached_property
-    def texts(self):
-        t = [x.text for x in self.stellen_objects]
-        texts = [
-            {
-                "title": x.title,
-                "id": x.id,
-                "places": [
-                    {
-                        "id": p.id,
-                        "name": p.name,
-                        "lat": p.lat,
-                        "lng": p.long
-                    } for p in x.ort.all()
-                ],
-                "authors": [
-                    {
-                        "id": p.id,
-                        "name": p.name,
-                        "place": {
-                            "id": p.ort.id,
-                            "name": p.ort.name,
-                            "lat": p.ort.lat,
-                            "lng": p.ort.long
-                        }
-                    } for p in x.autor.all()
-                ]
-            } for x in t
-        ]
-        return texts
-
-
 class Autor(models.Model):
     """ Autor """
     legacy_id = models.CharField(
@@ -1000,6 +827,24 @@ class Ort(models.Model):
 
     def field_dict(self):
         return model_to_dict(self)
+
+    def place_as_dict(self):
+        if self.art is not None:
+            art = {
+                "id": self.art.id,
+                "label": self.art.pref_label
+            }
+        else:
+            art = {}
+
+        pl = {
+            "id": self.id,
+            "name": self.name,
+            "lat": self.lat,
+            "lng": self.long,
+            "art": art
+        }
+        return pl
 
     @classmethod
     def get_listview_url(self):
@@ -1636,3 +1481,181 @@ class Event(models.Model):
         if prev:
             return prev.get_absolute_url()
         return False
+
+
+class SpatialCoverage(models.Model):
+    """ Spatial Coverage of a Keyword bound to a specifc source document"""
+    stelle = models.ManyToManyField(
+        "Stelle",
+        related_name='has_spatial_coverage',
+        blank=True,
+        verbose_name="Stelle",
+        help_text="Stelle",
+    ).set_extra(
+        is_public=True,
+    )
+    key_word = models.ForeignKey(
+        "KeyWord",
+        related_name='has_spatial_coverage',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name="Stichwort",
+        help_text="Stichwort",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasSubject",
+    )
+
+    kommentar = models.TextField(
+        blank=True, null=True,
+        verbose_name="Kommentar",
+        help_text="Kommentar",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasNote",
+    )
+    fuzzy_geom = PolygonField(
+        blank=True, null=True,
+        verbose_name="unsichere Ortsangabe",
+        help_text="Ungefähre Lokalisierung einer Region",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasWkt",
+    )
+    geom_collection = GeometryCollectionField(
+        blank=True, null=True,
+        verbose_name="Points and lines",
+        help_text="points and lines",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasWkt",
+    )
+    fuzzyness = models.IntegerField(
+        choices=[(i, i) for i in range(1, 11)],
+        blank=True,
+        default=1,
+        verbose_name="Sicherheitsindikator",
+        help_text="1 sehr sicher, 10 sehr unsicher"
+    ).set_extra(
+        is_public=True,
+    )
+
+    class Meta:
+
+        ordering = [
+            'id',
+        ]
+        verbose_name = "Spatial Coverage"
+
+    def __str__(self):
+        return f"{self.stelle.all()} - {self.key_word}"
+
+    def field_dict(self):
+        return model_to_dict(self)
+
+    @classmethod
+    def get_source_table(self):
+        return None
+
+    @classmethod
+    def get_listview_url(self):
+        return reverse('archiv:spatialcoverage_browse')
+
+    @classmethod
+    def get_natural_primary_key(self):
+        return "id"
+
+    @classmethod
+    def get_createview_url(self):
+        return reverse('archiv:spatialcoverage_create')
+
+    def get_absolute_url(self):
+        return reverse('archiv:spatialcoverage_detail', kwargs={'pk': self.id})
+
+    def get_delete_url(self):
+        return reverse('archiv:spatialcoverage_delete', kwargs={'pk': self.id})
+
+    def get_edit_url(self):
+        return reverse('archiv:spatialcoverage_edit', kwargs={'pk': self.id})
+
+    def get_next(self):
+        next = next_in_order(self)
+        if next:
+            return next.get_absolute_url()
+        return False
+
+    def get_prev(self):
+        prev = prev_in_order(self)
+        if prev:
+            return prev.get_absolute_url()
+        return False
+
+    def get_author_coords(self):
+        cur_item = SpatialCoverage.objects.filter(id=self.id)
+        items = cur_item.values_list(
+            'stelle__text__ort__long',
+            'stelle__text__ort__lat',
+        )
+        no_blanks = [x for x in items if x[0]]
+        return no_blanks
+
+    def geom_points(self):
+        try:
+            return list(self.fuzzy_geom.coords[0])
+        except AttributeError:
+            return []
+
+    def new_coords(self):
+        poly_cords = self.geom_points()
+        new_coords = poly_cords[:1] + self.get_author_coords() + poly_cords[1:]
+        return new_coords
+
+    @cached_property
+    def convex_hull(self):
+        poly = Polygon(self.new_coords()).convex_hull
+        return poly
+
+    @cached_property
+    def stellen_objects(self):
+        return self.stelle.all()
+
+    @cached_property
+    def stellen(self):
+        return [
+            {
+                "id": x.id,
+                "start_date": x.start_date,
+                "end_date": x.end_date,
+                "display_label": x.display_label
+            }
+            for x in self.stellen_objects
+        ]
+
+    @cached_property
+    def texts(self):
+        t = [x.text for x in self.stellen_objects]
+        texts = [
+            {
+                "title": x.title,
+                "id": x.id,
+                "places": [
+                    p.place_as_dict() for p in x.ort.all()
+                ],
+                "authors": [
+                    {
+                        "id": p.id,
+                        "name": p.name,
+                        "place": p.ort.place_as_dict()
+                    } for p in x.autor.all()
+                ]
+            } for x in t
+        ]
+        return texts
+
+    @cached_property
+    def places(self):
+        pl = [
+            p.place_as_dict() for p in Ort.objects.filter(rvn_stelle_ort_ort__in=self.stellen_objects)
+        ]
+        return pl

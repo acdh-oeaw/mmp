@@ -42,6 +42,7 @@ class SpatialCoverageSerializer(
 ):
     stelle = serializers.ReadOnlyField(source="stellen")
     texts = serializers.ReadOnlyField()
+    places = serializers.ReadOnlyField()
 
     class Meta:
         model = SpatialCoverage
@@ -52,7 +53,8 @@ class SpatialCoverageSerializer(
             'key_word',
             'fuzzyness',
             'stelle',
-            'texts'
+            'texts',
+            'places'
         )
         depth = 1
 
@@ -62,6 +64,7 @@ class SpatialCoverageGroupSerializer(
 ):
     stelle = serializers.ReadOnlyField(source="stellen")
     texts = serializers.ReadOnlyField()
+    places = serializers.ReadOnlyField()
 
     class Meta:
         model = SpatialCoverage
@@ -72,7 +75,8 @@ class SpatialCoverageGroupSerializer(
             'key_word',
             'fuzzyness',
             'stelle',
-            'texts'
+            'texts',
+            'places'
         )
         depth = 1
 
@@ -83,6 +87,7 @@ class ConeSerializer(
     cone = GeometrySerializerMethodField()
     stelle = serializers.ReadOnlyField(source="stellen")
     texts = serializers.ReadOnlyField()
+    places = serializers.ReadOnlyField()
 
     def get_cone(self, res):
         return res.convex_hull
@@ -96,7 +101,8 @@ class ConeSerializer(
             'key_word',
             'fuzzyness',
             'stelle',
-            'texts'
+            'texts',
+            'places'
         )
         depth = 1
 
