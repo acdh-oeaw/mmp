@@ -332,8 +332,8 @@ class SpatialCoverage(models.Model):
     def get_author_coords(self):
         cur_item = SpatialCoverage.objects.filter(id=self.id)
         items = cur_item.values_list(
-            'stelle__text__autor__ort__long',
-            'stelle__text__autor__ort__lat',
+            'stelle__text__ort__long',
+            'stelle__text__ort__lat',
         )
         no_blanks = [x for x in items if x[0]]
         return no_blanks
