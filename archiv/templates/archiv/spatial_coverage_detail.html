@@ -251,11 +251,11 @@
       $.ajax({
         dataType: "json",
         url: "/api/cones/{{ object.id }}?format=json"
-      }),
+      }){% if object.geom_collection %},
       $.ajax({
         dataType: "json",
         url: "/api/lines-and-points/{{ object.id }}?format=json"
-      })
+      }){% endif %}
     )
     .then(
       function(data, data1, data2) {
