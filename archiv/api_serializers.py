@@ -40,6 +40,8 @@ class UseCaseSerializer(serializers.HyperlinkedModelSerializer):
 class SpatialCoverageSerializer(
     GeoFeatureModelSerializer, serializers.HyperlinkedModelSerializer
 ):
+    stelle = serializers.ReadOnlyField(source="stellen")
+    texts = serializers.ReadOnlyField()
 
     class Meta:
         model = SpatialCoverage
@@ -48,7 +50,9 @@ class SpatialCoverageSerializer(
         fields = (
             'id',
             'key_word',
-            'fuzzyness'
+            'fuzzyness',
+            'stelle',
+            'texts'
         )
         depth = 1
 
@@ -56,6 +60,8 @@ class SpatialCoverageSerializer(
 class SpatialCoverageGroupSerializer(
     GeoFeatureModelSerializer, serializers.HyperlinkedModelSerializer
 ):
+    stelle = serializers.ReadOnlyField(source="stellen")
+    texts = serializers.ReadOnlyField()
 
     class Meta:
         model = SpatialCoverage
@@ -64,7 +70,9 @@ class SpatialCoverageGroupSerializer(
         fields = (
             'id',
             'key_word',
-            'fuzzyness'
+            'fuzzyness',
+            'stelle',
+            'texts'
         )
         depth = 1
 
@@ -73,6 +81,8 @@ class ConeSerializer(
     GeoFeatureModelSerializer, serializers.HyperlinkedModelSerializer
 ):
     cone = GeometrySerializerMethodField()
+    stelle = serializers.ReadOnlyField(source="stellen")
+    texts = serializers.ReadOnlyField()
 
     def get_cone(self, res):
         return res.convex_hull
@@ -84,7 +94,9 @@ class ConeSerializer(
         fields = (
             'id',
             'key_word',
-            'fuzzyness'
+            'fuzzyness',
+            'stelle',
+            'texts'
         )
         depth = 1
 

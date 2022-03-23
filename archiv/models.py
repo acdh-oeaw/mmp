@@ -354,6 +354,16 @@ class SpatialCoverage(models.Model):
         poly = Polygon(self.new_coords()).convex_hull
         return poly
 
+    @cached_property
+    def stellen(self):
+        return [x.id for x in self.stelle.all()]
+
+    @cached_property
+    def texts(self):
+        t = [x.text for x in self.stelle.all()]
+        texts = [{"title": x.title, "id": x.id} for x in t]
+        return texts
+
 
 class Autor(models.Model):
     """ Autor """
