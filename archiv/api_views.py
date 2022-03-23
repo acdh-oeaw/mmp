@@ -16,6 +16,7 @@ from archiv.api_serializers import (
     UseCaseSerializer,
     ConeSerializer,
     GeoJsonOrtSerializer,
+    FuzzyGeoJsonOrtSerializer,
     StorySerializer,
     SlideSerializer
 )
@@ -135,6 +136,16 @@ class OrtViewSet(viewsets.ModelViewSet):
 class GeoJsonOrtViewSet(viewsets.ModelViewSet):
     queryset = Ort.objects.all().distinct()
     serializer_class = GeoJsonOrtSerializer
+    filter_backends = [
+        django_filters.rest_framework.DjangoFilterBackend,
+        OrderingFilter
+    ]
+    filter_class = OrtListFilter
+
+
+class FuzzyGeoJsonOrtViewSet(viewsets.ModelViewSet):
+    queryset = Ort.objects.all().distinct()
+    serializer_class = FuzzyGeoJsonOrtSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
         OrderingFilter

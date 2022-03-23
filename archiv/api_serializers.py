@@ -143,6 +143,20 @@ class GeoJsonOrtSerializer(
         depth = 0
 
 
+class FuzzyGeoJsonOrtSerializer(
+    GeoFeatureModelSerializer, serializers.HyperlinkedModelSerializer
+):
+
+    class Meta:
+        model = Ort
+        geo_field = 'fuzzy_geom'
+        fields = [
+            'id', 'name', 'name_antik', 'name_de',
+            'name_fr', 'name_gr', 'art', 'kategorie'
+        ]
+        depth = 0
+
+
 class StelleSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
