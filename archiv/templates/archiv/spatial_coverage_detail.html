@@ -71,7 +71,15 @@
                     Stelle: <a href="{{ x.get_absolute_url }}">{{ x }}</a>
                     <ul>
                       <li>from-to: {{ x.start_date }} - {{ x.end_date }}</li> 
-                      <li>Place: <a href="{{ x.place.get_absolute_url }}">{{ x.place }}</a></li>
+                      <li>Places:
+                        <ul>
+                          {% for pl in x.ort.all %}
+                          <li>
+                            <a href="{{ pl.get_absolute_url }}">{{ pl }}</a>
+                          </li>
+                          {% endfor %}
+                        </ul>
+                      </li>
                       <li>
                         Text: <a href="{{ x.text.get_absolute_url }}">{{ x.text }}</a>
                         <ul>
