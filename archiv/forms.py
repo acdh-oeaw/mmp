@@ -306,6 +306,9 @@ class OrtForm(forms.ModelForm):
 
     class Meta:
         model = Ort
+        widgets = {
+            'fuzzy_geom': GeoColWidget(),
+        }
         exclude = ['coords', ]
 
     def __init__(self, *args, **kwargs):

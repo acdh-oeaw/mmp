@@ -4,7 +4,7 @@ import re
 
 from django.db import models
 from django.urls import reverse
-from django.contrib.gis.geos import Polygon, Point
+from django.contrib.gis.geos import Polygon, Point, GeometryCollection
 from django.contrib.gis.db.models import PolygonField, PointField, GeometryCollectionField
 from django.utils.functional import cached_property
 from next_prev import next_in_order, prev_in_order
@@ -766,6 +766,14 @@ class Ort(models.Model):
         help_text="automatically populated",
         verbose_name="Coordinates"
     )
+    fuzzy_geom = GeometryCollectionField(
+        blank=True, null=True,
+        verbose_name="fuzzy geom",
+        help_text="fuzzy geom",
+    ).set_extra(
+        is_public=True,
+        arche_prop="hasWkt",
+    )
     art = models.ForeignKey(
         SkosConcept,
         related_name='rvn_ort_art_skosconcept',
@@ -828,6 +836,7 @@ class Ort(models.Model):
     def field_dict(self):
         return model_to_dict(self)
 
+    @cached_property
     def place_as_dict(self):
         if self.art is not None:
             art = {
@@ -845,6 +854,16 @@ class Ort(models.Model):
             "art": art
         }
         return pl
+
+    @cached_property
+    def all_geoms(self):
+        if self.fuzzy_geom is not None:
+            geom = self.fuzzy_geom
+        else:
+            geom = GeometryCollection()
+        if self.coords:
+            geom.append(self.coords)
+        return geom
 
     @classmethod
     def get_listview_url(self):
@@ -1640,13 +1659,13 @@ class SpatialCoverage(models.Model):
                 "title": x.title,
                 "id": x.id,
                 "places": [
-                    p.place_as_dict() for p in x.ort.all()
+                    getattr(p, 'place_as_dict', {}) for p in x.ort.all()
                 ],
                 "authors": [
                     {
                         "id": p.id,
                         "name": p.name,
-                        "place": p.ort.place_as_dict()
+                        "place": getattr(p.ort, 'place_as_dict', {})
                     } for p in x.autor.all()
                 ]
             } for x in t
@@ -1656,6 +1675,6 @@ class SpatialCoverage(models.Model):
     @cached_property
     def places(self):
         pl = [
-            p.place_as_dict() for p in Ort.objects.filter(rvn_stelle_ort_ort__in=self.stellen_objects)
+            getattr(p, 'place_as_dict', {}) for p in Ort.objects.filter(rvn_stelle_ort_ort__in=self.stellen_objects)
         ]
         return pl
