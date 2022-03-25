@@ -241,7 +241,7 @@ class Autor(models.Model):
         max_length=250,
         blank=True,
         verbose_name="Name (de)",
-        help_text="Name (de)",
+        help_text="Author's name in German",
     ).set_extra(
         is_public=True,
         data_lookup="anamed",
@@ -251,7 +251,7 @@ class Autor(models.Model):
         max_length=250,
         blank=True,
         verbose_name="GND ID",
-        help_text="z.B. http://d-nb.info/gnd/118650130",
+        help_text="ID in GND",
     ).set_extra(
         is_public=True,
         arche_prop="hasNonLinkedIdentifier",
@@ -261,7 +261,7 @@ class Autor(models.Model):
         max_length=250,
         blank=True,
         verbose_name="Name (lat)",
-        help_text="Name (lat)",
+        help_text="Author's name in Latin",
     ).set_extra(
         is_public=True,
         data_lookup="anamelat",
@@ -271,7 +271,7 @@ class Autor(models.Model):
         max_length=250,
         blank=True,
         verbose_name="Name (en)",
-        help_text="Name (en)",
+        help_text="Author's name in English",
     ).set_extra(
         is_public=True,
         data_lookup="anameeng",
@@ -281,7 +281,7 @@ class Autor(models.Model):
         max_length=250,
         blank=True,
         verbose_name="Name (fr)",
-        help_text="Name (fr)",
+        help_text="Author's name in French",
     ).set_extra(
         is_public=True,
         data_lookup="anamefr",
@@ -291,7 +291,7 @@ class Autor(models.Model):
         max_length=250,
         blank=True,
         verbose_name="Name (it)",
-        help_text="Name (it)",
+        help_text="Author's name in Italian",
     ).set_extra(
         is_public=True,
         data_lookup="anameit",
@@ -301,7 +301,7 @@ class Autor(models.Model):
         max_length=250,
         blank=True,
         verbose_name="Name (gr)",
-        help_text="Name (gr)",
+        help_text="Author's name in Greek",
     ).set_extra(
         is_public=True,
         arche_prop="hasAlternativeTitle",
@@ -309,8 +309,8 @@ class Autor(models.Model):
     jahrhundert = models.CharField(
         max_length=250,
         blank=True,
-        verbose_name="Jahrundert",
-        help_text="Jahrhundert",
+        verbose_name="Century",
+        help_text="Century or centuries active",
     ).set_extra(
         is_public=True,
         data_lookup="ajh",
@@ -318,8 +318,8 @@ class Autor(models.Model):
     start_date = models.CharField(
         max_length=250,
         blank=True,
-        verbose_name="von",
-        help_text="von",
+        verbose_name="From",
+        help_text="Birth or earliest year of activity",
     ).set_extra(
         is_public=True,
         data_lookup="avon",
@@ -327,8 +327,8 @@ class Autor(models.Model):
     end_date = models.CharField(
         max_length=250,
         blank=True,
-        verbose_name="bis",
-        help_text="bis",
+        verbose_name="To",
+        help_text="Death or end of activity",
     ).set_extra(
         is_public=True,
         data_lookup="abis",
@@ -355,16 +355,16 @@ class Autor(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        verbose_name="Ort",
-        help_text="Ort",
+        verbose_name="Place",
+        help_text="Place associated with author (of birth or activity)",
     ).set_extra(
         is_public=True,
         data_lookup="aort",
     )
     kommentar = models.TextField(
         blank=True, null=True,
-        verbose_name="Kommentar",
-        help_text="Kommentar",
+        verbose_name="Comment",
+        help_text="Comment",
     ).set_extra(
         is_public=True,
         data_lookup="akommentar",
@@ -373,7 +373,7 @@ class Autor(models.Model):
     orig_data_csv = models.TextField(
         blank=True,
         null=True,
-        verbose_name="The original data"
+        verbose_name="Original data"
     ).set_extra(
         is_public=True
     )
@@ -494,8 +494,8 @@ class KeyWord(models.Model):
     )
     legacy_pk = models.IntegerField(
         blank=True, null=True,
-        verbose_name="Primärschlüssel Alt",
-        help_text="Primärschlüssel Alt",
+        verbose_name="Old primary key",
+        help_text="Old primary key (from GENS database)",
     ).set_extra(
         is_public=False,
         data_lookup="stid",
@@ -505,8 +505,8 @@ class KeyWord(models.Model):
     stichwort = models.CharField(
         max_length=250,
         blank=True,
-        verbose_name="Stichwort",
-        help_text="Stichwort",
+        verbose_name="Keyword",
+        help_text="Keyword",
     ).set_extra(
         is_public=True,
         data_lookup="stichwort",
@@ -516,7 +516,7 @@ class KeyWord(models.Model):
         max_length=250,
         blank=True,
         verbose_name="Name (gr)",
-        help_text="Name (gr)",
+        help_text="Name in Greek",
     ).set_extra(
         is_public=True,
         arche_prop="hasAlternativeTitle",
@@ -531,8 +531,8 @@ class KeyWord(models.Model):
             ('Region', 'Region'),
             ('Unsicher', 'Unsicher')
         ),
-        verbose_name="Art des Stichworts",
-        help_text="Art des Stichworts",
+        verbose_name="Type of keyword",
+        help_text="Type of keyword",
     ).set_extra(
         is_public=True,
         data_lookup="start",
@@ -540,14 +540,14 @@ class KeyWord(models.Model):
     varianten = models.TextField(
         blank=True,
         null=True,
-        verbose_name="Varianten",
-        help_text="Varianten, bitte mit ';' trennen"
+        verbose_name="Variants",
+        help_text="Variants forms (separated with ;)"
     )
     wurzel = models.CharField(
         max_length=250,
         blank=True,
-        verbose_name="Wurzel",
-        help_text="Wurzel",
+        verbose_name="Root",
+        help_text="Root",
     ).set_extra(
         is_public=True,
         data_lookup="wurzel",
@@ -556,15 +556,15 @@ class KeyWord(models.Model):
         "KeyWord",
         related_name='rvn_related_keyword',
         blank=True,
-        verbose_name="Stichwort",
-        help_text="Steht in Verbindung zu anderem Stichwort",
+        verbose_name="Linked keyword",
+        help_text="Other keyword linked to this one",
     ).set_extra(
         is_public=True,
     )
     kommentar = models.TextField(
         blank=True, null=True,
-        verbose_name="Kommentar",
-        help_text="Kommentar",
+        verbose_name="Comment",
+        help_text="Comment",
     ).set_extra(
         is_public=True,
         data_lookup="anmerkung",
@@ -573,7 +573,7 @@ class KeyWord(models.Model):
     orig_data_csv = models.TextField(
         blank=True,
         null=True,
-        verbose_name="The original data"
+        verbose_name="Original data"
     ).set_extra(
         is_public=True
     )
@@ -664,8 +664,8 @@ class Ort(models.Model):
     )
     legacy_pk = models.IntegerField(
         blank=True, null=True,
-        verbose_name="Primärschlüssel Alt",
-        help_text="Primärschlüssel Alt",
+        verbose_name="Old primary key",
+        help_text="Old primary key (from GENS database)",
     ).set_extra(
         is_public=False,
         data_lookup="ortid",
@@ -676,7 +676,7 @@ class Ort(models.Model):
         max_length=250,
         blank=True,
         verbose_name="Name (en)",
-        help_text="Name (en)",
+        help_text="Name of the place in English",
     ).set_extra(
         is_public=True,
         data_lookup="Ort_en",
@@ -686,10 +686,7 @@ class Ort(models.Model):
         max_length=250,
         blank=True,
         verbose_name="Norm-ID",
-        help_text="""z.B. 'https://gazetteer.dainst.org/place/2070134',\
-            https://www.geonames.org/2772400 oder\
-            https://pleiades.stoa.org/places/857050
-        """,
+        help_text="Norm ID",
     ).set_extra(
         is_public=True,
         arche_prop="hasNonLinkedIdentifier",
@@ -698,8 +695,8 @@ class Ort(models.Model):
     name_antik = models.CharField(
         max_length=250,
         blank=True,
-        verbose_name="Name (antik)",
-        help_text="Name (antik)",
+        verbose_name="Name (ancient)",
+        help_text="Name of the place in ancient sources",
     ).set_extra(
         is_public=True,
         data_lookup="Ort_antik",
@@ -709,7 +706,7 @@ class Ort(models.Model):
         max_length=250,
         blank=True,
         verbose_name="Name (de)",
-        help_text="Name (de)",
+        help_text="Name of the place in German",
     ).set_extra(
         is_public=True,
         data_lookup="Ort_de",
@@ -719,7 +716,7 @@ class Ort(models.Model):
         max_length=250,
         blank=True,
         verbose_name="Name (fr)",
-        help_text="Name (fr)",
+        help_text="Name of the place in French",
     ).set_extra(
         is_public=True,
         data_lookup="Ort_fr",
@@ -729,7 +726,7 @@ class Ort(models.Model):
         max_length=250,
         blank=True,
         verbose_name="Name (it)",
-        help_text="Name (it)",
+        help_text="Name of the place in Italian",
     ).set_extra(
         is_public=True,
         data_lookup="Ort_it",
@@ -739,23 +736,23 @@ class Ort(models.Model):
         max_length=250,
         blank=True,
         verbose_name="Name (gr)",
-        help_text="Name (gr)",
+        help_text="Name of the place in Greek",
     ).set_extra(
         is_public=True,
         arche_prop="hasAlternativeTitle",
     )
     long = models.FloatField(
         blank=True, null=True,
-        verbose_name="Längengrad",
-        help_text="Längengrad",
+        verbose_name="Longitude",
+        help_text="Longitude",
     ).set_extra(
         is_public=True,
         data_lookup="KoordW",
     )
     lat = models.FloatField(
         blank=True, null=True,
-        verbose_name="Breitengrad",
-        help_text="Breitengrad",
+        verbose_name="Latitude",
+        help_text="Latitude",
     ).set_extra(
         is_public=True,
         data_lookup="KoordN",
@@ -763,13 +760,13 @@ class Ort(models.Model):
     coords = PointField(
         blank=True,
         null=True,
-        help_text="automatically populated",
+        help_text="Coordinates (automatically generated)",
         verbose_name="Coordinates"
     )
     fuzzy_geom = GeometryCollectionField(
         blank=True, null=True,
-        verbose_name="fuzzy geom",
-        help_text="fuzzy geom",
+        verbose_name="Approximate localisation",
+        help_text="Approximate localisation of an area",
     ).set_extra(
         is_public=True,
         arche_prop="hasWkt",
@@ -780,8 +777,8 @@ class Ort(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        verbose_name="Art des Ortes",
-        help_text="Art des Ortes",
+        verbose_name="Type",
+        help_text="Type of place",
     ).set_extra(
         is_public=True,
         data_lookup="Art",
@@ -792,16 +789,16 @@ class Ort(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        verbose_name="Kategorie des Ortes",
-        help_text="Kategorie des Ortes",
+        verbose_name="Category",
+        help_text="Category of place",
     ).set_extra(
         is_public=True,
         data_lookup="Kategorie",
     )
     kommentar = models.TextField(
         blank=True, null=True,
-        verbose_name="Kommentar",
-        help_text="Kommentar",
+        verbose_name="Comment",
+        help_text="Comment",
     ).set_extra(
         is_public=True,
         data_lookup="Kommentar",
@@ -810,7 +807,7 @@ class Ort(models.Model):
     orig_data_csv = models.TextField(
         blank=True,
         null=True,
-        verbose_name="The original data"
+        verbose_name="Original data"
     ).set_extra(
         is_public=True
     )
@@ -924,8 +921,8 @@ class Stelle(models.Model):
     )
     legacy_pk = models.IntegerField(
         blank=True, null=True,
-        verbose_name="Primärschlüssel Alt",
-        help_text="Primärschlüssel Alt",
+        verbose_name="Old primary key",
+        help_text="Old primary key (from GENS database)",
     ).set_extra(
         is_public=False,
         data_lookup="sid",
@@ -946,8 +943,8 @@ class Stelle(models.Model):
     )
     summary = models.TextField(
         blank=True, null=True,
-        verbose_name="Zusammenfassung",
-        help_text="Zusammenfassung",
+        verbose_name="Summary",
+        help_text="Summary",
     ).set_extra(
         is_public=True,
         data_lookup="ssummary",
@@ -955,8 +952,8 @@ class Stelle(models.Model):
     )
     zitat = models.TextField(
         blank=True, null=True,
-        verbose_name="Zitat",
-        help_text="Zitat",
+        verbose_name="Quotation",
+        help_text="Text of the passage in the original language",
     ).set_extra(
         is_public=True,
         data_lookup="szitat",
@@ -965,16 +962,16 @@ class Stelle(models.Model):
     zitat_stelle = models.CharField(
         max_length=250,
         blank=True, null=True,
-        verbose_name="Zitat Stelle",
-        help_text="z.B. Seitenangaben",
+        verbose_name="Quotation source",
+        help_text="Chapter and/or page numbers for the passage",
     ).set_extra(
         is_public=True,
         arche_prop="hasNote",
     )
     translation = models.TextField(
         blank=True, null=True,
-        verbose_name="Übersetzung",
-        help_text="Übersetzung",
+        verbose_name="Translation",
+        help_text="Translation",
     ).set_extra(
         is_public=True,
         data_lookup="stranslation",
@@ -983,8 +980,8 @@ class Stelle(models.Model):
         "KeyWord",
         related_name='rvn_stelle_key_word_keyword',
         blank=True,
-        verbose_name="Stichwort",
-        help_text="Stichwort",
+        verbose_name="Keyword",
+        help_text="Keyword(s) asssociated with the passage",
     ).set_extra(
         is_public=True,
         arche_prop="hasSubject",
@@ -993,32 +990,32 @@ class Stelle(models.Model):
         "Ort",
         related_name='rvn_stelle_ort_ort',
         blank=True,
-        verbose_name="Ort",
-        help_text="Ort",
+        verbose_name="Place",
+        help_text="Place of composition",
     ).set_extra(
         is_public=True,
         arche_prop="hasSpatialCoverage"
     )
     start_date = models.PositiveSmallIntegerField(
         blank=True, null=True,
-        verbose_name="Start Date",
-        help_text="e.g. '300'"
+        verbose_name="From",
+        help_text="Start date or earliest possible date"
     ).set_extra(
         is_public=True,
         arche_prop="hasCoverageStartDate"
     )
     end_date = models.PositiveSmallIntegerField(
         blank=True, null=True,
-        verbose_name="End Date",
-        help_text="e.g. '1234'"
+        verbose_name="To",
+        help_text="End date or last possible date'"
     ).set_extra(
         is_public=True,
         arche_prop="hasCoverageEndDate"
     )
     kommentar = models.TextField(
         blank=True, null=True,
-        verbose_name="Kommentar",
-        help_text="Kommentar",
+        verbose_name="Comment",
+        help_text="Comment",
     ).set_extra(
         is_public=True,
         data_lookup="skommentar",
@@ -1028,12 +1025,12 @@ class Stelle(models.Model):
         max_length=250,
         blank=True,
         null=True,
-        verbose_name="automatic created label"
+        verbose_name="Display label"
     )
     orig_data_csv = models.TextField(
         blank=True,
         null=True,
-        verbose_name="The original data"
+        verbose_name="Original data"
     ).set_extra(
         is_public=True
     )
@@ -1041,15 +1038,15 @@ class Stelle(models.Model):
         "UseCase",
         related_name='has_stelle',
         blank=True,
-        verbose_name="Use Case",
-        help_text="Verwendet in Use Case",
+        verbose_name="Use case",
+        help_text="Associated use case(s)",
     ).set_extra(
         is_public=True,
     )
     lemmata = models.JSONField(
         blank=True, null=True,
-        verbose_name="A lemmatized version of the quote",
-        help_text="A lemmatized version of the quote"
+        verbose_name="Quotation (lemmatised)",
+        help_text="A lemmatised version of the passage"
     )
 
     class Meta:
@@ -1174,8 +1171,8 @@ class Text(models.Model):
     )
     legacy_pk = models.IntegerField(
         blank=True, null=True,
-        verbose_name="Primärschlüssel Alt",
-        help_text="Primärschlüssel Alt",
+        verbose_name="Old primary key",
+        help_text="Old primary key (from GENS database)",
     ).set_extra(
         is_public=False,
         data_lookup="tID",
@@ -1186,8 +1183,8 @@ class Text(models.Model):
         "Autor",
         related_name='rvn_text_autor_autor',
         blank=True,
-        verbose_name="Autor",
-        help_text="Autor",
+        verbose_name="Author",
+        help_text="Author",
     ).set_extra(
         is_public=True,
         data_lookup="tautor",
@@ -1196,8 +1193,8 @@ class Text(models.Model):
     title = models.CharField(
         max_length=250,
         blank=True,
-        verbose_name="Titel",
-        help_text="Titel",
+        verbose_name="Title",
+        help_text="Title of the text",
     ).set_extra(
         is_public=True,
         data_lookup="ttitel",
@@ -1206,8 +1203,8 @@ class Text(models.Model):
     alt_title = models.CharField(
         max_length=250,
         blank=True,
-        verbose_name="Alternative(r) Titel",
-        help_text="Alternative(r) Titel",
+        verbose_name="Alternative title",
+        help_text="Alternative title(s) of the text",
     ).set_extra(
         is_public=True,
         arche_prop="hasAlternativeTitle",
@@ -1216,8 +1213,8 @@ class Text(models.Model):
         max_length=250,
         blank=True,
         default='lat',
-        verbose_name="Sprache des Textes",
-        help_text="Spraches des Textes, default 'lat'",
+        verbose_name="Language",
+        help_text="Language of the original text (default Latin)",
     ).set_extra(
         is_public=True,
         arche_prop="hasLanguage",
@@ -1225,8 +1222,8 @@ class Text(models.Model):
     jahrhundert = models.CharField(
         max_length=250,
         blank=True,
-        verbose_name="Jahrundert",
-        help_text="Jahrhundert",
+        verbose_name="Century",
+        help_text="Century",
     ).set_extra(
         is_public=True,
         data_lookup="tjh",
@@ -1234,8 +1231,8 @@ class Text(models.Model):
     start_date = models.CharField(
         max_length=250,
         blank=True,
-        verbose_name="von",
-        help_text="von",
+        verbose_name="From",
+        help_text="Earliest possible date of composition",
     ).set_extra(
         is_public=True,
         data_lookup="tzeitvon",
@@ -1243,8 +1240,8 @@ class Text(models.Model):
     end_date = models.CharField(
         max_length=250,
         blank=True,
-        verbose_name="bis",
-        help_text="bis",
+        verbose_name="To",
+        help_text="Last possible date of composition",
     ).set_extra(
         is_public=True,
         data_lookup="tzeitbis",
@@ -1276,8 +1273,8 @@ class Text(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        verbose_name="Textart",
-        help_text="Textart",
+        verbose_name="Genre",
+        help_text="Genre of text",
     ).set_extra(
         is_public=True,
         data_lookup="tart1",
@@ -1286,16 +1283,16 @@ class Text(models.Model):
         "Ort",
         related_name='rvn_text_ort_ort',
         blank=True,
-        verbose_name="Ort",
-        help_text="Ort",
+        verbose_name="Place",
+        help_text="Place of composition",
     ).set_extra(
         is_public=True,
         data_lookup="tort",
     )
     kommentar = models.TextField(
         blank=True, null=True,
-        verbose_name="Kommentar",
-        help_text="Kommentar",
+        verbose_name="Comment",
+        help_text="Comment",
     ).set_extra(
         is_public=True,
         data_lookup="tkommentar",
@@ -1304,7 +1301,7 @@ class Text(models.Model):
     orig_data_csv = models.TextField(
         blank=True,
         null=True,
-        verbose_name="The original data"
+        verbose_name="Original data"
     ).set_extra(
         is_public=True
     )
@@ -1419,42 +1416,42 @@ class Event(models.Model):
     title = models.CharField(
         max_length=250,
         blank=True, null=True,
-        verbose_name="Titel",
-        help_text="Titel des Events"
+        verbose_name="Title",
+        help_text="Name of the event"
     )
     description = models.TextField(
         blank=True, null=True,
-        verbose_name="Beschreibung",
-        help_text="Beschreibung"
+        verbose_name="Description",
+        help_text="Description"
     )
     start_date = models.IntegerField(
         blank=True,
         null=True,
-        verbose_name="von",
-        help_text="von",
+        verbose_name="From",
+        help_text="Start date or earliest possible date",
     ).set_extra(
         is_public=True,
     )
     end_date = models.IntegerField(
         blank=True,
         null=True,
-        verbose_name="bis",
-        help_text="bis",
+        verbose_name="To",
+        help_text="End date or last possible date",
     ).set_extra(
         is_public=True,
     )
     written_date = models.CharField(
         max_length=250,
         blank=True, null=True,
-        verbose_name="Datum",
-        help_text="z.B. 'um 750'"
+        verbose_name="Date",
+        help_text="Specific year"
     )
     use_case = models.ManyToManyField(
         "UseCase",
         related_name='has_event',
         blank=True,
-        verbose_name="Use Case",
-        help_text="Verwendet in Use Case",
+        verbose_name="Use case",
+        help_text="Associated use case(s)",
     ).set_extra(
         is_public=True
     )
@@ -1508,8 +1505,8 @@ class SpatialCoverage(models.Model):
         "Stelle",
         related_name='has_spatial_coverage',
         blank=True,
-        verbose_name="Stelle",
-        help_text="Stelle",
+        verbose_name="Passage",
+        help_text="Passage associated with coverage",
     ).set_extra(
         is_public=True,
     )
@@ -1519,8 +1516,8 @@ class SpatialCoverage(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        verbose_name="Stichwort",
-        help_text="Stichwort",
+        verbose_name="Keyword",
+        help_text="Keyword associated with coverage",
     ).set_extra(
         is_public=True,
         arche_prop="hasSubject",
@@ -1528,16 +1525,16 @@ class SpatialCoverage(models.Model):
 
     kommentar = models.TextField(
         blank=True, null=True,
-        verbose_name="Kommentar",
-        help_text="Kommentar",
+        verbose_name="Comment",
+        help_text="Comment",
     ).set_extra(
         is_public=True,
         arche_prop="hasNote",
     )
     fuzzy_geom = PolygonField(
         blank=True, null=True,
-        verbose_name="unsichere Ortsangabe",
-        help_text="Ungefähre Lokalisierung einer Region",
+        verbose_name="Approximate localisation",
+        help_text="Approximate localisation of an area",
     ).set_extra(
         is_public=True,
         arche_prop="hasWkt",
@@ -1554,8 +1551,8 @@ class SpatialCoverage(models.Model):
         choices=[(i, i) for i in range(1, 11)],
         blank=True,
         default=1,
-        verbose_name="Sicherheitsindikator",
-        help_text="1 sehr sicher, 10 sehr unsicher"
+        verbose_name="Degree of uncertainty",
+        help_text="Uncertainty of location on a scale from 1 (very secure) to 10 (very insecure)"
     ).set_extra(
         is_public=True,
     )
