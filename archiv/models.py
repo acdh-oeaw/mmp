@@ -229,8 +229,8 @@ class Autor(models.Model):
     )
     legacy_pk = models.IntegerField(
         blank=True, null=True,
-        verbose_name="Primärschlüssel Alt",
-        help_text="Primärschlüssel Alt",
+        verbose_name="Legacy ID",
+        help_text="Legacy id (from GENS database)",
     ).set_extra(
         is_public=False,
         data_lookup="aid",
