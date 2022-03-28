@@ -296,7 +296,7 @@ class OrtListView(GenericListView):
 class OrtDetailView(BaseDetailView):
 
     model = Ort
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'archiv/place_detail.html'
 
 
 class OrtCreate(BaseCreateView):
