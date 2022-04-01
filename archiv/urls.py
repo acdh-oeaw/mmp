@@ -16,6 +16,11 @@ urlpatterns = [
         name='copy_beleg'
     ),
     url(
+        r'^stelle-copy/$',
+        copy_views.copy_stelle,
+        name='copy_stelle'
+    ),
+    url(
         r'^usecase/$',
         views.UseCaseListView.as_view(),
         name='usecase_browse'

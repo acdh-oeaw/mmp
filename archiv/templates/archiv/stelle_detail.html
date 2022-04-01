@@ -30,7 +30,7 @@
         </h2>
         {% endif %}
       </div>
-      <div class="col-md-8">
+      <div class="col-md-8" style="text-align: center;">
         <h2 style="text-align: center;">
           <small><a href="{{ object.get_listview_url }}" title="back to listview"><small>{{ class_name }}</small></a></small>
           {{ object }}
@@ -40,6 +40,9 @@
             </a>
             <a href="{{ object.get_delete_url }}" title="delete">
               <i data-feather="delete"></i>
+            </a>
+            <a href="{% url 'archiv:copy_stelle' %}?current-id={{object.id}}" title="copy">
+              <i data-feather="copy"></i>
             </a>
           {% endif %}
           {% if 'archeutils' in APPS %}

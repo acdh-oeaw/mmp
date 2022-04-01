@@ -1522,7 +1522,6 @@ class SpatialCoverage(models.Model):
         is_public=True,
         arche_prop="hasSubject",
     )
-
     kommentar = models.TextField(
         blank=True, null=True,
         verbose_name="Comment",

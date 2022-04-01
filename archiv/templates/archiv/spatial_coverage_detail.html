@@ -37,6 +37,12 @@
             <a href="{{ object.get_edit_url }}" title="edit">
               <i data-feather="edit"></i>
             </a>
+            <a href="{{ object.get_delete_url }}" title="delete">
+              <i data-feather="delete"></i>
+            </a>
+            <a href="{% url 'archiv:copy_beleg' %}?current-id={{object.id}}" title="copy">
+              <i data-feather="copy"></i>
+            </a>
           {% endif %}
           {% if 'archeutils' in APPS %}
           <a href="{% url 'archeutils:res_as_arche_graph' app_name=app_name model_name=class_name|lower pk=object.id %}" title="As ARCHE-RDF">
@@ -44,9 +50,6 @@
           </a>
           {% endif%}
         </h2>
-        <h4><a href="{% url 'archiv:copy_beleg' %}?current-id={{object.id}}" title="copy">
-          <i data-feather="copy"></i>
-        </a></h5>
       </div>
       <div class="col-md-2">
         <h2>
@@ -220,14 +223,6 @@
       </div>
 
     </div>
-    {% if user.is_authenticated %}
-    <div class="card-footer" style="text-align: right;">
-      <a href="{{ object.get_delete_url }}" title="delete">
-        <i data-feather="delete"></i>
-      </a>
-    </div>
-    {% endif %}
-
   </div>
 </div>
 {% endblock custom %}
