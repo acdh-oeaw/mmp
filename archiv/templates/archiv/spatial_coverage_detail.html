@@ -29,8 +29,8 @@
         </h2>
         {% endif %}
       </div>
-      <div class="col-md-8">
-        <h2 style="text-align: center;">
+      <div class="col-md-8" style="text-align: center;">
+        <h2 >
           <small><a href="{{ object.get_listview_url }}" title="back to listview"><small>{{ class_name }}</small></a></small>
           {{ object }}
           {% if user.is_authenticated %}
@@ -44,6 +44,9 @@
           </a>
           {% endif%}
         </h2>
+        <h4><a href="{% url 'archiv:copy_beleg' %}?current-id={{object.id}}" title="copy">
+          <i data-feather="copy"></i>
+        </a></h5>
       </div>
       <div class="col-md-2">
         <h2>

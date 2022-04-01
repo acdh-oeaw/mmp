@@ -6,10 +6,15 @@ from archiv.endpoint_views import (
 )
 
 from . import tei_views
-
+from . import copy_views
 
 app_name = 'archiv'
 urlpatterns = [
+    url(
+        r'^spatialcoverage-copy/$',
+        copy_views.copy_beleg,
+        name='copy_beleg'
+    ),
     url(
         r'^usecase/$',
         views.UseCaseListView.as_view(),
