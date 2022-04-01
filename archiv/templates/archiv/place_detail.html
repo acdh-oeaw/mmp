@@ -184,7 +184,6 @@
       function(data, data1) {
         var geojsonFeature = data;
         var geojsonLayer = L.geoJson(geojsonFeature, {}).addTo(map);
-        map.fitBounds(geojsonLayer.getBounds());
         var geojsonFeature1 = data1;
         var geojsonLayer1 = L.geoJson(geojsonFeature1, {}).addTo(map);
       })
