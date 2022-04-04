@@ -23,6 +23,16 @@ def filter_by_ids(queryset, name, value):
     return queryset.filter(id__in=values)
 
 
+def none_filter(queryset, name, value):
+    print(f"##########{name}, {value}#############")
+    stellen = Stelle.objects.filter(use_case__isnull=False)
+    if value:
+        queryset = queryset.filter(**{f'{name}__in': stellen})
+    else:
+        queryset = queryset.exclude(**{f'{name}__in': stellen})
+    return queryset.distinct()
+
+
 DATE_LOOKUP_CHOICES = [
     ('exact', 'Equals'),
     ('gt', 'Greater than'),
@@ -301,13 +311,13 @@ class AutorListFilter(django_filters.FilterSet):
 
 
 class KeyWordListFilter(django_filters.FilterSet):
+
     ids = django_filters.CharFilter(method=filter_by_ids)
     has_usecase = django_filters.BooleanFilter(
-        field_name='rvn_stelle_key_word_keyword__use_case',
-        lookup_expr='isnull',
-        exclude=True,
+        field_name='rvn_stelle_key_word_keyword',
         label="Related to any UseCase?",
-        help_text="Set 'Yes' to show only objects related to any UseCase"
+        help_text="Set 'Yes' to show only objects related to any UseCase",
+        method=none_filter
     )
     rvn_stelle_key_word_keyword__text__autor = django_filters.ModelMultipleChoiceFilter(
         conjoined=True,
@@ -575,11 +585,8 @@ class StelleListFilter(django_filters.FilterSet):
         label=Stelle._meta.get_field('translation').verbose_name
     )
     key_word__art = django_filters.ChoiceFilter(
-        choices=(
-            ('Schlagwort', 'Schlagwort'),
-            ('Eigenname', 'Eigenname')
-        ),
-        empty_label='---',
+        empty_label='-------',
+        choices=KeyWord._meta.get_field('art').choices,
         help_text="Type of Keyword, choose 'Schlagwort' or 'Eigenname'",
         label="Type of Keyword"
     )
@@ -590,6 +597,26 @@ class StelleListFilter(django_filters.FilterSet):
         label="UseCase",
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:usecase-autocomplete",
+        )
+    )
+    key_word = django_filters.ModelMultipleChoiceFilter(
+        queryset=KeyWord.objects.all(),
+        help_text=f"{Stelle._meta.get_field('key_word').help_text};\
+            Passage MUST contain at least ONE selected Keyword",
+        label=f"{Stelle._meta.get_field('key_word').verbose_name} (OR Filter)",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:keyword-autocomplete",
+        )
+    )
+    key_word_and = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        field_name='key_word',
+        queryset=KeyWord.objects.all(),
+        help_text=f"{Stelle._meta.get_field('key_word').help_text};\
+            Passage MUST contain ALL selected Keywords",
+        label=f"{Stelle._meta.get_field('key_word').verbose_name} (AND Filter)",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:keyword-autocomplete",
         )
     )
     kommentar = django_filters.LookupChoiceFilter(
@@ -647,11 +674,10 @@ class StelleListFilter(django_filters.FilterSet):
 class TextListFilter(django_filters.FilterSet):
     ids = django_filters.CharFilter(method=filter_by_ids)
     has_usecase = django_filters.BooleanFilter(
-        field_name='rvn_stelle_text_text__use_case',
-        lookup_expr='isnull',
-        exclude=True,
+        field_name='rvn_stelle_text_text',
         label="Related to any UseCase?",
-        help_text="Set 'Yes' to show only objects related to any UseCase"
+        help_text="Set 'Yes' to show only objects related to any UseCase",
+        method=none_filter
     )
     legacy_id = django_filters.CharFilter(
         lookup_expr='icontains',
