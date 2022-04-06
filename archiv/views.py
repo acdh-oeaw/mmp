@@ -394,7 +394,7 @@ class TextListView(GenericListView):
 class TextDetailView(BaseDetailView):
 
     model = Text
-    template_name = 'archiv/generic_detail.html'
+    template_name = 'archiv/text_detail.html'
 
 
 class TextCreate(BaseCreateView):
