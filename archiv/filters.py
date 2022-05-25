@@ -560,6 +560,17 @@ class StelleListFilter(django_filters.FilterSet):
             url="archiv-ac:autor-autocomplete",
         )
     )
+    text__art = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=SkosConcept.objects.filter(
+            collection__name="art"
+        ),
+        help_text=Text._meta.get_field('art').help_text,
+        label=Text._meta.get_field('art').verbose_name,
+        widget=autocomplete.Select2Multiple(
+            url="/vocabs-ac/specific-concept-ac/art",
+        )
+    )
     ort = django_filters.ModelMultipleChoiceFilter(
         conjoined=True,
         queryset=Ort.objects.all(),

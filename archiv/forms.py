@@ -337,6 +337,7 @@ class StelleFilterFormHelper(FormHelper):
                 'zitat',
                 'text',
                 'text__autor',
+                'text__art',
                 'key_word',
                 'key_word_and',
                 'use_case',
