@@ -110,6 +110,7 @@ class SpatialCoverageFilterFormHelper(FormHelper):
             Fieldset(
                 'Basic search options',
                 'id',
+                'show_labels',
                 'key_word',
                 'stelle__use_case',
                 'stelle__ort',

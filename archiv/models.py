@@ -1555,6 +1555,11 @@ class SpatialCoverage(models.Model):
     ).set_extra(
         is_public=True,
     )
+    show_labels = models.BooleanField(
+        default=True,
+        verbose_name="Show Labels",
+        help_text="True if the label of the Spatial Coverage should be visible in the front end"
+    )
 
     class Meta:
 

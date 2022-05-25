@@ -50,6 +50,7 @@ class SpatialCoverageSerializer(
         auto_bbox = True
         fields = (
             'id',
+            'show_labels',
             'key_word',
             'fuzzyness',
             'stelle',

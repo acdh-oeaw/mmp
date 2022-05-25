@@ -192,6 +192,7 @@ class SpatialCoverageListFilter(django_filters.FilterSet):
         model = SpatialCoverage
         fields = [
             'id',
+            'show_labels',
             'key_word',
             'stelle',
         ]
