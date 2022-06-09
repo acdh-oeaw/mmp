@@ -508,6 +508,15 @@ class OrtListFilter(django_filters.FilterSet):
         help_text=Ort._meta.get_field('kommentar').help_text,
         label=Ort._meta.get_field('kommentar').verbose_name
     )
+    rvn_autor_ort_ort = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=Autor.objects.all(),
+        help_text="Related Authors",
+        label="Author",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:autor-autocomplete",
+        )
+    )
 
     class Meta:
         model = Ort

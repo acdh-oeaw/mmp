@@ -25,7 +25,7 @@ class AutorAC(autocomplete.Select2QuerySetView):
                 Q(name_it__icontains=self.q) |
                 Q(name_gr__icontains=self.q)
             )
-        return qs
+        return qs.distinct()
 
 
 class KeyWordAC(autocomplete.Select2QuerySetView):

@@ -268,6 +268,7 @@ class OrtFilterFormHelper(FormHelper):
                 'name',
                 'name_antik',
                 'norm_id',
+                'rvn_autor_ort_ort',
                 css_id="basic_search_fields"
             ),
             Accordion(
