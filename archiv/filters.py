@@ -517,6 +517,42 @@ class OrtListFilter(django_filters.FilterSet):
             url="archiv-ac:autor-autocomplete",
         )
     )
+    rvn_text_ort_ort = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=Text.objects.all(),
+        help_text="Related Texts",
+        label="Text",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:text-autocomplete",
+        )
+    )
+    rvn_text_ort_ort__rvn_stelle_text_text__key_word = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=KeyWord.objects.all(),
+        label="Keywords",
+        help_text="Keywords related to this place through a Text",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:keyword-autocomplete",
+        )
+    )
+    rvn_text_ort_ort__rvn_stelle_text_text__use_case = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=UseCase.objects.all(),
+        label="Use Case",
+        help_text="Places related to this Use Case",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:usecase-autocomplete",
+        )
+    )
+    rvn_text_ort_ort__rvn_stelle_text_text = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=Stelle.objects.all(),
+        label="Passage",
+        help_text="Places related to this Passage",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:stelle-autocomplete",
+        )
+    )
 
     class Meta:
         model = Ort
