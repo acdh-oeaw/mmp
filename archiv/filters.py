@@ -561,6 +561,15 @@ class StelleListFilter(django_filters.FilterSet):
             url="archiv-ac:autor-autocomplete",
         )
     )
+    text__ort = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=Ort.objects.all(),
+        help_text="The place the passage was written",
+        label="Place where the text was written the passage is derived from",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:ort-autocomplete",
+        )
+    )
     text__art = django_filters.ModelMultipleChoiceFilter(
         conjoined=True,
         queryset=SkosConcept.objects.filter(

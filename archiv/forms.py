@@ -339,11 +339,11 @@ class StelleFilterFormHelper(FormHelper):
                 'text',
                 'text__autor',
                 'text__art',
+                'text__ort',
                 'key_word',
                 'key_word_and',
                 'use_case',
                 'key_word__art',
-                'ort',
                 css_id="basic_search_fields"
             ),
             Accordion(
@@ -424,7 +424,6 @@ class TextFilterFormHelper(FormHelper):
                     'rvn_stelle_text_text__key_word',
                     'edition',
                     'art',
-                    'ort',
                     css_id="entities"
                 ),
                 AccordionGroup(
