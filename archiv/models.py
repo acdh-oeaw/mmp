@@ -91,6 +91,14 @@ class UseCase(models.Model):
     ).set_extra(
         is_public=True,
     )
+    custom_layer = models.CharField(
+        max_length=250,
+        blank=True,
+        null=True,
+        verbose_name="Name of additional Layer",
+        help_text="This name needs to match a specific layer name,\
+            e.g '800' to load a layer '800'"
+    )
 
     class Meta:
 
