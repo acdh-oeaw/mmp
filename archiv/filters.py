@@ -281,15 +281,10 @@ class AutorListFilter(django_filters.FilterSet):
         )
     )
     rvn_text_autor_autor__rvn_stelle_text_text__key_word__art = django_filters.ChoiceFilter(
-        choices=(
-            ('Keyword', 'Keyword'),
-            ('Name', 'Name'),
-            ('Ethonym', 'Ethonym'),
-            ('Region', 'Region'),
-            ('unclear', 'unclear')
-        ),
-        label="Type of Keywords",
-        help_text="Type of Keywords",
+        empty_label='-------',
+        choices=KeyWord._meta.get_field('art').choices,
+        help_text="Type of Keyword",
+        label="Type of Keyword"
     )
     start_date_year = django_filters.LookupChoiceFilter(
         lookup_choices=DATE_LOOKUP_CHOICES,
@@ -664,7 +659,7 @@ class StelleListFilter(django_filters.FilterSet):
     key_word__art = django_filters.ChoiceFilter(
         empty_label='-------',
         choices=KeyWord._meta.get_field('art').choices,
-        help_text="Type of Keyword, choose 'Schlagwort' or 'Eigenname'",
+        help_text="Type of Keyword",
         label="Type of Keyword"
     )
     use_case = django_filters.ModelMultipleChoiceFilter(
@@ -848,6 +843,12 @@ class TextListFilter(django_filters.FilterSet):
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:keyword-autocomplete",
         )
+    )
+    rvn_stelle_text_text__key_word__art = django_filters.ChoiceFilter(
+        empty_label='-------',
+        choices=KeyWord._meta.get_field('art').choices,
+        help_text="Type of Keyword",
+        label="Type of Keyword"
     )
 
     class Meta:

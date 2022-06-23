@@ -428,6 +428,7 @@ class TextFilterFormHelper(FormHelper):
                     'Content',
                     'legacy_pk',
                     'rvn_stelle_text_text__key_word',
+                    'rvn_stelle_text_text__key_word__art',
                     'edition',
                     'art',
                     css_id="entities"
