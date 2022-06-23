@@ -42,7 +42,11 @@ class KeyWordStelle(ListView):
 
     def render_to_response(self, context, **kwargs):
         qs = self.get_queryset().distinct().order_by('id')
-        key_words = [x[0] for x in list(qs.values_list('key_word__stichwort'))]
+        qs_kw = [x.key_word.all().distinct() for x in qs]
+        key_words = []
+        for x in qs_kw:
+            for y in x:
+                key_words.append(y.stichwort)
         key_word_counter = Counter(key_words)
         data = {
             "token_dict":
