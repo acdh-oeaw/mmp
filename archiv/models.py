@@ -533,11 +533,11 @@ class KeyWord(models.Model):
         max_length=250,
         blank=True,
         choices=(
-            ('Schlagwort', 'Schlagwort'),
-            ('Eigenname', 'Eigenname'),
+            ('Keyword', 'Keyword'),
+            ('Name', 'Name'),
             ('Ethonym', 'Ethonym'),
             ('Region', 'Region'),
-            ('Unsicher', 'Unsicher')
+            ('unclear', 'unclear')
         ),
         verbose_name="Type of keyword",
         help_text="Type of keyword",
