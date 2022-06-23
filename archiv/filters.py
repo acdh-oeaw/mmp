@@ -280,6 +280,17 @@ class AutorListFilter(django_filters.FilterSet):
             url="archiv-ac:keyword-autocomplete",
         )
     )
+    rvn_text_autor_autor__rvn_stelle_text_text__key_word__art = django_filters.ChoiceFilter(
+        choices=(
+            ('Keyword', 'Keyword'),
+            ('Name', 'Name'),
+            ('Ethonym', 'Ethonym'),
+            ('Region', 'Region'),
+            ('unclear', 'unclear')
+        ),
+        label="Type of Keywords",
+        help_text="Type of Keywords",
+    )
     start_date_year = django_filters.LookupChoiceFilter(
         lookup_choices=DATE_LOOKUP_CHOICES,
         help_text=Autor._meta.get_field('start_date_year').help_text,

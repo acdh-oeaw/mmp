@@ -159,6 +159,7 @@ class AutorFilterFormHelper(FormHelper):
                     'end_date_year',
                     'kommentar',
                     'rvn_text_autor_autor__rvn_stelle_text_text__key_word',
+                    'rvn_text_autor_autor__rvn_stelle_text_text__key_word__art',
                     css_id="more"
                 ),
                 AccordionGroup(
