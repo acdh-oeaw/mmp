@@ -64,13 +64,13 @@ class Region(autocomplete.Select2QuerySetView):
         return qs
 
 
-class Ethonym(autocomplete.Select2QuerySetView):
+class Ethnonym(autocomplete.Select2QuerySetView):
 
     def get_result_label(self, item):
         return f"{item.stichwort}, <{item.art}>"
 
     def get_queryset(self):
-        qs = KeyWord.objects.filter(art="Ethonym")
+        qs = KeyWord.objects.filter(art="Ethnonym")
 
         if self.q:
             qs = qs.filter(
@@ -88,7 +88,7 @@ class Eigenname(autocomplete.Select2QuerySetView):
         return f"{item.stichwort}, <{item.art}>"
 
     def get_queryset(self):
-        qs = KeyWord.objects.filter(art="Eigenname")
+        qs = KeyWord.objects.filter(art="Name")
 
         if self.q:
             qs = qs.filter(
@@ -102,7 +102,7 @@ class Eigenname(autocomplete.Select2QuerySetView):
 
 class Schlagwort(autocomplete.Select2QuerySetView):
     def get_queryset(self):
-        qs = KeyWord.objects.filter(art="Schlagwort")
+        qs = KeyWord.objects.filter(art="Keyword")
 
         if self.q:
             qs = qs.filter(

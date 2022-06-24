@@ -9,9 +9,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         lookup_dict = {
-            "Schlagwort": "Keyword",
-            "Eigenname": "Name",
-            "Unsicher": "unclear"
+            "Ethonym": "Ethnonym",
         }
         for key, value in lookup_dict.items():
             for x in KeyWord.objects.filter(art=key):

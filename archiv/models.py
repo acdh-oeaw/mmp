@@ -535,7 +535,7 @@ class KeyWord(models.Model):
         choices=(
             ('Keyword', 'Keyword'),
             ('Name', 'Name'),
-            ('Ethonym', 'Ethonym'),
+            ('Ethnonym', 'Ethnonym'),
             ('Region', 'Region'),
             ('unclear', 'unclear')
         ),

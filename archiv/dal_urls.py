@@ -21,7 +21,7 @@ urlpatterns = [
     ),
     url(
         r'^ethonym-autocomplete/$',
-        dal_views.Ethonym.as_view(),
+        dal_views.Ethnonym.as_view(),
         name='ethonym-autocomplete'
     ),
     url(
