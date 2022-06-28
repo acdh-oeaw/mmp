@@ -1066,7 +1066,8 @@ class Stelle(models.Model):
 
     def save(self, *args, **kwargs):
         self.display_label = self.make_label()
-        if self.zitat:
+        if self.zitat and self.lemmata is None:
+            print("processing quote")
             self.lemmata = process_text(self.zitat)
         super(Stelle, self).save(*args, **kwargs)
 
