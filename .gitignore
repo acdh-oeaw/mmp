@@ -78,3 +78,4 @@ staticfiles/*
 sample.js
 archiv.csv
 Untitled*.ipynb
+/stanza

@@ -18,4 +18,4 @@ coreapi>=2.3.3
 django-leaflet
 fontawesome-free==5.15.4
 lxml==4.7.1
-cltk==1.1.3
+stanza==1.4.0

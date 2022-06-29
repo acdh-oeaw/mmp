@@ -15,7 +15,6 @@ RUN pip install -U pip && pip install gunicorn --no-cache-dir
 COPY requirements.txt start-server.sh /opt/app/
 RUN pip install -r requirements.txt --no-cache-dir
 COPY . /opt/app/djangobaseproject/
-RUN python /opt/app/djangobaseproject/dl_cltk_models.py
 
 # RUN chown -R www-data:www-data /opt/app
 # RUN chown -R www-data:www-data /root/cltk_data

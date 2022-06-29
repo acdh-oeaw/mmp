@@ -11,4 +11,5 @@ class Command(BaseCommand):
         to_process = Stelle.objects.filter(text__text_lang='lat')
         print(f"Stelle objects to process: {to_process.count()}")
         for x in tqdm(to_process, total=to_process.count()):
+            x.lemmata = None
             x.save()

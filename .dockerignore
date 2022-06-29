@@ -21,3 +21,8 @@ logs
 pg_local.py
 Dockerfile
 server.py
+*.ipynb
+.ipynb_checkpoints
+/stanza
+.coverage
+/htmlcov

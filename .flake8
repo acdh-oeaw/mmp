@@ -16,3 +16,4 @@ exclude =
     djangobaseproject/settings
     webpage
     djangobaseproject/settings/pg_local.py
+    stanza
