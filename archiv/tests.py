@@ -141,10 +141,10 @@ class ArchivTestCase(TestCase):
         processed = process_text(my_text)
         self.assertIsInstance(processed, dict)
 
-    # def test_013_nlp_data(self):
-    #     url = reverse('archiv:nlp_data')
-    #     response = client.get(url)
-    #     self.assertEqual(response.status_code, 200)
+    def test_013_nlp_data(self):
+        url = reverse('archiv:nlp_data')
+        response = client.get(url)
+        self.assertEqual(response.status_code, 200)
 
     # def test_014_api(self):
     #     response = client.get(f"{reverse('api-root')}&format=json", content_type='application/json').json()
