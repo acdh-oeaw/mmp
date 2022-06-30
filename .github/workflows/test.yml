@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       POSTGRES_DB: github_actions
+      DB_NAME: github_actions
     services:
       postgres:
         image: postgis/postgis:12-master
@@ -39,11 +40,11 @@ jobs:
         pip install -r requirements.txt
         pip install coverage
     - name: Run collectstatic
-      run: python manage.py collectstatic --settings=djangobaseproject.settings.pg_local
+      run: python manage.py collectstatic
     - name: Run migrations
-      run: python manage.py migrate --settings=djangobaseproject.settings.pg_local
+      run: python manage.py migrate
     - name: Run tests
-      run: coverage run manage.py test archiv --settings=djangobaseproject.settings.pg_local
+      run: coverage run manage.py test archiv
     - name: Create Coverage Report
       run: coverage xml
     - name: "Upload coverage to Codecov"

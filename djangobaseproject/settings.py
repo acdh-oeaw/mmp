@@ -1,17 +1,44 @@
 import os
-
 import sys
+from pathlib import Path
 
 sys.modules['fontawesome_free'] = __import__('fontawesome-free')
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(
-    os.path.dirname(os.path.abspath(os.path.join(__file__, '../')))
-)
 os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
+SECRET_KEY = os.environ.get('SECRET_KEY', '1234verysecret')
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+if os.environ.get('DEBUG'):
+    DEBUG = True
+else:
+    DEBUG = False
+
+ADD_ALLOWED_HOST = os.environ.get('ALLOWED_HOST', '*')
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "0.0.0.0",
+    ADD_ALLOWED_HOST,
+]
+
+if os.environ.get('SQLITE'):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': os.environ.get('DB_TYP', 'django.contrib.gis.db.backends.postgis'),
+            'NAME': os.environ.get('DB_NAME', 'mmp'),
+            'USER': os.environ.get('DB_USER', 'postgres'),
+            'PASSWORD': os.environ.get('DB_PASSWORD', 'postgres'),
+            'HOST': os.environ.get('DB_HOST', 'localhost'),
+            'PORT': os.environ.get('DB_PORT', '5432')
+        }
+    }
 
 
 SHARED_URL = "https://shared.acdh.oeaw.ac.at/"
@@ -162,13 +189,13 @@ ARCHE_SETTINGS = {
     'base_url': "https://id.acdh.oeaw.ac.at/{}".format(ROOT_URLCONF.split('.')[0])
 }
 
-VOCABS_DEFAULT_PEFIX = "changeme"
-
+VOCABS_DEFAULT_PEFIX = os.environ.get('VOCABS_DEFAULT_PEFIX', 'mmp')
 VOCABS_SETTINGS = {
     'default_prefix': VOCABS_DEFAULT_PEFIX,
-    'default_nsgg': f"http://www.vocabs/{VOCABS_DEFAULT_PEFIX}/",
-    'default_lang': "en"
+    'default_ns': f"http://www.vocabs/{VOCABS_DEFAULT_PEFIX}/",
+    'default_lang': os.environ.get('VOCABS_DEFAULT_LANG', 'en'),
 }
+
 
 SERIALIZATION_MODULES = {
     "geojson": "django.contrib.gis.serializers.geojson",
