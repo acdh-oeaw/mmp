@@ -6,12 +6,12 @@ server {
 
     location /static/ {
         autoindex on;
-        alias /opt/app/djangobaseproject/staticfiles/;
+        alias /opt/app/staticfiles/;
     }
 
     location /media/ {
         autoindex on;
-        alias /opt/app/djangobaseproject/media/;
+        alias /opt/app/media/;
     }
 
     location / {

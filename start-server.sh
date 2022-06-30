@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # start-server.sh
 
-echo "changed owner test"
+echo "Hello from Project MMP"
 
 if [ -n "$DJANGO_SUPERUSER_USERNAME" ] && [ -n "$DJANGO_SUPERUSER_PASSWORD" ] ; then
-    (echo "creating superuser ${DJANGO_SUPERUSER_USERNAME}" && python djangobaseproject/manage.py createsuperuser --no-input --noinput --email 'blank@email.com' --settings=djangobaseproject.settings.docker)
+    (echo "creating superuser ${DJANGO_SUPERUSER_USERNAME}" && python djangobaseproject/manage.py createsuperuser --no-input --noinput --email 'blank@email.com' )
 fi
-cd djangobaseproject && python manage.py collectstatic --no-input --settings=djangobaseproject.settings.docker &&
-gunicorn djangobaseproject.wsgi_docker --bind 0.0.0.0:8010 --workers 3 --timeout 600 & nginx -g "daemon off;"
+python manage.py collectstatic --no-input 
+gunicorn djangobaseproject.wsgi --bind 0.0.0.0:8010 --workers 3 --timeout 600 & nginx -g "daemon off;"

@@ -26,3 +26,4 @@ server.py
 /stanza
 .coverage
 /htmlcov
+/staticfiles
