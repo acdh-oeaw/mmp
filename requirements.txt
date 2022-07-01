@@ -1,16 +1,15 @@
-acdh-django-vocabs>=0.1.6
-acdh-django-browsing==1.2.3
+acdh-django-browsing==1.2.4
 acdh-django-netvis==3.1.0
-Django>=3.1,<4 
+acdh-django-vocabs==1.0.0
+Django>=4,<5 
 django-ckeditor==6.2.0
 django-cors-headers==3.7.0
 django-extensions==3.1.0
 django-floppyforms==1.9.0
-django-mptt==0.11.0
 django-next-prev==1.1.0
-djangorestframework-gis==0.17
+djangorestframework-gis>=1,<2
 django-spaghetti-and-meatballs==0.4.2
-django-story-map==0.5.0
+django-story-map==0.6.2
 requests>=2.25
 tablib==3.0.0
 psycopg2-binary
@@ -18,4 +17,5 @@ coreapi>=2.3.3
 django-leaflet
 fontawesome-free==5.15.4
 lxml==4.7.1
+rdflib>=5.0.0,<7
 stanza==1.4.0

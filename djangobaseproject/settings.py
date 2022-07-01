@@ -60,7 +60,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'guardian',
     'rest_framework_gis',
     'reversion',
     'ckeditor',
@@ -91,7 +90,7 @@ SPAGHETTI_SAUCE = {
     'show_fields': False,
     'exclude': {'auth': ['user']},
 }
-AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend', 'guardian.backends.ObjectPermissionBackend')
+AUTHENTICATION_BACKENDS = ('django.contrib.auth.backends.ModelBackend', )
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (

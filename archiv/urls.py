@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.urls import path
 
 from . import views
 from archiv.endpoint_views import (
@@ -10,240 +10,240 @@ from . import copy_views
 
 app_name = 'archiv'
 urlpatterns = [
-    url(
-        r'^spatialcoverage-copy/$',
+    path(
+        'spatialcoverage-copy/',
         copy_views.copy_beleg,
         name='copy_beleg'
     ),
-    url(
-        r'^stelle-copy/$',
+    path(
+        'stelle-copy/',
         copy_views.copy_stelle,
         name='copy_stelle'
     ),
-    url(
-        r'^usecase/$',
+    path(
+        'usecase/',
         views.UseCaseListView.as_view(),
         name='usecase_browse'
     ),
-    url(
-        r'^usecase/detail/(?P<pk>[0-9]+)$',
+    path(
+        'usecase/detail/<int:pk>',
         views.UseCaseDetailView.as_view(),
         name='usecase_detail'
     ),
-    url(
-        r'^usecase/create/$',
+    path(
+        'usecase/create/',
         views.UseCaseCreate.as_view(),
         name='usecase_create'
     ),
-    url(
-        r'^usecase/edit/(?P<pk>[0-9]+)$',
+    path(
+        'usecase/edit/<int:pk>',
         views.UseCaseUpdate.as_view(),
         name='usecase_edit'
     ),
-    url(
-        r'^usecase/delete/(?P<pk>[0-9]+)$',
+    path(
+        'usecase/delete/<int:pk>',
         views.UseCaseDelete.as_view(),
         name='usecase_delete'),
-    url(
-        r'^usecase-timetable-data/(?P<pk>[0-9]+)$',
+    path(
+        'usecase-timetable-data/<int:pk>',
         views.get_usecase_timetable_json,
         name='usecase_timetable_json'),
-    url(
-        r'^spatialcoverage/$',
+    path(
+        'spatialcoverage/',
         views.SpatialCoverageListView.as_view(),
         name='spatialcoverage_browse'
     ),
-    url(
-        r'^spatialcoverage/detail/(?P<pk>[0-9]+)$',
+    path(
+        'spatialcoverage/detail/<int:pk>',
         views.SpatialCoverageDetailView.as_view(),
         name='spatialcoverage_detail'
     ),
-    url(
-        r'^spatialcoverage/create/$',
+    path(
+        'spatialcoverage/create/',
         views.SpatialCoverageCreate.as_view(),
         name='spatialcoverage_create'
     ),
-    url(
-        r'^spatialcoverage/edit/(?P<pk>[0-9]+)$',
+    path(
+        'spatialcoverage/edit/<int:pk>',
         views.SpatialCoverageUpdate.as_view(),
         name='spatialcoverage_edit'
     ),
-    url(
-        r'^spatialcoverage/delete/(?P<pk>[0-9]+)$',
+    path(
+        'spatialcoverage/delete/<int:pk>',
         views.SpatialCoverageDelete.as_view(),
         name='spatialcoverage_delete'),
-    url(
-        r'^autor/$',
+    path(
+        'autor/',
         views.AutorListView.as_view(),
         name='autor_browse'
     ),
-    url(
-        r'^autor/detail/(?P<pk>[0-9]+)$',
+    path(
+        'autor/detail/<int:pk>',
         views.AutorDetailView.as_view(),
         name='autor_detail'
     ),
-    url(
-        r'^autor/create/$',
+    path(
+        'autor/create/',
         views.AutorCreate.as_view(),
         name='autor_create'
     ),
-    url(
-        r'^autor/edit/(?P<pk>[0-9]+)$',
+    path(
+        'autor/edit/<int:pk>',
         views.AutorUpdate.as_view(),
         name='autor_edit'
     ),
-    url(
-        r'^autor/delete/(?P<pk>[0-9]+)$',
+    path(
+        'autor/delete/<int:pk>',
         views.AutorDelete.as_view(),
         name='autor_delete'),
-    url(
-        r'^keyword/$',
+    path(
+        'keyword/',
         views.KeyWordListView.as_view(),
         name='keyword_browse'
     ),
-    url(
-        r'^keyword/century/(?P<pk>[0-9]+)$',
+    path(
+        'keyword/century/<int:pk>',
         key_word_by_century,
         name='keyword_by_century'
     ),
-    url(
-        r'^keyword-data/$',
+    path(
+        'keyword-data/',
         KeyWordEndpoint.as_view(),
         name='keyword_data'
     ),
-    url(
-        r'^keyword/detail/(?P<pk>[0-9]+)$',
+    path(
+        'keyword/detail/<int:pk>',
         views.KeyWordDetailView.as_view(),
         name='keyword_detail'
     ),
-    url(
-        r'^keyword/create/$',
+    path(
+        'keyword/create/',
         views.KeyWordCreate.as_view(),
         name='keyword_create'
     ),
-    url(
-        r'^keyword/edit/(?P<pk>[0-9]+)$',
+    path(
+        'keyword/edit/<int:pk>',
         views.KeyWordUpdate.as_view(),
         name='keyword_edit'
     ),
-    url(
-        r'^keyword/delete/(?P<pk>[0-9]+)$',
+    path(
+        'keyword/delete/<int:pk>',
         views.KeyWordDelete.as_view(),
         name='keyword_delete'),
-    url(
-        r'^ort/$',
+    path(
+        'ort/',
         views.OrtListView.as_view(),
         name='ort_browse'
     ),
-    url(
-        r'^ort/detail/(?P<pk>[0-9]+)$',
+    path(
+        'ort/detail/<int:pk>',
         views.OrtDetailView.as_view(),
         name='ort_detail'
     ),
-    url(
-        r'^ort/create/$',
+    path(
+        'ort/create/',
         views.OrtCreate.as_view(),
         name='ort_create'
     ),
-    url(
-        r'^ort/edit/(?P<pk>[0-9]+)$',
+    path(
+        'ort/edit/<int:pk>',
         views.OrtUpdate.as_view(),
         name='ort_edit'
     ),
-    url(
-        r'^ort/delete/(?P<pk>[0-9]+)$',
+    path(
+        'ort/delete/<int:pk>',
         views.OrtDelete.as_view(),
         name='ort_delete'),
-    url(
-        r'^stelle/$',
+    path(
+        'stelle/',
         views.StelleListView.as_view(),
         name='stelle_browse'
     ),
-    url(
-        r'^stelle/detail/(?P<pk>[0-9]+)$',
+    path(
+        'stelle/detail/<int:pk>',
         views.StelleDetailView.as_view(),
         name='stelle_detail'
     ),
-    url(
-        r'^stelle/create/$',
+    path(
+        'stelle/create/',
         views.StelleCreate.as_view(),
         name='stelle_create'
     ),
-    url(
-        r'^stelle/edit/(?P<pk>[0-9]+)$',
+    path(
+        'stelle/edit/<int:pk>',
         views.StelleUpdate.as_view(),
         name='stelle_edit'
     ),
-    url(
-        r'^stelle/delete/(?P<pk>[0-9]+)$',
+    path(
+        'stelle/delete/<int:pk>',
         views.StelleDelete.as_view(),
         name='stelle_delete'),
-    url(
-        r'^text/$',
+    path(
+        'text/',
         views.TextListView.as_view(),
         name='text_browse'
     ),
-    url(
-        r'^text/detail/(?P<pk>[0-9]+)$',
+    path(
+        'text/detail/<int:pk>',
         views.TextDetailView.as_view(),
         name='text_detail'
     ),
-    url(
-        r'^text/create/$',
+    path(
+        'text/create/',
         views.TextCreate.as_view(),
         name='text_create'
     ),
-    url(
-        r'^text/edit/(?P<pk>[0-9]+)$',
+    path(
+        'text/edit/<int:pk>',
         views.TextUpdate.as_view(),
         name='text_edit'
     ),
-    url(
-        r'^text/delete/(?P<pk>[0-9]+)$',
+    path(
+        'text/delete/<int:pk>',
         views.TextDelete.as_view(),
         name='text_delete'),
-    url(
-        r'^text/xml-tei/(?P<pk>[0-9]+)$',
+    path(
+        'text/xml-tei/<int:pk>',
         tei_views.text_to_tei,
         name='text_xml'
     ),
-    url(
-        r'^event/$',
+    path(
+        'event/',
         views.EventListView.as_view(),
         name='event_browse'
     ),
-    url(
-        r'^event/detail/(?P<pk>[0-9]+)$',
+    path(
+        'event/detail/<int:pk>',
         views.EventDetailView.as_view(),
         name='event_detail'
     ),
-    url(
-        r'^event/create/$',
+    path(
+        'event/create/',
         views.EventCreate.as_view(),
         name='event_create'
     ),
-    url(
-        r'^event/edit/(?P<pk>[0-9]+)$',
+    path(
+        'event/edit/<int:pk>',
         views.EventUpdate.as_view(),
         name='event_edit'
     ),
-    url(
-        r'^event/delete/(?P<pk>[0-9]+)$',
+    path(
+        'event/delete/<int:pk>',
         views.EventDelete.as_view(),
         name='event_delete'
     ),
-    url(
-        r'^nlp-data/$',
+    path(
+        'nlp-data/',
         NlpDataStelle.as_view(),
         name='nlp_data'
     ),
-    url(
-        r'^kw-stelle/$',
+    path(
+        'kw-stelle/',
         KeyWordStelle.as_view(),
         name='keyword_stelle'
     ),
-    url(
-        r'^stopwords/$',
+    path(
+        'stopwords/',
         StopWordListView.as_view(),
         name='stopwords'
     ),

@@ -1,4 +1,4 @@
-from django.conf.urls import url, include
+from django.urls import path, include
 from django.contrib import admin
 from rest_framework import routers
 from rest_framework.documentation import include_docs_urls
@@ -33,26 +33,26 @@ router.register(r'stories', archiv_api_views.StoryViewSet)
 router.register(r'slides', archiv_api_views.SlideViewSet)
 
 urlpatterns = [
-    url(r'^api/', include(router.urls), name="api-root"),
-    url('api-docs/', include_docs_urls(title='MMP-API')),
-    url(
-        r'^api-auth/',
+    path('api/', include(router.urls), name="api-root"),
+    path('api-docs/', include_docs_urls(title='MMP-API')),
+    path(
+        'api-auth/',
         include(
             'rest_framework.urls',
             namespace='rest_framework'
         )
     ),
-    url(r'^admin/', admin.site.urls),
-    url(r'^browsing/', include('browsing.urls', namespace='browsing')),
-    url(r'^story-maps/', include('story_map.urls', namespace='story_map')),
-    url(r'^netvis/', include('netvis.urls', namespace="netvis")),
-    url(r'^info/', include('infos.urls', namespace='info')),
-    url(r'^archiv/', include('archiv.urls', namespace='archiv')),
-    url(r'^archiv-ac/', include('archiv.dal_urls', namespace='archiv-ac')),
-    url(r'^vocabs/', include('vocabs.urls', namespace='vocabs')),
-    url(r'^vocabs-ac/', include('vocabs.dal_urls', namespace='vocabs-ac')),
-    url(r'^', include('webpage.urls', namespace='webpage')),
-    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    path('admin/', admin.site.urls),
+    path('browsing/', include('browsing.urls', namespace='browsing')),
+    path('story-maps/', include('story_map.urls', namespace='story_map')),
+    path('netvis/', include('netvis.urls', namespace="netvis")),
+    path('info/', include('infos.urls', namespace='info')),
+    path('archiv/', include('archiv.urls', namespace='archiv')),
+    path('archiv-ac/', include('archiv.dal_urls', namespace='archiv-ac')),
+    path('vocabs/', include('vocabs.urls', namespace='vocabs')),
+    path('vocabs-ac/', include('vocabs.dal_urls', namespace='vocabs-ac')),
+    path('', include('webpage.urls', namespace='webpage')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 
