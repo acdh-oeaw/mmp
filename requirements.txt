@@ -16,6 +16,6 @@ psycopg2-binary
 coreapi>=2.3.3
 django-leaflet
 fontawesome-free==5.15.4
-lxml==4.7.1
+lxml==4.9.1
 rdflib>=5.0.0,<7
 stanza==1.4.0
