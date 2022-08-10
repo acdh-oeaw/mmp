@@ -603,10 +603,19 @@ class StelleListFilter(django_filters.FilterSet):
             url="archiv-ac:text-autocomplete",
         )
     )
-    text__autor = django_filters.ModelMultipleChoiceFilter(
+    text__autor_and = django_filters.ModelMultipleChoiceFilter(
         conjoined=True,
         queryset=Autor.objects.all(),
-        help_text="Related Authors",
+        field_name='text__autor',
+        help_text="Passage must be taken from Text written by ALL selected Authors",
+        label="Author",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:autor-autocomplete",
+        )
+    )
+    text__autor = django_filters.ModelMultipleChoiceFilter(
+        queryset=Autor.objects.all(),
+        help_text="Passage must be taken from Text written by at least ONE of the selected Authors",
         label="Author",
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:autor-autocomplete",
