@@ -608,7 +608,7 @@ class StelleListFilter(django_filters.FilterSet):
         queryset=Autor.objects.all(),
         field_name='text__autor',
         help_text="Passage must be taken from Text written by ALL selected Authors",
-        label="Author",
+        label="Author (Union)",
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:autor-autocomplete",
         )
@@ -616,16 +616,26 @@ class StelleListFilter(django_filters.FilterSet):
     text__autor = django_filters.ModelMultipleChoiceFilter(
         queryset=Autor.objects.all(),
         help_text="Passage must be taken from Text written by at least ONE of the selected Authors",
-        label="Author",
+        label="Author (intersection)",
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:autor-autocomplete",
+        )
+    )
+    text__ort_and = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        field_name='text__ort',
+        queryset=Ort.objects.all(),
+        help_text="Passage must be taken from Text related to ALL of the selected Places",
+        label="Place (Union)",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:ort-autocomplete",
         )
     )
     text__ort = django_filters.ModelMultipleChoiceFilter(
         conjoined=True,
         queryset=Ort.objects.all(),
-        help_text="The place the passage was written",
-        label="Place where the text was written the passage is derived from",
+        help_text="Passage must be taken from Text related to at least ONE of the selected Places",
+        label="Place (Intersection)",
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:ort-autocomplete",
         )
