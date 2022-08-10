@@ -1,7 +1,7 @@
 acdh-django-browsing==1.2.4
 acdh-django-netvis==3.1.0
 acdh-django-vocabs==1.0.0
-Django>=4,<5 
+Django>=4,<4.1 
 django-ckeditor==6.2.0
 django-cors-headers==3.7.0
 django-extensions==3.1.0
