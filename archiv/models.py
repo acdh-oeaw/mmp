@@ -1323,9 +1323,9 @@ class Text(models.Model):
 
     def __str__(self):
         if self.title:
-            return "{}".format(self.title)
+            return f"{self.title} ({self.not_before} - {self.not_after})"
         else:
-            return "{}".format(self.legacy_id)
+            return f"{self.legacy_id} ({self.not_before} - {self.not_after})"
 
     def field_dict(self):
         return model_to_dict(self)

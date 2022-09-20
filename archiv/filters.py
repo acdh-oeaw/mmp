@@ -726,11 +726,13 @@ class StelleListFilter(django_filters.FilterSet):
         label="Stelle not after"
     )
     text__start_date = django_filters.LookupChoiceFilter(
+        field_name='text__not_before',
         lookup_choices=DATE_LOOKUP_CHOICES,
         help_text="Text not before",
         label="Text not before"
     )
     text__end_date = django_filters.LookupChoiceFilter(
+        field_name='text__not_after',
         lookup_choices=DATE_LOOKUP_CHOICES,
         help_text="Text not after",
         label="Text not after"
