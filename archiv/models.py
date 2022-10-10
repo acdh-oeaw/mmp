@@ -1004,7 +1004,7 @@ class Stelle(models.Model):
         is_public=True,
         arche_prop="hasSpatialCoverage"
     )
-    start_date = models.PositiveSmallIntegerField(
+    start_date = models.SmallIntegerField(
         blank=True, null=True,
         verbose_name="From",
         help_text="Start date or earliest possible date"
@@ -1012,7 +1012,7 @@ class Stelle(models.Model):
         is_public=True,
         arche_prop="hasCoverageStartDate"
     )
-    end_date = models.PositiveSmallIntegerField(
+    end_date = models.SmallIntegerField(
         blank=True, null=True,
         verbose_name="To",
         help_text="End date or last possible date'"
