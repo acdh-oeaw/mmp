@@ -96,6 +96,7 @@ class UseCaseListView(GenericListView):
         'id', 'quick_edit', 'title', 'principal_investigator',
     ]
     enable_merge = False
+    template_name = 'archiv/generic_list.html'
 
 
 class UseCaseDelete(DeleteView):
@@ -171,7 +172,7 @@ class SpatialCoverageListView(GenericListView):
         'id', 'quick_edit', 'stelle', 'key_word',
     ]
     enable_merge = False
-    # template_name = 'archiv/spatial_list.html'
+    template_name = 'archiv/generic_list.html'
 
 
 class SpatialCoverageDelete(DeleteView):
@@ -194,6 +195,7 @@ class AutorListView(GenericListView):
         'id', 'quick_edit', 'name',
     ]
     enable_merge = False
+    template_name = 'archiv/generic_list.html'
 
 
 class AutorDetailView(BaseDetailView):
@@ -242,7 +244,7 @@ class KeyWordListView(GenericListView):
         'id', 'quick_edit', 'stichwort', 'wurzel', 'varianten'
     ]
     enable_merge = False
-    # template_name = 'archiv/generic_list.html'
+    template_name = 'archiv/generic_list.html'
 
 
 class KeyWordDetailView(BaseDetailView):
@@ -291,6 +293,7 @@ class OrtListView(GenericListView):
         'id', 'quick_edit', 'name', 'long', 'lat'
     ]
     enable_merge = False
+    template_name = 'archiv/generic_list.html'
 
 
 class OrtDetailView(BaseDetailView):
@@ -339,6 +342,7 @@ class StelleListView(GenericListView):
         'id', 'quick_edit', 'display_label',
     ]
     enable_merge = False
+    template_name = 'archiv/generic_list.html'
 
 
 class StelleDetailView(BaseDetailView):
@@ -389,6 +393,7 @@ class TextListView(GenericListView):
         'id', 'quick_edit', 'title',
     ]
     enable_merge = False
+    template_name = 'archiv/generic_list.html'
 
 
 class TextDetailView(BaseDetailView):
@@ -437,6 +442,7 @@ class EventListView(GenericListView):
         'id', 'quick_edit', 'title',
     ]
     enable_merge = False
+    template_name = 'archiv/generic_list.html'
 
 
 class EventDetailView(BaseDetailView):

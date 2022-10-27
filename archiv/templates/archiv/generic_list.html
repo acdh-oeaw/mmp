@@ -1,0 +1,77 @@
+{% extends "webpage/base.html" %}
+{% load static %}
+{% load django_tables2 %}
+{% load browsing_extras %}
+{% load crispy_forms_field %}
+{% load crispy_forms_tags %}
+{% block title %} Browse {{ class_name }} {% endblock %}
+{% block scriptHeader %}
+
+{% endblock %}
+{% block content %}
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var fetchedParameter = "{{ table.page.number }}";
+        $("#goto option").each(function() {
+            if($(this).text() == fetchedParameter) {
+                $(this).attr('selected', 'selected');
+            }
+        });
+    });
+    </script>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 style="margin-bottom:15px;">
+                             Browse {% class_definition %} {% block list_title %}{% endblock %}
+                        </h3>
+                        {% if user.is_authenticated %}
+                            {% if create_view_link  %}
+                                <a class ="btn btn-outline-secondary"  href="{{ create_view_link }}">Create new {{ class_name }}</a>
+                            {% endif %}
+                        {% endif %}
+                        {% block customView %}{% endblock %}
+                        {% block create_button %}{% endblock %}
+                        <!--Search mask-->
+                        {% load django_tables2 crispy_forms_tags %}
+                        <form action="." class="uniForm" method="get">
+                            {% if togglable_colums %}
+                                <legend>Select additional columns</legend>
+                                {% column_selector  %}
+                            {% endif %}
+                            <br/>
+                            {% crispy filter.form filter.form.helper %}
+                        </form>
+                        <a class ="btn btn-outline-secondary"  href=".">Reset search</a>
+                        {% include 'browsing/partials/chart_form.html' %}
+                </div>
+            </div>
+            </div>
+            <div class="col-md-8" id="results">
+                <div class="card">
+                    <div class="card-body table-responsive">
+                        {% with table.paginator.count as total %}
+                            <legend>Total results: {{ total }}</legend>
+                        {% endwith %}
+                        {% if user.is_authenticated %}
+                        {% include 'browsing/partials/download_menu.html' %}
+                        {% endif %}
+                        {% block table %}
+                        {% include 'browsing/partials/table.html' %}
+                        {% endblock table %}
+                        {% block pagination.allpages %}
+                        {% include 'browsing/partials/pagination.html' %}
+                        {% endblock pagination.allpages %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts2 %}
+    <script src="{% static 'browsing/js/set-form-attributes.js' %}"></script>
+    <script src="{% static 'browsing/js/filter-for-blank-fields.js' %}"></script>
+{% endblock scripts2 %}
