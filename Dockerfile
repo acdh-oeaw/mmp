@@ -11,6 +11,7 @@ COPY nginx.default /etc/nginx/sites-available/default
 RUN mkdir -p /opt/app
 COPY requirements.txt start-server.sh /opt/app/
 RUN pip install -r /opt/app/requirements.txt --no-cache-dir && pip install gunicorn --no-cache-dir
+RUN pip install https://github.com/diyclassics/latin-spacy-models/blob/main/la_core_cltk_sm/la_core_cltk_sm-0.1.0.tar.gz\?raw\=true
 COPY . /opt/app
 WORKDIR /opt/app
 RUN chown -R www-data:www-data /opt/app
