@@ -10,6 +10,7 @@ django-next-prev==1.1.0
 djangorestframework-gis>=1,<2
 django-spaghetti-and-meatballs==0.4.2
 django-story-map==0.6.2
+gensim>=4.2.0,<5
 requests>=2.25
 tablib==3.0.0
 psycopg2-binary
