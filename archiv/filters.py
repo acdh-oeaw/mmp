@@ -17,6 +17,8 @@ from . models import (
     Event
 )
 
+IDS_FILTER_HELPTEXT = "IDs of the objects to filter for, separated by ','"
+
 
 def filter_by_ids(queryset, name, value):
     values = value.split(',')
@@ -48,7 +50,10 @@ CHAR_LOOKUP_CHOICES = [
 
 
 class UseCaseListFilter(django_filters.FilterSet):
-    ids = django_filters.CharFilter(method=filter_by_ids)
+    ids = django_filters.CharFilter(
+        method=filter_by_ids,
+        help_text=IDS_FILTER_HELPTEXT
+    )
     title = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=UseCase._meta.get_field('title').help_text,
@@ -199,7 +204,10 @@ class SpatialCoverageListFilter(django_filters.FilterSet):
 
 
 class AutorListFilter(django_filters.FilterSet):
-    ids = django_filters.CharFilter(method=filter_by_ids)
+    ids = django_filters.CharFilter(
+        method=filter_by_ids,
+        help_text=IDS_FILTER_HELPTEXT
+    )
     has_usecase = django_filters.BooleanFilter(
         field_name='rvn_text_autor_autor__rvn_stelle_text_text__use_case',
         lookup_expr='isnull',
@@ -319,7 +327,10 @@ class AutorListFilter(django_filters.FilterSet):
 
 class KeyWordListFilter(django_filters.FilterSet):
 
-    ids = django_filters.CharFilter(method=filter_by_ids)
+    ids = django_filters.CharFilter(
+        method=filter_by_ids,
+        help_text=IDS_FILTER_HELPTEXT
+    )
     has_usecase = django_filters.BooleanFilter(
         field_name='rvn_stelle_key_word_keyword',
         label="Related to any UseCase?",
@@ -451,7 +462,10 @@ class KeyWordListFilter(django_filters.FilterSet):
 
 
 class OrtListFilter(django_filters.FilterSet):
-    ids = django_filters.CharFilter(method=filter_by_ids)
+    ids = django_filters.CharFilter(
+        method=filter_by_ids,
+        help_text=IDS_FILTER_HELPTEXT
+    )
     legacy_id = django_filters.CharFilter(
         lookup_expr='icontains',
         help_text=Ort._meta.get_field('legacy_id').help_text,
@@ -581,7 +595,10 @@ class OrtListFilter(django_filters.FilterSet):
 
 
 class StelleListFilter(django_filters.FilterSet):
-    ids = django_filters.CharFilter(method=filter_by_ids)
+    ids = django_filters.CharFilter(
+        method=filter_by_ids,
+        help_text=IDS_FILTER_HELPTEXT
+    )
     has_usecase = django_filters.BooleanFilter(
         field_name='use_case',
         lookup_expr='isnull',
@@ -765,7 +782,10 @@ class StelleListFilter(django_filters.FilterSet):
 
 
 class TextListFilter(django_filters.FilterSet):
-    ids = django_filters.CharFilter(method=filter_by_ids)
+    ids = django_filters.CharFilter(
+        method=filter_by_ids,
+        help_text=IDS_FILTER_HELPTEXT
+    )
     has_usecase = django_filters.BooleanFilter(
         field_name='rvn_stelle_text_text',
         label="Related to any UseCase?",

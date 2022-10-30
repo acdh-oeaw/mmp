@@ -83,6 +83,8 @@ INSTALLED_APPS = [
     'topics',
     'story_map'
 ]
+if DEBUG:
+    INSTALLED_APPS.insert(10, 'django_extensions')
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 SPAGHETTI_SAUCE = {
