@@ -13,7 +13,7 @@ from archiv.models import (
 from story_map.models import Story, Slide
 
 
-class StorySerializer(serializers.HyperlinkedModelSerializer):
+class StorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Story
@@ -21,7 +21,7 @@ class StorySerializer(serializers.HyperlinkedModelSerializer):
         depth = 2
 
 
-class SlideSerializer(serializers.HyperlinkedModelSerializer):
+class SlideSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Slide
@@ -29,7 +29,7 @@ class SlideSerializer(serializers.HyperlinkedModelSerializer):
         depth = 1
 
 
-class UseCaseSerializer(serializers.HyperlinkedModelSerializer):
+class UseCaseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UseCase
@@ -38,7 +38,7 @@ class UseCaseSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class SpatialCoverageSerializer(
-    GeoFeatureModelSerializer, serializers.HyperlinkedModelSerializer
+    GeoFeatureModelSerializer, serializers.ModelSerializer
 ):
     stelle = serializers.ReadOnlyField(source="stellen")
     texts = serializers.ReadOnlyField()
@@ -61,7 +61,7 @@ class SpatialCoverageSerializer(
 
 
 class SpatialCoverageGroupSerializer(
-    GeoFeatureModelSerializer, serializers.HyperlinkedModelSerializer
+    GeoFeatureModelSerializer, serializers.ModelSerializer
 ):
     stelle = serializers.ReadOnlyField(source="stellen")
     texts = serializers.ReadOnlyField()
@@ -83,7 +83,7 @@ class SpatialCoverageGroupSerializer(
 
 
 class ConeSerializer(
-    GeoFeatureModelSerializer, serializers.HyperlinkedModelSerializer
+    GeoFeatureModelSerializer, serializers.ModelSerializer
 ):
     cone = GeometrySerializerMethodField()
     stelle = serializers.ReadOnlyField(source="stellen")
@@ -108,7 +108,7 @@ class ConeSerializer(
         depth = 1
 
 
-class AutorSerializer(serializers.HyperlinkedModelSerializer):
+class AutorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Autor
@@ -116,14 +116,14 @@ class AutorSerializer(serializers.HyperlinkedModelSerializer):
         depth = 1
 
 
-class KeyWordSerializer(serializers.HyperlinkedModelSerializer):
+class KeyWordSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = KeyWord
         fields = "__all__"
 
 
-class OrtSerializer(serializers.HyperlinkedModelSerializer):
+class OrtSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Ort
@@ -131,7 +131,7 @@ class OrtSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class GeoJsonOrtSerializer(
-    GeoFeatureModelSerializer, serializers.HyperlinkedModelSerializer
+    GeoFeatureModelSerializer, serializers.ModelSerializer
 ):
 
     class Meta:
@@ -145,7 +145,7 @@ class GeoJsonOrtSerializer(
 
 
 class FuzzyGeoJsonOrtSerializer(
-    GeoFeatureModelSerializer, serializers.HyperlinkedModelSerializer
+    GeoFeatureModelSerializer, serializers.ModelSerializer
 ):
 
     class Meta:
@@ -158,7 +158,7 @@ class FuzzyGeoJsonOrtSerializer(
         depth = 0
 
 
-class StelleSerializer(serializers.HyperlinkedModelSerializer):
+class StelleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Stelle
@@ -168,7 +168,7 @@ class StelleSerializer(serializers.HyperlinkedModelSerializer):
         depth = 2
 
 
-class TextSerializer(serializers.HyperlinkedModelSerializer):
+class TextSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Text
