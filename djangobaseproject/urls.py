@@ -43,6 +43,11 @@ urlpatterns = [
             namespace='rest_framework'
         )
     ),
+    path('openapi/', get_schema_view(
+        title="MMP",
+        description="Mapping Medieval Peoples",
+        version="0.1.0"
+    ), name='openapi-schema'),
     path('admin/', admin.site.urls),
     path('browsing/', include('browsing.urls', namespace='browsing')),
     path('story-maps/', include('story_map.urls', namespace='story_map')),
@@ -54,11 +59,6 @@ urlpatterns = [
     path('vocabs-ac/', include('vocabs.dal_urls', namespace='vocabs-ac')),
     path('', include('webpage.urls', namespace='webpage')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('openapi', get_schema_view(
-        title="MMP",
-        description="Mapping Medieval Peoples",
-        version="0.1.0"
-    ), name='openapi-schema'),
 ]
 
 
