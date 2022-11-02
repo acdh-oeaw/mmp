@@ -112,7 +112,11 @@ class AutorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Autor
-        fields = "__all__"
+        exclude = [
+            "legacy_id",
+            "legacy_pk",
+            "orig_data_csv"
+        ]
         depth = 1
 
 
@@ -120,14 +124,22 @@ class KeyWordSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = KeyWord
-        fields = "__all__"
+        exclude = [
+            "legacy_id",
+            "legacy_pk",
+            "orig_data_csv"
+        ]
 
 
 class OrtSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Ort
-        fields = "__all__"
+        exclude = [
+            "legacy_id",
+            "legacy_pk",
+            "orig_data_csv"
+        ]
 
 
 class GeoJsonOrtSerializer(
@@ -163,6 +175,9 @@ class StelleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stelle
         exclude = [
+            "legacy_id",
+            "legacy_pk",
+            "orig_data_csv",
             'lemmata',
         ]
         depth = 2
@@ -172,5 +187,9 @@ class TextSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Text
-        fields = "__all__"
+        exclude = [
+            "legacy_id",
+            "legacy_pk",
+            "orig_data_csv"
+        ]
         depth = 1
