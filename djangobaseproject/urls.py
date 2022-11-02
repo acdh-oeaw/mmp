@@ -23,7 +23,7 @@ router.register(r'cones', archiv_api_views.ConeViewSet, basename='cones-geojson'
 router.register(
     r'lines-and-points',
     archiv_api_views.SpatialCoverageGroupViewSet,
-    basename='ines-and-points'
+    basename='lines-and-points'
 )
 router.register(r'usecase', archiv_api_views.UseCaseViewSet)
 router.register(r'topics', topics_api_views.TopicViewSet)
