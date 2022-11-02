@@ -19,9 +19,9 @@ urlpatterns = [
         name='schlagwort-autocomplete'
     ),
     path(
-        'ethonym-autocomplete/',
+        'ethnonym-autocomplete/',
         dal_views.Ethnonym.as_view(),
-        name='ethonym-autocomplete'
+        name='ethnonym-autocomplete'
     ),
     path(
         'region-autocomplete/',
