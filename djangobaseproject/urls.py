@@ -2,6 +2,7 @@ from django.urls import path, include
 from django.contrib import admin
 from rest_framework import routers
 from rest_framework.documentation import include_docs_urls
+from rest_framework.schemas import get_schema_view
 
 from vocabs import api_views
 from archiv import api_views as archiv_api_views
@@ -42,6 +43,11 @@ urlpatterns = [
             namespace='rest_framework'
         )
     ),
+    path('openapi/', get_schema_view(
+        title="MMP",
+        description="Mapping Medieval Peoples",
+        version="0.1.0"
+    ), name='openapi-schema'),
     path('admin/', admin.site.urls),
     path('browsing/', include('browsing.urls', namespace='browsing')),
     path('story-maps/', include('story_map.urls', namespace='story_map')),
