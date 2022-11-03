@@ -849,7 +849,7 @@ class Ort(models.Model):
                 "label": self.art.pref_label
             }
         else:
-            art = {}
+            art = None
 
         pl = {
             "id": self.id,
@@ -1668,13 +1668,13 @@ class SpatialCoverage(models.Model):
                 "title": x.title,
                 "id": x.id,
                 "places": [
-                    getattr(p, 'place_as_dict', {}) for p in x.ort.all()
+                    getattr(p, 'place_as_dict') for p in x.ort.all()
                 ],
                 "authors": [
                     {
                         "id": p.id,
                         "name": p.name,
-                        "place": getattr(p.ort, 'place_as_dict', {})
+                        "place": getattr(p.ort, 'place_as_dict', None)
                     } for p in x.autor.all()
                 ]
             } for x in t
@@ -1684,6 +1684,6 @@ class SpatialCoverage(models.Model):
     @cached_property
     def places(self):
         pl = [
-            getattr(p, 'place_as_dict', {}) for p in Ort.objects.filter(rvn_stelle_ort_ort__in=self.stellen_objects)
+            getattr(p, 'place_as_dict') for p in Ort.objects.filter(rvn_stelle_ort_ort__in=self.stellen_objects)
         ]
         return pl
