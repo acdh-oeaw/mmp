@@ -309,8 +309,6 @@ class AutorListFilter(django_filters.FilterSet):
         model = Autor
         fields = [
             'id',
-            'legacy_id',
-            'legacy_pk',
             'name',
             'gnd_id',
             'name_lat',
@@ -449,8 +447,6 @@ class KeyWordListFilter(django_filters.FilterSet):
         fields = [
             'rvn_stelle_key_word_keyword__text__autor',
             'id',
-            'legacy_id',
-            'legacy_pk',
             'stichwort',
             'art',
             'wurzel',
@@ -578,8 +574,6 @@ class OrtListFilter(django_filters.FilterSet):
         model = Ort
         fields = [
             'id',
-            'legacy_id',
-            'legacy_pk',
             'name',
             'norm_id',
             'name_antik',
@@ -769,8 +763,6 @@ class StelleListFilter(django_filters.FilterSet):
         model = Stelle
         fields = [
             'id',
-            'legacy_id',
-            'legacy_pk',
             'text',
             'summary',
             'zitat',

@@ -149,7 +149,6 @@ class AutorFilterFormHelper(FormHelper):
             Accordion(
                 AccordionGroup(
                     'Advanced search',
-                    'legacy_pk',
                     'name_lat',
                     'name_en',
                     'name_fr',
@@ -164,7 +163,6 @@ class AutorFilterFormHelper(FormHelper):
                 ),
                 AccordionGroup(
                     'admin',
-                    'legacy_id',
                     css_id="admin_search"
                 ),
             )
@@ -216,7 +214,6 @@ class KeyWordFilterFormHelper(FormHelper):
             Accordion(
                 AccordionGroup(
                     'Advanced search',
-                    'legacy_pk',
                     'rvn_stelle_key_word_keyword__text__autor',
                     'art',
                     'wurzel',
@@ -231,7 +228,6 @@ class KeyWordFilterFormHelper(FormHelper):
                 ),
                 AccordionGroup(
                     'admin',
-                    'legacy_id',
                     css_id="admin_search"
                 ),
             )
@@ -279,7 +275,6 @@ class OrtFilterFormHelper(FormHelper):
             Accordion(
                 AccordionGroup(
                     'Advanced search',
-                    'legacy_pk',
                     'name_de',
                     'name_fr',
                     'name_it',
@@ -292,7 +287,6 @@ class OrtFilterFormHelper(FormHelper):
                 ),
                 AccordionGroup(
                     'admin',
-                    'legacy_id',
                     css_id="admin_search"
                 ),
             )
@@ -367,7 +361,6 @@ class StelleFilterFormHelper(FormHelper):
                 ),
                 AccordionGroup(
                     'Advanced search',
-                    'legacy_pk',
                     'summary',
                     'translation',
                     'kommentar',
@@ -375,7 +368,6 @@ class StelleFilterFormHelper(FormHelper):
                 ),
                 AccordionGroup(
                     'admin',
-                    'legacy_id',
                     css_id="admin_search"
                 ),
             )
@@ -428,7 +420,6 @@ class TextFilterFormHelper(FormHelper):
             Accordion(
                 AccordionGroup(
                     'Content',
-                    'legacy_pk',
                     'rvn_stelle_text_text__key_word',
                     'rvn_stelle_text_text__key_word__art',
                     'edition',
@@ -449,7 +440,6 @@ class TextFilterFormHelper(FormHelper):
                 AccordionGroup(
                     'admin',
                     'id',
-                    'legacy_id',
                     'kommentar',
                     css_id="admin_search"
                 ),
