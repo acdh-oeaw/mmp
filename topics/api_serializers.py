@@ -2,15 +2,15 @@ from rest_framework import serializers
 from topics.models import TextTopicRelation, Topic, ModelingProcess
 
 
-class TextTopicRelationSerializer(serializers.HyperlinkedModelSerializer):
+class TextTopicRelationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TextTopicRelation
         fields = "__all__"
-        depth = 1
+        depth = 0
 
 
-class TopicSerializer(serializers.HyperlinkedModelSerializer):
+class TopicSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Topic
@@ -18,7 +18,7 @@ class TopicSerializer(serializers.HyperlinkedModelSerializer):
         depth = 1
 
 
-class ModelingProcessSerializer(serializers.HyperlinkedModelSerializer):
+class ModelingProcessSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ModelingProcess
