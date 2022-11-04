@@ -14,7 +14,7 @@ from topics.models import StopWord
 
 
 default = [
-    [x, 0] for x in range(1, 15)
+    [x, 0] for x in range(-3, 16)
 ]
 
 
@@ -83,7 +83,7 @@ def key_word_by_century(request, pk):
     kw = get_object_or_404(KeyWord, pk=pk)
     props = ['id', 'not_before']
     items = Text.objects.filter(
-        rvn_stelle_text_text__key_word=kw, not_before__gte=100, not_after__lte=2000
+        rvn_stelle_text_text__key_word=kw, not_before__gte=-300, not_after__lte=2000
     ).distinct().order_by('not_before').values_list(*props)
     if items:
         df = pd.DataFrame(items, columns=props)
