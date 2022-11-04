@@ -14,7 +14,7 @@ from topics.models import StopWord
 
 
 default = [
-    [x, 0] for x in range(1, 15)
+    [x, 0] for x in range(-3, 16)
 ]
 
 
