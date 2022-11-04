@@ -95,7 +95,7 @@ def key_word_by_century(request, pk):
         d = defaultdict(int)
         for k, v in data:
             d[k] = v
-        for x in range(1, 16):
+        for x in range(-3, 16):
             d[x] = d.get(x, 0)
         payload = list(sorted(d.items()))
     else:
