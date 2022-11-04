@@ -215,11 +215,6 @@ class AutorListFilter(django_filters.FilterSet):
         label="Related to any UseCase?",
         help_text="Set 'Yes' to show only objects related to any UseCase"
     )
-    legacy_id = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=Autor._meta.get_field('legacy_id').help_text,
-        label=Autor._meta.get_field('legacy_id').verbose_name
-    )
     name = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=Autor._meta.get_field('name').help_text,
@@ -344,11 +339,6 @@ class KeyWordListFilter(django_filters.FilterSet):
             url="archiv-ac:autor-autocomplete",
         )
     )
-    legacy_id = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=KeyWord._meta.get_field('legacy_id').help_text,
-        label=KeyWord._meta.get_field('legacy_id').verbose_name
-    )
     art = django_filters.ChoiceFilter(
         empty_label='-------',
         choices=KeyWord._meta.get_field('art').choices,
@@ -461,11 +451,6 @@ class OrtListFilter(django_filters.FilterSet):
     ids = django_filters.CharFilter(
         method=filter_by_ids,
         help_text=IDS_FILTER_HELPTEXT
-    )
-    legacy_id = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=Ort._meta.get_field('legacy_id').help_text,
-        label=Ort._meta.get_field('legacy_id').verbose_name
     )
     name = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
@@ -599,11 +584,6 @@ class StelleListFilter(django_filters.FilterSet):
         exclude=True,
         label="Related to any UseCase?",
         help_text="Set 'Yes' to show only objects related to any UseCase"
-    )
-    legacy_id = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=Stelle._meta.get_field('legacy_id').help_text,
-        label=Stelle._meta.get_field('legacy_id').verbose_name
     )
     text = django_filters.ModelMultipleChoiceFilter(
         conjoined=True,
@@ -784,11 +764,6 @@ class TextListFilter(django_filters.FilterSet):
         help_text="Set 'Yes' to show only objects related to any UseCase",
         method=none_filter
     )
-    legacy_id = django_filters.CharFilter(
-        lookup_expr='icontains',
-        help_text=Text._meta.get_field('legacy_id').help_text,
-        label=Text._meta.get_field('legacy_id').verbose_name
-    )
     start_date = django_filters.CharFilter(
         lookup_expr='icontains',
         help_text=Text._meta.get_field('start_date').help_text,
@@ -888,7 +863,6 @@ class TextListFilter(django_filters.FilterSet):
         model = Text
         fields = [
             'id',
-            'legacy_pk',
             'autor',
             'title',
             'jahrhundert',
