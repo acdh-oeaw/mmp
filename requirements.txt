@@ -19,3 +19,4 @@ django-leaflet
 fontawesome-free==5.15.4
 lxml==4.9.1
 rdflib>=5.0.0,<7
+PyYAML==6.0
