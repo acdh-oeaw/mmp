@@ -141,6 +141,7 @@ class GeoJsonOrtViewSet(viewsets.ModelViewSet):
         OrderingFilter
     ]
     filter_class = OrtListFilter
+    pagination_class = GeoJsonPagination
 
 
 class FuzzyGeoJsonOrtViewSet(viewsets.ModelViewSet):
@@ -151,6 +152,7 @@ class FuzzyGeoJsonOrtViewSet(viewsets.ModelViewSet):
         OrderingFilter
     ]
     filter_class = OrtListFilter
+    pagination_class = GeoJsonPagination
 
 
 class StelleViewSet(viewsets.ModelViewSet):
