@@ -134,7 +134,7 @@ class OrtViewSet(viewsets.ModelViewSet):
 
 
 class GeoJsonOrtViewSet(viewsets.ModelViewSet):
-    queryset = Ort.objects.all().distinct()
+    queryset = Ort.objects.exclude(coords__isnull=True).distinct()
     serializer_class = GeoJsonOrtSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
@@ -144,7 +144,7 @@ class GeoJsonOrtViewSet(viewsets.ModelViewSet):
 
 
 class FuzzyGeoJsonOrtViewSet(viewsets.ModelViewSet):
-    queryset = Ort.objects.all().distinct()
+    queryset = Ort.objects.exclude(fuzzy_geom__isnull=True).distinct()
     serializer_class = FuzzyGeoJsonOrtSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
