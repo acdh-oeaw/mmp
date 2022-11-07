@@ -2,7 +2,7 @@ from django.apps import apps
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.urls import reverse
-from archiv.models import KeyWord, UseCase, Text
+from archiv.models import KeyWord, UseCase, Text, Autor
 from archiv.utils import parse_date, cent_from_year
 from archiv.text_processing import process_text
 
@@ -146,6 +146,14 @@ class ArchivTestCase(TestCase):
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
 
-    # def test_014_api(self):
-    #     response = client.get(f"{reverse('api-root')}&format=json", content_type='application/json').json()
-    #     print(response)
+    def test_014_gnd_normalizer(self):
+        gnds = [
+            ("", ""),
+            ("https://lobid.org/gnd/118965808", "https://d-nb.info/gnd/118965808"),
+            ("http://d-nb.info/gnd/118965808", "https://d-nb.info/gnd/118965808")
+        ]
+        for x in gnds:
+            item = Autor.objects.create()
+            item.gnd_id = x[0]
+            item.save()
+            self.assertEqual(x[1], item.gnd_id)

@@ -8,9 +8,8 @@ from django.contrib.gis.geos import Polygon, Point, GeometryCollection
 from django.contrib.gis.db.models import PolygonField, PointField, GeometryCollectionField
 from django.utils.functional import cached_property
 from next_prev import next_in_order, prev_in_order
-
 from ckeditor_uploader.fields import RichTextUploadingField
-
+from AcdhArcheAssets.uri_norm_rules import get_normalized_uri
 from archiv.utils import parse_date
 from archiv.text_processing import process_text
 from archiv.nlp_utils import get_nlp_data
@@ -443,6 +442,14 @@ class Autor(models.Model):
                 self.end_date_year = int(self.end_date)
             except ValueError:
                 pass
+        if self.gnd_id:
+            gnd = self.gnd_id
+            if "lobid" in gnd:
+                self.gnd_id = get_normalized_uri(gnd.replace("lobid.org", "d-nb.info"))
+            elif gnd.startswith('http'):
+                self.gnd_id = get_normalized_uri(gnd)
+            else:
+                self.gnd_id = get_normalized_uri(f"https://d-nb.info/gnd/{gnd}")
         super(Autor, self).save(*args, **kwargs)
 
     def get_absolute_url(self):

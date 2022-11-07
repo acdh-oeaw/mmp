@@ -1,3 +1,4 @@
+acdh-arche-assets>=3.6,<4
 acdh-django-browsing==1.2.4
 acdh-django-netvis==3.1.0
 acdh-django-vocabs==1.0.0
