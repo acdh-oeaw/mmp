@@ -861,6 +861,7 @@ class Ort(models.Model):
         pl = {
             "id": self.id,
             "name": self.name,
+            "name_antik": self.name_antik,
             "lat": self.lat,
             "lng": self.long,
             "art": art
