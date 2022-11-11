@@ -928,6 +928,14 @@ class Ort(models.Model):
                 ])
         return name_list
 
+    @cached_property
+    def kind(self):
+        art = {
+            "id": self.art.id,
+            "label": self.art.pref_label
+        }
+        return art
+
 
 class Stelle(models.Model):
     """ Stelle """

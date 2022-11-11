@@ -146,6 +146,8 @@ class GeoJsonOrtSerializer(
     GeoFeatureModelSerializer, serializers.ModelSerializer
 ):
 
+    art = serializers.ReadOnlyField(source="kind")
+
     class Meta:
         model = Ort
         geo_field = 'coords'
@@ -159,6 +161,8 @@ class GeoJsonOrtSerializer(
 class FuzzyGeoJsonOrtSerializer(
     GeoFeatureModelSerializer, serializers.ModelSerializer
 ):
+
+    art = serializers.ReadOnlyField(source="kind")
 
     class Meta:
         model = Ort
