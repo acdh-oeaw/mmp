@@ -861,6 +861,7 @@ class Ort(models.Model):
         pl = {
             "id": self.id,
             "name": self.name,
+            "name_antik": self.name_antik,
             "lat": self.lat,
             "lng": self.long,
             "art": art
@@ -926,6 +927,14 @@ class Ort(models.Model):
                     "en", getattr(self, attr.name)
                 ])
         return name_list
+
+    @cached_property
+    def kind(self):
+        art = {
+            "id": self.art.id,
+            "label": self.art.pref_label
+        }
+        return art
 
 
 class Stelle(models.Model):
