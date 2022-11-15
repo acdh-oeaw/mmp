@@ -226,6 +226,7 @@ class KeyWordFilterFormHelper(FormHelper):
                     'rvn_stelle_key_word_keyword',
                     'rvn_stelle_key_word_keyword__text',
                     'rvn_stelle_key_word_keyword__text__autor__ort',
+                    'rvn_stelle_key_word_keyword__text__art',
                     'rvn_stelle_key_word_keyword__text__autor__start_date_year',
                     'rvn_stelle_key_word_keyword__text__autor__end_date_year',
                     css_id="more"

@@ -419,6 +419,15 @@ class KeyWordListFilter(django_filters.FilterSet):
             url="archiv-ac:text-autocomplete",
         )
     )
+    rvn_stelle_key_word_keyword__text__art = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=SkosConcept.objects.all(),
+        help_text="Genre of releated Texts",
+        label="Textgenre",
+        widget=autocomplete.Select2Multiple(
+            url="/vocabs-ac/specific-concept-ac/art",
+        )
+    )
     rvn_stelle_key_word_keyword__text__autor__ort = django_filters.ModelMultipleChoiceFilter(
         conjoined=True,
         queryset=Ort.objects.all(),
