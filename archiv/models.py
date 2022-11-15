@@ -834,10 +834,10 @@ class Ort(models.Model):
         verbose_name = "Ort"
 
     def __str__(self):
-        if self.name:
-            return "{}".format(self.name)
+        if self.name and self.name != "":
+            return f"{self.name}"
         else:
-            return "{}".format(self.legacy_id)
+            return f"no english name provided for id: {self.id}"
 
     def save(self, *args, **kwargs):
         if self.long and self.lat:
