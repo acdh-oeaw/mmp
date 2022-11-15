@@ -392,10 +392,10 @@ class Autor(models.Model):
         verbose_name = "Autor"
 
     def __str__(self):
-        if self.name:
-            return "{}".format(self.name)
+        if self.name_en or self.name_en != "":
+            return f"{self.name_en}"
         else:
-            return "{}".format(self.legacy_id)
+            return f"no english name provided for autor id:{self.id}"
 
     def field_dict(self):
         return model_to_dict(self)
