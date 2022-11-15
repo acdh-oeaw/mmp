@@ -92,6 +92,15 @@ class UseCaseListFilter(django_filters.FilterSet):
             url="archiv-ac:autor-autocomplete",
         )
     )
+    has_stelle__text__art = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=SkosConcept.objects.all(),
+        help_text="Genre of releated Texts",
+        label="Textgenre",
+        widget=autocomplete.Select2Multiple(
+            url="/vocabs-ac/specific-concept-ac/art",
+        )
+    )
     has_stelle__key_word = django_filters.ModelMultipleChoiceFilter(
         conjoined=True,
         queryset=KeyWord.objects.all(),
@@ -192,6 +201,15 @@ class SpatialCoverageListFilter(django_filters.FilterSet):
             url="archiv-ac:autor-autocomplete",
         )
     )
+    stelle__text__art = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=SkosConcept.objects.all(),
+        help_text="Genre of releated Texts",
+        label="Textgenre",
+        widget=autocomplete.Select2Multiple(
+            url="/vocabs-ac/specific-concept-ac/art",
+        )
+    )
 
     class Meta:
         model = SpatialCoverage
@@ -289,6 +307,24 @@ class AutorListFilter(django_filters.FilterSet):
         help_text="Type of Keyword",
         label="Type of Keyword"
     )
+    rvn_text_autor_autor = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=Text.objects.all(),
+        help_text="Author of Texts",
+        label="Texts",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:text-autocomplete",
+        )
+    )
+    rvn_text_autor_autor__art = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=SkosConcept.objects.all(),
+        help_text="Genre of releated Texts",
+        label="Textgenre",
+        widget=autocomplete.Select2Multiple(
+            url="/vocabs-ac/specific-concept-ac/art",
+        )
+    )
     start_date_year = django_filters.LookupChoiceFilter(
         lookup_choices=DATE_LOOKUP_CHOICES,
         help_text=Autor._meta.get_field('start_date_year').help_text,
@@ -381,6 +417,15 @@ class KeyWordListFilter(django_filters.FilterSet):
         help_text="Stichworte stehen mit diesen Texten in Verbindung",
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:text-autocomplete",
+        )
+    )
+    rvn_stelle_key_word_keyword__text__art = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=SkosConcept.objects.all(),
+        help_text="Genre of releated Texts",
+        label="Textgenre",
+        widget=autocomplete.Select2Multiple(
+            url="/vocabs-ac/specific-concept-ac/art",
         )
     )
     rvn_stelle_key_word_keyword__text__autor__ort = django_filters.ModelMultipleChoiceFilter(
@@ -525,6 +570,15 @@ class OrtListFilter(django_filters.FilterSet):
         label="Text",
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:text-autocomplete",
+        )
+    )
+    rvn_text_ort_ort__art = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=SkosConcept.objects.all(),
+        help_text="Genre of releated Texts",
+        label="Textgenre",
+        widget=autocomplete.Select2Multiple(
+            url="/vocabs-ac/specific-concept-ac/art",
         )
     )
     rvn_text_ort_ort__rvn_stelle_text_text__key_word = django_filters.ModelMultipleChoiceFilter(

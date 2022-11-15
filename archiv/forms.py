@@ -90,6 +90,7 @@ class UseCaseFilterFormHelper(FormHelper):
                     'pi_norm_id',
                     'description',
                     'has_stelle__text',
+                    'has_stelle__text__art',
                     'has_stelle__text__autor',
                     'has_stelle__key_word',
                     css_id="more"
@@ -119,6 +120,7 @@ class SpatialCoverageFilterFormHelper(FormHelper):
                 'stelle__start_date',
                 'stelle__end_date',
                 'stelle__text__autor',
+                'stelle__text__art',
                 'stelle__text__not_before',
                 'stelle__text__not_after',
                 'stelle__text__autor__start_date_year',
@@ -157,6 +159,8 @@ class AutorFilterFormHelper(FormHelper):
                     'start_date_year',
                     'end_date_year',
                     'kommentar',
+                    'rvn_text_autor_autor',
+                    'rvn_text_autor_autor__art',
                     'rvn_text_autor_autor__rvn_stelle_text_text__key_word',
                     'rvn_text_autor_autor__rvn_stelle_text_text__key_word__art',
                     css_id="more"
@@ -222,6 +226,7 @@ class KeyWordFilterFormHelper(FormHelper):
                     'rvn_stelle_key_word_keyword',
                     'rvn_stelle_key_word_keyword__text',
                     'rvn_stelle_key_word_keyword__text__autor__ort',
+                    'rvn_stelle_key_word_keyword__text__art',
                     'rvn_stelle_key_word_keyword__text__autor__start_date_year',
                     'rvn_stelle_key_word_keyword__text__autor__end_date_year',
                     css_id="more"
@@ -267,6 +272,7 @@ class OrtFilterFormHelper(FormHelper):
                 'norm_id',
                 'rvn_autor_ort_ort',
                 'rvn_text_ort_ort',
+                'rvn_text_ort_ort__art',
                 'rvn_text_ort_ort__rvn_stelle_text_text__key_word',
                 'rvn_text_ort_ort__rvn_stelle_text_text__use_case',
                 'rvn_text_ort_ort__rvn_stelle_text_text',
