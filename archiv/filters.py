@@ -307,6 +307,24 @@ class AutorListFilter(django_filters.FilterSet):
         help_text="Type of Keyword",
         label="Type of Keyword"
     )
+    rvn_text_autor_autor = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=Text.objects.all(),
+        help_text="Author of Texts",
+        label="Texts",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:text-autocomplete",
+        )
+    )
+    rvn_text_autor_autor__art = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=SkosConcept.objects.all(),
+        help_text="Genre of releated Texts",
+        label="Textgenre",
+        widget=autocomplete.Select2Multiple(
+            url="/vocabs-ac/specific-concept-ac/art",
+        )
+    )
     start_date_year = django_filters.LookupChoiceFilter(
         lookup_choices=DATE_LOOKUP_CHOICES,
         help_text=Autor._meta.get_field('start_date_year').help_text,

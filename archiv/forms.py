@@ -159,6 +159,8 @@ class AutorFilterFormHelper(FormHelper):
                     'start_date_year',
                     'end_date_year',
                     'kommentar',
+                    'rvn_text_autor_autor',
+                    'rvn_text_autor_autor__art',
                     'rvn_text_autor_autor__rvn_stelle_text_text__key_word',
                     'rvn_text_autor_autor__rvn_stelle_text_text__key_word__art',
                     css_id="more"
