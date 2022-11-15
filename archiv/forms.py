@@ -90,6 +90,7 @@ class UseCaseFilterFormHelper(FormHelper):
                     'pi_norm_id',
                     'description',
                     'has_stelle__text',
+                    'has_stelle__text__art',
                     'has_stelle__text__autor',
                     'has_stelle__key_word',
                     css_id="more"
