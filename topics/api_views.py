@@ -7,13 +7,20 @@ from topics.filters import TextTopicRelationListFilter
 from topics.models import (
     Topic,
     TextTopicRelation,
-    ModelingProcess
+    ModelingProcess,
+    StopWord
 )
 from topics.api_serializers import (
     TopicSerializer,
     TextTopicRelationSerializer,
-    ModelingProcessSerializer
+    ModelingProcessSerializer,
+    StopWordSerializer
 )
+
+
+class StopWordViewSet(viewsets.ModelViewSet):
+    queryset = StopWord.objects.all().distinct()
+    serializer_class = StopWordSerializer
 
 
 class ModelingProcessViewSet(viewsets.ModelViewSet):

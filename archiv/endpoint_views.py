@@ -66,10 +66,9 @@ class NlpDataStelle(ListView):
         return self.filter.qs.distinct()
 
     def render_to_response(self, context, **kwargs):
-        STOP_WORDS = [x[0] for x in StopWord.objects.all().values_list('word')]
         qs = self.get_queryset().distinct().order_by('id')
         data = get_nlp_data(qs)
-        clean_token = [x for x in data['token'] if x not in STOP_WORDS]
+        clean_token = [x for x in data['token']]
         clean_data = {
             "token": clean_token,
             "token_dict": dict(Counter(clean_token)),

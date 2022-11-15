@@ -12,7 +12,6 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from AcdhArcheAssets.uri_norm_rules import get_normalized_uri
 from archiv.utils import parse_date
 from archiv.text_processing import process_text
-from archiv.nlp_utils import get_nlp_data
 
 from browsing.browsing_utils import model_to_dict
 from vocabs.models import SkosConcept
@@ -1429,11 +1428,6 @@ class Text(models.Model):
             return f"{notAfter:04}"
         else:
             return ""
-
-    @cached_property
-    def get_nlp_data(self):
-        qs = self.rvn_stelle_text_text.all()
-        return get_nlp_data(qs)
 
 
 class Event(models.Model):
