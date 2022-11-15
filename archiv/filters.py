@@ -572,6 +572,15 @@ class OrtListFilter(django_filters.FilterSet):
             url="archiv-ac:text-autocomplete",
         )
     )
+    rvn_text_ort_ort__art = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=SkosConcept.objects.all(),
+        help_text="Genre of releated Texts",
+        label="Textgenre",
+        widget=autocomplete.Select2Multiple(
+            url="/vocabs-ac/specific-concept-ac/art",
+        )
+    )
     rvn_text_ort_ort__rvn_stelle_text_text__key_word = django_filters.ModelMultipleChoiceFilter(
         conjoined=True,
         queryset=KeyWord.objects.all(),

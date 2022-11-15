@@ -272,6 +272,7 @@ class OrtFilterFormHelper(FormHelper):
                 'norm_id',
                 'rvn_autor_ort_ort',
                 'rvn_text_ort_ort',
+                'rvn_text_ort_ort__art',
                 'rvn_text_ort_ort__rvn_stelle_text_text__key_word',
                 'rvn_text_ort_ort__rvn_stelle_text_text__use_case',
                 'rvn_text_ort_ort__rvn_stelle_text_text',
