@@ -9,8 +9,17 @@ from archiv.models import (
     Text,
     SpatialCoverage,
     UseCase,
+    Event
 )
 from story_map.models import Story, Slide
+
+
+class EventSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Event
+        fields = "__all__"
+        depth = 0
 
 
 class StorySerializer(serializers.ModelSerializer):

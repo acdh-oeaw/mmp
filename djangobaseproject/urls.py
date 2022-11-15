@@ -33,6 +33,7 @@ router.register(r'modeling-process', topics_api_views.ModelingProcessViewSet)
 router.register(r'stopwords', topics_api_views.StopWordViewSet)
 router.register(r'stories', archiv_api_views.StoryViewSet)
 router.register(r'slides', archiv_api_views.SlideViewSet)
+router.register(r'events', archiv_api_views.EventViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls), name="api-root"),

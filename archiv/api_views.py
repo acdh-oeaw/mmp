@@ -18,7 +18,8 @@ from archiv.api_serializers import (
     GeoJsonOrtSerializer,
     FuzzyGeoJsonOrtSerializer,
     StorySerializer,
-    SlideSerializer
+    SlideSerializer,
+    EventSerializer
 )
 from archiv.models import (
     Autor,
@@ -27,7 +28,8 @@ from archiv.models import (
     Stelle,
     Text,
     SpatialCoverage,
-    UseCase
+    UseCase,
+    Event
 )
 from archiv.filters import (
     AutorListFilter,
@@ -36,7 +38,8 @@ from archiv.filters import (
     StelleListFilter,
     TextListFilter,
     SpatialCoverageListFilter,
-    UseCaseListFilter
+    UseCaseListFilter,
+    EventListFilter
 )
 
 from story_map.models import Story, Slide
@@ -68,6 +71,16 @@ class UseCaseViewSet(viewsets.ModelViewSet):
         OrderingFilter
     ]
     filter_class = UseCaseListFilter
+
+
+class EventViewSet(viewsets.ModelViewSet):
+    queryset = Event.objects.all().distinct()
+    serializer_class = EventSerializer
+    filter_backends = [
+        django_filters.rest_framework.DjangoFilterBackend,
+        OrderingFilter
+    ]
+    filter_class = EventListFilter
 
 
 class SpatialCoverageViewSet(viewsets.ModelViewSet):
