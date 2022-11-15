@@ -489,6 +489,7 @@ class EventFilterFormHelper(FormHelper):
                 'Basic search options',
                 'title',
                 'description',
+                'use_case',
                 css_id="basic_search_fields"
             ),
             Accordion(

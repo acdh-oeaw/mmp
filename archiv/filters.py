@@ -901,4 +901,5 @@ class EventListFilter(django_filters.FilterSet):
         model = Event
         fields = [
             'title',
+            'use_case',
         ]
