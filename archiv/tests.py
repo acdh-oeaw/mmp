@@ -2,25 +2,20 @@ from django.apps import apps
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.urls import reverse
-from archiv.models import KeyWord, UseCase, Text, Autor
+from archiv.models import KeyWord, UseCase, Text, Autor, Stelle
 from archiv.utils import parse_date, cent_from_year
 from archiv.text_processing import process_text
+from archiv.nlp_utils import get_nlp_data
+from topics.models import StopWord
 
-MODELS = list(apps.all_models['archiv'].values())
+MODELS = list(apps.all_models["archiv"].values())
 
 client = Client()
-USER = {
-    "username": "testuser",
-    "password": "somepassword"
-}
+USER = {"username": "testuser", "password": "somepassword"}
 
 DATES_DEFAULT = 600
 
-DATES = [
-    ['800', 800],
-    ['asfd800? ? ', 800],
-    ['', DATES_DEFAULT]
-]
+DATES = [["800", 800], ["asfd800? ? ", 800], ["", DATES_DEFAULT]]
 
 CENTURY_TEST_DATA = [
     [0, 1],
@@ -31,12 +26,12 @@ CENTURY_TEST_DATA = [
     [100, 1],
     [101, 2],
     [1000, 10],
-    [1001, 11]
+    [1001, 11],
 ]
 
 
 class ArchivTestCase(TestCase):
-    fixtures = ['dump.json']
+    fixtures = ["dump.json"]
 
     def setUp(self):
         # Create two users
@@ -70,7 +65,7 @@ class ArchivTestCase(TestCase):
             except AttributeError:
                 url = False
             if url:
-                response = client.get(url, {'pk': item.id})
+                response = client.get(url, {"pk": item.id})
                 self.assertEqual(response.status_code, 200)
 
     def test_004_editviews(self):
@@ -82,7 +77,7 @@ class ArchivTestCase(TestCase):
             except AttributeError:
                 url = False
             if url:
-                response = client.get(url, {'pk': item.id})
+                response = client.get(url, {"pk": item.id})
                 self.assertEqual(response.status_code, 200)
 
     def test_005_createviews_not_logged_in(self):
@@ -93,7 +88,7 @@ class ArchivTestCase(TestCase):
             except AttributeError:
                 url = False
             if url:
-                response = client.get(url, {'pk': item.id})
+                response = client.get(url, {"pk": item.id})
                 self.assertEqual(response.status_code, 302)
 
     def test_006_createviews_logged_in(self):
@@ -105,12 +100,12 @@ class ArchivTestCase(TestCase):
             except AttributeError:
                 url = False
             if url:
-                response = client.get(url, {'pk': item.id})
+                response = client.get(url, {"pk": item.id})
                 self.assertEqual(response.status_code, 200)
 
     def test_007_timetable(self):
         item = UseCase.objects.first()
-        url = reverse('archiv:usecase_timetable_json', kwargs={'pk': item.id})
+        url = reverse("archiv:usecase_timetable_json", kwargs={"pk": item.id})
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
 
@@ -125,16 +120,16 @@ class ArchivTestCase(TestCase):
 
     def test_010_kw_cent_ep(self):
         for x in KeyWord.objects.all():
-            url = reverse('archiv:keyword_by_century', kwargs={'pk': x.id})
+            url = reverse("archiv:keyword_by_century", kwargs={"pk": x.id})
             response = client.get(url)
             self.assertEqual(response.status_code, 200)
 
     def test_011_text_tei_view(self):
         for x in Text.objects.all():
             url = x.get_tei_url()
-            response = client.get(url, {'pk': x.id})
+            response = client.get(url, {"pk": x.id})
             self.assertEqual(response.status_code, 200)
-            self.assertTrue(f'{x.title}' in response.content.decode())
+            self.assertTrue(f"{x.title}" in response.content.decode())
 
     def test_012_string_to_dict(self):
         my_text = "De palatio venio Caroli et Carolus fuit mihi locutus"
@@ -142,15 +137,47 @@ class ArchivTestCase(TestCase):
         self.assertIsInstance(processed, dict)
 
     def test_013_nlp_data(self):
-        url = reverse('archiv:nlp_data')
+        url = reverse("archiv:nlp_data")
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
 
-    def test_014_gnd_normalizer(self):
+    def test_014_check_stopwords(self):
+        text = Text.objects.create()
+        stelle = Stelle.objects.create(
+            text=text,
+            zitat="sarvus De gentis et patriae. Gentis sunt nomina, quae ab antiquo suo semper dirivata sunt genere",
+        )
+        qs = Stelle.objects.filter(id=stelle.id)
+        url = f'{reverse("archiv:nlp_data")}?id={stelle.id}'
+        self.assertEqual(get_nlp_data(qs)['token'][0], 'saruus')
+        response = client.get(url).json()
+        self.assertEqual(response['token'][0], 'saruus')
+
+        StopWord.objects.get_or_create(word="saruus")
+        self.assertEqual(get_nlp_data(qs)['token'][0], 'gens')
+        response = client.get(url).json()
+        self.assertEqual(response['token'][0], 'gens')
+
+        StopWord.objects.filter(word="saruus").delete()
+        self.assertEqual(get_nlp_data(qs)['token'][0], 'saruus')
+        response = client.get(url).json()
+        self.assertEqual(response['token'][0], 'saruus')
+
+        StopWord.objects.get_or_create(word="sarvus")
+        self.assertEqual(get_nlp_data(qs)['token'][0], 'gens')
+        response = client.get(url).json()
+        self.assertEqual(response['token'][0], 'gens')
+
+        StopWord.objects.filter(word="sarvus").delete()
+        self.assertEqual(get_nlp_data(qs)['token'][0], 'saruus')
+        response = client.get(url).json()
+        self.assertEqual(response['token'][0], 'saruus')
+
+    def test_015_gnd_normalizer(self):
         gnds = [
             ("", ""),
             ("https://lobid.org/gnd/118965808", "https://d-nb.info/gnd/118965808"),
-            ("http://d-nb.info/gnd/118965808", "https://d-nb.info/gnd/118965808")
+            ("http://d-nb.info/gnd/118965808", "https://d-nb.info/gnd/118965808"),
         ]
         for x in gnds:
             item = Autor.objects.create()
