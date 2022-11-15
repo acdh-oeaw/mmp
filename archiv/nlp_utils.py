@@ -3,11 +3,9 @@ from collections import Counter
 from django.contrib.contenttypes.models import ContentType
 
 
-stop_word_ct = ContentType.objects.get(app_label='topics', model='stopword')
-stop_word_class = stop_word_ct.model_class()
-
-
 def get_nlp_data(qs):
+    stop_word_ct = ContentType.objects.get(app_label='topics', model='stopword')
+    stop_word_class = stop_word_ct.model_class()
     stop_words = [x[0] for x in stop_word_class.objects.all().values_list('word')]
     qs_filtered = qs.exclude(lemmata__isnull=True).filter(text__text_lang='lat')
     try:
