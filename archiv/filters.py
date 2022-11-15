@@ -201,6 +201,15 @@ class SpatialCoverageListFilter(django_filters.FilterSet):
             url="archiv-ac:autor-autocomplete",
         )
     )
+    stelle__text__art = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=SkosConcept.objects.all(),
+        help_text="Genre of releated Texts",
+        label="Textgenre",
+        widget=autocomplete.Select2Multiple(
+            url="/vocabs-ac/specific-concept-ac/art",
+        )
+    )
 
     class Meta:
         model = SpatialCoverage

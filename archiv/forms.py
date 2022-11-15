@@ -120,6 +120,7 @@ class SpatialCoverageFilterFormHelper(FormHelper):
                 'stelle__start_date',
                 'stelle__end_date',
                 'stelle__text__autor',
+                'stelle__text__art',
                 'stelle__text__not_before',
                 'stelle__text__not_after',
                 'stelle__text__autor__start_date_year',
