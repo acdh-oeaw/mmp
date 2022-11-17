@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404
 
 
 from archiv.models import KeyWord, Text, Stelle
-from archiv.filters import KeyWordListFilter, StelleListFilter
+from archiv.filters import StelleListFilter
 from archiv.network_utils import create_graph, graph_table
 from archiv.utils import cent_from_year
 from archiv.nlp_utils import get_nlp_data
@@ -110,8 +110,8 @@ def key_word_by_century(request, pk):
 
 class KeyWordEndpoint(ListView):
 
-    model = KeyWord
-    filter_class = KeyWordListFilter
+    model = Stelle
+    filter_class = StelleListFilter
 
     def get_queryset(self, **kwargs):
         qs = super(KeyWordEndpoint, self).get_queryset().distinct()
