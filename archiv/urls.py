@@ -107,7 +107,7 @@ urlpatterns = [
         name='keyword_by_century'
     ),
     path(
-        'keyword-data/',
+        'keyword-network/',
         KeyWordEndpoint.as_view(),
         name='keyword_data'
     ),

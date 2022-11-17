@@ -1,35 +1,38 @@
 import pandas as pd
 
 from netvis.utils import as_node
+from archiv.models import KeyWord, logger
+
 
 generic_property_table = [
-    ('stichwort', 's'),
-    ('id', 's_id'),
-    ('art', 'art'),
-    ('rvn_stelle_key_word_keyword__id', 'stelle_id'),
-    ('rvn_stelle_key_word_keyword__key_word__stichwort', 't'),
-    ('rvn_stelle_key_word_keyword__key_word__id', 't_id')
+    ("stichwort", "s"),
+    ("id", "s_id"),
+    ("art", "art"),
+    ("rvn_stelle_key_word_keyword__id", "stelle_id"),
+    ("rvn_stelle_key_word_keyword__key_word__stichwort", "t"),
+    ("rvn_stelle_key_word_keyword__key_word__id", "t_id"),
 ]
 
 
-def graph_table(qs, prop_table=generic_property_table):
-    """ takes a qs and returns a 'edge' df """
+def graph_table(stellen, prop_table=generic_property_table):
+    """takes a qs and returns a 'edge' df"""
     property_table = prop_table
+    qs = KeyWord.objects.filter(rvn_stelle_key_word_keyword__in=stellen).distinct()
+    logger.info(
+        f"compiling network for {qs.count()} KeyWords mentioned in {stellen.count()} Stellen"
+    )
     columns = [x[1] for x in property_table]
     props = [x[0] for x in property_table]
 
-    df = pd.DataFrame(
-        list(qs.values_list(*props)),
-        columns=columns
-    )
-    df = df[df['s_id'] > df['t_id']]
+    df = pd.DataFrame(list(qs.values_list(*props)), columns=columns)
+    df = df[df["s_id"] >= df["t_id"]]
     return df
 
 
 def create_graph(df, ItemClass):
     app_name = ItemClass._meta.app_label
     model_name = ItemClass._meta.model_name
-    all_ids = df[['s_id', 't_id']].values.tolist()
+    all_ids = df[["s_id", "t_id"]].values.tolist()
     ids = list(set([item for sublist in all_ids for item in sublist]))
     qs = ItemClass.objects.filter(id__in=ids)
     edges = []
@@ -40,33 +43,18 @@ def create_graph(df, ItemClass):
                 "id": i,
                 "source": f"{app_name}__{model_name}__{row['s_id']}",
                 "target": f"{app_name}__{model_name}__{row['t_id']}",
-                "type": 'e'
+                "type": "e",
             }
         )
     for x in qs:
         node = as_node(x)
-        node['keyword_type'] = x.art
-        nodes.append(
-            node
-        )
+        node["keyword_type"] = x.art
+        nodes.append(node)
     g_types = {
         "nodes": [
-            {
-                'id': f"{app_name}__{model_name}",
-                'label': 'Keyword',
-                'color': '#006699'
-            },
+            {"id": f"{app_name}__{model_name}", "label": "Keyword", "color": "#006699"},
         ],
-        "edges": [
-            {
-                "id": 'e',
-                "color": '#990066'
-            }
-        ]
+        "edges": [{"id": "e", "color": "#990066"}],
     }
-    graph = {
-        "nodes": nodes,
-        "edges": edges,
-        "types": g_types
-    }
+    graph = {"nodes": nodes, "edges": edges, "types": g_types}
     return graph

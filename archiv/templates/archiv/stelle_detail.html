@@ -74,7 +74,7 @@
               <td>
                 <ul>
                   {% for x in object.key_word.all %}
-                  <li><small>{{ x.art }}: </small><a href="{{ x.get_aboslute_url }}">{{ x }}</a>  {% if user.is_authenticated %}
+                  <li><small>{{ x.art }}: </small><a href="{{ x.get_absolute_url }}">{{ x }}</a>  {% if user.is_authenticated %}
                     <a href="{% url 'archiv:spatialcoverage_create' %}?stelle={{ object.id }}&stichwort={{ x.id }}" style="color: rgb(255, 127, 206);">[add spatial coverage]</a>
                   {% endif %}</li>
                   {% endfor %}

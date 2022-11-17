@@ -26,13 +26,12 @@ def filter_by_ids(queryset, name, value):
 
 
 def none_filter(queryset, name, value):
-    print(f"##########{name}, {value}#############")
     stellen = Stelle.objects.filter(use_case__isnull=False)
     if value:
-        queryset = queryset.filter(**{f'{name}__in': stellen})
+        qs = queryset.filter(**{f'{name}__in': stellen})
     else:
-        queryset = queryset.exclude(**{f'{name}__in': stellen})
-    return queryset.distinct()
+        qs = queryset.exclude(**{f'{name}__in': stellen})
+    return qs.distinct()
 
 
 DATE_LOOKUP_CHOICES = [
