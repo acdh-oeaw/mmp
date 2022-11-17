@@ -7,6 +7,7 @@ from rest_framework.schemas import get_schema_view
 from vocabs import api_views
 from archiv import api_views as archiv_api_views
 from topics import api_views as topics_api_views
+from layers import api_views as layers_api_views
 
 router = routers.DefaultRouter()
 router.register(r'skosconceptschemes', api_views.SkosConceptSchemeViewSet)
@@ -34,6 +35,8 @@ router.register(r'stopwords', topics_api_views.StopWordViewSet)
 router.register(r'stories', archiv_api_views.StoryViewSet)
 router.register(r'slides', archiv_api_views.SlideViewSet)
 router.register(r'events', archiv_api_views.EventViewSet)
+router.register(r'layers', layers_api_views.GeoJsonLayerViewSet)
+
 
 urlpatterns = [
     path('api/', include(router.urls), name="api-root"),
