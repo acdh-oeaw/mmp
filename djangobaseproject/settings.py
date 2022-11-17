@@ -81,7 +81,8 @@ INSTALLED_APPS = [
     'archiv',
     'fontawesome_free',
     'topics',
-    'story_map'
+    'story_map',
+    'layers'
 ]
 if DEBUG:
     INSTALLED_APPS.insert(10, 'django_extensions')

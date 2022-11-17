@@ -18,6 +18,7 @@ from vocabs.models import SkosConcept
 from story_map.models import Story
 
 from webpage.metadata import PROJECT_METADATA
+from layers.models import GeoJsonLayer
 
 
 logger = logging.getLogger(__name__)
@@ -96,6 +97,13 @@ class UseCase(models.Model):
         verbose_name="Name of additional Layer",
         help_text="This name needs to match a specific layer name,\
             e.g '800' to load a layer '800'"
+    )
+    layer = models.ManyToManyField(
+        GeoJsonLayer,
+        related_name='use_case',
+        blank=True,
+        verbose_name='GeoJson Layers',
+        help_text="Select GeoJson Layers which should be related to this UseCase"
     )
 
     class Meta:
