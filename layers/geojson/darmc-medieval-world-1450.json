@@ -1,0 +1,2247 @@
+{
+  "type": "FeatureCollection",
+  "name": "DARMC_Medieval_World",
+  "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "Name": "Sisak" },
+      "geometry": { "type": "Point", "coordinates": [16.375800041030701, 45.4846000167569] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Bihac" },
+      "geometry": { "type": "Point", "coordinates": [15.8804000395843, 44.816100016093003] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Wladimir Akkerman" },
+      "geometry": { "type": "Point", "coordinates": [25.3286000493489, 50.746500021065998] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Perejaslav-Chmel'nyc'kyj" },
+      "geometry": { "type": "Point", "coordinates": [31.459600055155899, 50.070000020789799] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Kanina" },
+      "geometry": { "type": "Point", "coordinates": [19.488400043338, 40.470000011996703] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Naupaktos" },
+      "geometry": { "type": "Point", "coordinates": [21.835300045649099, 38.394100009922397] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Janina" },
+      "geometry": { "type": "Point", "coordinates": [20.850600044608299, 39.657800010987501] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Nikopolis" },
+      "geometry": { "type": "Point", "coordinates": [20.751500044946201, 38.957700010090903] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Larissa" },
+      "geometry": { "type": "Point", "coordinates": [22.422900045737801, 39.631700011178602] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Nauplia" },
+      "geometry": { "type": "Point", "coordinates": [22.808400046628801, 37.566500008674602] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Argos" },
+      "geometry": { "type": "Point", "coordinates": [22.729000047248601, 37.635200008814202] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Korinthos" },
+      "geometry": { "type": "Point", "coordinates": [22.9357000468266, 37.938300009332501] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Kandia" },
+      "geometry": { "type": "Point", "coordinates": [24.020600048069699, 35.513300006951297] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Ragusa" },
+      "geometry": { "type": "Point", "coordinates": [18.095900041807599, 42.654000014267098] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Cattaro" },
+      "geometry": { "type": "Point", "coordinates": [18.770900042836502, 42.422000013777499] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Skutari" },
+      "geometry": { "type": "Point", "coordinates": [19.512000044391598, 42.068200013244201] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Eisenburg" },
+      "geometry": { "type": "Point", "coordinates": [16.798000040914602, 47.051000018116497] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Odenburg" },
+      "geometry": { "type": "Point", "coordinates": [16.592100041402698, 47.681800018701303] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Bitolja" },
+      "geometry": { "type": "Point", "coordinates": [21.3305000452219, 41.0285000120261] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Semendria" },
+      "geometry": { "type": "Point", "coordinates": [20.9335000447272, 44.655800015717503] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Orsova" },
+      "geometry": { "type": "Point", "coordinates": [22.410200046034898, 44.7380000162321] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Vidin" },
+      "geometry": { "type": "Point", "coordinates": [22.874300047138401, 43.990400014979997] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Nikopol" },
+      "geometry": { "type": "Point", "coordinates": [24.894000049337698, 43.700600015308602] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Tirgoviste" },
+      "geometry": { "type": "Point", "coordinates": [25.4475000488519, 44.924600016258701] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Silistra" },
+      "geometry": { "type": "Point", "coordinates": [27.267500051153799, 44.114400014791798] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Halitsch" },
+      "geometry": { "type": "Point", "coordinates": [24.7345000482734, 49.122200020076903] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Akkerman" },
+      "geometry": { "type": "Point", "coordinates": [30.348900053575701, 46.198500016944102] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Eregli" },
+      "geometry": { "type": "Point", "coordinates": [31.413600054944698, 41.288900012856899] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Amasra" },
+      "geometry": { "type": "Point", "coordinates": [32.385500055825297, 41.745200012736703] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Rhodos" },
+      "geometry": { "type": "Point", "coordinates": [28.223500052066701, 36.450700008056501] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Gallipoli" },
+      "geometry": { "type": "Point", "coordinates": [26.676300049868999, 40.410400011682597] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Alasehir" },
+      "geometry": { "type": "Point", "coordinates": [28.517500052127598, 38.354500010022001] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Aksehir" },
+      "geometry": { "type": "Point", "coordinates": [31.421500055149, 38.356600009851199] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Silifke" },
+      "geometry": { "type": "Point", "coordinates": [33.9375000566233, 36.3755000076833] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Famagusta (Magusa)" },
+      "geometry": { "type": "Point", "coordinates": [33.952900056998701, 35.110100007283201] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Cankiri" },
+      "geometry": { "type": "Point", "coordinates": [33.6126000571509, 40.595200012056999] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Amasya" },
+      "geometry": { "type": "Point", "coordinates": [35.835100059054902, 40.653900011728098] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Kaffa" },
+      "geometry": { "type": "Point", "coordinates": [35.353300057835, 45.049600016280202] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Sinop" },
+      "geometry": { "type": "Point", "coordinates": [35.157800058284899, 42.0264000132332] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Nowgorod Sewerski" },
+      "geometry": { "type": "Point", "coordinates": [33.254200056255399, 52.011700022778001] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "J?nk?ping" },
+      "geometry": { "type": "Point", "coordinates": [14.160000039231599, 57.777900028049203] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Link?ping" },
+      "geometry": { "type": "Point", "coordinates": [15.6115000402518, 58.407800028897597] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Vordingborg" },
+      "geometry": { "type": "Point", "coordinates": [11.9133000362245, 55.007900024992402] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Helsingborg" },
+      "geometry": { "type": "Point", "coordinates": [12.703700036916199, 56.035500026248002] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Lund" },
+      "geometry": { "type": "Point", "coordinates": [13.1976000377894, 55.706800026210601] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Kalmar" },
+      "geometry": { "type": "Point", "coordinates": [16.3447000407043, 56.681900027042701] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Gnesen" },
+      "geometry": { "type": "Point", "coordinates": [17.602000041832699, 52.544300023126702] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Sieradz" },
+      "geometry": { "type": "Point", "coordinates": [18.731400042713801, 51.595600021975599] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Auschwitz" },
+      "geometry": { "type": "Point", "coordinates": [19.220900043223001, 50.036500020781197] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Siewierz" },
+      "geometry": { "type": "Point", "coordinates": [19.228400043394199, 50.4741000212817] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Libau" },
+      "geometry": { "type": "Point", "coordinates": [21.013400044598001, 56.514500026792199] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Mitau" },
+      "geometry": { "type": "Point", "coordinates": [23.721500047137798, 56.6512000267792] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Narva" },
+      "geometry": { "type": "Point", "coordinates": [28.197400052153899, 59.375700028988803] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Novgorod" },
+      "geometry": { "type": "Point", "coordinates": [31.277300054002598, 58.525400028943601] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Asow" },
+      "geometry": { "type": "Point", "coordinates": [39.417800062063698, 47.1084000179616] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Saluzzo" },
+      "geometry": { "type": "Point", "coordinates": [7.49430003187197, 44.6436000159215] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Asti" },
+      "geometry": { "type": "Point", "coordinates": [8.204200032643209, 44.900000015861103] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Pisa" },
+      "geometry": { "type": "Point", "coordinates": [10.383300034551, 43.714600015239] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Lucca" },
+      "geometry": { "type": "Point", "coordinates": [10.5157000347214, 43.843300015191701] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Réggio" },
+      "geometry": { "type": "Point", "coordinates": [10.6325000353983, 44.698400016285099] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Vignola" },
+      "geometry": { "type": "Point", "coordinates": [11.0097000360521, 44.4768000161977] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Cento" },
+      "geometry": { "type": "Point", "coordinates": [11.290200036343901, 44.7300000158003] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Siena" },
+      "geometry": { "type": "Point", "coordinates": [11.3308000361084, 43.321300014212902] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Viterbo" },
+      "geometry": { "type": "Point", "coordinates": [12.1086000366564, 42.419800013933603] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Piombino" },
+      "geometry": { "type": "Point", "coordinates": [10.528200035306099, 42.925500014215501] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Ostia" },
+      "geometry": { "type": "Point", "coordinates": [12.277300036684901, 41.731300012940103] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Lodi" },
+      "geometry": { "type": "Point", "coordinates": [9.49930003420296, 45.3108000160682] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "überlingen" },
+      "geometry": { "type": "Point", "coordinates": [9.15900003435523, 47.768700019138201] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Rottweil" },
+      "geometry": { "type": "Point", "coordinates": [8.62780003264292, 48.165400018885499] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Gmund" },
+      "geometry": { "type": "Point", "coordinates": [9.790900034065359, 48.800100019980199] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Hall" },
+      "geometry": { "type": "Point", "coordinates": [9.73680003363341, 49.1192000198089] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Wei?enburg" },
+      "geometry": { "type": "Point", "coordinates": [10.971100035554599, 49.033400020071802] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Mantua" },
+      "geometry": { "type": "Point", "coordinates": [10.790500034991, 45.152900015774598] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Treviso" },
+      "geometry": { "type": "Point", "coordinates": [12.2458000372238, 45.664700016807998] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Villach" },
+      "geometry": { "type": "Point", "coordinates": [13.850600037897101, 46.608500018249501] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Mühldorf" },
+      "geometry": { "type": "Point", "coordinates": [12.526800037107799, 48.238900018817603] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Passau" },
+      "geometry": { "type": "Point", "coordinates": [13.456300038074801, 48.572400018957097] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Cápua" },
+      "geometry": { "type": "Point", "coordinates": [14.211200038974599, 41.105100012185602] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Benevent" },
+      "geometry": { "type": "Point", "coordinates": [14.7831000391123, 41.1304000116955] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Torris" },
+      "geometry": { "type": "Point", "coordinates": [8.40280003289881, 40.838000011668399] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Cosenza" },
+      "geometry": { "type": "Point", "coordinates": [16.252300040248802, 39.300300010703602] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Speyer" },
+      "geometry": { "type": "Point", "coordinates": [8.428600033235981, 49.315000019712897] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Marburg" },
+      "geometry": { "type": "Point", "coordinates": [8.773200033888511, 50.807900021257304] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Schweinfurt" },
+      "geometry": { "type": "Point", "coordinates": [10.224300034875601, 50.048000021174403] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Rothenburg" },
+      "geometry": { "type": "Point", "coordinates": [10.188900034642799, 49.375900019733002] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Minden" },
+      "geometry": { "type": "Point", "coordinates": [8.916400034053821, 52.292200022858403] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Mühlhausen" },
+      "geometry": { "type": "Point", "coordinates": [10.4656000346203, 51.206800021887602] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Merseburg" },
+      "geometry": { "type": "Point", "coordinates": [11.9950000371425, 51.351300022100403] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Bamberg" },
+      "geometry": { "type": "Point", "coordinates": [10.8871000348955, 49.892600021153697] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Schleswig" },
+      "geometry": { "type": "Point", "coordinates": [9.5667000343874, 54.5171000250484] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Eger" },
+      "geometry": { "type": "Point", "coordinates": [12.371400036831799, 50.073300020735999] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Taus" },
+      "geometry": { "type": "Point", "coordinates": [12.927500036561, 49.439400020026497] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Mei?en" },
+      "geometry": { "type": "Point", "coordinates": [13.474600038240901, 51.164200022109497] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Aussig" },
+      "geometry": { "type": "Point", "coordinates": [14.0454000378384, 50.660800021200401] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Luckau" },
+      "geometry": { "type": "Point", "coordinates": [13.7023000377591, 51.850400022249502] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Bautzen" },
+      "geometry": { "type": "Point", "coordinates": [14.433000039352301, 51.181200021875803] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Olmutz" },
+      "geometry": { "type": "Point", "coordinates": [17.2547000414061, 49.595500019953199] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Cotrone" },
+      "geometry": { "type": "Point", "coordinates": [17.126700040701198, 39.080100011088597] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Bríndisi" },
+      "geometry": { "type": "Point", "coordinates": [17.938500042264501, 40.637000011891097] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Limerick" },
+      "geometry": { "type": "Point", "coordinates": [-8.623899983362209, 52.6628000232189] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Inverness" },
+      "geometry": { "type": "Point", "coordinates": [-4.2272999790656, 57.476700028205201] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Waterford" },
+      "geometry": { "type": "Point", "coordinates": [-7.10959998074141, 52.258200022859803] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Wexford" },
+      "geometry": { "type": "Point", "coordinates": [-6.46379998122914, 52.342700022731499] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Pembroke" },
+      "geometry": { "type": "Point", "coordinates": [-4.91699997906452, 51.678600021778699] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Cardigan" },
+      "geometry": { "type": "Point", "coordinates": [-4.65009997899916, 52.085400023269202] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Armagh" },
+      "geometry": { "type": "Point", "coordinates": [-6.65249998111514, 54.350100024886501] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Dundalk" },
+      "geometry": { "type": "Point", "coordinates": [-6.40199998060953, 54.004200023995999] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Carlisle" },
+      "geometry": { "type": "Point", "coordinates": [-2.92819997717503, 54.894400025178598] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Hexham" },
+      "geometry": { "type": "Point", "coordinates": [-2.10729997710496, 54.970800024872197] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Lancaster" },
+      "geometry": { "type": "Point", "coordinates": [-2.79689997664642, 54.052000024148498] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Shrewsbury" },
+      "geometry": { "type": "Point", "coordinates": [-2.74559997734439, 52.707000023147998] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Chester" },
+      "geometry": { "type": "Point", "coordinates": [-2.89369997656747, 53.1974000239234] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Tewkesbury" },
+      "geometry": { "type": "Point", "coordinates": [-2.15489997744847, 51.993000022859597] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Lincoln" },
+      "geometry": { "type": "Point", "coordinates": [-0.529299975054879, 53.236000024028499] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Saint Albans" },
+      "geometry": { "type": "Point", "coordinates": [-0.338399974986903, 51.750600021954099] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Winchester" },
+      "geometry": { "type": "Point", "coordinates": [-1.31469997623132, 51.062900022009401] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Aljubarotta" },
+      "geometry": { "type": "Point", "coordinates": [-8.92889998343453, 39.565800010847397] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Quimper" },
+      "geometry": { "type": "Point", "coordinates": [-4.10079997803568, 47.997100018780202] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Vannes" },
+      "geometry": { "type": "Point", "coordinates": [-2.75519997724005, 47.661300019031401] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "la Rochelle" },
+      "geometry": { "type": "Point", "coordinates": [-1.15569997565756, 46.161800016808002] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Bayonne" },
+      "geometry": { "type": "Point", "coordinates": [-1.46409997601111, 43.491500014679701] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Castillon" },
+      "geometry": { "type": "Point", "coordinates": [-0.047299974716718, 44.855300015851597] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Elvas" },
+      "geometry": { "type": "Point", "coordinates": [-7.16529998130567, 38.880100010028002] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Merida" },
+      "geometry": { "type": "Point", "coordinates": [-6.34589998091048, 38.919400010025697] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Talavera" },
+      "geometry": { "type": "Point", "coordinates": [-4.8310999786975, 39.959800010901397] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Toledo" },
+      "geometry": { "type": "Point", "coordinates": [-4.02479997803826, 39.862800011282602] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Cuenca" },
+      "geometry": { "type": "Point", "coordinates": [-2.13749997690772, 40.0736000106969] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Tortosa" },
+      "geometry": { "type": "Point", "coordinates": [0.521500025613734, 40.811500011853802] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Agen" },
+      "geometry": { "type": "Point", "coordinates": [0.625400025672838, 44.204900014844] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Cahors" },
+      "geometry": { "type": "Point", "coordinates": [1.44180002671822, 44.446200016041097] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Narbonne" },
+      "geometry": { "type": "Point", "coordinates": [3.00070002763777, 43.184400014271503] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Albi" },
+      "geometry": { "type": "Point", "coordinates": [2.14770002715863, 43.924200015315201] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "le Puy" },
+      "geometry": { "type": "Point", "coordinates": [3.88180002909347, 45.045200015729797] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Périgueux" },
+      "geometry": { "type": "Point", "coordinates": [0.719000026227544, 45.182500016198503] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Angoulême" },
+      "geometry": { "type": "Point", "coordinates": [0.167900026013508, 45.651200017064603] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Montlhéry" },
+      "geometry": { "type": "Point", "coordinates": [2.26780002676094, 48.639000019074302] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Troyes" },
+      "geometry": { "type": "Point", "coordinates": [4.08100002939871, 48.287700018715398] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Bourges" },
+      "geometry": { "type": "Point", "coordinates": [2.40400002814395, 47.084600017777099] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Nevers" },
+      "geometry": { "type": "Point", "coordinates": [3.16600002828342, 46.990500017971897] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Avignon" },
+      "geometry": { "type": "Point", "coordinates": [4.81770002969152, 43.953000015058898] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Valence" },
+      "geometry": { "type": "Point", "coordinates": [4.88410002979326, 44.930700016195097] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Hastings" },
+      "geometry": { "type": "Point", "coordinates": [0.555700025747323, 50.8677000221669] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Calais" },
+      "geometry": { "type": "Point", "coordinates": [1.85420002668996, 50.949900021964702] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Canterbury" },
+      "geometry": { "type": "Point", "coordinates": [1.08230002618086, 51.276100021938902] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Senlis" },
+      "geometry": { "type": "Point", "coordinates": [2.58950002776528, 49.206400019735199] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Cassel" },
+      "geometry": { "type": "Point", "coordinates": [2.48420002759041, 50.799800020886302] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Arras" },
+      "geometry": { "type": "Point", "coordinates": [2.77140002798719, 50.2913000212843] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Rethel" },
+      "geometry": { "type": "Point", "coordinates": [4.3661000291727, 49.508800020064598] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Rennes" },
+      "geometry": { "type": "Point", "coordinates": [-1.67699663616572, 48.119003999708603] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Nantes" },
+      "geometry": { "type": "Point", "coordinates": [-1.56200363620875, 47.219004000031298] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Dundee" },
+      "geometry": { "type": "Point", "coordinates": [-2.96669663638055, 56.466701999753603] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Dublin" },
+      "geometry": { "type": "Point", "coordinates": [-6.25734863622003, 53.3415600000355] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Cork" },
+      "geometry": { "type": "Point", "coordinates": [-8.49099563575361, 51.897995999916503] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "London" },
+      "geometry": { "type": "Point", "coordinates": [-0.178001636180655, 51.487910999765603] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Edinburgh" },
+      "geometry": { "type": "Point", "coordinates": [-3.24999863565546, 55.924002000009999] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Glasgow" },
+      "geometry": { "type": "Point", "coordinates": [-4.26994163567195, 55.862811000130797] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Cardiff" },
+      "geometry": { "type": "Point", "coordinates": [-3.21666263606047, 51.483338999923703] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Zaragoza" },
+      "geometry": { "type": "Point", "coordinates": [-0.878003636232101, 41.651001000219701] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Valencia" },
+      "geometry": { "type": "Point", "coordinates": [-0.367001635642291, 39.471003000175102] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Lisbon" },
+      "geometry": { "type": "Point", "coordinates": [-9.129995635601791, 38.729996999931998] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Seville" },
+      "geometry": { "type": "Point", "coordinates": [-5.97099563574508, 37.3730040000301] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Bordeaux" },
+      "geometry": { "type": "Point", "coordinates": [-0.599003635615166, 44.840997000225599] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Melilla" },
+      "geometry": { "type": "Point", "coordinates": [-2.96595863623867, 35.316486000072203] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Gibraltar" },
+      "geometry": { "type": "Point", "coordinates": [-5.35200263632539, 36.128996999772198] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Fes" },
+      "geometry": { "type": "Point", "coordinates": [-4.9959986363287, 34.044002999817003] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Oran" },
+      "geometry": { "type": "Point", "coordinates": [-0.520001635719816, 35.749998000276697] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Bona" },
+      "geometry": { "type": "Point", "coordinates": [7.75600236443205, 36.9029969996486] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Algiers" },
+      "geometry": { "type": "Point", "coordinates": [3.05000136436588, 36.783297000228103] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Budschaja" },
+      "geometry": { "type": "Point", "coordinates": [5.07799836373449, 36.756999000282697] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Mazahgan" },
+      "geometry": { "type": "Point", "coordinates": [0.09000036407466, 35.939997000159003] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Montpellier" },
+      "geometry": { "type": "Point", "coordinates": [3.86700336421241, 43.6140000002992] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Toulouse" },
+      "geometry": { "type": "Point", "coordinates": [1.43800236382032, 43.599996000322598] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Barcelona" },
+      "geometry": { "type": "Point", "coordinates": [2.15900136433721, 41.357996999938202] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Genua" },
+      "geometry": { "type": "Point", "coordinates": [8.883000363668121, 44.413001999687097] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Ajaccio" },
+      "geometry": { "type": "Point", "coordinates": [8.6619963640569, 41.960996999734199] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Cagliari" },
+      "geometry": { "type": "Point", "coordinates": [9.10899936367003, 39.224996999862697] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Tunis" },
+      "geometry": { "type": "Point", "coordinates": [10.166004363976, 36.819000000101802] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Gabes" },
+      "geometry": { "type": "Point", "coordinates": [10.103004364155399, 33.893000999778003] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Mahdija" },
+      "geometry": { "type": "Point", "coordinates": [11.040876364431499, 35.4839130000545] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Bari" },
+      "geometry": { "type": "Point", "coordinates": [16.866702363800702, 41.1000030000341] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Neapel" },
+      "geometry": { "type": "Point", "coordinates": [14.250024364069899, 40.833359999755103] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Palermo" },
+      "geometry": { "type": "Point", "coordinates": [13.358997364277, 38.121002999779201] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Bologna" },
+      "geometry": { "type": "Point", "coordinates": [11.333997363885199, 44.503002000269198] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Ancona" },
+      "geometry": { "type": "Point", "coordinates": [13.5160023638099, 43.6210019999235] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Perugia" },
+      "geometry": { "type": "Point", "coordinates": [12.3849993642201, 43.1129970002672] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Rome" },
+      "geometry": { "type": "Point", "coordinates": [12.5199993637072, 41.879996999813898] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Durrazo" },
+      "geometry": { "type": "Point", "coordinates": [19.454004364084401, 41.327001000224598] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Belgrade" },
+      "geometry": { "type": "Point", "coordinates": [20.412558364283299, 44.799678000093003] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Uskup" },
+      "geometry": { "type": "Point", "coordinates": [21.433338364175899, 41.983335000252403] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Tripoli" },
+      "geometry": { "type": "Point", "coordinates": [13.1568933639831, 32.893128000048797] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Barka" },
+      "geometry": { "type": "Point", "coordinates": [20.0680023640118, 32.121999000350399] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Ankara" },
+      "geometry": { "type": "Point", "coordinates": [32.852997364060698, 39.929004000097699] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Damiette" },
+      "geometry": { "type": "Point", "coordinates": [31.8130023643082, 31.421997000276299] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Alexandria" },
+      "geometry": { "type": "Point", "coordinates": [29.905101364343999, 31.204494000224599] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Cairo" },
+      "geometry": { "type": "Point", "coordinates": [31.250799364150598, 30.077909999903699] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Izmir" },
+      "geometry": { "type": "Point", "coordinates": [27.1449993641418, 38.432996999743303] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Athens" },
+      "geometry": { "type": "Point", "coordinates": [23.652999363693599, 37.9440000001049] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Adrianople" },
+      "geometry": { "type": "Point", "coordinates": [26.5619973638854, 41.681996999802401] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Thessaloniki" },
+      "geometry": { "type": "Point", "coordinates": [22.7999973635647, 40.629996000190303] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Sofiya" },
+      "geometry": { "type": "Point", "coordinates": [23.331870364223199, 42.707267999748197] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Varna" },
+      "geometry": { "type": "Point", "coordinates": [27.907002363756, 43.206002999898097] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Burgas" },
+      "geometry": { "type": "Point", "coordinates": [27.464004363598299, 42.5279970000866] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Istanbul" },
+      "geometry": { "type": "Point", "coordinates": [29.006001364094502, 41.066001000092101] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Izmit" },
+      "geometry": { "type": "Point", "coordinates": [29.923002364301801, 40.773996000044697] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Bursa" },
+      "geometry": { "type": "Point", "coordinates": [29.075004363885999, 40.195998000120497] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Eskisehir" },
+      "geometry": { "type": "Point", "coordinates": [30.519000363638799, 39.783996000188999] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Ikonia" },
+      "geometry": { "type": "Point", "coordinates": [32.481999363569599, 37.878003000078898] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Antalya" },
+      "geometry": { "type": "Point", "coordinates": [30.708999364256499, 36.892997999804599] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Malatya" },
+      "geometry": { "type": "Point", "coordinates": [38.309004364019998, 38.355003000125201] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Kayseri" },
+      "geometry": { "type": "Point", "coordinates": [35.478999364400998, 38.730996000222397] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Antioch" },
+      "geometry": { "type": "Point", "coordinates": [36.116676364126299, 36.233334000151402] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Tripoli" },
+      "geometry": { "type": "Point", "coordinates": [36.007074364395102, 34.343757000004899] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Beirut" },
+      "geometry": { "type": "Point", "coordinates": [35.499996363968201, 33.883326000114401] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Aleppo" },
+      "geometry": { "type": "Point", "coordinates": [37.159281364139602, 36.215540999827901] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Emesa" },
+      "geometry": { "type": "Point", "coordinates": [36.718173363644098, 34.733871000202697] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Samsun" },
+      "geometry": { "type": "Point", "coordinates": [36.331002364272202, 41.292998999895801] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Sivas" },
+      "geometry": { "type": "Point", "coordinates": [37.017999364123902, 39.747996000336798] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Trapezunt" },
+      "geometry": { "type": "Point", "coordinates": [39.717999363748099, 41.001002999700198] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Laris" },
+      "geometry": { "type": "Point", "coordinates": [33.800004363901998, 31.1333039997714] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Joppa" },
+      "geometry": { "type": "Point", "coordinates": [34.769997363605199, 32.045003999992097] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Gaza City" },
+      "geometry": { "type": "Point", "coordinates": [34.445997363758103, 31.524003000015401] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Damascus" },
+      "geometry": { "type": "Point", "coordinates": [36.299997364380403, 33.499998000329697] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Jerusalem" },
+      "geometry": { "type": "Point", "coordinates": [35.225217363615002, 31.773743999655899] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Bergen" },
+      "geometry": { "type": "Point", "coordinates": [5.4906843639365, 60.350003999816003] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Bremen" },
+      "geometry": { "type": "Point", "coordinates": [8.857998363747299, 53.080001999803699] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Erfurt" },
+      "geometry": { "type": "Point", "coordinates": [11.035998364216701, 50.975999999954198] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Frankfurt" },
+      "geometry": { "type": "Point", "coordinates": [8.66816136440956, 50.129999999991099] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Amiens" },
+      "geometry": { "type": "Point", "coordinates": [2.30200236431088, 49.887998999742599] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Rouen" },
+      "geometry": { "type": "Point", "coordinates": [1.07700336433127, 49.431995999939197] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Paris" },
+      "geometry": { "type": "Point", "coordinates": [2.43299736434264, 48.881996999724599] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Orleans" },
+      "geometry": { "type": "Point", "coordinates": [1.90600236389889, 47.914001999941597] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Poitiers" },
+      "geometry": { "type": "Point", "coordinates": [0.340002363739591, 46.584999000141003] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Limoges" },
+      "geometry": { "type": "Point", "coordinates": [1.25199936423371, 45.830996999743] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Reims" },
+      "geometry": { "type": "Point", "coordinates": [4.03000236439373, 49.238000999755002] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Dijon" },
+      "geometry": { "type": "Point", "coordinates": [5.0360043637019, 47.318004000136] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Clermont" },
+      "geometry": { "type": "Point", "coordinates": [3.09099636414068, 45.783999000287899] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Lyon" },
+      "geometry": { "type": "Point", "coordinates": [4.85499636360767, 45.746999999937799] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Bruges" },
+      "geometry": { "type": "Point", "coordinates": [3.22000236387767, 51.210000000159603] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Amsterdam" },
+      "geometry": { "type": "Point", "coordinates": [4.89483936386209, 52.373042999824598] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Utrecht" },
+      "geometry": { "type": "Point", "coordinates": [5.11200036439967, 52.100000999745603] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Groningen" },
+      "geometry": { "type": "Point", "coordinates": [6.57500436432312, 53.218998000081797] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Arhus" },
+      "geometry": { "type": "Point", "coordinates": [10.212777363590799, 56.154806999839003] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Ripen" },
+      "geometry": { "type": "Point", "coordinates": [8.78329836430656, 55.333295999925802] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Hamburg" },
+      "geometry": { "type": "Point", "coordinates": [10.0279983643929, 53.570996999999501] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Besancon" },
+      "geometry": { "type": "Point", "coordinates": [6.01800336424534, 47.248001999942197] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Geneva" },
+      "geometry": { "type": "Point", "coordinates": [6.13400436378263, 46.2020039997997] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Turin" },
+      "geometry": { "type": "Point", "coordinates": [7.66642536377436, 45.074870999848002] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Basel" },
+      "geometry": { "type": "Point", "coordinates": [7.57600236391811, 47.547000000017] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Nancy" },
+      "geometry": { "type": "Point", "coordinates": [6.17799636433081, 48.6860040002014] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Strassburg" },
+      "geometry": { "type": "Point", "coordinates": [7.76799936415313, 48.5829990002144] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Trient" },
+      "geometry": { "type": "Point", "coordinates": [11.120004363825201, 46.068002999925199] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Mailand" },
+      "geometry": { "type": "Point", "coordinates": [9.18999936408097, 45.4730039999409] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Stavanger" },
+      "geometry": { "type": "Point", "coordinates": [5.69597436425133, 58.973346000218797] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Aalborg" },
+      "geometry": { "type": "Point", "coordinates": [9.93200436438582, 57.0349979998932] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Oslo" },
+      "geometry": { "type": "Point", "coordinates": [10.711998364369601, 59.938002000198402] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Tonsberg" },
+      "geometry": { "type": "Point", "coordinates": [10.4210013640315, 59.264000999815003] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Uppsala" },
+      "geometry": { "type": "Point", "coordinates": [17.6470023641062, 59.8539959998391] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Stockholm" },
+      "geometry": { "type": "Point", "coordinates": [17.9914503644228, 59.3311679997719] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Wien" },
+      "geometry": { "type": "Point", "coordinates": [16.320978363743901, 48.2021189997063] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Munich" },
+      "geometry": { "type": "Point", "coordinates": [11.5429503642469, 48.140972999934803] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Salzburg" },
+      "geometry": { "type": "Point", "coordinates": [13.0519983638642, 47.807999999867299] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Innsbruck" },
+      "geometry": { "type": "Point", "coordinates": [11.34999936396, 47.2650029997505] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Vendig" },
+      "geometry": { "type": "Point", "coordinates": [12.3707163641033, 45.424773000208802] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Graz" },
+      "geometry": { "type": "Point", "coordinates": [15.431004363737101, 47.064995999926403] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Laibach" },
+      "geometry": { "type": "Point", "coordinates": [14.6396073642341, 46.068300000001599] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Agram" },
+      "geometry": { "type": "Point", "coordinates": [15.9640023641519, 45.807002999858] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Schwerin" },
+      "geometry": { "type": "Point", "coordinates": [11.416698363812401, 53.633304000046301] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Copenhagen" },
+      "geometry": { "type": "Point", "coordinates": [12.5499963640187, 55.719999000117298] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Stettin" },
+      "geometry": { "type": "Point", "coordinates": [14.531004363862399, 53.438004000162501] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "K?nigsburg" },
+      "geometry": { "type": "Point", "coordinates": [20.502999363682999, 54.708002999763998] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Danzig" },
+      "geometry": { "type": "Point", "coordinates": [18.624996364295999, 54.366002999828098] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Elbing" },
+      "geometry": { "type": "Point", "coordinates": [19.404999363602201, 54.159003000021897] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Thorn" },
+      "geometry": { "type": "Point", "coordinates": [18.611001364059302, 53.010999000002698] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Posen" },
+      "geometry": { "type": "Point", "coordinates": [16.886997364109298, 52.396001999949398] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Plock" },
+      "geometry": { "type": "Point", "coordinates": [19.692000363807399, 52.544997000163598] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Warsaw" },
+      "geometry": { "type": "Point", "coordinates": [21.011877364258801, 52.244946000268598] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Pressburg" },
+      "geometry": { "type": "Point", "coordinates": [17.129997364443799, 48.149999999766003] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Raab" },
+      "geometry": { "type": "Point", "coordinates": [17.638002364260199, 47.678004000284503] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Ofen and Pest" },
+      "geometry": { "type": "Point", "coordinates": [19.094004363954902, 47.514996000027097] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Fünfkirchen" },
+      "geometry": { "type": "Point", "coordinates": [18.2250003637511, 46.074995999743201] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Krakow" },
+      "geometry": { "type": "Point", "coordinates": [19.9449993642457, 50.061996000026099] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Eriau" },
+      "geometry": { "type": "Point", "coordinates": [20.3830023640128, 47.895002999766199] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Kaschau" },
+      "geometry": { "type": "Point", "coordinates": [21.2499993643785, 48.699999000031902] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Debrecen" },
+      "geometry": { "type": "Point", "coordinates": [21.641004364399802, 47.531996999965898] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Grosswardein" },
+      "geometry": { "type": "Point", "coordinates": [21.9420003639434, 47.058002999983103] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Szegedin" },
+      "geometry": { "type": "Point", "coordinates": [20.157003364010901, 46.256004000309503] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Arad" },
+      "geometry": { "type": "Point", "coordinates": [21.326004364398798, 46.189998000203801] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Smolensk" },
+      "geometry": { "type": "Point", "coordinates": [32.037003363794497, 54.789002999913102] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Tschernigow" },
+      "geometry": { "type": "Point", "coordinates": [31.311999363822299, 51.504003000150099] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Minsk" },
+      "geometry": { "type": "Point", "coordinates": [27.575559363639201, 53.899937999856299] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Przemysl" },
+      "geometry": { "type": "Point", "coordinates": [22.779000363997501, 49.789997999968001] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Tschernowitz" },
+      "geometry": { "type": "Point", "coordinates": [25.945002364082999, 48.282002999933198] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Klausenburg" },
+      "geometry": { "type": "Point", "coordinates": [23.599998363976901, 46.776996000132698] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Hermannstadt" },
+      "geometry": { "type": "Point", "coordinates": [24.143004363818001, 45.786995999829998] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Suceava" },
+      "geometry": { "type": "Point", "coordinates": [26.316666363847698, 47.649995999768997] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Jassy" },
+      "geometry": { "type": "Point", "coordinates": [27.584001364166699, 47.169999000130097] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Kronstadt" },
+      "geometry": { "type": "Point", "coordinates": [25.611003364132099, 45.656001000077602] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Wilna" },
+      "geometry": { "type": "Point", "coordinates": [25.275960363717498, 54.688563000130202] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Grodno" },
+      "geometry": { "type": "Point", "coordinates": [23.8410003637958, 53.672004000192999] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Brest" },
+      "geometry": { "type": "Point", "coordinates": [23.703003364433599, 52.095995999932398] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Lublin" },
+      "geometry": { "type": "Point", "coordinates": [22.578003363916501, 51.242004000271699] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Kiev" },
+      "geometry": { "type": "Point", "coordinates": [30.5021073641595, 50.448159000190302] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Reval" },
+      "geometry": { "type": "Point", "coordinates": [24.750000364414898, 59.416667999976603] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Riga" },
+      "geometry": { "type": "Point", "coordinates": [24.0499983643634, 56.880000000039502] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Pskov" },
+      "geometry": { "type": "Point", "coordinates": [28.346004363780899, 57.816999000144797] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Vologda" },
+      "geometry": { "type": "Point", "coordinates": [39.877002363796599, 59.227001999818398] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Yaroslavl" },
+      "geometry": { "type": "Point", "coordinates": [39.858003363846699, 57.607001999867002] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Tver" },
+      "geometry": { "type": "Point", "coordinates": [35.916669364082203, 56.8666709997607] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Nishni-Novogorod" },
+      "geometry": { "type": "Point", "coordinates": [43.940673364053502, 56.289672000129002] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Vladimir" },
+      "geometry": { "type": "Point", "coordinates": [40.3740003639289, 56.147003999836301] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Ryazan" },
+      "geometry": { "type": "Point", "coordinates": [39.705003363769201, 54.599003999759297] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Poltava" },
+      "geometry": { "type": "Point", "coordinates": [34.551000363832102, 49.592996999956902] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Moscow" },
+      "geometry": { "type": "Point", "coordinates": [37.700001363585002, 55.749995999870499] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Tula" },
+      "geometry": { "type": "Point", "coordinates": [37.6090023639686, 54.210995999867201] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Kursk" },
+      "geometry": { "type": "Point", "coordinates": [36.173997363841004, 51.741998999777501] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Aberdeen" },
+      "geometry": { "type": "Point", "coordinates": [-2.13000099991767, 57.140997999967198] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Exeter" },
+      "geometry": { "type": "Point", "coordinates": [-3.52899700044025, 50.731998999911397] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Newcastle" },
+      "geometry": { "type": "Point", "coordinates": [-1.6039960004092, 54.969001000176497] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "York" },
+      "geometry": { "type": "Point", "coordinates": [-1.10200299988627, 53.9569960002149] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Northhampton" },
+      "geometry": { "type": "Point", "coordinates": [-0.896002000092042, 52.242001000247001] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Gloucester" },
+      "geometry": { "type": "Point", "coordinates": [-2.23900000012449, 51.857998000176103] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Angers" },
+      "geometry": { "type": "Point", "coordinates": [-0.531996999608788, 47.469004000038801] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Tanger" },
+      "geometry": { "type": "Point", "coordinates": [-5.80800399995243, 35.774998000081901] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Arzila" },
+      "geometry": { "type": "Point", "coordinates": [-6.0360009995716, 35.470996000338502] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Kasar-al-Kerib" },
+      "geometry": { "type": "Point", "coordinates": [-5.90100100008446, 35.011996000242] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Cadiz" },
+      "geometry": { "type": "Point", "coordinates": [-6.29299600014277, 36.523995999911399] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Porto" },
+      "geometry": { "type": "Point", "coordinates": [-8.68200100011954, 41.250004000174599] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "La Coruna" },
+      "geometry": { "type": "Point", "coordinates": [-8.37899799983958, 43.300995999846002] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Coimbra" },
+      "geometry": { "type": "Point", "coordinates": [-8.347956999962779, 40.257916000024998] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Alcantara" },
+      "geometry": { "type": "Point", "coordinates": [-6.88100200011231, 39.714999999833402] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Santander" },
+      "geometry": { "type": "Point", "coordinates": [-3.81900399984303, 43.428003999856699] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Leon" },
+      "geometry": { "type": "Point", "coordinates": [-5.57299599988368, 42.601002999698999] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Burgos" },
+      "geometry": { "type": "Point", "coordinates": [-3.69600100007697, 42.341002000180701] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Toro" },
+      "geometry": { "type": "Point", "coordinates": [-5.39400399984836, 41.524998999866298] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Tordesillas" },
+      "geometry": { "type": "Point", "coordinates": [-4.99599699959825, 41.505000999842203] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Madrid" },
+      "geometry": { "type": "Point", "coordinates": [-3.78527200041292, 40.602247000262302] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Vitoria" },
+      "geometry": { "type": "Point", "coordinates": [-2.72300200027789, 42.883998999783898] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Epila" },
+      "geometry": { "type": "Point", "coordinates": [-1.27099599981777, 41.6020029996914] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Ceuta" },
+      "geometry": { "type": "Point", "coordinates": [-5.34067900026653, 35.884573000040902] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Tlemcen" },
+      "geometry": { "type": "Point", "coordinates": [-1.31399800032897, 34.882998999788299] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Cordoba" },
+      "geometry": { "type": "Point", "coordinates": [-4.77699999982511, 37.884003999980898] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Jaen" },
+      "geometry": { "type": "Point", "coordinates": [-3.7909959998263, 37.770999999927199] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Granada" },
+      "geometry": { "type": "Point", "coordinates": [-3.59800000023177, 37.174002999894299] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Alicante" },
+      "geometry": { "type": "Point", "coordinates": [-0.489004000216732, 38.347999000237401] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Murcia" },
+      "geometry": { "type": "Point", "coordinates": [-1.48478200018847, 37.988295999889999] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Cartagena" },
+      "geometry": { "type": "Point", "coordinates": [-0.995002000195039, 37.616001999796502] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Almeria" },
+      "geometry": { "type": "Point", "coordinates": [-2.4649990001264, 36.843001000121198] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Tenes" },
+      "geometry": { "type": "Point", "coordinates": [1.31300300026912, 36.508002999735098] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Gerona" },
+      "geometry": { "type": "Point", "coordinates": [2.81399599987145, 41.976997000199802] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Lerida" },
+      "geometry": { "type": "Point", "coordinates": [0.623998999680994, 41.622000999896301] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Palma De Mallorca" },
+      "geometry": { "type": "Point", "coordinates": [2.64700099955725, 39.571000000245498] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Digne" },
+      "geometry": { "type": "Point", "coordinates": [6.23199800013745, 44.096002000298398] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Nizza" },
+      "geometry": { "type": "Point", "coordinates": [7.26100399974918, 43.7199999997436] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Florenz" },
+      "geometry": { "type": "Point", "coordinates": [11.2079990000762, 43.782000999974201] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Messina" },
+      "geometry": { "type": "Point", "coordinates": [15.559003999726, 38.186997999968597] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Reggio Di Calabria" },
+      "geometry": { "type": "Point", "coordinates": [15.6469970001448, 38.112001000201303] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Syrakus" },
+      "geometry": { "type": "Point", "coordinates": [15.291002000369, 37.071996999846299] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Pontecorvo" },
+      "geometry": { "type": "Point", "coordinates": [13.6640000000064, 41.459001999895698] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Ponza" },
+      "geometry": { "type": "Point", "coordinates": [12.9790009997719, 40.893999999687203] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Ferrara" },
+      "geometry": { "type": "Point", "coordinates": [11.610001999560801, 44.841003999835202] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Ravenna" },
+      "geometry": { "type": "Point", "coordinates": [12.2089969996712, 44.419002999885201] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Rimini" },
+      "geometry": { "type": "Point", "coordinates": [12.574001000412199, 44.067004000222198] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Salerno" },
+      "geometry": { "type": "Point", "coordinates": [14.9269969998857, 40.722999999852] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Foggia" },
+      "geometry": { "type": "Point", "coordinates": [15.5459990004245, 41.467002999865699] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Tarent" },
+      "geometry": { "type": "Point", "coordinates": [17.243002999938099, 40.467003999667497] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Otranto" },
+      "geometry": { "type": "Point", "coordinates": [18.494003000096399, 40.131996999975797] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Nisch" },
+      "geometry": { "type": "Point", "coordinates": [21.870002000108901, 43.324998999911102] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Modon" },
+      "geometry": { "type": "Point", "coordinates": [21.7070029999276, 36.825001000053398] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Syrte" },
+      "geometry": { "type": "Point", "coordinates": [16.588001000015201, 31.204995999783598] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Foglia" },
+      "geometry": { "type": "Point", "coordinates": [26.760998000181299, 38.671000000230599] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Philoppopel" },
+      "geometry": { "type": "Point", "coordinates": [24.472720999588098, 42.146818000269299] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Turnovo" },
+      "geometry": { "type": "Point", "coordinates": [25.635997999664198, 43.086004000259599] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Cherson" },
+      "geometry": { "type": "Point", "coordinates": [33.538997000385102, 44.6170030002083] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Tarsus" },
+      "geometry": { "type": "Point", "coordinates": [34.903999999565002, 36.918997000200299] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Adana" },
+      "geometry": { "type": "Point", "coordinates": [35.764075999892803, 37.142620000050698] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "'Akko" },
+      "geometry": { "type": "Point", "coordinates": [35.0959969998001, 32.910999999728602] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Lübeck" },
+      "geometry": { "type": "Point", "coordinates": [10.6470019998656, 53.869002999938203] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Norwich" },
+      "geometry": { "type": "Point", "coordinates": [1.2870020000905, 52.638000999903099] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Verdun" },
+      "geometry": { "type": "Point", "coordinates": [5.38799599985451, 49.161004000017002] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Sens" },
+      "geometry": { "type": "Point", "coordinates": [3.28400299978817, 48.196996000105102] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Le Mans" },
+      "geometry": { "type": "Point", "coordinates": [0.199001000113629, 47.994999999708398] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Osnabrück" },
+      "geometry": { "type": "Point", "coordinates": [8.04700099970389, 52.279999000189498] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Aachen" },
+      "geometry": { "type": "Point", "coordinates": [6.09200300025966, 50.766000999772203] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Dortmund" },
+      "geometry": { "type": "Point", "coordinates": [7.46599699996308, 51.514000000233104] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Lüneberg" },
+      "geometry": { "type": "Point", "coordinates": [10.408996999921801, 53.2500010000266] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Braunschweig" },
+      "geometry": { "type": "Point", "coordinates": [10.513999999995701, 52.2709989999369] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Grenoble" },
+      "geometry": { "type": "Point", "coordinates": [5.71500199979753, 45.180997000040499] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Limburg" },
+      "geometry": { "type": "Point", "coordinates": [8.05500200019045, 50.382997000151597] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Speyer" },
+      "geometry": { "type": "Point", "coordinates": [8.43599899988714, 49.312996000083501] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Würzburg" },
+      "geometry": { "type": "Point", "coordinates": [9.94600099955632, 49.793002000166702] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Worms" },
+      "geometry": { "type": "Point", "coordinates": [8.464996999940819, 49.596000999935498] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Nürnburg" },
+      "geometry": { "type": "Point", "coordinates": [11.063998999844699, 49.445997999922703] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Reutlingen" },
+      "geometry": { "type": "Point", "coordinates": [9.20800099960517, 48.483996999746701] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Ulm" },
+      "geometry": { "type": "Point", "coordinates": [9.96599899976397, 48.400000000221098] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Bergamo" },
+      "geometry": { "type": "Point", "coordinates": [9.66500300022042, 45.694996000133102] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Brescia" },
+      "geometry": { "type": "Point", "coordinates": [10.222004000298201, 45.541996000019203] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Verona" },
+      "geometry": { "type": "Point", "coordinates": [10.9929980004359, 45.437001999914798] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Skara" },
+      "geometry": { "type": "Point", "coordinates": [13.440997999879601, 58.386003999937799] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Belluno" },
+      "geometry": { "type": "Point", "coordinates": [12.217997000415499, 46.1449959999768] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Feltre" },
+      "geometry": { "type": "Point", "coordinates": [11.91299599962, 46.026997000048503] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Vicenza" },
+      "geometry": { "type": "Point", "coordinates": [11.5509979998732, 45.544002999738197] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Padua" },
+      "geometry": { "type": "Point", "coordinates": [11.8659979998742, 45.411001000203598] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Wiener Neustadt" },
+      "geometry": { "type": "Point", "coordinates": [16.237999999989398, 47.816997999715802] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Rostock" },
+      "geometry": { "type": "Point", "coordinates": [12.0870020003838, 54.095002000107499] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Ruppin" },
+      "geometry": { "type": "Point", "coordinates": [12.7990010001563, 52.924002999912297] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Memel" },
+      "geometry": { "type": "Point", "coordinates": [21.133999999775, 55.711996000195697] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Schemnitz" },
+      "geometry": { "type": "Point", "coordinates": [18.896995999617999, 48.460002999861103] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Pinsk" },
+      "geometry": { "type": "Point", "coordinates": [26.099003000250399, 52.120995999904402] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Kowno" },
+      "geometry": { "type": "Point", "coordinates": [23.922002000038901, 54.894003999929502] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Dunaburg" },
+      "geometry": { "type": "Point", "coordinates": [26.518997000104701, 55.880997999848198] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Krewo" },
+      "geometry": { "type": "Point", "coordinates": [26.287004000352599, 54.3159969998188] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Kilia" },
+      "geometry": { "type": "Point", "coordinates": [29.272996999703299, 45.456000999954298] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Galitsch" },
+      "geometry": { "type": "Point", "coordinates": [42.346999999795599, 58.377004000194297] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Polotnyanyy Zavod" },
+      "geometry": { "type": "Point", "coordinates": [36.016004000103301, 54.735000999961002] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Kulikovo" },
+      "geometry": { "type": "Point", "coordinates": [39.569995999893301, 52.228995999733201] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Murom" },
+      "geometry": { "type": "Point", "coordinates": [42.0179960002353, 55.569004000096101] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Durnkrut" },
+      "geometry": { "type": "Point", "coordinates": [16.850097656153999, 48.473083495745101] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Koroni" },
+      "geometry": { "type": "Point", "coordinates": [21.961914061753198, 36.796874999714603] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Enos (Enez)" },
+      "geometry": { "type": "Point", "coordinates": [26.086303711115001, 40.725524901680103] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Philopoppel (Plovdiv)" },
+      "geometry": { "type": "Point", "coordinates": [24.856506348367098, 42.235900879294299] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Nikopolis" },
+      "geometry": { "type": "Point", "coordinates": [24.906677246205401, 43.702514648128002] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Sempach" },
+      "geometry": { "type": "Point", "coordinates": [8.19329833976488, 47.134277343844801] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Mies (St\u001aíbro)" },
+      "geometry": { "type": "Point", "coordinates": [13.0006713872558, 49.753906249849798] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Seckenheim" },
+      "geometry": { "type": "Point", "coordinates": [8.564270019618229, 49.466308593864703] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Tannenberg" },
+      "geometry": { "type": "Point", "coordinates": [20.107299804817799, 53.501525879074798] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Felkoping (Falkoping)" },
+      "geometry": { "type": "Point", "coordinates": [13.553100585968201, 58.174926757869898] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Abo (Turku)" },
+      "geometry": { "type": "Point", "coordinates": [22.259277344356299, 60.449279785130301] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Viborg (Vyborg)" },
+      "geometry": { "type": "Point", "coordinates": [28.730102539179502, 60.715881348209898] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Maupertuis" },
+      "geometry": { "type": "Point", "coordinates": [0.169494629067585, 46.493713378817901] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Crécy" },
+      "geometry": { "type": "Point", "coordinates": [1.88128662112651, 50.252075194889997] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Picquigny" },
+      "geometry": { "type": "Point", "coordinates": [2.14050292991815, 49.944885253809801] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Barnet" },
+      "geometry": { "type": "Point", "coordinates": [-0.199584960743826, 51.6530761719822] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Ludlow" },
+      "geometry": { "type": "Point", "coordinates": [-2.71740722711137, 52.368103026877002] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "St Aubin" },
+      "geometry": { "type": "Point", "coordinates": [-1.40570068444343, 48.266296387140102] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Bosworth" },
+      "geometry": { "type": "Point", "coordinates": [-1.57098388659326, 55.040893555074902] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Bramham" },
+      "geometry": { "type": "Point", "coordinates": [-1.35540771543951, 53.881286620788202] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Towton" },
+      "geometry": { "type": "Point", "coordinates": [-1.26379394477523, 53.8508911131646] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Neville's Cross" },
+      "geometry": { "type": "Point", "coordinates": [-1.59478759770547, 54.772094727210202] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Halidon Hill" },
+      "geometry": { "type": "Point", "coordinates": [-2.06219482378256, 55.764099121231297] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Bannockburn" },
+      "geometry": { "type": "Point", "coordinates": [-3.90869140614405, 56.091918945209201] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Aquileja" },
+      "geometry": { "type": "Point", "coordinates": [13.3646850591765, 45.768310546987003] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Tagliacozzo" },
+      "geometry": { "type": "Point", "coordinates": [13.2570800781023, 42.068908691291803] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Siponto" },
+      "geometry": { "type": "Point", "coordinates": [15.895874023409799, 41.606872558890203] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Mora" },
+      "geometry": { "type": "Point", "coordinates": [-1.65441894485495, 42.815307617078602] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Segura" },
+      "geometry": { "type": "Point", "coordinates": [-1.20629882820228, 38.060913086094303] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Montiel" },
+      "geometry": { "type": "Point", "coordinates": [-2.86212158202985, 38.696289061976898] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Alarces" },
+      "geometry": { "type": "Point", "coordinates": [-4.0153198241813, 38.955688476934597] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "Name": "Silves" },
+      "geometry": { "type": "Point", "coordinates": [-8.439208984027861, 37.186706543327297] }
+    }
+  ]
+}

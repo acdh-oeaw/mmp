@@ -1,0 +1,1415 @@
+{
+  "type": "FeatureCollection",
+  "name": "langobarden_karte",
+  "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "ABONY",
+        "Lat": 47.189748,
+        "Long": 20.004144,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [20.004144, 47.189748] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Ábrahámhegy – Bök-tető",
+        "Lat": 46.812768022164001,
+        "Long": 17.567485135763999,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.567485135763999, 46.812768022164001] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Adnet – I",
+        "Lat": 47.696391,
+        "Long": 13.128149,
+        "No burials total (SUM)": 21,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [13.128149, 47.696391] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Aspersdorf",
+        "Lat": 48.596,
+        "Long": 16.10893,
+        "No burials total (SUM)": 31,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.10893, 48.596] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Balatonlelle – Római út",
+        "Lat": 46.764114147474999,
+        "Long": 17.690412825317001,
+        "No burials total (SUM)": null,
+        "Findings": "settlement"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.690412825317001, 46.764114147474999] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Baumgarten an der March – Damm",
+        "Lat": 48.30967,
+        "Long": 16.86221,
+        "No burials total (SUM)": 20,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.86221, 48.30967] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Bezenye – Paprét",
+        "Lat": 47.933466978650998,
+        "Long": 17.198577903158,
+        "No burials total (SUM)": 77,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.198577903158, 47.933466978650998] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Bodajk – Homoki-dűlő",
+        "Lat": 47.34226,
+        "Long": 18.213944,
+        "No burials total (SUM)": 154,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [18.213944, 47.34226] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Bóly –Szeibert-puszta",
+        "Lat": 45.941794,
+        "Long": 18.518586,
+        "No burials total (SUM)": null,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [18.518586, 45.941794] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Borotice",
+        "Lat": 48.854821314583603,
+        "Long": 16.244377635871,
+        "No burials total (SUM)": 32,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.244377635871, 48.854821314583603] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Bratislava – Rusovce, Pieskový hon",
+        "Lat": 48.048043,
+        "Long": 17.160607,
+        "No burials total (SUM)": 166,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.160607, 48.048043] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Braunsdorf",
+        "Lat": 48.63394,
+        "Long": 15.95646,
+        "No burials total (SUM)": 6,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [15.95646, 48.63394] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Břeclav",
+        "Lat": null,
+        "Long": null,
+        "No burials total (SUM)": 2,
+        "Findings": "cemetery"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Brno – Holásky",
+        "Lat": 49.1439921132405,
+        "Long": 16.650117937866501,
+        "No burials total (SUM)": 12,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.650117937866501, 49.1439921132405] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Brno – Kotlářská ulice",
+        "Lat": 49.206256164531098,
+        "Long": 16.598890525746299,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.598890525746299, 49.206256164531098] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Brno – Merhautova ulice",
+        "Lat": 49.212182380327199,
+        "Long": 16.624936091117501,
+        "No burials total (SUM)": null,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.624936091117501, 49.212182380327199] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Brunn am Gebirge – Wolfholz",
+        "Lat": 48.122171,
+        "Long": 16.291491,
+        "No burials total (SUM)": 43,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.291491, 48.122171] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Bučovice",
+        "Lat": null,
+        "Long": null,
+        "No burials total (SUM)": 4,
+        "Findings": "cemetery"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Budapest III –  Szépvölgyi út 41",
+        "Lat": 47.528396,
+        "Long": 19.033396,
+        "No burials total (SUM)": 6,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [19.033396, 47.528396] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Budapest III – Békásmegyer, Királyok útja",
+        "Lat": 47.591703,
+        "Long": 19.066083,
+        "No burials total (SUM)": 2,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [19.066083, 47.591703] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Budapest III – Vályog utca 8",
+        "Lat": 47.541477,
+        "Long": 19.031927,
+        "No burials total (SUM)": 30,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [19.031927, 47.541477] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Čejkovice",
+        "Lat": 48.890207250105902,
+        "Long": 16.959651417521201,
+        "No burials total (SUM)": 38,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.959651417521201, 48.890207250105902] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Cserkút – Újhegy-dűlő",
+        "Lat": 46.065797,
+        "Long": 18.13229,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [18.13229, 46.065797] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Dör – Kápolna-dűlő",
+        "Lat": 47.589071,
+        "Long": 17.301103,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.301103, 47.589071] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Dyje",
+        "Lat": null,
+        "Long": null,
+        "No burials total (SUM)": null,
+        "Findings": "cemetery"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Ebendorf",
+        "Lat": 48.56005,
+        "Long": 16.60943,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.60943, 48.56005] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Erpersdorf – Erpersdorfer Freiheit",
+        "Lat": 48.34129,
+        "Long": 15.91982,
+        "No burials total (SUM)": 23,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [15.91982, 48.34129] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Fertőszentmiklós – Szeredre-dűlő",
+        "Lat": 47.588254004668002,
+        "Long": 16.869043037503001,
+        "No burials total (SUM)": 7,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.869043037503001, 47.588254004668002] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Freundorf",
+        "Lat": 48.292564,
+        "Long": 16.057052,
+        "No burials total (SUM)": 12,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.057052, 48.292564] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Großharras – \"Schwedenfriedhof\"",
+        "Lat": 48.6569,
+        "Long": 16.2402,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.2402, 48.6569] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Großhöflein – Kirchsatz",
+        "Lat": 47.836142,
+        "Long": 16.49922,
+        "No burials total (SUM)": 18,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.49922, 47.836142] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Guntramsdorf – Blumensiedlung",
+        "Lat": 48.0429,
+        "Long": 16.30758,
+        "No burials total (SUM)": 9,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.30758, 48.0429] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Gyirmót – Homokdomb",
+        "Lat": 47.636003053072002,
+        "Long": 17.602102611452999,
+        "No burials total (SUM)": 37,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.602102611452999, 47.636003053072002] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Gyönk – Vásártér utca",
+        "Lat": 46.548454,
+        "Long": 18.490175,
+        "No burials total (SUM)": 6,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [18.490175, 46.548454] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Haselbach – Weingartenfeld",
+        "Lat": 48.25261,
+        "Long": 15.80455,
+        "No burials total (SUM)": null,
+        "Findings": "settlement"
+      },
+      "geometry": { "type": "Point", "coordinates": [15.80455, 48.25261] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Hauskirchen – Schottergrube Heindl",
+        "Lat": 48.60864,
+        "Long": 16.74185,
+        "No burials total (SUM)": 17,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.74185, 48.60864] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Hegykő – Mező utca",
+        "Lat": 47.618073766423997,
+        "Long": 16.801405465445001,
+        "No burials total (SUM)": 81,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.801405465445001, 47.618073766423997] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Hobersdorf – Schottergrube Döltl",
+        "Lat": 48.57346,
+        "Long": 16.63746,
+        "No burials total (SUM)": 4,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.63746, 48.57346] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Hodonice",
+        "Lat": null,
+        "Long": null,
+        "No burials total (SUM)": 6,
+        "Findings": "cemetery"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Hohenau – Hausbrunner Straße",
+        "Lat": 48.60301,
+        "Long": 16.89849,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.89849, 48.60301] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Hollabrunn – Meixnergasse /Stenzlgasse",
+        "Lat": 48.56291,
+        "Long": 16.0864,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.0864, 48.56291] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Holubice",
+        "Lat": 49.180458241034799,
+        "Long": 16.807476424603198,
+        "No burials total (SUM)": 105,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.807476424603198, 49.180458241034799] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Jutas – Grave 196",
+        "Lat": 47.122189,
+        "Long": 17.898411,
+        "No burials total (SUM)": null,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.898411, 47.122189] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Kádárta – Ürgemező",
+        "Lat": 47.121619912447002,
+        "Long": 17.961241586143,
+        "No burials total (SUM)": 7,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.961241586143, 47.121619912447002] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Kajdacs –  Homokbánya",
+        "Lat": 46.57248456768,
+        "Long": 18.629637833112,
+        "No burials total (SUM)": 48,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [18.629637833112, 46.57248456768] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Kápolnásnyék – Kastélykert",
+        "Lat": 47.241096719670999,
+        "Long": 18.671134659785,
+        "No burials total (SUM)": 4,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [18.671134659785, 47.241096719670999] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Kaposfüred – Hetes tábla",
+        "Lat": 46.407378,
+        "Long": 17.768789,
+        "No burials total (SUM)": 8,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.768789, 46.407378] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Keszthely – Fenéki út",
+        "Lat": 46.735664,
+        "Long": 17.24067,
+        "No burials total (SUM)": 10,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.24067, 46.735664] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Keszthely – Fenékpuszta, Horreum",
+        "Lat": 46.711669,
+        "Long": 17.244074,
+        "No burials total (SUM)": null,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.244074, 46.711669] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Kittsee – Steinfeld Äcker",
+        "Lat": 48.102915,
+        "Long": 17.042751,
+        "No burials total (SUM)": 33,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.042751, 48.102915] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Klein-Neusiedl",
+        "Lat": 48.09895,
+        "Long": 16.60216,
+        "No burials total (SUM)": 21,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.60216, 48.09895] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Kobylí",
+        "Lat": null,
+        "Long": null,
+        "No burials total (SUM)": null,
+        "Findings": "cemetery"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Kóny – Markotai út",
+        "Lat": 47.639964530373,
+        "Long": 17.352119941184998,
+        "No burials total (SUM)": 20,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.352119941184998, 47.639964530373] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Kuřim",
+        "Lat": null,
+        "Long": null,
+        "No burials total (SUM)": null,
+        "Findings": "cemetery"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Kyjov",
+        "Lat": 49.0046494,
+        "Long": 17.10889,
+        "No burials total (SUM)": 250,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.10889, 49.0046494] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Ladendorf",
+        "Lat": 48.53356,
+        "Long": 16.49485,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.49485, 48.53356] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Landeck – Pfarrkirche",
+        "Lat": 47.137198,
+        "Long": 10.569119,
+        "No burials total (SUM)": 4,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [10.569119, 47.137198] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Langenlebarn – Oberaigen",
+        "Lat": 48.32909,
+        "Long": 16.09795,
+        "No burials total (SUM)": 2,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.09795, 48.32909] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Lébény – Reinhard-tag",
+        "Lat": 47.760781147918003,
+        "Long": 17.400463764112001,
+        "No burials total (SUM)": null,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.400463764112001, 47.760781147918003] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Lužice",
+        "Lat": 48.8554419700342,
+        "Long": 17.056197146902601,
+        "No burials total (SUM)": 120,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.056197146902601, 48.8554419700342] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Mannersdorf am Leithagebirge –Sandberg, Sandwerk Hochegger",
+        "Lat": 48.00687,
+        "Long": 16.58517,
+        "No burials total (SUM)": 15,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.58517, 48.00687] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Máza – Téglagyár",
+        "Lat": 46.283437462811001,
+        "Long": 18.407163579391,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [18.407163579391, 46.283437462811001] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Ménfőcsanak",
+        "Lat": 47.630487,
+        "Long": 17.594459,
+        "No burials total (SUM)": 26,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.594459, 47.630487] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Mernye –  Mernyeszentmiklós-Dél",
+        "Lat": 46.548794297967,
+        "Long": 17.813425556959999,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.813425556959999, 46.548794297967] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Mikulov",
+        "Lat": null,
+        "Long": null,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Mödling – Beethovengasse",
+        "Lat": 48.078843,
+        "Long": 16.28942,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.28942, 48.078843] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Mödling – Leinerinnen",
+        "Lat": 48.074336,
+        "Long": 16.294232,
+        "No burials total (SUM)": 9,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.294232, 48.074336] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Mohács – Farostlemezgyár-Víztároló",
+        "Lat": 46.030667127478999,
+        "Long": 18.668135948610001,
+        "No burials total (SUM)": 7,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [18.668135948610001, 46.030667127478999] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Moravské Knínice",
+        "Lat": 49.293046398354797,
+        "Long": 16.501714511151899,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.501714511151899, 49.293046398354797] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Mosonszentjános – Kavicsbánya",
+        "Lat": 47.788798849839999,
+        "Long": 17.121225264052999,
+        "No burials total (SUM)": 2,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.121225264052999, 47.788798849839999] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Mušov – Roviny",
+        "Lat": 48.881506778499798,
+        "Long": 16.5963101526816,
+        "No burials total (SUM)": 250,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.5963101526816, 48.881506778499798] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Nagykónyi – Homokbánya",
+        "Lat": 46.583004860898001,
+        "Long": 18.216308439317999,
+        "No burials total (SUM)": null,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [18.216308439317999, 46.583004860898001] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Nagylózs – Szentpéteri-dűlő",
+        "Lat": 47.572184,
+        "Long": 16.789195,
+        "No burials total (SUM)": 106,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.789195, 47.572184] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Němčice na Hané",
+        "Lat": 49.341795294362399,
+        "Long": 17.204486173715701,
+        "No burials total (SUM)": null,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.204486173715701, 49.341795294362399] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Němčičky",
+        "Lat": null,
+        "Long": null,
+        "No burials total (SUM)": null,
+        "Findings": "cemetery"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Neuruppersdorf",
+        "Lat": 48.75406,
+        "Long": 16.52462,
+        "No burials total (SUM)": 20,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.52462, 48.75406] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Nikitsch – Ortsgebiet",
+        "Lat": 47.536909,
+        "Long": 16.663357,
+        "No burials total (SUM)": 29,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.663357, 47.536909] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Oberbierbaum (Maria Ponsee) - Steinfeld",
+        "Lat": 48.33858,
+        "Long": 15.83837,
+        "No burials total (SUM)": 95,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [15.83837, 48.33858] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Oberndorf in der Ebene – Fundstelle 1",
+        "Lat": 48.268956,
+        "Long": 15.694422,
+        "No burials total (SUM)": 5,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [15.694422, 48.268956] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Oberndorf in der Ebene – Fundstelle 2",
+        "Lat": 48.26463,
+        "Long": 15.6803,
+        "No burials total (SUM)": 8,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [15.6803, 48.26463] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Oblekovice",
+        "Lat": 48.838174340668601,
+        "Long": 16.081578607033101,
+        "No burials total (SUM)": 2,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.081578607033101, 48.838174340668601] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Oslip – Umfahrung",
+        "Lat": 47.8454135,
+        "Long": 16.5983511,
+        "No burials total (SUM)": null,
+        "Findings": "settlement"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.5983511, 47.8454135] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Perchtoldsdorf",
+        "Lat": 48.12034,
+        "Long": 16.26915,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.26915, 48.12034] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Pilisvörösvár – Fő utca 89.",
+        "Lat": 47.621364775765002,
+        "Long": 18.909628428872001,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [18.909628428872001, 47.621364775765002] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Podersdorf am See – Weißlackenwiesen",
+        "Lat": 47.8296067,
+        "Long": 16.8284794,
+        "No burials total (SUM)": null,
+        "Findings": "settlement"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.8284794, 47.8296067] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Podersdorf am See – Winkeläcker",
+        "Lat": 47.833992,
+        "Long": 16.831389,
+        "No burials total (SUM)": null,
+        "Findings": "settlement"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.831389, 47.833992] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Pottenbrunn – Knoten Wagram",
+        "Lat": 48.229255,
+        "Long": 15.692413,
+        "No burials total (SUM)": 16,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [15.692413, 48.229255] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Pottenbrunn – Schottergrube Paderta",
+        "Lat": 48.23087,
+        "Long": 15.70305,
+        "No burials total (SUM)": 4,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [15.70305, 48.23087] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Poysdorf – Reißhübeln",
+        "Lat": 48.66081,
+        "Long": 16.60374,
+        "No burials total (SUM)": 9,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.60374, 48.66081] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Prellenkirchen",
+        "Lat": 48.0512,
+        "Long": 16.99586,
+        "No burials total (SUM)": null,
+        "Findings": "settlement"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.99586, 48.0512] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Rácalmás – Újtelep",
+        "Lat": 47.054021414060003,
+        "Long": 18.908906144334999,
+        "No burials total (SUM)": 20,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [18.908906144334999, 47.054021414060003] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Rebešovice",
+        "Lat": null,
+        "Long": null,
+        "No burials total (SUM)": 11,
+        "Findings": "cemetery"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Šakvice – Kopecek, Polní",
+        "Lat": 48.8936562814377,
+        "Long": 16.720603110292501,
+        "No burials total (SUM)": 53,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.720603110292501, 48.8936562814377] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Šaratice",
+        "Lat": 49.114130975421801,
+        "Long": 16.8029317322084,
+        "No burials total (SUM)": 7,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.8029317322084, 49.114130975421801] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Schwechat – Ala Nova Platz 12-16 / Wiener Straße 29-35",
+        "Lat": 48.14372,
+        "Long": 16.47113,
+        "No burials total (SUM)": null,
+        "Findings": "settlement"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.47113, 48.14372] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Schwechat – Brauhaus",
+        "Lat": 48.140874,
+        "Long": 16.460096,
+        "No burials total (SUM)": 47,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.460096, 48.140874] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Slavkov",
+        "Lat": null,
+        "Long": null,
+        "No burials total (SUM)": null,
+        "Findings": "cemetery"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Smolín",
+        "Lat": null,
+        "Long": null,
+        "No burials total (SUM)": null,
+        "Findings": "cemetery"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Sommerein – Fuchsbicheläcker (Fuchsbüheln)",
+        "Lat": 48.01362,
+        "Long": 16.61546,
+        "No burials total (SUM)": null,
+        "Findings": "settlement"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.61546, 48.01362] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Sommerein – Groisbachgraben",
+        "Lat": 47.98505,
+        "Long": 16.66026,
+        "No burials total (SUM)": 2,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.66026, 47.98505] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Sopron – Scarbantia forum",
+        "Lat": 47.686125417806998,
+        "Long": 16.592794537147,
+        "No burials total (SUM)": null,
+        "Findings": "settlement"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.592794537147, 47.686125417806998] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "St. Ulrich – Rufstandl",
+        "Lat": 48.62175,
+        "Long": 16.79259,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.79259, 48.62175] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Stein an der Donau – Hinters Kirchl",
+        "Lat": 48.40517,
+        "Long": 15.58205,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [15.58205, 48.40517] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Steinbrunn – Untere Waldäcker, Nebenwiesenäcker",
+        "Lat": 47.856998,
+        "Long": 16.423887,
+        "No burials total (SUM)": 24,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.423887, 47.856998] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Straß im Straßertale – Brunngasse",
+        "Lat": 48.46948,
+        "Long": 15.74149,
+        "No burials total (SUM)": 14,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [15.74149, 48.46948] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Stratzing – Im großen Feld",
+        "Lat": 48.44446,
+        "Long": 15.61798,
+        "No burials total (SUM)": 25,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [15.61798, 48.44446] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Szeleste",
+        "Lat": 47.3212,
+        "Long": 16.8493,
+        "No burials total (SUM)": 112,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.8493, 47.3212] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Szentendre – Pannóniatelep",
+        "Lat": 47.647079940353002,
+        "Long": 19.072490069625999,
+        "No burials total (SUM)": 90,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [19.072490069625999, 47.647079940353002] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Szólád – Kertek mögött",
+        "Lat": 46.793023429529001,
+        "Long": 17.835433297596001,
+        "No burials total (SUM)": 44,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.835433297596001, 46.793023429529001] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Tamási – Csikólegelő",
+        "Lat": 46.62520109722,
+        "Long": 18.308878572200999,
+        "No burials total (SUM)": 53,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [18.308878572200999, 46.62520109722] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Tatabánya – Kertváros, November 7. u. 22",
+        "Lat": 47.589681444118,
+        "Long": 18.37577584796,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [18.37577584796, 47.589681444118] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Ternitz – Friedhof",
+        "Lat": 47.72043,
+        "Long": 16.02992,
+        "No burials total (SUM)": null,
+        "Findings": "settlement"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.02992, 47.72043] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Tulln – Königstettner Straße",
+        "Lat": 48.327315,
+        "Long": 16.061453,
+        "No burials total (SUM)": 6,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.061453, 48.327315] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Unterrohrbach – Ortsgebiet",
+        "Lat": 48.37769,
+        "Long": 16.29291,
+        "No burials total (SUM)": null,
+        "Findings": "settlement"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.29291, 48.37769] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Unterrohrendorf – In Thalheim",
+        "Lat": 48.42188,
+        "Long": 15.67762,
+        "No burials total (SUM)": 31,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [15.67762, 48.42188] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Várpalota – Unio homokbánya",
+        "Lat": 47.193828,
+        "Long": 18.152902,
+        "No burials total (SUM)": 36,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [18.152902, 47.193828] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Velké Pavlovice",
+        "Lat": 48.900301197437997,
+        "Long": 16.808508598219699,
+        "No burials total (SUM)": 23,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.808508598219699, 48.900301197437997] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Velm – Götzendorf",
+        "Lat": 48.46473,
+        "Long": 16.78537,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.78537, 48.46473] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Vértesszőlős – Hosszúdűlő",
+        "Lat": 47.616626012890997,
+        "Long": 18.387551775493002,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [18.387551775493002, 47.616626012890997] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Veszkény",
+        "Lat": 47.595295,
+        "Long": 17.079298,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.079298, 47.595295] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Vörs – Tótok dombja",
+        "Lat": 46.664000702655002,
+        "Long": 17.259996028221,
+        "No burials total (SUM)": 26,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.259996028221, 46.664000702655002] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Wien 01 – Innere Stadt, Salvatorgasse, Stoß im Himmel",
+        "Lat": 48.211628,
+        "Long": 16.370965,
+        "No burials total (SUM)": 4,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.370965, 48.211628] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Wien 06 – Mariahilf, Mariahilfer Gürtel",
+        "Lat": 48.194163,
+        "Long": 16.339756,
+        "No burials total (SUM)": 16,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.339756, 48.194163] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Wien 17 – Hernals, Ottakringerstraße",
+        "Lat": 48.215494,
+        "Long": 16.339597,
+        "No burials total (SUM)": 4,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [16.339597, 48.215494] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Zamárdi – Kútvölgyi-dűlő",
+        "Lat": 46.879432855250997,
+        "Long": 17.975628706374,
+        "No burials total (SUM)": null,
+        "Findings": "settlement"
+      },
+      "geometry": { "type": "Point", "coordinates": [17.975628706374, 46.879432855250997] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Ziersdorf – Ortsumfahrung",
+        "Lat": 48.519,
+        "Long": 15.9343,
+        "No burials total (SUM)": 1,
+        "Findings": "cemetery"
+      },
+      "geometry": { "type": "Point", "coordinates": [15.9343, 48.519] }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Znojmo",
+        "Lat": null,
+        "Long": null,
+        "No burials total (SUM)": null,
+        "Findings": "cemetery"
+      },
+      "geometry": null
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Location (Location)": "Žuráň  – Podolí",
+        "Lat": null,
+        "Long": null,
+        "No burials total (SUM)": null,
+        "Findings": "cemetery"
+      },
+      "geometry": null
+    }
+  ]
+}
