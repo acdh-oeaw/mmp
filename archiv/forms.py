@@ -81,6 +81,7 @@ class UseCaseFilterFormHelper(FormHelper):
                 'Basic search options',
                 'title',
                 'principal_investigator',
+                'show_labels',
                 css_id="basic_search_fields"
             ),
             Accordion(
@@ -89,6 +90,7 @@ class UseCaseFilterFormHelper(FormHelper):
                     'id',
                     'pi_norm_id',
                     'description',
+                    'layer',
                     'has_stelle__text',
                     'has_stelle__text__art',
                     'has_stelle__text__autor',
@@ -111,7 +113,6 @@ class SpatialCoverageFilterFormHelper(FormHelper):
             Fieldset(
                 'Basic search options',
                 'id',
-                'show_labels',
                 'key_word',
                 'stelle__use_case',
                 'stelle__ort',

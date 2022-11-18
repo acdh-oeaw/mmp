@@ -112,7 +112,7 @@ class UseCaseListFilter(django_filters.FilterSet):
 
     class Meta:
         model = UseCase
-        fields = ['id', ]
+        fields = ['id', 'show_labels', 'layer', ]
 
 
 class SpatialCoverageListFilter(django_filters.FilterSet):
@@ -214,7 +214,6 @@ class SpatialCoverageListFilter(django_filters.FilterSet):
         model = SpatialCoverage
         fields = [
             'id',
-            'show_labels',
             'key_word',
             'stelle',
         ]
