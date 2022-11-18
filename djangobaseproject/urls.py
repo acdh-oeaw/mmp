@@ -58,6 +58,7 @@ urlpatterns = [
     path('story-maps/', include('story_map.urls', namespace='story_map')),
     path('netvis/', include('netvis.urls', namespace="netvis")),
     path('info/', include('infos.urls', namespace='info')),
+    path('ac/', include('generic_ac.urls', namespace='generic-ac')),
     path('archiv/', include('archiv.urls', namespace='archiv')),
     path('archiv-ac/', include('archiv.dal_urls', namespace='archiv-ac')),
     path('vocabs/', include('vocabs.urls', namespace='vocabs')),
