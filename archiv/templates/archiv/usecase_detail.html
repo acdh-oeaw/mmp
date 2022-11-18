@@ -54,6 +54,7 @@
   </div>
   <div class="card-body">
     {% block custom %}
+    {% if object.knightlab_stoy_map.all %}
     <h2>knightlab story_map</h2>
     <div id="mapdiv" style="width: 100%; height: 800px;"></div>
     <link rel="stylesheet" href="https://cdn.knightlab.com/libs/storymapjs/latest/css/storymap.css">
@@ -77,8 +78,11 @@ window.onresize = function(event) {
     storymap.updateDisplay(); // this isn't automatic
 }
 </script>
+{% endif %}
+{% if object.story_map %}
     <h3>User Story</h3>
     {{ object.story_map|safe }}
+{% endif %}
     <div class="row">
         <div class="col-md-6">
             <table class="table table-responsive table-hover">
