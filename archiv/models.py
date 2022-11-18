@@ -934,10 +934,16 @@ class Ort(models.Model):
 
     @cached_property
     def kind(self):
-        art = {
-            "id": self.art.id,
-            "label": self.art.pref_label
-        }
+        if self.art:
+            art = {
+                "id": self.art.id,
+                "label": self.art.pref_label
+            }
+        else:
+            art = {
+                "id": None,
+                "label": "no place type provided"
+            }
         return art
 
 
