@@ -90,20 +90,17 @@ class UseCase(models.Model):
     ).set_extra(
         is_public=True,
     )
-    custom_layer = models.CharField(
-        max_length=250,
-        blank=True,
-        null=True,
-        verbose_name="Name of additional Layer",
-        help_text="This name needs to match a specific layer name,\
-            e.g '800' to load a layer '800'"
-    )
     layer = models.ManyToManyField(
         GeoJsonLayer,
         related_name='use_case',
         blank=True,
         verbose_name='GeoJson Layers',
         help_text="Select GeoJson Layers which should be related to this UseCase"
+    )
+    show_labels = models.BooleanField(
+        default=False,
+        verbose_name="Show Labels",
+        help_text="True if labels of the Spatial Coverage should be visible in the front end"
     )
 
     class Meta:
@@ -1580,11 +1577,6 @@ class SpatialCoverage(models.Model):
         help_text="Uncertainty of location on a scale from 1 (very secure) to 10 (very insecure)"
     ).set_extra(
         is_public=True,
-    )
-    show_labels = models.BooleanField(
-        default=True,
-        verbose_name="Show Labels",
-        help_text="True if the label of the Spatial Coverage should be visible in the front end"
     )
 
     class Meta:

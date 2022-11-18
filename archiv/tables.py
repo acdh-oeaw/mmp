@@ -37,6 +37,11 @@ class UseCaseTable(tables.Table):
         orderable=False,
         verbose_name='Keyword'
     )
+    layer = tables.columns.TemplateColumn(
+        template_name="archiv/layercol.html",
+        orderable=False,
+        verbose_name='GeoJsonLayer'
+    )
 
     class Meta:
         model = UseCase
