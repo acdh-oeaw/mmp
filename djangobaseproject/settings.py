@@ -82,7 +82,8 @@ INSTALLED_APPS = [
     'fontawesome_free',
     'topics',
     'story_map',
-    'layers'
+    'layers',
+    'generic_ac'
 ]
 if DEBUG:
     INSTALLED_APPS.insert(10, 'django_extensions')
@@ -281,3 +282,62 @@ CKEDITOR_CONFIGS = {
         ]),
     }
 }
+
+
+GENERIC_AC_CONFIG = [
+    {
+        "app_name": "archiv",
+        "model_name": 'autor',
+        "search_fields": [
+            'name',
+            'name_lat',
+            'name_en',
+            'name_fr',
+            'name_it',
+            'name_gr',
+        ]
+    },
+    {
+        "app_name": "archiv",
+        "model_name": 'ort',
+        "search_fields": [
+            'name',
+            'name_antik',
+            'name_de',
+            'name_fr',
+            'name_it',
+            'name_gr',
+        ]
+    },
+    {
+        "app_name": "archiv",
+        "model_name": 'text',
+        "search_fields": [
+            'title'
+        ]
+    },
+    {
+        "app_name": "archiv",
+        "model_name": 'stelle',
+        "search_fields": [
+            'zitat',
+            'text__title'
+        ]
+    },
+    {
+        "app_name": 'archiv',
+        "model_name": 'keyword',
+        "search_fields": [
+            'stichwort',
+            'wurzel',
+            'varianten',
+        ]
+    },
+    {
+        "app_name": 'layers',
+        "model_name": 'geojsonlayer',
+        "search_fields": [
+            'title',
+        ]
+    },
+]
