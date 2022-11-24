@@ -334,8 +334,8 @@ GENERIC_AC_CONFIG = [
         ]
     },
     {
-        "app_name": 'layers',
-        "model_name": 'geojsonlayer',
+        "app_name": 'archiv',
+        "model_name": 'usecase',
         "search_fields": [
             'title',
         ]
