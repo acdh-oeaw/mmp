@@ -231,6 +231,15 @@ class AutorListFilter(django_filters.FilterSet):
         label="Related to any UseCase?",
         help_text="Set 'Yes' to show only objects related to any UseCase"
     )
+    rvn_text_autor_autor__rvn_stelle_text_text__use_case = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        queryset=UseCase.objects.all(),
+        help_text="Usecase",
+        label="Usecase",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:usecase-autocomplete",
+        )
+    )
     name = django_filters.LookupChoiceFilter(
         lookup_choices=CHAR_LOOKUP_CHOICES,
         help_text=Autor._meta.get_field('name').help_text,
@@ -349,6 +358,7 @@ class AutorListFilter(django_filters.FilterSet):
             'end_date',
             'ort',
             'kommentar',
+            'rvn_text_autor_autor__rvn_stelle_text_text__use_case'
         ]
 
 

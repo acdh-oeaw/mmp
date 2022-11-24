@@ -144,6 +144,7 @@ class AutorFilterFormHelper(FormHelper):
                 'Basic search options',
                 'id',
                 'has_usecase',
+                'rvn_text_autor_autor__rvn_stelle_text_text__use_case',
                 'name',
                 'gnd_id',
                 'ort',
