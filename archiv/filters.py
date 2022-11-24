@@ -809,6 +809,17 @@ class TextListFilter(django_filters.FilterSet):
         help_text="Set 'Yes' to show only objects related to any UseCase",
         method=none_filter,
     )
+    rvn_stelle_text_text__use_case = (
+        django_filters.ModelMultipleChoiceFilter(
+            conjoined=True,
+            queryset=UseCase.objects.all(),
+            help_text="Usecase",
+            label="Usecase",
+            widget=autocomplete.Select2Multiple(
+                url="archiv-ac:usecase-autocomplete",
+            ),
+        )
+    )
     start_date = django_filters.CharFilter(
         lookup_expr="icontains",
         help_text=Text._meta.get_field("start_date").help_text,
@@ -915,6 +926,7 @@ class TextListFilter(django_filters.FilterSet):
             "art",
             "ort",
             "kommentar",
+            "rvn_stelle_text_text__use_case",
         ]
 
 
