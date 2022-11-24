@@ -7,11 +7,7 @@ GENERIC_AC_CONFIG = getattr(settings, "GENERIC_AC_CONFIG")
 
 def generic_ac_view(request):
     config = []
-    q = request.GET.get('q')
-    if not len(q) > 2:
-        return JsonResponse({
-            "error": "please add at least 3 letters"
-        })
+    q = request.GET.get('q') or ''
     only_those = request.GET.getlist('kind')
     if only_those:
         for x in GENERIC_AC_CONFIG:
