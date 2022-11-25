@@ -9,9 +9,9 @@ def generic_ac_view(request):
     config = []
     q = request.GET.get("q") or ""
     try:
-        limit = int(request.GET.get("limit", 25))
+        page_size = int(request.GET.get("page_size", 25))
     except ValueError:
-        limit = 25
+        page_size = 25
     try:
         page = int(request.GET.get("page", 1))
     except ValueError:
@@ -23,7 +23,7 @@ def generic_ac_view(request):
                 config.append(x)
     else:
         config = GENERIC_AC_CONFIG
-    data = query(request, q, config, limit=limit, page=page)
+    data = query(request, q, config, page_size=page_size, page=page)
     if only_those:
         data["filter_on"] = only_those
     else:

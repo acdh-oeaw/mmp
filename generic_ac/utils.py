@@ -3,14 +3,21 @@ from django.core.paginator import Paginator, EmptyPage
 from django.db.models import Q
 
 
-def query(request, q, config, limit=5, page=1):
+def query(request, q, config, page_size=5, page=1):
     current_url = f"{request.build_absolute_uri()}"
     if f"page={page}" in current_url:
         pass
     else:
         current_url = f"{current_url}&page={page}"
     total_count = 0
-    response = {"q": q, "next": None, "previous": None, "count": None, "results": []}
+    response = {
+        "q": q,
+        "page_size": page_size,
+        "next": None,
+        "previous": None,
+        "count": None,
+        "results": [],
+    }
     for x in config:
         or_condition = Q()
         app_name = x["app_name"].lower()
@@ -22,7 +29,7 @@ def query(request, q, config, limit=5, page=1):
             or_condition.add(Q(**{f"{search_field}__icontains": q}), Q.OR)
         qs = model.objects.filter(or_condition).distinct()
         total_count += qs.count()
-        p = Paginator(model.objects.filter(or_condition).distinct(), limit)
+        p = Paginator(model.objects.filter(or_condition).distinct(), page_size)
         try:
             p.page(page)
             has_objects = True
@@ -42,7 +49,7 @@ def query(request, q, config, limit=5, page=1):
                     item["url"] = None
                 response["results"].append(item)
     response["count"] = total_count
-    if total_count > limit * page:
+    if total_count > page_size * page:
         response["next"] = current_url.replace(f"page={page}", f"page={page + 1}")
     if page > 1:
         response["previous"] = current_url.replace(f"page={page}", f"page={page - 1}")

@@ -42,22 +42,22 @@ class ApiTestCase(TestCase):
 
     def test_005_generic_ac_only_those(self):
         url_name = f"{GN_AC_NS}:generic_ac"
-        url = f"{reverse(url_name)}?kind=autor&limit=100&page=1"
+        url = f"{reverse(url_name)}?kind=autor&page_size=100&page=1"
         response = client.get(url)
         authors = int(response.json()["count"])
-        url = f"{reverse(url_name)}?limit=100"
+        url = f"{reverse(url_name)}?page_size=100"
         response = client.get(url)
         all_kinds = int(response.json()["count"])
         self.assertTrue(authors < all_kinds)
-        url = f"{reverse(url_name)}?limit=1"
+        url = f"{reverse(url_name)}?page_size=1"
         response = client.get(url)
         self.assertTrue(response.json()["next"])
-        url = f"{reverse(url_name)}?limit=1&page=2"
+        url = f"{reverse(url_name)}?page_size=1&page=2"
         response = client.get(url)
         self.assertTrue(response.json()["previous"])
-        url = f"{reverse(url_name)}?limit=1&page=2&q=sadlfjsalöfjlsdafjsdlkfj"
+        url = f"{reverse(url_name)}?page_size=1&page=2&q=sadlfjsalöfjlsdafjsdlkfj"
         response = client.get(url)
         self.assertEqual(int(response.json()["count"]), 0)
-        url = f"{reverse(url_name)}?limit=hansi&page=sumsi"
+        url = f"{reverse(url_name)}?page_size=hansi&page=sumsi"
         response = client.get(url)
         self.assertTrue(int(response.json()["count"]))
