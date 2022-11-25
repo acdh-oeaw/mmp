@@ -331,7 +331,8 @@ GENERIC_AC_CONFIG = [
             'stichwort',
             'wurzel',
             'varianten',
-        ]
+        ],
+        "meta_field": "art"
     },
     {
         "app_name": 'archiv',
