@@ -23,7 +23,7 @@ def generic_ac_view(request):
                 config.append(x)
     else:
         config = GENERIC_AC_CONFIG
-    data = query(q, config, limit=limit, page=page)
+    data = query(request, q, config, limit=limit, page=page)
     if only_those:
         data["filter_on"] = only_those
     else:

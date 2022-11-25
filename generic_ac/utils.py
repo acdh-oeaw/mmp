@@ -3,7 +3,12 @@ from django.core.paginator import Paginator, EmptyPage
 from django.db.models import Q
 
 
-def query(q, config, limit=5, page=1):
+def query(request, q, config, limit=5, page=1):
+    current_url = f"{request.build_absolute_uri()}"
+    if f"page={page}" in current_url:
+        pass
+    else:
+        current_url = f"{current_url}&page={page}"
     total_count = 0
     response = {"q": q, "next": None, "previous": None, "count": None, "results": []}
     for x in config:
@@ -18,15 +23,12 @@ def query(q, config, limit=5, page=1):
         qs = model.objects.filter(or_condition).distinct()
         total_count += qs.count()
         p = Paginator(model.objects.filter(or_condition).distinct(), limit)
-        next_page = False
         try:
             p.page(page)
             has_objects = True
         except EmptyPage:
             has_objects = False
         if has_objects:
-            if p.page(page).has_next:
-                next_page = True
             for obj in p.page(page).object_list:
                 item = {
                     "id": obj.id,
@@ -40,8 +42,8 @@ def query(q, config, limit=5, page=1):
                     item["url"] = None
                 response["results"].append(item)
     response["count"] = total_count
-    if next_page:
-        response["next"] = page + 1
+    if total_count > limit * page:
+        response["next"] = current_url.replace(f"page={page}", f"page={page + 1}")
     if page > 1:
-        response["previous"] = page - 1
+        response["previous"] = current_url.replace(f"page={page}", f"page={page - 1}")
     return response
