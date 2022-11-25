@@ -150,29 +150,29 @@ class ArchivTestCase(TestCase):
         )
         qs = Stelle.objects.filter(id=stelle.id)
         url = f'{reverse("archiv:nlp_data")}?id={stelle.id}'
-        self.assertEqual(get_nlp_data(qs)['token'][0], 'saruus')
+        self.assertEqual(get_nlp_data(qs)["token"][0], "saruus")
         response = client.get(url).json()
-        self.assertEqual(response['token'][0], 'saruus')
+        self.assertEqual(response["token"][0], "saruus")
 
         StopWord.objects.get_or_create(word="saruus")
-        self.assertEqual(get_nlp_data(qs)['token'][0], 'gens')
+        self.assertEqual(get_nlp_data(qs)["token"][0], "gens")
         response = client.get(url).json()
-        self.assertEqual(response['token'][0], 'gens')
+        self.assertEqual(response["token"][0], "gens")
 
         StopWord.objects.filter(word="saruus").delete()
-        self.assertEqual(get_nlp_data(qs)['token'][0], 'saruus')
+        self.assertEqual(get_nlp_data(qs)["token"][0], "saruus")
         response = client.get(url).json()
-        self.assertEqual(response['token'][0], 'saruus')
+        self.assertEqual(response["token"][0], "saruus")
 
         StopWord.objects.get_or_create(word="sarvus")
-        self.assertEqual(get_nlp_data(qs)['token'][0], 'gens')
+        self.assertEqual(get_nlp_data(qs)["token"][0], "gens")
         response = client.get(url).json()
-        self.assertEqual(response['token'][0], 'gens')
+        self.assertEqual(response["token"][0], "gens")
 
         StopWord.objects.filter(word="sarvus").delete()
-        self.assertEqual(get_nlp_data(qs)['token'][0], 'saruus')
+        self.assertEqual(get_nlp_data(qs)["token"][0], "saruus")
         response = client.get(url).json()
-        self.assertEqual(response['token'][0], 'saruus')
+        self.assertEqual(response["token"][0], "saruus")
 
     def test_015_gnd_normalizer(self):
         gnds = [
@@ -187,10 +187,10 @@ class ArchivTestCase(TestCase):
             self.assertEqual(x[1], item.gnd_id)
 
     def test_016_ac_views(self):
-        ns = 'archiv-ac'
+        ns = "archiv-ac"
         for x in urlpatterns:
             url_name = f"{ns}:{x.name}"
             url = f"{reverse(url_name)}?q=hansi"
             response = client.get(url)
             self.assertEqual(response.status_code, 200)
-            self.assertTrue('results' in response.json().keys())
+            self.assertTrue("results" in response.json().keys())
