@@ -13,6 +13,8 @@ a generic djangobaseproject port of https://gitlab.com/acdh-oeaw/imafo/gens, cre
 
 ## Install
 
+see the dedicated [contributing](https://github.com/acdh-oeaw/mmp/blob/master/CONTRIBUTING.md) file or try your luck with the following instructions
+
 * clone the repo `git clone https://github.com/acdh-oeaw/mmp.git`
 * [optional]
   * create a virtual env, e.g. `virtualenv myenv`
