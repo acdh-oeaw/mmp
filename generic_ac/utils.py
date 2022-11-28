@@ -5,6 +5,7 @@ from django.db.models import Q
 
 def query(request, q, config, page_size=5, page=1):
     current_url = f"{request.build_absolute_uri()}"
+    base_url = request.get_host()
     if f"page={page}" in current_url:
         pass
     else:
@@ -39,14 +40,23 @@ def query(request, q, config, page_size=5, page=1):
             for obj in p.page(page).object_list:
                 item = {
                     "id": obj.id,
+                    "additional_fields": None,
                     "kind": model_name,
                     "app_name": app_name,
                     "label": obj.__str__(),
                 }
                 try:
-                    item["url"] = obj.get_absolute_url()
+                    item["url"] = f"{base_url}{obj.get_absolute_url()}"
                 except AttributeError:
                     item["url"] = None
+                if x.get("additional_fields"):
+                    item["additional_fields"] = {}
+                    for key, value in x["additional_fields"].items():
+                        extra_fields = {
+                            "label": value["label"],
+                            "data": f'{getattr(obj, value["lookup"])}'
+                        }
+                        item["additional_fields"][key] = extra_fields
                 response["results"].append(item)
     response["count"] = total_count
     if total_count > page_size * page:
