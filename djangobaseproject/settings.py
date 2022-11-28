@@ -387,17 +387,26 @@ GENERIC_AC_CONFIG = [
             "name_gr",
         ],
         "additional_fields": {
-            "art": {"lookup": "art", "label": "Type of Place"},
-            "kategorie": {"lookup": "kategorie", "label": "Category of Place"},
+            "type": {"lookup": "art", "label": None},
+            "category": {"lookup": "kategorie", "label": None},
         },
     },
-    {"app_name": "archiv", "model_name": "text", "search_fields": ["title"]},
+    {
+        "app_name": "archiv",
+        "model_name": "text",
+        "search_fields": [
+            "title"
+        ]
+    },
     {
         "app_name": "archiv",
         "model_name": "stelle",
-        "search_fields": ["zitat", "text__title"],
+        "search_fields": [
+            "zitat",
+            "text__title"
+        ],
         "additional_fields": {
-            "text": {"lookup": "text", "label": "Text"},
+            "text": {"lookup": "text", "label": None},
         },
     },
     {
@@ -408,7 +417,9 @@ GENERIC_AC_CONFIG = [
             "wurzel",
             "varianten",
         ],
-        "additional_fields": {"art": {"lookup": "art", "label": "Type of Keyword"}},
+        "additional_fields": {
+            "type": {"lookup": "art", "label": None}
+        },
     },
     {
         "app_name": "archiv",
