@@ -1025,7 +1025,7 @@ class Stelle(models.Model):
         related_name='rvn_stelle_ort_ort',
         blank=True,
         verbose_name="Place",
-        help_text="Place of composition",
+        help_text="Places mentioned in the passage",
     ).set_extra(
         is_public=True,
         arche_prop="hasSpatialCoverage"
