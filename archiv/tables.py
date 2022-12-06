@@ -2,197 +2,188 @@
 import django_tables2 as tables
 
 # from browsing.browsing_utils import MergeColumn
-from . models import (
-    Autor,
-    Event,
-    KeyWord,
-    Ort,
-    Stelle,
-    Text,
-    SpatialCoverage,
-    UseCase
-)
+from .models import Autor, Event, KeyWord, Ort, Stelle, Text, SpatialCoverage, UseCase
 
 
 class UseCaseTable(tables.Table):
 
-    id = tables.LinkColumn(verbose_name='ID')
+    id = tables.LinkColumn(verbose_name="ID")
     quick_edit = tables.tables.columns.TemplateColumn(
         template_name="archiv/quickedit.html",
         orderable=False,
-        verbose_name='Edit/Delete'
+        verbose_name="Edit/Delete",
     )
     texte = tables.columns.TemplateColumn(
         template_name="archiv/stelleusecasecol.html",
         orderable=False,
-        verbose_name='Texte'
+        verbose_name="Texte",
     )
     autor = tables.columns.TemplateColumn(
         template_name="archiv/autorusecasecol.html",
         orderable=False,
-        verbose_name='Autor'
+        verbose_name="Autor",
     )
     keyword = tables.columns.TemplateColumn(
         template_name="archiv/keywordusecasecol.html",
         orderable=False,
-        verbose_name='Keyword'
+        verbose_name="Keyword",
     )
     layer = tables.columns.TemplateColumn(
         template_name="archiv/layercol.html",
         orderable=False,
-        verbose_name='GeoJsonLayer'
+        verbose_name="GeoJsonLayer",
     )
 
     class Meta:
         model = UseCase
-        sequence = ('id',)
+        sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}
 
 
 class SpatialCoverageTable(tables.Table):
 
-    id = tables.LinkColumn(verbose_name='ID')
+    id = tables.LinkColumn(verbose_name="ID")
     quick_edit = tables.tables.columns.TemplateColumn(
         template_name="archiv/quickedit.html",
         orderable=False,
-        verbose_name='Edit/Delete'
+        verbose_name="Edit/Delete",
     )
     stelle = tables.columns.TemplateColumn(
         template_name="archiv/spatialstellecol.html",
         orderable=False,
-        verbose_name='Stelle'
+        verbose_name="Stelle",
     )
 
     class Meta:
         model = SpatialCoverage
-        sequence = ('id',)
+        sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}
 
 
 class AutorTable(tables.Table):
 
-    id = tables.LinkColumn(verbose_name='ID')
+    id = tables.LinkColumn(verbose_name="ID")
     quick_edit = tables.tables.columns.TemplateColumn(
         template_name="archiv/quickedit.html",
         orderable=False,
-        verbose_name='Edit/Delete'
+        verbose_name="Edit/Delete",
     )
     stellen = tables.columns.TemplateColumn(
         template_name="archiv/autor_stelle_col.html",
         orderable=False,
-        verbose_name='Stellen'
+        verbose_name="Stellen",
     )
     keywords = tables.columns.TemplateColumn(
         template_name="archiv/autor_keyword_col.html",
         orderable=False,
-        verbose_name='Keywords'
+        verbose_name="Keywords",
     )
 
     class Meta:
         model = Autor
-        sequence = ('id',)
+        sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}
 
 
 class KeyWordTable(tables.Table):
 
-    id = tables.LinkColumn(verbose_name='ID')
+    id = tables.LinkColumn(verbose_name="ID")
     quick_edit = tables.tables.columns.TemplateColumn(
         template_name="archiv/quickedit.html",
         orderable=False,
-        verbose_name='Edit/Delete'
+        verbose_name="Edit/Delete",
     )
     autoren = tables.columns.TemplateColumn(
         template_name="archiv/authorkeywordcol.html",
         orderable=False,
-        verbose_name='Autoren'
+        verbose_name="Autoren",
     )
     texte = tables.columns.TemplateColumn(
         template_name="archiv/textkeywordcol.html",
         orderable=False,
-        verbose_name='Texte'
+        verbose_name="Texte",
     )
     spatial_coverage = tables.columns.TemplateColumn(
         template_name="archiv/keywordspatialcol.html",
         orderable=False,
-        verbose_name='SpatialCoverage'
+        verbose_name="SpatialCoverage",
     )
     ort = tables.columns.TemplateColumn(
         template_name="archiv/ortautorkeywordcol.html",
         orderable=False,
-        verbose_name='Ort'
+        verbose_name="Ort",
     )
     stelle = tables.columns.TemplateColumn(
         template_name="archiv/stellekeywordcol.html",
         orderable=False,
-        verbose_name='Stelle'
+        verbose_name="Stelle",
     )
 
     class Meta:
         model = KeyWord
-        sequence = ('id',)
+        sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}
 
 
 class OrtTable(tables.Table):
 
-    id = tables.LinkColumn(verbose_name='ID')
+    id = tables.LinkColumn(verbose_name="ID")
     quick_edit = tables.tables.columns.TemplateColumn(
         template_name="archiv/quickedit.html",
         orderable=False,
-        verbose_name='Edit/Delete'
+        verbose_name="Edit/Delete",
     )
 
     class Meta:
         model = Ort
-        sequence = ('id',)
+        sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}
 
 
 class StelleTable(tables.Table):
 
-    id = tables.LinkColumn(verbose_name='ID')
+    id = tables.LinkColumn(verbose_name="ID")
     quick_edit = tables.tables.columns.TemplateColumn(
         template_name="archiv/quickedit.html",
         orderable=False,
-        verbose_name='Edit/Delete'
+        verbose_name="Edit/Delete",
     )
-    key_word = tables.columns.ManyToManyColumn()
-    use_case = tables.columns.ManyToManyColumn()
-    ort = tables.columns.ManyToManyColumn()
+    key_word = tables.columns.ManyToManyColumn(verbose_name="Keyword")
+    use_case = tables.columns.ManyToManyColumn(verbose_name="Use Case")
+    ort = tables.columns.ManyToManyColumn(verbose_name="Place")
 
     class Meta:
         model = Stelle
-        sequence = ('id',)
+        sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}
 
 
 class TextTable(tables.Table):
 
-    id = tables.LinkColumn(verbose_name='ID')
+    id = tables.LinkColumn(verbose_name="ID")
     quick_edit = tables.tables.columns.TemplateColumn(
         template_name="archiv/quickedit.html",
         orderable=False,
-        verbose_name='Edit/Delete'
+        verbose_name="Edit/Delete",
     )
-    autor = tables.columns.ManyToManyColumn()
-    ort = tables.columns.ManyToManyColumn()
+    autor = tables.columns.ManyToManyColumn(verbose_name="Author")
+    ort = tables.columns.ManyToManyColumn(verbose_name="Place")
 
     class Meta:
         model = Text
-        sequence = ('id',)
+        sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}
 
 
 class EventTable(tables.Table):
-    id = tables.LinkColumn(verbose_name='ID')
+    id = tables.LinkColumn(verbose_name="ID")
     quick_edit = tables.tables.columns.TemplateColumn(
         template_name="archiv/quickedit.html",
         orderable=False,
-        verbose_name='Edit/Delete'
+        verbose_name="Edit/Delete",
     )
 
     class Meta:
         model = Event
-        sequence = ('id',)
+        sequence = ("id",)
         attrs = {"class": "table table-responsive table-hover"}
