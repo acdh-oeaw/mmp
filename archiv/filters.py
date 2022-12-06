@@ -187,10 +187,20 @@ class SpatialCoverageListFilter(django_filters.FilterSet):
         label="Autor not after",
     )
     stelle__text__autor = django_filters.ModelMultipleChoiceFilter(
+        field_name="stelle__text__autor",
+        queryset=Autor.objects.all(),
+        help_text="Passage must be taken from Text written by at least ONE of the selected Authors",
+        label="Author (intersection)",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:autor-autocomplete",
+        ),
+    )
+    stelle__text__autor_and = django_filters.ModelMultipleChoiceFilter(
+        field_name="stelle__text__autor",
         conjoined=True,
         queryset=Autor.objects.all(),
-        help_text="Related Authors",
-        label="Author",
+        help_text="Passage must be taken from Text written by ALL selected Authors",
+        label="Author (Union)",
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:autor-autocomplete",
         ),
