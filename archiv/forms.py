@@ -101,6 +101,7 @@ class SpatialCoverageFilterFormHelper(FormHelper):
                 "Basic search options",
                 "id",
                 "key_word",
+                "key_word_and",
                 "stelle__use_case",
                 "stelle__has_usecase",
                 "stelle__ort",
