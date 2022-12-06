@@ -131,6 +131,13 @@ class SpatialCoverageListFilter(django_filters.FilterSet):
             url="archiv-ac:usecase-autocomplete",
         ),
     )
+    stelle__has_usecase = django_filters.BooleanFilter(
+        field_name="stelle__use_case",
+        lookup_expr="isnull",
+        exclude=True,
+        label="Related to any UseCase?",
+        help_text="Set 'Yes' to show only objects related to any UseCase",
+    )
     stelle__ort = django_filters.ModelMultipleChoiceFilter(
         conjoined=True,
         queryset=Ort.objects.all(),
