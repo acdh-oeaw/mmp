@@ -108,7 +108,7 @@ class SpatialCoverageListFilter(django_filters.FilterSet):
         field_name="key_word",
         conjoined=True,
         queryset=KeyWord.objects.all(),
-        help_text=SpatialCoverage._meta.get_field("key_word").help_text,
+        help_text="Keyword associated with coverage (all)",
         label="Keyword (Union)",
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:keyword-autocomplete",
@@ -116,7 +116,7 @@ class SpatialCoverageListFilter(django_filters.FilterSet):
     )
     key_word = django_filters.ModelMultipleChoiceFilter(
         queryset=KeyWord.objects.all(),
-        help_text=SpatialCoverage._meta.get_field("key_word").help_text,
+        help_text="Keyword associated with coverage (any)",
         label="Keyword (Intersection)",
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:keyword-autocomplete",
