@@ -104,11 +104,20 @@ class UseCaseListFilter(django_filters.FilterSet):
 
 
 class SpatialCoverageListFilter(django_filters.FilterSet):
-    key_word = django_filters.ModelMultipleChoiceFilter(
+    key_word_and = django_filters.ModelMultipleChoiceFilter(
+        field_name="key_word",
         conjoined=True,
         queryset=KeyWord.objects.all(),
-        help_text=SpatialCoverage._meta.get_field("key_word").help_text,
-        label=SpatialCoverage._meta.get_field("key_word").verbose_name,
+        help_text="Keyword associated with coverage (all)",
+        label="Keyword (Union)",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:keyword-autocomplete",
+        ),
+    )
+    key_word = django_filters.ModelMultipleChoiceFilter(
+        queryset=KeyWord.objects.all(),
+        help_text="Keyword associated with coverage (any)",
+        label="Keyword (Intersection)",
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:keyword-autocomplete",
         ),
