@@ -131,6 +131,30 @@ class SpatialCoverageListFilter(django_filters.FilterSet):
             url="archiv-ac:stelle-autocomplete",
         ),
     )
+    stelle__key_word = django_filters.ModelMultipleChoiceFilter(
+        queryset=KeyWord.objects.all(),
+        help_text="Related passage MUST contain at least ONE selected Keyword",
+        label=f"{Stelle._meta.get_field('key_word').verbose_name} (OR Filter)",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:keyword-autocomplete",
+        ),
+    )
+    stelle__key_word_and = django_filters.ModelMultipleChoiceFilter(
+        conjoined=True,
+        field_name="stelle__key_word",
+        queryset=KeyWord.objects.all(),
+        help_text="Passage MUST contain ALL selected Keywords",
+        label=f"{Stelle._meta.get_field('key_word').verbose_name} (AND Filter)",
+        widget=autocomplete.Select2Multiple(
+            url="archiv-ac:keyword-autocomplete",
+        ),
+    )
+    stelle__key_word__art = django_filters.ChoiceFilter(
+        empty_label="-------",
+        choices=KeyWord._meta.get_field("art").choices,
+        help_text="Type of Keyword (Passage)",
+        label="Type of Keyword (Passage)",
+    )
     stelle__use_case = django_filters.ModelMultipleChoiceFilter(
         conjoined=True,
         queryset=UseCase.objects.all(),
@@ -757,8 +781,7 @@ class StelleListFilter(django_filters.FilterSet):
     )
     key_word = django_filters.ModelMultipleChoiceFilter(
         queryset=KeyWord.objects.all(),
-        help_text=f"{Stelle._meta.get_field('key_word').help_text};\
-            Passage MUST contain at least ONE selected Keyword",
+        help_text="Passage MUST contain at least ONE selected Keyword",
         label=f"{Stelle._meta.get_field('key_word').verbose_name} (OR Filter)",
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:keyword-autocomplete",
@@ -768,8 +791,7 @@ class StelleListFilter(django_filters.FilterSet):
         conjoined=True,
         field_name="key_word",
         queryset=KeyWord.objects.all(),
-        help_text=f"{Stelle._meta.get_field('key_word').help_text};\
-            Passage MUST contain ALL selected Keywords",
+        help_text="Passage MUST contain ALL selected Keywords",
         label=f"{Stelle._meta.get_field('key_word').verbose_name} (AND Filter)",
         widget=autocomplete.Select2Multiple(
             url="archiv-ac:keyword-autocomplete",
