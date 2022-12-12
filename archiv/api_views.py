@@ -106,7 +106,8 @@ class SpatialCoverageGroupViewSet(viewsets.ModelViewSet):
 
 
 class ConeViewSet(viewsets.ModelViewSet):
-    queryset = SpatialCoverage.objects.exclude(fuzzy_geom=None)
+    queryset = SpatialCoverage.objects.exclude(fuzzy_geom=None)\
+        .exclude(stelle__text__ort__isnull=True).distinct()
     serializer_class = ConeSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
