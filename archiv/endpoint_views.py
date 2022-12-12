@@ -5,12 +5,13 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 
 
-from archiv.models import KeyWord, Text, Stelle
+from archiv.models import KeyWord, Text, Stelle, Autor
 from archiv.filters import StelleListFilter
 from archiv.network_utils import create_graph, graph_table
 from archiv.utils import cent_from_year
 from archiv.nlp_utils import get_nlp_data
 from topics.models import StopWord
+from netvis.utils import as_node
 
 
 default = [
@@ -125,4 +126,37 @@ class KeyWordEndpoint(ListView):
         else:
             df = graph_table(qs.reverse()[:500])
         data = create_graph(df, KeyWord)
+        return JsonResponse(data)
+
+
+class KeyWordAuthorEndpoint(ListView):
+
+    model = Stelle
+    filter_class = StelleListFilter
+
+    def get_queryset(self, **kwargs):
+        qs = super(KeyWordAuthorEndpoint, self).get_queryset().distinct()
+        self.filter = self.filter_class(self.request.GET, queryset=qs)
+        return self.filter.qs.distinct()
+
+    def render_to_response(self, context, **kwargs):
+        author_ids = self.request.GET.getlist('authors', [])
+        author_qs = Autor.objects.filter(id__in=author_ids)
+        qs = self.get_queryset().distinct().order_by('id')
+        if qs.count() < 100:
+            df = graph_table(qs)
+        else:
+            df = graph_table(qs.reverse()[:500])
+        data = create_graph(df, KeyWord)
+        if author_qs:
+            for x in author_qs:
+                node = as_node(x)
+                data['nodes'].append(node)
+            data['types']['nodes'].append(
+                {
+                    "id": "archiv_author",
+                    "label": "Author",
+                    "color": "#800000"
+                }
+            )
         return JsonResponse(data)

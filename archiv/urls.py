@@ -2,7 +2,7 @@ from django.urls import path
 
 from . import views
 from archiv.endpoint_views import (
-    KeyWordEndpoint, NlpDataStelle, key_word_by_century, KeyWordStelle, StopWordListView
+    KeyWordEndpoint, NlpDataStelle, key_word_by_century, KeyWordStelle, StopWordListView, KeyWordAuthorEndpoint
 )
 
 from . import tei_views
@@ -109,6 +109,11 @@ urlpatterns = [
     path(
         'keyword-network/',
         KeyWordEndpoint.as_view(),
+        name='keyword_data'
+    ),
+    path(
+        'keyword-author-network/',
+        KeyWordAuthorEndpoint.as_view(),
         name='keyword_data'
     ),
     path(
