@@ -14,9 +14,7 @@ from topics.models import StopWord
 from netvis.utils import as_node
 
 
-default = [
-    [x, 0] for x in range(-3, 16)
-]
+default = [[x, 0] for x in range(-3, 16)]
 
 
 class StopWordListView(ListView):
@@ -25,9 +23,7 @@ class StopWordListView(ListView):
 
     def render_to_response(self, context, **kwargs):
 
-        data = {
-            'result': [x[0] for x in StopWord.objects.all().values_list('word')]
-        }
+        data = {"result": [x[0] for x in StopWord.objects.all().values_list("word")]}
         return JsonResponse(data)
 
 
@@ -42,7 +38,7 @@ class KeyWordStelle(ListView):
         return self.filter.qs.distinct()
 
     def render_to_response(self, context, **kwargs):
-        qs = self.get_queryset().distinct().order_by('id')
+        qs = self.get_queryset().distinct().order_by("id")
         qs_kw = [x.key_word.all().distinct() for x in qs]
         key_words = []
         for x in qs_kw:
@@ -50,8 +46,9 @@ class KeyWordStelle(ListView):
                 key_words.append(y.stichwort)
         key_word_counter = Counter(key_words)
         data = {
-            "token_dict":
-            [{x[0]: x[1]} for x in key_word_counter.most_common(len(key_words))]
+            "token_dict": [
+                {x[0]: x[1]} for x in key_word_counter.most_common(len(key_words))
+            ]
         }
         return JsonResponse(data)
 
@@ -67,31 +64,39 @@ class NlpDataStelle(ListView):
         return self.filter.qs.distinct()
 
     def render_to_response(self, context, **kwargs):
-        qs = self.get_queryset().distinct().order_by('id')
+        qs = self.get_queryset().distinct().order_by("id")
         data = get_nlp_data(qs)
-        clean_token = [x for x in data['token']]
+        clean_token = [x for x in data["token"]]
         clean_data = {
             "token": clean_token,
             "token_dict": dict(Counter(clean_token)),
             "token_count": len(clean_token),
-            "unique_token_count": len(set(clean_token))
+            "unique_token_count": len(set(clean_token)),
         }
         return JsonResponse(clean_data)
 
 
 def key_word_by_century(request, pk):
     kw = get_object_or_404(KeyWord, pk=pk)
-    props = ['id', 'not_before']
-    items = Text.objects.filter(
-        rvn_stelle_text_text__key_word=kw, not_before__gte=-300, not_after__lte=2000
-    ).distinct().order_by('not_before').values_list(*props)
+    props = ["id", "not_before"]
+    items = (
+        Text.objects.filter(
+            rvn_stelle_text_text__key_word=kw, not_before__gte=-300, not_after__lte=2000
+        )
+        .distinct()
+        .order_by("not_before")
+        .values_list(*props)
+    )
     if items:
         df = pd.DataFrame(items, columns=props)
-        df['century_start'] = df.apply(lambda x: cent_from_year(x['not_before']), axis=1)
-        data = df.groupby(
-            'century_start',
-            as_index=False, group_keys=False, sort=False
-        ).count()[['century_start', 'id']].values.tolist()
+        df["century_start"] = df.apply(
+            lambda x: cent_from_year(x["not_before"]), axis=1
+        )
+        data = (
+            df.groupby("century_start", as_index=False, group_keys=False, sort=False)
+            .count()[["century_start", "id"]]
+            .values.tolist()
+        )
         d = defaultdict(int)
         for k, v in data:
             d[k] = v
@@ -100,11 +105,7 @@ def key_word_by_century(request, pk):
         payload = list(sorted(d.items()))
     else:
         payload = default
-    result = {
-        'id': pk,
-        'title': kw.stichwort,
-        'data': payload
-    }
+    result = {"id": pk, "title": kw.stichwort, "data": payload}
 
     return JsonResponse(result)
 
@@ -120,7 +121,7 @@ class KeyWordEndpoint(ListView):
         return self.filter.qs.distinct()
 
     def render_to_response(self, context, **kwargs):
-        qs = self.get_queryset().distinct().order_by('id')
+        qs = self.get_queryset().distinct().order_by("id")
         if qs.count() < 100:
             df = graph_table(qs)
         else:
@@ -140,9 +141,12 @@ class KeyWordAuthorEndpoint(ListView):
         return self.filter.qs.distinct()
 
     def render_to_response(self, context, **kwargs):
-        author_ids = self.request.GET.getlist('authors', [])
-        author_qs = Autor.objects.filter(id__in=author_ids)
-        qs = self.get_queryset().distinct().order_by('id')
+        author_ids = self.request.GET.getlist("authors", [])
+        try:
+            author_qs = Autor.objects.filter(id__in=author_ids)
+        except ValueError:
+            author_qs = []
+        qs = self.get_queryset().distinct().order_by("id")
         if qs.count() < 100:
             df = graph_table(qs)
         else:
@@ -151,12 +155,21 @@ class KeyWordAuthorEndpoint(ListView):
         if author_qs:
             for x in author_qs:
                 node = as_node(x)
-                data['nodes'].append(node)
-            data['types']['nodes'].append(
-                {
-                    "id": "archiv_author",
-                    "label": "Author",
-                    "color": "#800000"
-                }
+                data["nodes"].append(node)
+                kw = KeyWord.objects.filter(
+                    rvn_stelle_key_word_keyword__text__autor=x.id
+                ).distinct()
+                for e in kw:
+                    data["edges"].append(
+                        {
+                            "id": f"{x.id}{e.id}",
+                            "source": f"archiv__autor__{x.id}",
+                            "target": f"app_name__keyword__{e.id}",
+                            "type": "a",
+                        }
+                    )
+            data["types"]["nodes"].append(
+                {"id": "archiv_author", "label": "Author", "color": "#800000"}
             )
+            data["types"]["edges"].append({"id": "a", "color": "#190066"})
         return JsonResponse(data)
