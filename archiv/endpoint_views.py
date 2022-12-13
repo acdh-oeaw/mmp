@@ -141,7 +141,7 @@ class KeyWordAuthorEndpoint(ListView):
         return self.filter.qs.distinct()
 
     def render_to_response(self, context, **kwargs):
-        author_ids = self.request.GET.getlist("authors", [])
+        author_ids = self.request.GET.getlist("author", [])
         try:
             author_qs = Autor.objects.filter(id__in=author_ids)
         except ValueError:
@@ -164,12 +164,12 @@ class KeyWordAuthorEndpoint(ListView):
                         {
                             "id": f"{x.id}{e.id}",
                             "source": f"archiv__autor__{x.id}",
-                            "target": f"app_name__keyword__{e.id}",
+                            "target": f"archiv__keyword__{e.id}",
                             "type": "a",
                         }
                     )
             data["types"]["nodes"].append(
-                {"id": "archiv_author", "label": "Author", "color": "#800000"}
+                {"id": "archiv__autor", "label": "Author", "color": "#800000"}
             )
             data["types"]["edges"].append({"id": "a", "color": "#190066"})
         return JsonResponse(data)
