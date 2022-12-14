@@ -40,8 +40,8 @@ def create_graph(df):
         source_id, target_id = g.split("__")
         edge = {
             "key": g,
-            "source": f"keyword__{source_id}",
-            "target": f"keyword__{target_id}",
+            "source": f"{source_id}",
+            "target": f"{target_id}",
             "passage_ids": [int(x) for x in sorted(list(set(ndf['stelle_id'].values)))],
             "count": len(ndf)
         }
