@@ -11,6 +11,7 @@ generic_property_table = [
     ("rvn_stelle_key_word_keyword__id", "stelle_id"),
     ("rvn_stelle_key_word_keyword__key_word__stichwort", "t"),
     ("rvn_stelle_key_word_keyword__key_word__id", "t_id"),
+    ("rvn_stelle_key_word_keyword__key_word__art", "t_art"),
 ]
 
 
@@ -25,7 +26,7 @@ def graph_table(stellen, prop_table=generic_property_table):
     props = [x[0] for x in property_table]
 
     df = pd.DataFrame(list(qs.values_list(*props)), columns=columns)
-    df = df[df["s_id"] >= df["t_id"]]
+    df = df[df["s_id"] > df["t_id"]]
     return df
 
 
