@@ -1,6 +1,5 @@
 import pandas as pd
 
-from netvis.utils import as_node
 from archiv.models import KeyWord, logger
 
 
@@ -30,32 +29,36 @@ def graph_table(stellen, prop_table=generic_property_table):
     return df
 
 
-def create_graph(df, ItemClass):
-    app_name = ItemClass._meta.app_label
-    model_name = ItemClass._meta.model_name
-    all_ids = df[["s_id", "t_id"]].values.tolist()
-    ids = list(set([item for sublist in all_ids for item in sublist]))
-    qs = ItemClass.objects.filter(id__in=ids)
-    edges = []
-    nodes = []
-    for i, row in df.iterrows():
-        edges.append(
-            {
-                "id": i,
-                "source": f"{app_name}__{model_name}__{row['s_id']}",
-                "target": f"{app_name}__{model_name}__{row['t_id']}",
-                "type": "e",
-            }
-        )
-    for x in qs:
-        node = as_node(x)
-        node["keyword_type"] = x.art
-        nodes.append(node)
-    g_types = {
-        "nodes": [
-            {"id": f"{app_name}__{model_name}", "label": "Keyword", "color": "#006699"},
-        ],
-        "edges": [{"id": "e", "color": "#990066"}],
-    }
-    graph = {"nodes": nodes, "edges": edges, "types": g_types}
+def create_graph(df):
+    graph = {}
+    df["edge_key"] = df.apply(
+        lambda row: f"keyword_{row['s_id']}__keyword_{row['t_id']}", axis=1
+    )
+    nodes = {}
+    graph['edges'] = []
+    for g, ndf in df.groupby('edge_key'):
+        source_id, target_id = g.split("__")
+        edge = {
+            "key": g,
+            "source": f"keyword__{source_id}",
+            "target": f"keyword__{target_id}",
+            "passage_ids": [int(x) for x in sorted(list(set(ndf['stelle_id'].values)))],
+            "count": len(ndf)
+        }
+        nodes[f"{source_id}"] = {
+            "key": f"{source_id}",
+            "id": int(ndf.iloc[0]['s_id']),
+            "kind": "keyword",
+            "type": ndf.iloc[0]['art'],
+            "label": ndf.iloc[0]['s'],
+        }
+        nodes[f"{target_id}"] = {
+            "key": f"{target_id}",
+            "id": int(ndf.iloc[0]['t_id']),
+            "kind": "keyword",
+            "type": ndf.iloc[0]['t_art'],
+            "label": ndf.iloc[0]['t'],
+        }
+        graph["edges"].append(edge)
+    graph["nodes"] = [value for key, value in nodes.items()]
     return graph

@@ -11,7 +11,6 @@ from archiv.network_utils import create_graph, graph_table
 from archiv.utils import cent_from_year
 from archiv.nlp_utils import get_nlp_data
 from topics.models import StopWord
-from netvis.utils import as_node
 
 
 default = [[x, 0] for x in range(-3, 16)]
@@ -122,11 +121,8 @@ class KeyWordEndpoint(ListView):
 
     def render_to_response(self, context, **kwargs):
         qs = self.get_queryset().distinct().order_by("id")
-        if qs.count() < 100:
-            df = graph_table(qs)
-        else:
-            df = graph_table(qs.reverse()[:500])
-        data = create_graph(df, KeyWord)
+        df = graph_table(qs)
+        data = create_graph(df)
         return JsonResponse(data)
 
 
@@ -147,14 +143,17 @@ class KeyWordAuthorEndpoint(ListView):
         except ValueError:
             author_qs = []
         qs = self.get_queryset().distinct().order_by("id")
-        if qs.count() < 100:
-            df = graph_table(qs)
-        else:
-            df = graph_table(qs.reverse()[:500])
-        data = create_graph(df, KeyWord)
+        df = graph_table(qs)
+        data = create_graph(df)
         if author_qs:
+            print(author_qs)
             for x in author_qs:
-                node = as_node(x)
+                node = {
+                    "key": f"autor_{x.id}",
+                    "id": x.id,
+                    "kind": "author",
+                    "label": f"{x}",
+                }
                 data["nodes"].append(node)
                 kw = KeyWord.objects.filter(
                     rvn_stelle_key_word_keyword__text__autor=x.id
@@ -162,14 +161,9 @@ class KeyWordAuthorEndpoint(ListView):
                 for e in kw:
                     data["edges"].append(
                         {
-                            "id": f"{x.id}{e.id}",
-                            "source": f"archiv__autor__{x.id}",
-                            "target": f"archiv__keyword__{e.id}",
-                            "type": "a",
+                            "id": f"autor_{x.id}__keyword_{e.id}",
+                            "source": f"autor_{x.id}",
+                            "target": f"keyword_{e.id}",
                         }
                     )
-            data["types"]["nodes"].append(
-                {"id": "archiv__autor", "label": "Author", "color": "#800000"}
-            )
-            data["types"]["edges"].append({"id": "a", "color": "#190066"})
         return JsonResponse(data)
