@@ -14,3 +14,10 @@
   pip install https://github.com/diyclassics/latin-spacy-models/blob/main/la_core_cltk_sm/la_core_cltk_sm-0.1.0.tar.gz\?raw\=true
   DEBUG=True python manage.py runserver
   ```
+
+  if applying migrations with `python manage.py makemigrations && python manage.py migrate` fails,
+  try deleting the `cooc_graph` and `cooc_graph_full` views, which are not needed:
+  ```
+  docker exec -it mmp_devcontainer-db-1 psql -U mmp -d mmp
+  ```
+  then change to the `mmp` database with `\c mmp` and `DROP VIEW cooc_graph; DROP VIEW cooc_graph_view;`
