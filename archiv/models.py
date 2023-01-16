@@ -1020,16 +1020,6 @@ class Stelle(models.Model):
         is_public=True,
         arche_prop="hasSubject",
     )
-    ort = models.ManyToManyField(
-        "Ort",
-        related_name='rvn_stelle_ort_ort',
-        blank=True,
-        verbose_name="Place",
-        help_text="Places mentioned in the passage",
-    ).set_extra(
-        is_public=True,
-        arche_prop="hasSpatialCoverage"
-    )
     start_date = models.SmallIntegerField(
         blank=True, null=True,
         verbose_name="From",
@@ -1696,10 +1686,3 @@ class SpatialCoverage(models.Model):
             } for x in t
         ]
         return texts
-
-    @cached_property
-    def places(self):
-        pl = [
-            getattr(p, 'place_as_dict') for p in Ort.objects.filter(rvn_stelle_ort_ort__in=self.stellen_objects)
-        ]
-        return pl

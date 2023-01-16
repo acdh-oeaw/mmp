@@ -150,7 +150,6 @@ class StelleTable(tables.Table):
     )
     key_word = tables.columns.ManyToManyColumn(verbose_name="Keyword")
     use_case = tables.columns.ManyToManyColumn(verbose_name="Use Case")
-    ort = tables.columns.ManyToManyColumn(verbose_name="Place")
 
     class Meta:
         model = Stelle

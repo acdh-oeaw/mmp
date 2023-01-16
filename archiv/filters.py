@@ -171,15 +171,6 @@ class SpatialCoverageListFilter(django_filters.FilterSet):
         label="Related to any UseCase?",
         help_text="Set 'Yes' to show only objects related to any UseCase",
     )
-    stelle__ort = django_filters.ModelMultipleChoiceFilter(
-        conjoined=True,
-        queryset=Ort.objects.all(),
-        help_text="Place mentioned in Stelle",
-        label="Place mentioned in Stelle",
-        widget=autocomplete.Select2Multiple(
-            url="archiv-ac:ort-autocomplete",
-        ),
-    )
     stelle__text__ort = django_filters.ModelMultipleChoiceFilter(
         conjoined=True,
         queryset=Ort.objects.all(),
@@ -738,15 +729,6 @@ class StelleListFilter(django_filters.FilterSet):
         label=Text._meta.get_field("art").verbose_name,
         widget=autocomplete.Select2Multiple(
             url="/vocabs-ac/specific-concept-ac/art",
-        ),
-    )
-    ort = django_filters.ModelMultipleChoiceFilter(
-        conjoined=True,
-        queryset=Ort.objects.all(),
-        help_text="Related Places",
-        label="Places",
-        widget=autocomplete.Select2Multiple(
-            url="archiv-ac:ort-autocomplete",
         ),
     )
     summary = django_filters.LookupChoiceFilter(
