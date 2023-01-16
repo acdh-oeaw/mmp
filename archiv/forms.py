@@ -104,7 +104,6 @@ class SpatialCoverageFilterFormHelper(FormHelper):
                 "key_word_and",
                 "stelle__use_case",
                 "stelle__has_usecase",
-                "stelle__ort",
                 "stelle__text__ort",
                 "stelle",
                 "stelle__start_date",
@@ -374,7 +373,6 @@ class StelleForm(forms.ModelForm):
             "key_word": autocomplete.ModelSelect2Multiple(
                 url="archiv-ac:keyword-autocomplete"
             ),
-            "ort": autocomplete.ModelSelect2Multiple(url="archiv-ac:ort-autocomplete"),
         }
 
     def __init__(self, *args, **kwargs):

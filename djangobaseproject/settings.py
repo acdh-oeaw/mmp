@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     "reversion",
     "ckeditor",
     "ckeditor_uploader",
+    "fixture_magic",
     "crispy_forms",
     "floppyforms",
     "django_filters",
