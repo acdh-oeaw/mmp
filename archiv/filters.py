@@ -100,6 +100,7 @@ class UseCaseListFilter(django_filters.FilterSet):
             "id",
             "show_labels",
             "layer",
+            "published",
         ]
 
 

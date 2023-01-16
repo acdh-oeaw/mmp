@@ -69,6 +69,7 @@ class UseCaseFilterFormHelper(FormHelper):
                 "title",
                 "principal_investigator",
                 "show_labels",
+                "published",
                 css_id="basic_search_fields",
             ),
             Accordion(

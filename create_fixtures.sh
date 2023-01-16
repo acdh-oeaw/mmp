@@ -16,13 +16,17 @@ python manage.py dump_object archiv.keyword 28 > fixtures_keyword.json
 echo "create fixtures_layer"
 python manage.py dump_object layers.geojsonlayer 7 3 > fixtures_layer.json
 
+echo "create fixtures_usecase"
+python manage.py dump_object archiv.usecase 14 > fixtures_usecase.json
+
 echo "merging fixtures"
-python manage.py merge_fixtures fixtures_stelle.json fixtures_spatialcoverage.json fixtures_keyword.json fixtures_layer.json > archiv/fixtures/dump.json
+python manage.py merge_fixtures fixtures_stelle.json fixtures_spatialcoverage.json fixtures_keyword.json fixtures_layer.json fixtures_usecase.json > archiv/fixtures/dump.json
 
 echo "delete fixtures"
 rm fixtures_keyword.json
 rm fixtures_spatialcoverage.json
 rm fixtures_stelle.json
 rm fixtures_layer.json
+rm fixtures_usecase.json
 
 echo "done"
