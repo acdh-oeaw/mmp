@@ -64,7 +64,7 @@ class SlideViewSet(viewsets.ModelViewSet):
 
 
 class UseCaseViewSet(viewsets.ModelViewSet):
-    queryset = UseCase.objects.all().distinct()
+    queryset = UseCase.objects.filter(published=True).distinct()
     serializer_class = UseCaseSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,

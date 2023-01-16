@@ -91,7 +91,7 @@ INSTALLED_APPS = [
 ]
 if DEBUG:
     INSTALLED_APPS.insert(10, "django_extensions")
-    # INSTALLED_APPS.insert(11, 'fixture_magic')
+    INSTALLED_APPS.insert(11, 'fixture_magic')
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 SPAGHETTI_SAUCE = {

@@ -102,6 +102,11 @@ class UseCase(models.Model):
         verbose_name="Show Labels",
         help_text="True if labels of the Spatial Coverage should be visible in the front end"
     )
+    published = models.BooleanField(
+        default=False,
+        verbose_name="Published",
+        help_text="True if the use case should be presented in the frontend, false if not"
+    )
 
     class Meta:
 
