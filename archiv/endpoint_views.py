@@ -146,7 +146,6 @@ class KeyWordAuthorEndpoint(ListView):
         df = graph_table(qs)
         data = create_graph(df)
         if author_qs:
-            print(author_qs)
             for x in author_qs:
                 node = {
                     "key": f"autor_{x.id}",
@@ -157,7 +156,7 @@ class KeyWordAuthorEndpoint(ListView):
                 data["nodes"].append(node)
                 kw = KeyWord.objects.filter(
                     rvn_stelle_key_word_keyword__text__autor=x.id
-                ).distinct()
+                ).filter(rvn_stelle_key_word_keyword__in=qs).distinct()
                 for e in kw:
                     data["edges"].append(
                         {
