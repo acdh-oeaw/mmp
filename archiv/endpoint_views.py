@@ -145,6 +145,7 @@ class KeyWordAuthorEndpoint(ListView):
         qs = self.get_queryset().distinct().order_by("id")
         df = graph_table(qs)
         data = create_graph(df)
+        node_ids = [x['key'] for x in data['nodes']]
         if author_qs:
             for x in author_qs:
                 node = {
@@ -155,14 +156,16 @@ class KeyWordAuthorEndpoint(ListView):
                 }
                 data["nodes"].append(node)
                 kw = KeyWord.objects.filter(
-                    rvn_stelle_key_word_keyword__text__autor=x.id
-                ).filter(rvn_stelle_key_word_keyword__in=qs).distinct()
+                    rvn_stelle_key_word_keyword__text__autor=x.id, rvn_stelle_key_word_keyword__in=qs
+                ).distinct()
                 for e in kw:
-                    data["edges"].append(
-                        {
-                            "id": f"autor_{x.id}__keyword_{e.id}",
-                            "source": f"autor_{x.id}",
-                            "target": f"keyword_{e.id}",
-                        }
-                    )
+                    kw_id = f"keyword_{e.id}"
+                    if kw_id in node_ids:
+                        data["edges"].append(
+                            {
+                                "id": f"autor_{x.id}__keyword_{e.id}",
+                                "source": f"autor_{x.id}",
+                                "target": kw_id,
+                            }
+                        )
         return JsonResponse(data)

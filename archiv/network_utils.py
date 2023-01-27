@@ -25,6 +25,7 @@ def graph_table(stellen, prop_table=generic_property_table):
     props = [x[0] for x in property_table]
 
     df = pd.DataFrame(list(qs.values_list(*props)), columns=columns)
+    # df.to_csv('hansi.csv')
     df = df[df["s_id"] > df["t_id"]]
     return df
 
