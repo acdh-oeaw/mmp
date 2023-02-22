@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     "ckeditor",
     "ckeditor_uploader",
     "crispy_forms",
+    "crispy_bootstrap4",
     "floppyforms",
     "django_filters",
     "django_tables2",
@@ -94,6 +95,7 @@ if DEBUG:
     INSTALLED_APPS.insert(11, 'fixture_magic')
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 SPAGHETTI_SAUCE = {
     "apps": ["archiv", "topics"],
     "show_fields": False,
