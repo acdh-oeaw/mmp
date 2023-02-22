@@ -151,7 +151,7 @@ class KeyWordAuthorEndpoint(ListView):
                 node = {
                     "key": f"autor_{x.id}",
                     "id": x.id,
-                    "kind": "author",
+                    "kind": "autor",
                     "label": f"{x}",
                 }
                 data["nodes"].append(node)
