@@ -70,6 +70,7 @@ class SpatialCoverageSerializer(GeoFeatureModelSerializer, serializers.ModelSeri
             "fuzzyness",
             "stelle",
             "texts",
+            "kommentar",
         )
         depth = 1
 
