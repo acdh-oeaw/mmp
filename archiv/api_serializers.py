@@ -4,6 +4,7 @@ from rest_framework_gis.serializers import (
     GeoFeatureModelSerializer,
     GeometrySerializerMethodField,
 )
+from markdownify import markdownify as md
 from archiv.models import (
     Autor,
     KeyWord,
@@ -39,10 +40,20 @@ class SlideSerializer(serializers.ModelSerializer):
 
 
 class UseCaseSerializer(serializers.ModelSerializer):
+    as_md = serializers.SerializerMethodField()
+
     class Meta:
         model = UseCase
         fields = "__all__"
         depth = 1
+
+    def get_as_md(self, obj):
+        md_string = ""
+        if isinstance(obj.story_map, str):
+            md_string = md(obj.story_map)
+        else:
+            md_string = ""
+        return f"{md_string}"
 
 
 class SpatialCoverageSerializer(GeoFeatureModelSerializer, serializers.ModelSerializer):
