@@ -177,6 +177,7 @@ class StelleViewSet(viewsets.ModelViewSet):
         OrderingFilter
     ]
     filter_class = StelleListFilter
+    ordering_fields = [field.name for field in Stelle._meta.get_fields()] + ["text__not_before", "text__not_after"]
 
 
 class TextViewSet(viewsets.ModelViewSet):
