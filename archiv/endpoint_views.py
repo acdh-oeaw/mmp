@@ -163,7 +163,7 @@ class KeyWordAuthorEndpoint(ListView):
                     if kw_id in node_ids:
                         data["edges"].append(
                             {
-                                "id": f"autor_{x.id}__keyword_{e.id}",
+                                "key": f"autor_{x.id}__keyword_{e.id}",
                                 "source": f"autor_{x.id}",
                                 "target": kw_id,
                             }
