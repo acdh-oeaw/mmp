@@ -190,6 +190,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles/")
 STATIC_URL = "/static/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 MEDIA_URL = "/media/"
+DATA_UPLOAD_MAX_MEMORY_SIZE = None
 
 ARCHE_SETTINGS = {
     "project_name": ROOT_URLCONF.split(".")[0],
