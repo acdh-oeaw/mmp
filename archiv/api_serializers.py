@@ -184,6 +184,7 @@ class StelleSerializer(serializers.ModelSerializer):
             "legacy_pk",
             "orig_data_csv",
             "lemmata",
+            "use_case"
         ]
         depth = 2
 
