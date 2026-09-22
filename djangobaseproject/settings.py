@@ -34,11 +34,13 @@ else:
             "ENGINE": os.environ.get(
                 "DB_TYP", "django.contrib.gis.db.backends.postgis"
             ),
+            "OPTIONS": {"options": "-c search_path=public,mmp"},
             "NAME": os.environ.get("DB_NAME", "mmp"),
             "USER": os.environ.get("DB_USER", "postgres"),
             "PASSWORD": os.environ.get("DB_PASSWORD", "postgres"),
             "HOST": os.environ.get("DB_HOST", "localhost"),
             "PORT": os.environ.get("DB_PORT", "5432"),
+            "DISABLE_SERVER_SIDE_CURSORS": True,
         }
     }
 
@@ -70,7 +72,7 @@ INSTALLED_APPS = [
     "ckeditor_uploader",
     "crispy_forms",
     "crispy_bootstrap4",
-    "floppyforms",
+    # "floppyforms",
     "django_filters",
     "django_tables2",
     "django_spaghetti",
@@ -92,7 +94,6 @@ INSTALLED_APPS = [
 ]
 if DEBUG:
     INSTALLED_APPS.insert(10, "django_extensions")
-    INSTALLED_APPS.insert(11, 'fixture_magic')
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
@@ -107,7 +108,6 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": (
         "rest_framework.permissions.IsAuthenticatedOrReadOnly",
     ),
-    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 50,
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
