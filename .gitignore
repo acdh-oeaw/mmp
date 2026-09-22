@@ -82,3 +82,4 @@ dump.sql
 hansi.json
 hansi.csv
 secret.env
+env.secret
