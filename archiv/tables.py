@@ -2,13 +2,12 @@
 import django_tables2 as tables
 
 # from browsing.browsing_utils import MergeColumn
-from .models import Autor, Event, KeyWord, Ort, Stelle, Text, SpatialCoverage, UseCase
+from .models import Autor, Event, KeyWord, Ort, SpatialCoverage, Stelle, Text, UseCase
 
 
 class UseCaseTable(tables.Table):
-
     id = tables.LinkColumn(verbose_name="ID")
-    quick_edit = tables.tables.columns.TemplateColumn(
+    quick_edit = tables.columns.TemplateColumn(
         template_name="archiv/quickedit.html",
         orderable=False,
         verbose_name="Edit/Delete",
@@ -41,9 +40,8 @@ class UseCaseTable(tables.Table):
 
 
 class SpatialCoverageTable(tables.Table):
-
     id = tables.LinkColumn(verbose_name="ID")
-    quick_edit = tables.tables.columns.TemplateColumn(
+    quick_edit = tables.columns.TemplateColumn(
         template_name="archiv/quickedit.html",
         orderable=False,
         verbose_name="Edit/Delete",
@@ -61,9 +59,8 @@ class SpatialCoverageTable(tables.Table):
 
 
 class AutorTable(tables.Table):
-
     id = tables.LinkColumn(verbose_name="ID")
-    quick_edit = tables.tables.columns.TemplateColumn(
+    quick_edit = tables.columns.TemplateColumn(
         template_name="archiv/quickedit.html",
         orderable=False,
         verbose_name="Edit/Delete",
@@ -86,9 +83,8 @@ class AutorTable(tables.Table):
 
 
 class KeyWordTable(tables.Table):
-
     id = tables.LinkColumn(verbose_name="ID")
-    quick_edit = tables.tables.columns.TemplateColumn(
+    quick_edit = tables.columns.TemplateColumn(
         template_name="archiv/quickedit.html",
         orderable=False,
         verbose_name="Edit/Delete",
@@ -126,9 +122,8 @@ class KeyWordTable(tables.Table):
 
 
 class OrtTable(tables.Table):
-
     id = tables.LinkColumn(verbose_name="ID")
-    quick_edit = tables.tables.columns.TemplateColumn(
+    quick_edit = tables.columns.TemplateColumn(
         template_name="archiv/quickedit.html",
         orderable=False,
         verbose_name="Edit/Delete",
@@ -141,9 +136,8 @@ class OrtTable(tables.Table):
 
 
 class StelleTable(tables.Table):
-
     id = tables.LinkColumn(verbose_name="ID")
-    quick_edit = tables.tables.columns.TemplateColumn(
+    quick_edit = tables.columns.TemplateColumn(
         template_name="archiv/quickedit.html",
         orderable=False,
         verbose_name="Edit/Delete",
@@ -158,9 +152,8 @@ class StelleTable(tables.Table):
 
 
 class TextTable(tables.Table):
-
     id = tables.LinkColumn(verbose_name="ID")
-    quick_edit = tables.tables.columns.TemplateColumn(
+    quick_edit = tables.columns.TemplateColumn(
         template_name="archiv/quickedit.html",
         orderable=False,
         verbose_name="Edit/Delete",
@@ -176,7 +169,7 @@ class TextTable(tables.Table):
 
 class EventTable(tables.Table):
     id = tables.LinkColumn(verbose_name="ID")
-    quick_edit = tables.tables.columns.TemplateColumn(
+    quick_edit = tables.columns.TemplateColumn(
         template_name="archiv/quickedit.html",
         orderable=False,
         verbose_name="Edit/Delete",
