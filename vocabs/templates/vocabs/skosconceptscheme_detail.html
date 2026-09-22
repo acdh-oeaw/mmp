@@ -1,0 +1,289 @@
+{% extends "webpage/base.html" %}
+{% load mptt_tags %}
+{% block content %}
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-4">
+    <div class="card">
+        <div class="card-header">
+        <h2>{{object}}
+        {% if user.is_authenticated %}
+            <a class ="btn btn-outline-secondary"  href="{% url 'vocabs:skosconcept_create' %}?scheme={{object.id}}">Add Concept</a>
+            <a class ="btn btn-outline-secondary"  href="{% url 'vocabs:skoscollection_create' %}?scheme={{object.id}}">Add Collection</a>
+        {% endif %}</h2>
+        </div>
+        <div class="card-body">
+            <!-- Hierarchy -->
+            {% if object.has_concepts.all %}
+           
+            {% for concept,structure in object.has_concepts.all|tree_info %}
+            {% if structure.new_level %}<ul><li>{% else %}</li><li>{% endif %}
+            <a href="{{ concept.get_absolute_url }}">
+            {% if concept.needs_review == True %}
+            {{ concept.pref_label }} <b style="color:red;" title="Needs review"> !</b>
+            {% else %}
+            {{ concept.pref_label }}
+            {% endif %}
+            </a>
+            {% for level in structure.closed_levels %}</li></ul>{% endfor %}
+            {% endfor %}
+
+            {% else %}
+            <p>No concepts in this Concept Scheme</p>
+
+            {% endif %}
+            <!-- Hierarchy END -->    
+        </div>
+    </div>
+</div>
+<div class="col-md-8">
+    <div class="card">
+        <div class="card-header">
+            <h2 style="text-align: center;">
+                <small>skos:ConceptScheme</small> {{ object }}
+                {% if user.is_authenticated %}
+                    <small>
+                        <a href="{% url 'vocabs:skosconceptscheme_update' pk=object.id %}">
+                            <i data-feather="edit"></i>
+                        </a>
+                    </small>
+                    |
+                    <small>
+                        <a href="{% url 'vocabs:skosconceptscheme_delete' pk=object.id %}">
+                            <i data-feather="delete"></i>
+                        </a>
+                    </small>
+                {% endif %}
+            </h2>
+        </div>
+        <table class="table">
+        {% if object.title %}
+        <tr>
+            <th class="w-25">dc:title{% if object.title_lang %} @{{object.title_lang}}{% endif %}</th>
+            <td>{{object.title}}</td>
+        </tr>
+        {% endif %}
+
+        <!--for inline added titles-->
+        {% if object.has_titles %}
+        {% for title in object.has_titles.all %}
+        <tr>
+            <th>dc:title @{{title.language}}</th>
+            <td>{{title.name}}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        <!--end-->
+
+        {% if object.identifier %}
+        <tr>
+            <th class="w-25">identifier</th>
+            <td>{{object.identifier}}</td>
+        </tr>
+        {% endif %}
+        {% if object.creator %}
+        <tr>
+        <th class="w-25">dc:creator</th>
+        <td>
+        {% for creator in object.creator_as_list %}
+        <li>{{creator}}</li>
+        {% endfor %}
+        </td>
+        </tr>
+        {% endif %}
+        {% if object.contributor %}
+        <tr>
+        <th class="w-25">dc:contributor</th>
+        <td>
+        {% for contributor in object.contributor_as_list %}
+        <li>{{contributor}}</li>
+        {% endfor %}
+        </td>
+        </tr>
+        {% endif %}
+
+        <!--for inline added descriptions-->
+        {% if object.has_descriptions %}
+        {% for desc in object.has_descriptions.all %}
+        <tr>
+            <th>dc:description @{{desc.language}}</th>
+            <td>{{desc.name}}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        <!--end-->
+
+        {% if object.language %}
+        <tr>
+        <th class="w-25">dc:language</th>
+        <td>
+        {% for language in object.language_as_list %}
+        <li>{{language}}</li>
+        {% endfor %}
+        </td>
+        </tr>
+        {% endif %}
+
+        {% if object.subject %}
+        <tr>
+        <th class="w-25">dc:subject</th>
+        <td>
+        {% for subject in object.subject_as_list %}
+        <li>{{subject}}</li>
+        {% endfor %}
+        </td>
+        </tr>
+        {% endif %}
+
+        {% if object.version %}
+        <tr>
+            <th>version</th>
+            <td>{{object.version}}</td>
+        </tr>
+        {% endif %}
+
+        {% if object.publisher %}
+        <tr>
+            <th>dc:publisher</th>
+            <td>{{object.publisher}}</td>
+        </tr>
+        {% endif %}
+
+        {% if object.license %}
+        <tr>
+            <th>dct:license</th>
+            <td>{{object.license}}</td>
+        </tr>
+        {% endif %}
+
+        {% if object.owner %}
+        <tr>
+            <th>owner</th>
+            <td>{{object.owner}}</td>
+        </tr>
+        {% endif %}
+
+        {% if object.relation %}
+        <tr>
+            <th>dc:relation</th>
+            <td>{{object.relation}}</td>
+        </tr>
+        {% endif %}
+
+        {% if object.coverage %}
+        <tr>
+        <th class="w-25">dc:coverage</th>
+        <td>
+        {% for coverage in object.coverage_as_list %}
+        <li>{{coverage}}</li>
+        {% endfor %}
+        </td>
+        </tr>
+        {% endif %}
+        <!--for inline added sources-->
+        {% if object.has_sources %}
+        {% for source in object.has_sources.all %}
+        <tr>
+            <th>dc:source @{{source.language}}</th>
+            <td>{{source.name}}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+        <!--end-->
+        {% if object.legacy_id %}
+        <tr>
+            <th>legacy ID</th>
+            <td>{{object.legacy_id}}</td>
+        </tr>
+        {% endif %}
+        {% if object.has_collections.all %}
+         <tr>
+            <th>collections ({{ object.has_collections.all|length }})</th>
+            <td>
+                {% for collection in object.has_collections.all %}
+                <li><a href="{{ collection.get_absolute_url }}">{{collection}}</a></li>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endif %}
+        {% if object.has_concepts.all %}
+         <tr>
+            <th>number of concepts</th>
+            <td>{{ object.has_concepts.all|length }}</td>
+        </tr>
+        {% endif %}
+        {% if object.date_created %}
+         <tr>
+            <th>dct:created</th>
+            <td>{{object.date_created}}</td>
+        </tr>
+        {% endif %}
+        {% if object.date_modified %}
+         <tr>
+            <th>dct:modified</th>
+            <td>{{object.date_modified}}</td>
+        </tr>
+        {% endif %}
+        {% if object.date_issued %}
+         <tr>
+            <th>dct:issued</th>
+            <td>{{object.date_issued}}</td>
+        </tr>
+        {% endif %}
+        {% if user.is_authenticated %}
+        {% if object.created_by %}
+         <tr>
+            <th>created by</th>
+            <td>{{object.created_by}}</td>
+        </tr>
+        {% endif %}
+
+        {% if object.curator.all %}
+         <tr>
+            <th>curator(s)</th>
+            <td>
+                {% for curator in object.curator.all %}
+                <li>{{curator}}</li>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endif %}
+        {% endif %}
+        {% if object.has_concepts.all %}
+        <tr>
+            <th>download</th>
+            <td>
+                <li><a href="{% url 'vocabs:vocabs-download' %}?scheme={{object.id}}">RDF/XML</a></li>
+                <li><a href="{% url 'vocabs:vocabs-download' %}?format=turtle&scheme={{object.id}}">Turtle</a></li>
+            </td>
+        </tr>
+        {% endif %}
+        
+        </table>
+        <!--change history collapse button-->
+        {% if user.is_authenticated %}
+        {% if history %}
+        <div class="col-md-12" style="margin-bottom: 20px;">
+        <button class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#changeHistory" aria-expanded="false" aria-controls="changeHistory" style="margin-bottom: 20px;">
+        Change history
+        </button>
+        <div class="collapse" id="changeHistory">
+           {% for x in history %}
+            <li>
+            {% if forloop.last %}
+            {{ x.revision.date_created }} created by {{ x.revision.user }}
+            {% else %}
+            {{ x.revision.date_created }} changed by {{ x.revision.user }}
+            {% endif %}
+           </li>
+           {% endfor %}
+        </div>
+        </div>
+        {% endif %}
+        {% endif %}
+        <!--change history ends here-->
+    </div>
+    </div>
+</div><!--row ends-->
+</div>
+{% endblock %}
