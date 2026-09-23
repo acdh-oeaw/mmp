@@ -1,18 +1,18 @@
-from django.core.exceptions import ValidationError
-from django.db.utils import IntegrityError
-from django.test import TestCase
 from django.contrib.auth.models import User
+from django.test import TestCase
 
+from ..models import SkosCollection, SkosConcept, SkosConceptScheme
 from .constants import *
-from ..models import SkosConceptScheme, SkosCollection, SkosConcept
 
 
 class ConceptSchemeTest(TestCase):
-    """ Test module for SkosConceptScheme model """
+    """Test module for SkosConceptScheme model"""
 
     def setUp(self):
         self.user = User.objects.create_user(**USER)
-        self.concept_scheme = SkosConceptScheme.objects.create(**concept_scheme(self.user))
+        self.concept_scheme = SkosConceptScheme.objects.create(
+            **concept_scheme(self.user)
+        )
 
     def test_create(self):
         concept_scheme = SkosConceptScheme.objects.get(title="Test Concept Scheme")
@@ -21,12 +21,16 @@ class ConceptSchemeTest(TestCase):
 
 
 class CollectionTest(TestCase):
-    """ Test module for SkosCollection model """
+    """Test module for SkosCollection model"""
 
     def setUp(self):
         self.user = User.objects.create_user(**USER)
-        self.concept_scheme = SkosConceptScheme.objects.create(**concept_scheme(self.user))
-        self.collection = SkosCollection.objects.create(**collection(self.concept_scheme, self.user))
+        self.concept_scheme = SkosConceptScheme.objects.create(
+            **concept_scheme(self.user)
+        )
+        self.collection = SkosCollection.objects.create(
+            **collection(self.concept_scheme, self.user)
+        )
 
     def test_create(self):
         collection = SkosCollection.objects.get(name="Test Collection")
@@ -35,13 +39,19 @@ class CollectionTest(TestCase):
 
 
 class ConceptTest(TestCase):
-    """ Test module for SkosConcept model """
+    """Test module for SkosConcept model"""
 
     def setUp(self):
         self.user = User.objects.create_user(**USER)
-        self.concept_scheme = SkosConceptScheme.objects.create(**concept_scheme(self.user))
-        self.collection = SkosCollection.objects.create(**collection(self.concept_scheme, self.user))
-        self.concept = SkosConcept.objects.create(**concept(self.concept_scheme, "Concept 1", self.user))
+        self.concept_scheme = SkosConceptScheme.objects.create(
+            **concept_scheme(self.user)
+        )
+        self.collection = SkosCollection.objects.create(
+            **collection(self.concept_scheme, self.user)
+        )
+        self.concept = SkosConcept.objects.create(
+            **concept(self.concept_scheme, "Concept 1", self.user)
+        )
 
     def test_create(self):
         concept_one = SkosConcept.objects.get(pref_label="Concept 1")

@@ -4,11 +4,11 @@ from rest_framework import routers
 
 # from rest_framework.documentation import include_docs_urls
 from rest_framework.schemas import get_schema_view
-from vocabs import api_views
 
 from archiv import api_views as archiv_api_views
 from layers import api_views as layers_api_views
 from topics import api_views as topics_api_views
+from vocabs import api_views
 
 router = routers.DefaultRouter()
 router.register(r"skosconceptschemes", api_views.SkosConceptSchemeViewSet)
@@ -63,7 +63,6 @@ urlpatterns = [
     path("ac/", include("generic_ac.urls", namespace="generic-ac")),
     path("archiv/", include("archiv.urls", namespace="archiv")),
     path("archiv-ac/", include("archiv.dal_urls", namespace="archiv-ac")),
-    path("vocabs/", include("vocabs.urls", namespace="vocabs")),
     path("vocabs-ac/", include("vocabs.dal_urls", namespace="vocabs-ac")),
     path("", include("webpage.urls", namespace="webpage")),
     path("ckeditor/", include("ckeditor_uploader.urls")),
