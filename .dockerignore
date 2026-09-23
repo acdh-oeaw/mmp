@@ -27,3 +27,7 @@ server.py
 .coverage
 /htmlcov
 /staticfiles
+.venv/
+env.secret
+.vscode/
+.ruff_cache/
