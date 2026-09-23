@@ -4,16 +4,21 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('story_map', '0001_initial'),
-        ('archiv', '0027_ort_coords'),
+        ("story_map", "0001_initial"),
+        ("archiv", "0027_ort_coords"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='usecase',
-            name='knightlab_stoy_map',
-            field=models.ManyToManyField(blank=True, help_text='Knightlab Story Map', related_name='has_use_case', to='story_map.Story', verbose_name='Knightlab Story Map'),
+            model_name="usecase",
+            name="knightlab_stoy_map",
+            field=models.ManyToManyField(
+                blank=True,
+                help_text="Knightlab Story Map",
+                related_name="has_use_case",
+                to="story_map.Story",
+                verbose_name="Knightlab Story Map",
+            ),
         ),
     ]

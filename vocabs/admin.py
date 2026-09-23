@@ -1,21 +1,22 @@
 from django.contrib import admin
-from .models import *
-from reversion.admin import VersionAdmin
 from mptt.admin import MPTTModelAdmin
+from reversion.admin import VersionAdmin
+
+from .models import *
 
 
 # With object permissions support
 @admin.register(SkosConcept)
 class SkosConceptAdmin(MPTTModelAdmin, VersionAdmin):
-	pass
+    pass
 
 
 class SkosCollectionAdmin(VersionAdmin):
-	pass
+    pass
 
 
 class SkosConceptSchemeAdmin(VersionAdmin):
-	pass
+    pass
 
 
 admin.site.register(SkosCollection, SkosCollectionAdmin)

@@ -4,15 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0020_text_not_after'),
+        ("archiv", "0020_text_not_after"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='stelle',
-            name='lemmata',
-            field=models.TextField(blank=True, help_text='A lemmatized version of the quote', null=True, verbose_name='A lemmatized version of the quote'),
+            model_name="stelle",
+            name="lemmata",
+            field=models.TextField(
+                blank=True,
+                help_text="A lemmatized version of the quote",
+                null=True,
+                verbose_name="A lemmatized version of the quote",
+            ),
         ),
     ]

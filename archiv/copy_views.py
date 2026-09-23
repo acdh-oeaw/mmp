@@ -1,6 +1,6 @@
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect
-from django.contrib.auth.decorators import login_required
 
 from archiv.models import SpatialCoverage, Stelle
 
@@ -8,13 +8,13 @@ from archiv.models import SpatialCoverage, Stelle
 @login_required
 def copy_beleg(request):
     try:
-        current_id = request.GET['current-id']
+        current_id = request.GET["current-id"]
     except KeyError:
-        return redirect('/')
+        return redirect("/")
     try:
         item = SpatialCoverage.objects.get(id=current_id)
-    except (ObjectDoesNotExist, ValueError):
-        return redirect('/')
+    except ObjectDoesNotExist, ValueError:
+        return redirect("/")
     stellen = item.stelle.all()
     item.id = None
     item.kommentar = f"###KOPIE### {item.kommentar} ###KOPIE### "
@@ -26,13 +26,13 @@ def copy_beleg(request):
 @login_required
 def copy_stelle(request):
     try:
-        current_id = request.GET['current-id']
+        current_id = request.GET["current-id"]
     except KeyError:
-        return redirect('/')
+        return redirect("/")
     try:
         item = Stelle.objects.get(id=current_id)
-    except (ObjectDoesNotExist, ValueError):
-        return redirect('/')
+    except ObjectDoesNotExist, ValueError:
+        return redirect("/")
     use_case = item.use_case.all()
     item.id = None
     item.zitat = "###KOPIE###"

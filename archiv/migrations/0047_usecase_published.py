@@ -4,15 +4,18 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0046_remove_stelle_ort'),
+        ("archiv", "0046_remove_stelle_ort"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='usecase',
-            name='published',
-            field=models.BooleanField(default=False, help_text='True if the use case should be presented in the frontend, false if not', verbose_name='Published'),
+            model_name="usecase",
+            name="published",
+            field=models.BooleanField(
+                default=False,
+                help_text="True if the use case should be presented in the frontend, false if not",
+                verbose_name="Published",
+            ),
         ),
     ]

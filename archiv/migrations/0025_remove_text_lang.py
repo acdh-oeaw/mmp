@@ -4,14 +4,13 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0024_alter_stelle_lemmata'),
+        ("archiv", "0024_alter_stelle_lemmata"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='text',
-            name='lang',
+            model_name="text",
+            name="lang",
         ),
     ]

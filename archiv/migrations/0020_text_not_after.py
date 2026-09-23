@@ -4,15 +4,16 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0019_auto_20210720_1109'),
+        ("archiv", "0019_auto_20210720_1109"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='text',
-            name='not_after',
-            field=models.IntegerField(blank=True, help_text='YYY or YYYY', null=True, verbose_name='not after'),
+            model_name="text",
+            name="not_after",
+            field=models.IntegerField(
+                blank=True, help_text="YYY or YYYY", null=True, verbose_name="not after"
+            ),
         ),
     ]

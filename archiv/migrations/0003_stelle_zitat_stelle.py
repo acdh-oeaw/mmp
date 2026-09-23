@@ -4,15 +4,20 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0002_auto_20210218_0759'),
+        ("archiv", "0002_auto_20210218_0759"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='stelle',
-            name='zitat_stelle',
-            field=models.CharField(blank=True, help_text='z.B. Seitenangaben', max_length=250, null=True, verbose_name='Zitat Stelle'),
+            model_name="stelle",
+            name="zitat_stelle",
+            field=models.CharField(
+                blank=True,
+                help_text="z.B. Seitenangaben",
+                max_length=250,
+                null=True,
+                verbose_name="Zitat Stelle",
+            ),
         ),
     ]

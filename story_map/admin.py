@@ -1,5 +1,6 @@
 from django.contrib import admin
-from story_map.models import Story, Slide
+
+from story_map.models import Slide, Story
 
 
 @admin.register(Slide)
@@ -11,11 +12,9 @@ class RecogitoAdmin(admin.ModelAdmin):
         "text_text",
         "location_lat",
         "location_lng",
-        "media_url"
+        "media_url",
     )
-    list_filter = (
-        "story",
-    )
+    list_filter = ("story",)
 
 
 @admin.register(Story)

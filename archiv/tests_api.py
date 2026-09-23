@@ -1,8 +1,8 @@
-from django.test import TestCase, Client
-from django.urls import reverse
 from django.conf import settings
-from generic_ac.urls import urlpatterns
+from django.test import Client, TestCase
+from django.urls import reverse
 
+from generic_ac.urls import urlpatterns
 
 client = Client()
 

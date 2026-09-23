@@ -28,7 +28,8 @@ class GeoJsonLayer(models.Model):
         arche_prop="hasTitle",
     )
     description = models.TextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Description",
         help_text="Short Description of the Use Case",
     ).set_extra(
@@ -41,9 +42,8 @@ class GeoJsonLayer(models.Model):
     )
 
     class Meta:
-
         ordering = [
-            'title',
+            "title",
         ]
         verbose_name = "GeoJson Layer"
 

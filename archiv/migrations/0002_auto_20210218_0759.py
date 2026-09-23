@@ -4,20 +4,29 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0001_initial'),
+        ("archiv", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='autor',
-            name='gnd_id',
-            field=models.CharField(blank=True, help_text='z.B. http://d-nb.info/gnd/118650130', max_length=250, verbose_name='GND ID'),
+            model_name="autor",
+            name="gnd_id",
+            field=models.CharField(
+                blank=True,
+                help_text="z.B. http://d-nb.info/gnd/118650130",
+                max_length=250,
+                verbose_name="GND ID",
+            ),
         ),
         migrations.AddField(
-            model_name='ort',
-            name='norm_id',
-            field=models.CharField(blank=True, help_text="z.B. 'https://gazetteer.dainst.org/place/2070134',            https://www.geonames.org/2772400 oder            https://pleiades.stoa.org/places/857050\n        ", max_length=250, verbose_name='Norm-ID'),
+            model_name="ort",
+            name="norm_id",
+            field=models.CharField(
+                blank=True,
+                help_text="z.B. 'https://gazetteer.dainst.org/place/2070134',            https://www.geonames.org/2772400 oder            https://pleiades.stoa.org/places/857050\n        ",
+                max_length=250,
+                verbose_name="Norm-ID",
+            ),
         ),
     ]

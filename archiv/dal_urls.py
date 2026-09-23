@@ -1,56 +1,41 @@
 from django.urls import path
+
 from . import dal_views
 
-app_name = 'archiv'
+app_name = "archiv"
 urlpatterns = [
+    path("autor-autocomplete/", dal_views.AutorAC.as_view(), name="autor-autocomplete"),
     path(
-        'autor-autocomplete/',
-        dal_views.AutorAC.as_view(),
-        name='autor-autocomplete'
-    ),
-    path(
-        'keyword-autocomplete/',
+        "keyword-autocomplete/",
         dal_views.KeyWordAC.as_view(),
-        name='keyword-autocomplete'
+        name="keyword-autocomplete",
     ),
     path(
-        'schlagwort-autocomplete/',
+        "schlagwort-autocomplete/",
         dal_views.Schlagwort.as_view(),
-        name='schlagwort-autocomplete'
+        name="schlagwort-autocomplete",
     ),
     path(
-        'ethnonym-autocomplete/',
+        "ethnonym-autocomplete/",
         dal_views.Ethnonym.as_view(),
-        name='ethnonym-autocomplete'
+        name="ethnonym-autocomplete",
     ),
     path(
-        'region-autocomplete/',
-        dal_views.Region.as_view(),
-        name='retion-autocomplete'
+        "region-autocomplete/", dal_views.Region.as_view(), name="retion-autocomplete"
     ),
     path(
-        'eigenname-autocomplete/',
+        "eigenname-autocomplete/",
         dal_views.Eigenname.as_view(),
-        name='eigenname-autocomplete'
+        name="eigenname-autocomplete",
     ),
+    path("ort-autocomplete/", dal_views.OrtAC.as_view(), name="ort-autocomplete"),
     path(
-        'ort-autocomplete/',
-        dal_views.OrtAC.as_view(),
-        name='ort-autocomplete'
+        "stelle-autocomplete/", dal_views.StelleAC.as_view(), name="stelle-autocomplete"
     ),
+    path("text-autocomplete/", dal_views.TextAC.as_view(), name="text-autocomplete"),
     path(
-        'stelle-autocomplete/',
-        dal_views.StelleAC.as_view(),
-        name='stelle-autocomplete'
-    ),
-    path(
-        'text-autocomplete/',
-        dal_views.TextAC.as_view(),
-        name='text-autocomplete'
-    ),
-    path(
-        'usecase-autocomplete/',
+        "usecase-autocomplete/",
         dal_views.UseCaseAC.as_view(),
-        name='usecase-autocomplete'
+        name="usecase-autocomplete",
     ),
 ]

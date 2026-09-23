@@ -4,14 +4,13 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0043_rename_show_layer_usecase_show_labels'),
+        ("archiv", "0043_rename_show_layer_usecase_show_labels"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='spatialcoverage',
-            name='show_labels',
+            model_name="spatialcoverage",
+            name="show_labels",
         ),
     ]

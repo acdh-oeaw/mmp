@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('topics', '0003_topic_word'),
+        ("topics", "0003_topic_word"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='topic',
-            name='topic_index',
+            model_name="topic",
+            name="topic_index",
             field=models.IntegerField(blank=True, null=True),
         ),
     ]

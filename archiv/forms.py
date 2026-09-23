@@ -5,6 +5,7 @@ from crispy_forms.layout import Fieldset, Layout, Submit
 from dal import autocomplete
 from django import forms
 from leaflet.forms.widgets import LeafletWidget
+
 from vocabs.models import SkosConcept
 
 from .models import Autor, Event, KeyWord, Ort, SpatialCoverage, Stelle, Text, UseCase

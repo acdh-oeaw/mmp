@@ -4,23 +4,38 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0004_spatialcoverage'),
+        ("archiv", "0004_spatialcoverage"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='spatialcoverage',
-            options={'ordering': ['id'], 'verbose_name': 'Spatial Coverage'},
+            name="spatialcoverage",
+            options={"ordering": ["id"], "verbose_name": "Spatial Coverage"},
         ),
         migrations.RemoveField(
-            model_name='spatialcoverage',
-            name='exactish_geom',
+            model_name="spatialcoverage",
+            name="exactish_geom",
         ),
         migrations.AddField(
-            model_name='spatialcoverage',
-            name='fuzzyness',
-            field=models.IntegerField(blank=True, choices=[(1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7), (8, 8), (9, 9)], default=1, help_text='1 sehr sicher, 10 sehr unsicher', verbose_name='Sicherheitsindikator'),
+            model_name="spatialcoverage",
+            name="fuzzyness",
+            field=models.IntegerField(
+                blank=True,
+                choices=[
+                    (1, 1),
+                    (2, 2),
+                    (3, 3),
+                    (4, 4),
+                    (5, 5),
+                    (6, 6),
+                    (7, 7),
+                    (8, 8),
+                    (9, 9),
+                ],
+                default=1,
+                help_text="1 sehr sicher, 10 sehr unsicher",
+                verbose_name="Sicherheitsindikator",
+            ),
         ),
     ]

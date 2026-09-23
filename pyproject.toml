@@ -27,3 +27,8 @@ dependencies = [
 
 [tool.ruff.lint]
 ignore = ["RUF012", "BLE001", "TRY002", "EXE001"]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.16.8",
+]

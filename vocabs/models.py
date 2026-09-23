@@ -1,17 +1,14 @@
 import reversion
-
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
-from django.contrib.auth.models import User
-from django.dispatch import receiver
 from mptt.models import MPTTModel, TreeForeignKey
 
-
 try:
-    notation_for_uri = settings.VOCABS_SETTINGS['notation_for_uri']
+    notation_for_uri = settings.VOCABS_SETTINGS["notation_for_uri"]
 except KeyError:
     notation_for_uri = False
 
@@ -19,34 +16,34 @@ except KeyError:
 DEFAULT_URI = "https://vocabs.acdh.oeaw.ac.at/"
 
 try:
-    DEFAULT_NAMESPACE = settings.VOCABS_SETTINGS['default_nsgg']
+    DEFAULT_NAMESPACE = settings.VOCABS_SETTINGS["default_nsgg"]
 except KeyError:
     DEFAULT_NAMESPACE = "https://vocabs.acdh.oeaw.ac.at/provide-some-namespace"
 
 try:
-    DEFAULT_PREFIX = settings.VOCABS_SETTINGS['default_prefix']
+    DEFAULT_PREFIX = settings.VOCABS_SETTINGS["default_prefix"]
 except KeyError:
     DEFAULT_PREFIX = "provideSome"
 
 try:
-    DEFAULT_LANG = settings.VOCABS_SETTINGS['default_lang']
+    DEFAULT_LANG = settings.VOCABS_SETTINGS["default_lang"]
 except KeyError:
     DEFAULT_LANG = "en"
 
 LABEL_TYPES = (
-    ('prefLabel', 'prefLabel'),
-    ('altLabel', 'altLabel'),
-    ('hiddenLabel', 'hiddenLabel'),
+    ("prefLabel", "prefLabel"),
+    ("altLabel", "altLabel"),
+    ("hiddenLabel", "hiddenLabel"),
 )
 
 NOTE_TYPES = (
-    ('note', 'note'),
-    ('scopeNote', 'scopeNote'),
-    ('changeNote', 'changeNote'),
-    ('editorialNote', 'editorialNote'),
-    ('historyNote', 'historyNote'),
-    ('definition', 'definition'),
-    ('example', 'example'),
+    ("note", "note"),
+    ("scopeNote", "scopeNote"),
+    ("changeNote", "changeNote"),
+    ("editorialNote", "editorialNote"),
+    ("historyNote", "historyNote"),
+    ("definition", "definition"),
+    ("example", "example"),
 )
 
 
@@ -55,6 +52,7 @@ NOTE_TYPES = (
 # SkosConceptScheme
 #
 ######################################################################
+
 
 @reversion.register()
 class SkosConceptScheme(models.Model):
@@ -66,94 +64,101 @@ class SkosConceptScheme(models.Model):
     Miles, Alistair, and Sean Bechhofer. "SKOS simple knowledge
     organization system reference. W3C recommendation (2009)."
     """
+
     title = models.CharField(
         max_length=300,
         help_text="Title  for new concept scheme",
-        verbose_name="dc:title"
+        verbose_name="dc:title",
     )
     title_lang = models.CharField(
-        max_length=3, blank=True,
-        verbose_name="dc:title language", default=DEFAULT_LANG,
-        help_text="Language of title given above"
+        max_length=3,
+        blank=True,
+        verbose_name="dc:title language",
+        default=DEFAULT_LANG,
+        help_text="Language of title given above",
     )
     identifier = models.URLField(
         blank=True, help_text="URI to unambiguously identify current Concept Scheme"
     )
     creator = models.TextField(
-        blank=True, verbose_name="dc:creator",
+        blank=True,
+        verbose_name="dc:creator",
         help_text="Person or organisation primarily responsible for making current concept scheme<br>"
-                  "If more than one list all using a semicolon ;"
+        "If more than one list all using a semicolon ;",
     )
     contributor = models.TextField(
-        blank=True, verbose_name="dc:contributor",
+        blank=True,
+        verbose_name="dc:contributor",
         help_text="Person or organisation that made contributions to the vocabulary<br>"
-                  "If more than one list all using a semicolon ;"
+        "If more than one list all using a semicolon ;",
     )
     language = models.TextField(
-        blank=True, verbose_name="dc:language",
+        blank=True,
+        verbose_name="dc:language",
         help_text="Language(s) used in concept scheme<br>"
-                  "If more than one list all using a semicolon ;"
+        "If more than one list all using a semicolon ;",
     )
     subject = models.TextField(
-        blank=True, verbose_name="dc:subject",
+        blank=True,
+        verbose_name="dc:subject",
         help_text="The subject of the vocabulary<br>"
-                  "If more than one list all using a semicolon ;"
+        "If more than one list all using a semicolon ;",
     )
-    version = models.CharField(
-        max_length=300, blank=True,
-        help_text="Current version"
-    )
+    version = models.CharField(max_length=300, blank=True, help_text="Current version")
     publisher = models.CharField(
-        max_length=300, blank=True,
+        max_length=300,
+        blank=True,
         help_text="Organisation responsible for making the vocabulary available",
-        verbose_name="dc:publisher"
+        verbose_name="dc:publisher",
     )
     license = models.CharField(
-        max_length=300, blank=True,
+        max_length=300,
+        blank=True,
         verbose_name="dct:license",
-        help_text="Information about license applied to the vocabulary"
+        help_text="Information about license applied to the vocabulary",
     )
     owner = models.CharField(
-        max_length=300, blank=True,
-        help_text="Person or organisation that owns the rights for the vocabulary"
+        max_length=300,
+        blank=True,
+        help_text="Person or organisation that owns the rights for the vocabulary",
     )
     relation = models.URLField(
-        blank=True, verbose_name="dc:relation",
+        blank=True,
+        verbose_name="dc:relation",
         help_text="Related resource or project<br>"
-                  "E.g. in case of relation to a project, add link to a project website"
+        "E.g. in case of relation to a project, add link to a project website",
     )
     coverage = models.TextField(
-        blank=True, verbose_name="dc:coverage",
+        blank=True,
+        verbose_name="dc:coverage",
         help_text="Spatial or temporal frame that the vocabulary relates to<br>"
-                  "If more than one list all using a semicolon ;"
+        "If more than one list all using a semicolon ;",
     )
-    legacy_id = models.CharField(
-        max_length=200, blank=True
-    )
-    date_created = models.DateTimeField(
-        editable=False, default=timezone.now
-    )
-    date_modified = models.DateTimeField(
-        editable=False, default=timezone.now
-    )
+    legacy_id = models.CharField(max_length=200, blank=True)
+    date_created = models.DateTimeField(editable=False, default=timezone.now)
+    date_modified = models.DateTimeField(editable=False, default=timezone.now)
     date_issued = models.DateField(
-        blank=True, null=True,
-        help_text="Date of official publication of this concept scheme"
+        blank=True,
+        null=True,
+        help_text="Date of official publication of this concept scheme",
     )
     created_by = models.ForeignKey(
-        User, related_name="skos_cs_created",
-        blank=True, null=True,
-        on_delete=models.SET_NULL
+        User,
+        related_name="skos_cs_created",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
     )
     curator = models.ManyToManyField(
-        User, related_name="skos_cs_curated",
+        User,
+        related_name="skos_cs_curated",
         blank=True,
-        help_text="The selected user(s) will be able to view and edit this Concept Scheme"
+        help_text="The selected user(s) will be able to view and edit this Concept Scheme",
     )
 
     class Meta:
-        ordering = ['id']
-        verbose_name = 'Concept Scheme'
+        ordering = ["id"]
+        verbose_name = "Concept Scheme"
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -162,33 +167,33 @@ class SkosConceptScheme(models.Model):
 
         if not self.identifier:
             self.identifier = DEFAULT_URI + slugify(self.title, allow_unicode=True)
-        super(SkosConceptScheme, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def creator_as_list(self):
-        return self.creator.split(';')
+        return self.creator.split(";")
 
     def contributor_as_list(self):
-        return self.contributor.split(';')
+        return self.contributor.split(";")
 
     def language_as_list(self):
-        return self.language.split(';')
+        return self.language.split(";")
 
     def subject_as_list(self):
-        return self.subject.split(';')
+        return self.subject.split(";")
 
     def coverage_as_list(self):
-        return self.coverage.split(';')
+        return self.coverage.split(";")
 
     @classmethod
     def get_listview_url(self):
-        return reverse('vocabs:browse_schemes')
+        return reverse("vocabs:browse_schemes")
 
     @classmethod
     def get_createview_url(self):
-        return reverse('vocabs:skosconceptscheme_create')
+        return reverse("vocabs:skosconceptscheme_create")
 
     def get_absolute_url(self):
-        return reverse('vocabs:skosconceptscheme_detail', kwargs={'pk': self.id})
+        return reverse("vocabs:skosconceptscheme_detail", kwargs={"pk": self.id})
 
     def get_next(self):
         next = SkosConceptScheme.objects.filter(id__gt=self.id)
@@ -197,7 +202,7 @@ class SkosConceptScheme(models.Model):
         return False
 
     def get_prev(self):
-        prev = SkosConceptScheme.objects.filter(id__lt=self.id).order_by('-id')
+        prev = SkosConceptScheme.objects.filter(id__lt=self.id).order_by("-id")
         if prev:
             return prev.first().id
         return False
@@ -210,29 +215,33 @@ class SkosConceptScheme(models.Model):
 #   Classes  to store titles and descriptions for ConceptScheme
 ######################################################################
 
+
 class ConceptSchemeTitle(models.Model):
     """
     A Class for ConceptScheme titles in other languages.
 
     """
+
     concept_scheme = models.ForeignKey(
         SkosConceptScheme,
         related_name="has_titles",
         verbose_name="skos:ConceptScheme",
         help_text="Which Skos:ConceptScheme current Title belongs to",
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     name = models.CharField(
-        max_length=500, verbose_name="dc:title",
-        help_text="Other title for new concept scheme"
+        max_length=500,
+        verbose_name="dc:title",
+        help_text="Other title for new concept scheme",
     )
     language = models.CharField(
-        max_length=3, verbose_name="dc:title language",
-        help_text="Language of title given above"
+        max_length=3,
+        verbose_name="dc:title language",
+        help_text="Language of title given above",
     )
 
     def __str__(self):
-        return "{}".format(self.name)
+        return f"{self.name}"
 
 
 class ConceptSchemeDescription(models.Model):
@@ -240,20 +249,21 @@ class ConceptSchemeDescription(models.Model):
     A Class for ConceptScheme descriptions in other languages.
 
     """
+
     concept_scheme = models.ForeignKey(
         SkosConceptScheme,
         related_name="has_descriptions",
         verbose_name="skos:ConceptScheme",
         help_text="Which Skos:ConceptScheme current Description belongs to",
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     name = models.TextField(
-        verbose_name="dc:description",
-        help_text="Description of concept scheme"
+        verbose_name="dc:description", help_text="Description of concept scheme"
     )
     language = models.CharField(
-        max_length=3, verbose_name="dc:description language",
-        help_text="Language of description given above"
+        max_length=3,
+        verbose_name="dc:description language",
+        help_text="Language of description given above",
     )
 
     def __str__(self):
@@ -265,24 +275,26 @@ class ConceptSchemeSource(models.Model):
     A Class for ConceptScheme source information.
 
     """
+
     concept_scheme = models.ForeignKey(
         SkosConceptScheme,
         related_name="has_sources",
         verbose_name="skos:ConceptScheme",
         help_text="Which Skos:ConceptScheme current source belongs to",
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     name = models.TextField(
         verbose_name="dc:source",
-        help_text="Verbal description of a concept scheme's source"
+        help_text="Verbal description of a concept scheme's source",
     )
     language = models.CharField(
-        max_length=3, verbose_name="dc:source language",
-        help_text="Language of source given above"
+        max_length=3,
+        verbose_name="dc:source language",
+        help_text="Language of source given above",
     )
 
     def __str__(self):
-        return "{}".format(self.name)
+        return f"{self.name}"
 
 
 ######################################################################
@@ -290,6 +302,7 @@ class ConceptSchemeSource(models.Model):
 # SkosCollection
 #
 ######################################################################
+
 
 @reversion.register()
 class SkosCollection(models.Model):
@@ -303,69 +316,71 @@ class SkosCollection(models.Model):
     organization system reference. W3C recommendation (2009)."
 
     """
+
     name = models.CharField(
-        max_length=300, verbose_name="skos:prefLabel",
-        help_text="Collection label or name"
+        max_length=300,
+        verbose_name="skos:prefLabel",
+        help_text="Collection label or name",
     )
     label_lang = models.CharField(
-        max_length=3, blank=True,
+        max_length=3,
+        blank=True,
         default=DEFAULT_LANG,
         verbose_name="skos:prefLabel language",
-        help_text="Language of preferred label given above"
+        help_text="Language of preferred label given above",
     )
     # relation to SkosConceptScheme to inherit all objects permissions
-    scheme = models.ForeignKey(SkosConceptScheme,
-                               related_name="has_collections",
-                               verbose_name="skos:ConceptScheme",
-                               help_text="Concept scheme that this collection belongs to",
-                               on_delete=models.CASCADE
-                               )
+    scheme = models.ForeignKey(
+        SkosConceptScheme,
+        related_name="has_collections",
+        verbose_name="skos:ConceptScheme",
+        help_text="Concept scheme that this collection belongs to",
+        on_delete=models.CASCADE,
+    )
     creator = models.TextField(
-        blank=True, verbose_name="dc:creator",
+        blank=True,
+        verbose_name="dc:creator",
         help_text="Person or organisation that created this collection<br>"
-                  "If more than one list all using a semicolon ;"
+        "If more than one list all using a semicolon ;",
     )
     contributor = models.TextField(
-        blank=True, verbose_name="dc:contributor",
+        blank=True,
+        verbose_name="dc:contributor",
         help_text="Person or organisation that made contributions to the collection<br>"
-                  "If more than one list all using a semicolon ;"
+        "If more than one list all using a semicolon ;",
     )
-    legacy_id = models.CharField(
-        max_length=200, blank=True
-    )
+    legacy_id = models.CharField(max_length=200, blank=True)
     # meta autosaved fields
-    date_created = models.DateTimeField(
-        editable=False, default=timezone.now
-    )
-    date_modified = models.DateTimeField(
-        editable=False, default=timezone.now
-    )
+    date_created = models.DateTimeField(editable=False, default=timezone.now)
+    date_modified = models.DateTimeField(editable=False, default=timezone.now)
     created_by = models.ForeignKey(
-        User, related_name="skos_collection_created",
-        blank=True, null=True,
-        on_delete=models.SET_NULL
+        User,
+        related_name="skos_collection_created",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
     )
 
     class Meta:
-        ordering = ['id']
-        verbose_name = 'Collection'
+        ordering = ["id"]
+        verbose_name = "Collection"
 
     def save(self, *args, **kwargs):
         if not self.id:
             self.date_created = timezone.now()
         self.date_modified = timezone.now()
-        return super(SkosCollection, self).save(*args, **kwargs)
+        return super().save(*args, **kwargs)
 
     @classmethod
     def get_listview_url(self):
-        return reverse('vocabs:browse_skoscollections')
+        return reverse("vocabs:browse_skoscollections")
 
     @classmethod
     def get_createview_url(self):
-        return reverse('vocabs:skoscollection_create')
+        return reverse("vocabs:skoscollection_create")
 
     def get_absolute_url(self):
-        return reverse('vocabs:skoscollection_detail', kwargs={'pk': self.id})
+        return reverse("vocabs:skoscollection_detail", kwargs={"pk": self.id})
 
     def get_next(self):
         next = SkosCollection.objects.filter(id__gt=self.id)
@@ -374,7 +389,7 @@ class SkosCollection(models.Model):
         return False
 
     def get_prev(self):
-        prev = SkosCollection.objects.filter(id__lt=self.id).order_by('-id')
+        prev = SkosCollection.objects.filter(id__lt=self.id).order_by("-id")
         if prev:
             return prev.first().id
         return False
@@ -383,10 +398,10 @@ class SkosCollection(models.Model):
         return self.name
 
     def creator_as_list(self):
-        return self.creator.split(';')
+        return self.creator.split(";")
 
     def contributor_as_list(self):
-        return self.contributor.split(';')
+        return self.contributor.split(";")
 
 
 ######################################################################
@@ -399,29 +414,32 @@ class CollectionLabel(models.Model):
     A Class for Collection labels/names in other languages.
 
     """
+
     collection = models.ForeignKey(
         SkosCollection,
         related_name="has_labels",
         verbose_name="skos:Collection",
         help_text="Which Skos:Collection current label belongs to",
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     name = models.CharField(
-        max_length=500, verbose_name="label",
-        help_text="Other label for this collection"
+        max_length=500,
+        verbose_name="label",
+        help_text="Other label for this collection",
     )
     language = models.CharField(
-        max_length=3, verbose_name="language",
-        help_text="Language of label given above"
+        max_length=3, verbose_name="language", help_text="Language of label given above"
     )
     label_type = models.CharField(
-        choices=LABEL_TYPES, verbose_name="label type",
-        default='altLabel', max_length=12,
-        help_text="Choose label type"
+        choices=LABEL_TYPES,
+        verbose_name="label type",
+        default="altLabel",
+        max_length=12,
+        help_text="Choose label type",
     )
 
     def __str__(self):
-        return "{}".format(self.name)
+        return f"{self.name}"
 
 
 class CollectionNote(models.Model):
@@ -430,29 +448,31 @@ class CollectionNote(models.Model):
     for general documentation pusposes.
 
     """
+
     collection = models.ForeignKey(
         SkosCollection,
         related_name="has_notes",
         verbose_name="skos:Collection",
         help_text="Which Skos:Collection current documentary note belongs to",
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     name = models.TextField(
         verbose_name="documentary note",
-        help_text="Provide some information about this collection"
+        help_text="Provide some information about this collection",
     )
     language = models.CharField(
-        max_length=3, verbose_name="language",
-        help_text="Language of note given above"
+        max_length=3, verbose_name="language", help_text="Language of note given above"
     )
     note_type = models.CharField(
-        choices=NOTE_TYPES, verbose_name="note type",
-        default='note', max_length=15,
-        help_text="Choose note type"
+        choices=NOTE_TYPES,
+        verbose_name="note type",
+        default="note",
+        max_length=15,
+        help_text="Choose note type",
     )
 
     def __str__(self):
-        return "{}".format(self.name)
+        return f"{self.name}"
 
 
 class CollectionSource(models.Model):
@@ -460,24 +480,26 @@ class CollectionSource(models.Model):
     A Class for Collection source information.
 
     """
+
     collection = models.ForeignKey(
         SkosCollection,
         related_name="has_sources",
         verbose_name="skos:Collection",
         help_text="Which Skos:Collection current source belongs to",
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     name = models.TextField(
         verbose_name="dc:source",
-        help_text="Verbal description of the collection's source"
+        help_text="Verbal description of the collection's source",
     )
     language = models.CharField(
-        max_length=3, verbose_name="language",
-        help_text="Language of source given above"
+        max_length=3,
+        verbose_name="language",
+        help_text="Language of source given above",
     )
 
     def __str__(self):
-        return "{}".format(self.name)
+        return f"{self.name}"
 
 
 ######################################################################
@@ -485,6 +507,7 @@ class CollectionSource(models.Model):
 # SkosConcept
 #
 ######################################################################
+
 
 @reversion.register()
 class SkosConcept(MPTTModel):
@@ -496,16 +519,18 @@ class SkosConcept(MPTTModel):
     Miles, Alistair, and Sean Bechhofer. "SKOS simple knowledge
     organization system reference. W3C recommendation (2009)."
     """
+
     pref_label = models.CharField(
         max_length=300,
         verbose_name="skos:prefLabel",
-        help_text="Preferred label for concept"
+        help_text="Preferred label for concept",
     )
     pref_label_lang = models.CharField(
-        max_length=3, blank=True,
+        max_length=3,
+        blank=True,
         verbose_name="skos:prefLabel language",
         help_text="Language of preferred label given above",
-        default=DEFAULT_LANG
+        default=DEFAULT_LANG,
     )
     # relation to SkosConceptScheme to inherit all objects permissions
     scheme = models.ForeignKey(
@@ -513,94 +538,103 @@ class SkosConcept(MPTTModel):
         verbose_name="skos:inScheme",
         related_name="has_concepts",
         on_delete=models.CASCADE,
-        help_text="Concept scheme to which this concept belongs"
+        help_text="Concept scheme to which this concept belongs",
     )
     top_concept = models.BooleanField(
-        null=True,
-        help_text="Is this concept a top concept of concept scheme?"
+        null=True, help_text="Is this concept a top concept of concept scheme?"
     )
     collection = models.ManyToManyField(
-        SkosCollection, blank=True,
+        SkosCollection,
+        blank=True,
         verbose_name="member of skos:Collection",
         help_text="Collection that this concept is a member of",
         related_name="has_members",
     )
     notation = models.CharField(
-        max_length=300, blank=True,
+        max_length=300,
+        blank=True,
         verbose_name="skos:notation",
         help_text="A notation is a unique string used\
-        to identify the concept in current vocabulary"
+        to identify the concept in current vocabulary",
     )
     broader_concept = TreeForeignKey(
-        'self',
+        "self",
         verbose_name="skos:broader",
-        blank=True, null=True, on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+        on_delete=models.CASCADE,
         related_name="narrower_concepts",
-        help_text="Concept with a broader meaning that this concept inherits from"
+        help_text="Concept with a broader meaning that this concept inherits from",
     )
     ################# semantic relationships via autocomplete #################
     related = models.TextField(
-        blank=True, verbose_name="skos:related",
-        help_text="An associative relationship between two concepts"
+        blank=True,
+        verbose_name="skos:related",
+        help_text="An associative relationship between two concepts",
     )
     broad_match = models.TextField(
-        blank=True, verbose_name="skos:broadMatch",
-        help_text="External concept with a broader meaning"
+        blank=True,
+        verbose_name="skos:broadMatch",
+        help_text="External concept with a broader meaning",
     )
     narrow_match = models.TextField(
-        blank=True, verbose_name="skos:narrowMatch",
-        help_text="External concept with a narrower meaning"
+        blank=True,
+        verbose_name="skos:narrowMatch",
+        help_text="External concept with a narrower meaning",
     )
     exact_match = models.TextField(
-        blank=True, verbose_name="skos:exactMatch",
-        help_text="External concept that can be used interchangeably and has the exact same meaning"
+        blank=True,
+        verbose_name="skos:exactMatch",
+        help_text="External concept that can be used interchangeably and has the exact same meaning",
     )
     related_match = models.TextField(
-        blank=True, verbose_name="skos:relatedMatch",
-        help_text="External concept that has an associative relationship with this concept"
+        blank=True,
+        verbose_name="skos:relatedMatch",
+        help_text="External concept that has an associative relationship with this concept",
     )
     close_match = models.TextField(
-        blank=True, verbose_name="skos:closeMatch",
-        help_text="External concept that has a similar meaning"
+        blank=True,
+        verbose_name="skos:closeMatch",
+        help_text="External concept that has a similar meaning",
     )
     ###########################################################################
     # if using legacy_id as URI change it for URLField
     legacy_id = models.CharField(max_length=200, blank=True)
     creator = models.TextField(
-        blank=True, verbose_name="dc:creator",
+        blank=True,
+        verbose_name="dc:creator",
         help_text="Person or organisation that created this concept<br>"
-                  "If more than one list all using a semicolon ;",
-
+        "If more than one list all using a semicolon ;",
     )
     contributor = models.TextField(
-        blank=True, verbose_name="dc:contributor",
+        blank=True,
+        verbose_name="dc:contributor",
         help_text="Person or organisation that made contributions to this concept<br>"
-                  "If more than one list all using a semicolon ;"
+        "If more than one list all using a semicolon ;",
     )
     needs_review = models.BooleanField(
-        null=True,
-        help_text="Check if this concept needs to be reviewed"
+        null=True, help_text="Check if this concept needs to be reviewed"
     )
     date_created = models.DateTimeField(
-        editable=False, default=timezone.now,
-        verbose_name="dct:created"
+        editable=False, default=timezone.now, verbose_name="dct:created"
     )
     date_modified = models.DateTimeField(
-        editable=False, default=timezone.now,
-        verbose_name="dct:modified"
+        editable=False, default=timezone.now, verbose_name="dct:modified"
     )
     created_by = models.ForeignKey(
-        User, related_name="skos_concept_created",
-        blank=True, null=True,
-        on_delete=models.SET_NULL
+        User,
+        related_name="skos_concept_created",
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
     )
 
     class Meta:
-        verbose_name = 'Concept'
+        verbose_name = "Concept"
 
     class MPTTMeta:
-        order_insertion_by = ['pref_label']
-        parent_attr = 'broader_concept'
+        order_insertion_by = ["pref_label"]
+        parent_attr = "broader_concept"
 
     def get_vocabs_uri(self):
         return "{}{}".format("https://whatever", self.get_absolute_url)
@@ -612,14 +646,14 @@ class SkosConcept(MPTTModel):
             if concepts < 1:
                 self.notation = temp_notation
             else:
-                self.notation = "{}-{}".format(temp_notation, concepts)
+                self.notation = f"{temp_notation}-{concepts}"
         else:
             pass
 
         if not self.id:
             self.date_created = timezone.now()
         self.date_modified = timezone.now()
-        super(SkosConcept, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def create_uri(self):
         mcs = self.scheme.identifier
@@ -634,39 +668,39 @@ class SkosConcept(MPTTModel):
 
     # change for template tag
     def creator_as_list(self):
-        return self.creator.split(';')
+        return self.creator.split(";")
 
     def contributor_as_list(self):
-        return self.contributor.split(';')
+        return self.contributor.split(";")
 
     def broad_match_as_list(self):
-        return self.broad_match.split(',')
+        return self.broad_match.split(",")
 
     def related_as_list(self):
-        return self.related.split(',')
+        return self.related.split(",")
 
     def narrow_match_as_list(self):
-        return self.narrow_match.split(',')
+        return self.narrow_match.split(",")
 
     def exact_match_as_list(self):
-        return self.exact_match.split(',')
+        return self.exact_match.split(",")
 
     def related_match_as_list(self):
-        return self.related_match.split(',')
+        return self.related_match.split(",")
 
     def close_match_as_list(self):
-        return self.close_match.split(',')
+        return self.close_match.split(",")
 
     @classmethod
     def get_listview_url(self):
-        return reverse('vocabs:browse_vocabs')
+        return reverse("vocabs:browse_vocabs")
 
     @classmethod
     def get_createview_url(self):
-        return reverse('vocabs:skosconcept_create')
+        return reverse("vocabs:skosconcept_create")
 
     def get_absolute_url(self):
-        return reverse('vocabs:skosconcept_detail', kwargs={'pk': self.id})
+        return reverse("vocabs:skosconcept_detail", kwargs={"pk": self.id})
 
     def __str__(self):
         return self.pref_label
@@ -682,29 +716,30 @@ class ConceptLabel(models.Model):
     A Class for Concept labels of any type.
 
     """
+
     concept = models.ForeignKey(
         SkosConcept,
         related_name="has_labels",
         verbose_name="skos:Concept",
         help_text="Which Skos:Concept current label belongs to",
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     name = models.CharField(
-        max_length=500, verbose_name="label",
-        help_text="Other label for this concept"
+        max_length=500, verbose_name="label", help_text="Other label for this concept"
     )
     language = models.CharField(
-        max_length=3, verbose_name="language",
-        help_text="Language of label given above"
+        max_length=3, verbose_name="language", help_text="Language of label given above"
     )
     label_type = models.CharField(
-        choices=LABEL_TYPES, verbose_name="label type",
-        default='altLabel', max_length=12,
-        help_text="Choose label type"
+        choices=LABEL_TYPES,
+        verbose_name="label type",
+        default="altLabel",
+        max_length=12,
+        help_text="Choose label type",
     )
 
     def __str__(self):
-        return "{}".format(self.name)
+        return f"{self.name}"
 
 
 class ConceptNote(models.Model):
@@ -713,29 +748,31 @@ class ConceptNote(models.Model):
     for general documentation pusposes.
 
     """
+
     concept = models.ForeignKey(
         SkosConcept,
         related_name="has_notes",
         verbose_name="skos:Concept",
         help_text="Which Skos:Concept current documentary note belongs to",
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     name = models.TextField(
         verbose_name="documentary note",
-        help_text="Provide some information about this concept"
+        help_text="Provide some information about this concept",
     )
     language = models.CharField(
-        max_length=3, verbose_name="language",
-        help_text="Language of note given above"
+        max_length=3, verbose_name="language", help_text="Language of note given above"
     )
     note_type = models.CharField(
-        choices=NOTE_TYPES, verbose_name="note type",
-        default='note', max_length=15,
-        help_text="Choose note type"
+        choices=NOTE_TYPES,
+        verbose_name="note type",
+        default="note",
+        max_length=15,
+        help_text="Choose note type",
     )
 
     def __str__(self):
-        return "{}".format(self.name)
+        return f"{self.name}"
 
 
 class ConceptSource(models.Model):
@@ -743,24 +780,25 @@ class ConceptSource(models.Model):
     A Class for Concept source information.
 
     """
+
     concept = models.ForeignKey(
         SkosConcept,
         related_name="has_sources",
         verbose_name="skos:Concept",
         help_text="Which Skos:Concept current source belongs to",
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     name = models.TextField(
-        verbose_name="dc:source",
-        help_text="Verbal description of the concept's source"
+        verbose_name="dc:source", help_text="Verbal description of the concept's source"
     )
     language = models.CharField(
-        max_length=3, verbose_name="language",
-        help_text="Language of source given above"
+        max_length=3,
+        verbose_name="language",
+        help_text="Language of source given above",
     )
 
     def __str__(self):
-        return "{}".format(self.name)
+        return f"{self.name}"
 
 
 def get_all_children(self, include_self=True):

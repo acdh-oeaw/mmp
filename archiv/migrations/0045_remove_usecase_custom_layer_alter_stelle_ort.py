@@ -4,19 +4,24 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0044_remove_spatialcoverage_show_labels'),
+        ("archiv", "0044_remove_spatialcoverage_show_labels"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='usecase',
-            name='custom_layer',
+            model_name="usecase",
+            name="custom_layer",
         ),
         migrations.AlterField(
-            model_name='stelle',
-            name='ort',
-            field=models.ManyToManyField(blank=True, help_text='Places mentioned in the passage', related_name='rvn_stelle_ort_ort', to='archiv.ort', verbose_name='Place'),
+            model_name="stelle",
+            name="ort",
+            field=models.ManyToManyField(
+                blank=True,
+                help_text="Places mentioned in the passage",
+                related_name="rvn_stelle_ort_ort",
+                to="archiv.ort",
+                verbose_name="Place",
+            ),
         ),
     ]

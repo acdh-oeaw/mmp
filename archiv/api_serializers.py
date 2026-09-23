@@ -1,21 +1,22 @@
 # API serializers for archiv created by appcreator
+from markdownify import markdownify as md
 from rest_framework import serializers
 from rest_framework_gis.serializers import (
     GeoFeatureModelSerializer,
     GeometrySerializerMethodField,
 )
-from markdownify import markdownify as md
+
 from archiv.models import (
     Autor,
+    Event,
     KeyWord,
     Ort,
+    SpatialCoverage,
     Stelle,
     Text,
-    SpatialCoverage,
     UseCase,
-    Event,
 )
-from story_map.models import Story, Slide
+from story_map.models import Slide, Story
 
 
 class EventSerializer(serializers.ModelSerializer):
@@ -137,7 +138,6 @@ class OrtSerializer(serializers.ModelSerializer):
 
 
 class GeoJsonOrtSerializer(GeoFeatureModelSerializer, serializers.ModelSerializer):
-
     art = serializers.ReadOnlyField(source="kind")
 
     class Meta:
@@ -157,7 +157,6 @@ class GeoJsonOrtSerializer(GeoFeatureModelSerializer, serializers.ModelSerialize
 
 
 class FuzzyGeoJsonOrtSerializer(GeoFeatureModelSerializer, serializers.ModelSerializer):
-
     art = serializers.ReadOnlyField(source="kind")
 
     class Meta:
@@ -179,13 +178,7 @@ class FuzzyGeoJsonOrtSerializer(GeoFeatureModelSerializer, serializers.ModelSeri
 class StelleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stelle
-        exclude = [
-            "legacy_id",
-            "legacy_pk",
-            "orig_data_csv",
-            "lemmata",
-            "use_case"
-        ]
+        exclude = ["legacy_id", "legacy_pk", "orig_data_csv", "lemmata", "use_case"]
         depth = 2
 
 

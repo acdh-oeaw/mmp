@@ -8,7 +8,9 @@ class Command(BaseCommand):
     help = "Create app files"
 
     def handle(self, *args, **kwargs):
-        to_process = Stelle.objects.filter(lemmata__isnull=True).filter(text__text_lang='lat')
+        to_process = Stelle.objects.filter(lemmata__isnull=True).filter(
+            text__text_lang="lat"
+        )
         print(f"Stelle objects to process: {to_process.count()}")
         for x in tqdm(to_process, total=to_process.count()):
             x.save()

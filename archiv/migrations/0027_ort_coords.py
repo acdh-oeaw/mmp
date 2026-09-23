@@ -5,15 +5,20 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0026_usecase_story_map'),
+        ("archiv", "0026_usecase_story_map"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='ort',
-            name='coords',
-            field=django.contrib.gis.db.models.fields.PointField(blank=True, help_text='automatically populated', null=True, srid=4326, verbose_name='Coordinates'),
+            model_name="ort",
+            name="coords",
+            field=django.contrib.gis.db.models.fields.PointField(
+                blank=True,
+                help_text="automatically populated",
+                null=True,
+                srid=4326,
+                verbose_name="Coordinates",
+            ),
         ),
     ]

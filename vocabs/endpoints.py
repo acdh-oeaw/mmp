@@ -4,24 +4,25 @@ when assigning skos Matches
 """
 
 search_types = (
-    ('KeywordSearch?', 'Keyword Search'),
-    ('PrefixSearch?', 'Prefix Search')
+    ("KeywordSearch?", "Keyword Search"),
+    ("PrefixSearch?", "Prefix Search"),
 )
 
 
-class DbpediaAC(object):
+class DbpediaAC:
     """
     Dbpedia
     """
-    endpoint = 'http://lookup.dbpedia.org/api/search/'
-    search_type = 'PrefixSearch?'
+
+    endpoint = "http://lookup.dbpedia.org/api/search/"
+    search_type = "PrefixSearch?"
 
     def payload(self, q):
         """
         returns a dictionary containing arguments to be
         passed in the URL’s query string
         """
-        return {'QueryString': q}
+        return {"QueryString": q}
 
     def get_url(self):
         """
@@ -34,74 +35,79 @@ class DbpediaAC(object):
         parses JSON response to return a list containing
         data in format 'uri - label'
         """
-        return [str(x['uri']) + ' - ' + str(x['label']) for x in response['results']]
+        return [str(x["uri"]) + " - " + str(x["label"]) for x in response["results"]]
 
 
-class GndAC(object):
+class GndAC:
     """
     GND
     """
-    endpoint = 'https://lobid.org/gnd/search?'
+
+    endpoint = "https://lobid.org/gnd/search?"
 
     def payload(self, q):
-        return {'format': 'json:preferredName', 'q': q}
+        return {"format": "json:preferredName", "q": q}
 
     def get_url(self):
         return self.endpoint
 
     def parse_response(self, response):
-        return [str(x['id']) + ' - ' + str(x['label']) for x in response]
+        return [str(x["id"]) + " - " + str(x["label"]) for x in response]
 
 
-class GemetAC(object):
+class GemetAC:
     """
     GEMET Thesaurus
     """
-    endpoint = 'https://www.eionet.europa.eu/gemet/'
-    search_type = 'getConceptsMatchingKeyword?'
+
+    endpoint = "https://www.eionet.europa.eu/gemet/"
+    search_type = "getConceptsMatchingKeyword?"
 
     def payload(self, q):
-        return {'search_mode': '4', 'keyword': q}
+        return {"search_mode": "4", "keyword": q}
 
     def get_url(self):
         return self.endpoint + self.search_type
 
     def parse_response(self, response):
-        return [str(x['uri']) + ' - ' + str(x['preferredLabel']['string']) for x in response]
+        return [
+            str(x["uri"]) + " - " + str(x["preferredLabel"]["string"]) for x in response
+        ]
 
 
-class FishAC(object):
+class FishAC:
     """
     FISH Vocabularies
     """
-    endpoint = 'https://www.heritagedata.org/live/services/'
-    search_type = 'getConceptLabelMatch?'
+
+    endpoint = "https://www.heritagedata.org/live/services/"
+    search_type = "getConceptLabelMatch?"
     scheme_dict = {
         "FISH Event Types Thesaurus": "http://purl.org/heritagedata/schemes/agl_et",
         "FISH Archaeological Sciences Thesaurus": "http://purl.org/heritagedata/schemes/560",
         "FISH Thesaurus of Monument Types": "http://purl.org/heritagedata/schemes/eh_tmt2",
-        "FISH Archaeological Objects Thesaurus": "http://purl.org/heritagedata/schemes/mda_obj"
+        "FISH Archaeological Objects Thesaurus": "http://purl.org/heritagedata/schemes/mda_obj",
     }
 
     def payload(self, scheme, q):
-        payload = {'schemeURI': scheme, 'contains': q}
+        payload = {"schemeURI": scheme, "contains": q}
         return payload
 
     def get_url(self):
         return self.endpoint + self.search_type
 
     def parse_response(self, response):
-        return [str(x['uri']) + ' - ' + str(x['label']) for x in response]
+        return [str(x["uri"]) + " - " + str(x["label"]) for x in response]
 
 
 ENDPOINT = {
-    'Dbpedia': DbpediaAC(),
-    'GND': GndAC(),
-    'GEMET': GemetAC(),
-    'FISH Event Types Thesaurus': FishAC(),
-    'FISH Archaeological Sciences Thesaurus': FishAC(),
-    'FISH Thesaurus of Monument Types': FishAC(),
-    'FISH Archaeological Objects Thesaurus': FishAC()
+    "Dbpedia": DbpediaAC(),
+    "GND": GndAC(),
+    "GEMET": GemetAC(),
+    "FISH Event Types Thesaurus": FishAC(),
+    "FISH Archaeological Sciences Thesaurus": FishAC(),
+    "FISH Thesaurus of Monument Types": FishAC(),
+    "FISH Archaeological Objects Thesaurus": FishAC(),
 }
 
 ENDPOINT_CHOICES = [(key, key) for key, value in ENDPOINT.items()]

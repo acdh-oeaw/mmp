@@ -2,7 +2,6 @@ import pandas as pd
 from django.core.management.base import BaseCommand
 from tqdm import tqdm
 
-
 from archiv.models import Autor, KeyWord
 
 
@@ -16,10 +15,10 @@ class Command(BaseCommand):
             x.save()
 
         print("Update KeyWord Types")
-        df = pd.read_csv('./keywords.csv')
+        df = pd.read_csv("./keywords.csv")
         for i, row in tqdm(df.iterrows(), total=len(df)):
-            item = KeyWord.objects.get(stichwort=row['Keyword'])
-            item.art = row['type']
+            item = KeyWord.objects.get(stichwort=row["Keyword"])
+            item.art = row["type"]
             item.save()
 
         print("Done")

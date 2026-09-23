@@ -4,20 +4,29 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0039_alter_keyword_art'),
+        ("archiv", "0039_alter_keyword_art"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='stelle',
-            name='end_date',
-            field=models.SmallIntegerField(blank=True, help_text="End date or last possible date'", null=True, verbose_name='To'),
+            model_name="stelle",
+            name="end_date",
+            field=models.SmallIntegerField(
+                blank=True,
+                help_text="End date or last possible date'",
+                null=True,
+                verbose_name="To",
+            ),
         ),
         migrations.AlterField(
-            model_name='stelle',
-            name='start_date',
-            field=models.SmallIntegerField(blank=True, help_text='Start date or earliest possible date', null=True, verbose_name='From'),
+            model_name="stelle",
+            name="start_date",
+            field=models.SmallIntegerField(
+                blank=True,
+                help_text="Start date or earliest possible date",
+                null=True,
+                verbose_name="From",
+            ),
         ),
     ]

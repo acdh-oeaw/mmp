@@ -5,15 +5,20 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0033_auto_20220323_0641'),
+        ("archiv", "0033_auto_20220323_0641"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='ort',
-            name='fuzzy_geom',
-            field=django.contrib.gis.db.models.fields.GeometryCollectionField(blank=True, help_text='fuzzy geom', null=True, srid=4326, verbose_name='fuzzy geom'),
+            model_name="ort",
+            name="fuzzy_geom",
+            field=django.contrib.gis.db.models.fields.GeometryCollectionField(
+                blank=True,
+                help_text="fuzzy geom",
+                null=True,
+                srid=4326,
+                verbose_name="fuzzy geom",
+            ),
         ),
     ]

@@ -4,15 +4,20 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0007_usecase'),
+        ("archiv", "0007_usecase"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='stelle',
-            name='use_case',
-            field=models.ManyToManyField(blank=True, help_text='Verwendet in Use Case', related_name='has_stelle', to='archiv.UseCase', verbose_name='Use Case'),
+            model_name="stelle",
+            name="use_case",
+            field=models.ManyToManyField(
+                blank=True,
+                help_text="Verwendet in Use Case",
+                related_name="has_stelle",
+                to="archiv.UseCase",
+                verbose_name="Use Case",
+            ),
         ),
     ]
