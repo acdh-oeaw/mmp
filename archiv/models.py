@@ -14,12 +14,11 @@ from django.contrib.gis.geos import GeometryCollection, Point, Polygon
 from django.db import models
 from django.urls import reverse
 from django.utils.functional import cached_property
-from next_prev import next_in_order, prev_in_order
-from vocabs.models import SkosConcept
 
 from archiv.utils import parse_date
 from layers.models import GeoJsonLayer
 from story_map.models import Story
+from vocabs.models import SkosConcept
 from webpage.metadata import PROJECT_METADATA
 
 logger = logging.getLogger(__name__)
@@ -141,41 +140,8 @@ class UseCase(models.Model):
         return event
 
     @classmethod
-    def get_source_table(self):
-        return None
-
-    @classmethod
-    def get_listview_url(self):
-        return reverse("archiv:usecase_browse")
-
-    @classmethod
     def get_natural_primary_key(self):
         return "id"
-
-    @classmethod
-    def get_createview_url(self):
-        return reverse("archiv:usecase_create")
-
-    def get_absolute_url(self):
-        return reverse("archiv:usecase_detail", kwargs={"pk": self.id})
-
-    def get_delete_url(self):
-        return reverse("archiv:usecase_delete", kwargs={"pk": self.id})
-
-    def get_edit_url(self):
-        return reverse("archiv:usecase_edit", kwargs={"pk": self.id})
-
-    def get_next(self):
-        next = next_in_order(self)
-        if next:
-            return next.get_absolute_url()
-        return False
-
-    def get_prev(self):
-        prev = prev_in_order(self)
-        if prev:
-            return prev.get_absolute_url()
-        return False
 
     def get_timetable_data(self):
         time_table_data = []
@@ -395,20 +361,8 @@ class Autor(models.Model):
         return model_to_dict(self)
 
     @classmethod
-    def get_listview_url(self):
-        return reverse("archiv:autor_browse")
-
-    @classmethod
-    def get_source_table(self):
-        return "autor"
-
-    @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
-
-    @classmethod
-    def get_createview_url(self):
-        return reverse("archiv:autor_create")
 
     @cached_property
     def get_stellen(self):
@@ -442,27 +396,6 @@ class Autor(models.Model):
             else:
                 self.gnd_id = get_normalized_uri(f"https://d-nb.info/gnd/{gnd}")
         super().save(*args, **kwargs)
-
-    def get_absolute_url(self):
-        return reverse("archiv:autor_detail", kwargs={"pk": self.id})
-
-    def get_delete_url(self):
-        return reverse("archiv:autor_delete", kwargs={"pk": self.id})
-
-    def get_edit_url(self):
-        return reverse("archiv:autor_edit", kwargs={"pk": self.id})
-
-    def get_next(self):
-        next = next_in_order(self)
-        if next:
-            return next.get_absolute_url()
-        return False
-
-    def get_prev(self):
-        prev = prev_in_order(self)
-        if prev:
-            return prev.get_absolute_url()
-        return False
 
     def get_names_list(self):
         name_list = []
@@ -609,44 +542,8 @@ class KeyWord(models.Model):
         return model_to_dict(self)
 
     @classmethod
-    def get_listview_url(self):
-        return reverse("archiv:keyword_browse")
-
-    @classmethod
-    def get_source_table(self):
-        return None
-
-    @classmethod
     def get_natural_primary_key(self):
         return "stichwort"
-
-    @classmethod
-    def get_createview_url(self):
-        return reverse("archiv:keyword_create")
-
-    def get_absolute_url(self):
-        return reverse("archiv:keyword_detail", kwargs={"pk": self.id})
-
-    def get_keyword_by_century(self):
-        return reverse("archiv:keyword_by_century", kwargs={"pk": self.id})
-
-    def get_delete_url(self):
-        return reverse("archiv:keyword_delete", kwargs={"pk": self.id})
-
-    def get_edit_url(self):
-        return reverse("archiv:keyword_edit", kwargs={"pk": self.id})
-
-    def get_next(self):
-        next = next_in_order(self)
-        if next:
-            return next.get_absolute_url()
-        return False
-
-    def get_prev(self):
-        prev = prev_in_order(self)
-        if prev:
-            return prev.get_absolute_url()
-        return False
 
 
 class Ort(models.Model):
@@ -852,41 +749,8 @@ class Ort(models.Model):
         return geom
 
     @classmethod
-    def get_listview_url(self):
-        return reverse("archiv:ort_browse")
-
-    @classmethod
-    def get_source_table(self):
-        return "orte"
-
-    @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
-
-    @classmethod
-    def get_createview_url(self):
-        return reverse("archiv:ort_create")
-
-    def get_absolute_url(self):
-        return reverse("archiv:ort_detail", kwargs={"pk": self.id})
-
-    def get_delete_url(self):
-        return reverse("archiv:ort_delete", kwargs={"pk": self.id})
-
-    def get_edit_url(self):
-        return reverse("archiv:ort_edit", kwargs={"pk": self.id})
-
-    def get_next(self):
-        next = next_in_order(self)
-        if next:
-            return next.get_absolute_url()
-        return False
-
-    def get_prev(self):
-        prev = prev_in_order(self)
-        if prev:
-            return prev.get_absolute_url()
-        return False
 
     def get_names_list(self):
         name_list = []
@@ -1054,41 +918,8 @@ class Stelle(models.Model):
         return model_to_dict(self)
 
     @classmethod
-    def get_listview_url(self):
-        return reverse("archiv:stelle_browse")
-
-    @classmethod
-    def get_source_table(self):
-        return "stelle"
-
-    @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
-
-    @classmethod
-    def get_createview_url(self):
-        return reverse("archiv:stelle_create")
-
-    def get_absolute_url(self):
-        return reverse("archiv:stelle_detail", kwargs={"pk": self.id})
-
-    def get_delete_url(self):
-        return reverse("archiv:stelle_delete", kwargs={"pk": self.id})
-
-    def get_edit_url(self):
-        return reverse("archiv:stelle_edit", kwargs={"pk": self.id})
-
-    def get_next(self):
-        next = next_in_order(self)
-        if next:
-            return next.get_absolute_url()
-        return False
-
-    def get_prev(self):
-        prev = prev_in_order(self)
-        if prev:
-            return prev.get_absolute_url()
-        return False
 
     def tei_markup_foreign(self, res):
         text = res
@@ -1101,7 +932,7 @@ class Stelle(models.Model):
                     text = re.sub(
                         rf"([“,,\",′,\s,\(,',‘])({k.wurzel}\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
                         r"\1"
-                        + "<foreign xml:lang='%s'>" % (language)
+                        + f"<foreign xml:lang='{language}'>"
                         + r"\2"
                         + "</foreign>"
                         + r"\3",
@@ -1115,7 +946,7 @@ class Stelle(models.Model):
                             text = re.sub(
                                 rf"([“,,\",′,\s,\(,',‘])({v}\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
                                 r"\1"
-                                + "<foreign xml:lang='%s'>" % (language)
+                                + f"<foreign xml:lang='{language}'>"
                                 + r"\2"
                                 + "</foreign>"
                                 + r"\3",
@@ -1126,7 +957,7 @@ class Stelle(models.Model):
                     text = re.sub(
                         rf"([“,,\",′,\s,\(,',‘])({k.stichwort})([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
                         r"\1"
-                        + "<foreign xml:lang='%s'>" % (language)
+                        + "<foreign xml:lang='language'>"
                         + r"\2"
                         + "</foreign>"
                         + r"\3",
@@ -1306,49 +1137,8 @@ class Text(models.Model):
         return reverse("archiv:text_browse")
 
     @classmethod
-    def get_source_table(self):
-        return "text"
-
-    @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
-
-    @classmethod
-    def get_createview_url(self):
-        return reverse("archiv:text_create")
-
-    def get_absolute_url(self):
-        return reverse("archiv:text_detail", kwargs={"pk": self.id})
-
-    def get_delete_url(self):
-        return reverse("archiv:text_delete", kwargs={"pk": self.id})
-
-    def get_edit_url(self):
-        return reverse("archiv:text_edit", kwargs={"pk": self.id})
-
-    def get_next(self):
-        next = next_in_order(self)
-        if next:
-            return next.get_absolute_url()
-        return False
-
-    def get_prev(self):
-        prev = prev_in_order(self)
-        if prev:
-            return prev.get_absolute_url()
-        return False
-
-    def get_next_id(self):
-        next = next_in_order(self)
-        if next:
-            return next.id
-        return False
-
-    def get_prev_id(self):
-        prev = prev_in_order(self)
-        if prev:
-            return prev.id
-        return False
 
     def get_project_metadata(self):
         metadata = PROJECT_METADATA
@@ -1437,35 +1227,6 @@ class Event(models.Model):
     def field_dict(self):
         return model_to_dict(self)
 
-    @classmethod
-    def get_listview_url(self):
-        return reverse("archiv:event_browse")
-
-    @classmethod
-    def get_createview_url(self):
-        return reverse("archiv:event_create")
-
-    def get_absolute_url(self):
-        return reverse("archiv:event_detail", kwargs={"pk": self.id})
-
-    def get_delete_url(self):
-        return reverse("archiv:event_delete", kwargs={"pk": self.id})
-
-    def get_edit_url(self):
-        return reverse("archiv:event_edit", kwargs={"pk": self.id})
-
-    def get_next(self):
-        next = next_in_order(self)
-        if next:
-            return next.get_absolute_url()
-        return False
-
-    def get_prev(self):
-        prev = prev_in_order(self)
-        if prev:
-            return prev.get_absolute_url()
-        return False
-
 
 class SpatialCoverage(models.Model):
     """Spatial Coverage of a Keyword bound to a specifc source document"""
@@ -1541,41 +1302,8 @@ class SpatialCoverage(models.Model):
         return model_to_dict(self)
 
     @classmethod
-    def get_source_table(self):
-        return None
-
-    @classmethod
-    def get_listview_url(self):
-        return reverse("archiv:spatialcoverage_browse")
-
-    @classmethod
     def get_natural_primary_key(self):
         return "id"
-
-    @classmethod
-    def get_createview_url(self):
-        return reverse("archiv:spatialcoverage_create")
-
-    def get_absolute_url(self):
-        return reverse("archiv:spatialcoverage_detail", kwargs={"pk": self.id})
-
-    def get_delete_url(self):
-        return reverse("archiv:spatialcoverage_delete", kwargs={"pk": self.id})
-
-    def get_edit_url(self):
-        return reverse("archiv:spatialcoverage_edit", kwargs={"pk": self.id})
-
-    def get_next(self):
-        next = next_in_order(self)
-        if next:
-            return next.get_absolute_url()
-        return False
-
-    def get_prev(self):
-        prev = prev_in_order(self)
-        if prev:
-            return prev.get_absolute_url()
-        return False
 
     def get_author_coords(self):
         cur_item = SpatialCoverage.objects.filter(id=self.id)
