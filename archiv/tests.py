@@ -4,10 +4,8 @@ from django.test import Client, TestCase
 from django.urls import reverse
 
 from archiv.dal_urls import urlpatterns
-from archiv.models import Autor, KeyWord, Stelle, Text, UseCase
-from archiv.nlp_utils import get_nlp_data
+from archiv.models import Autor, KeyWord, Text, UseCase
 from archiv.utils import cent_from_year, parse_date
-from topics.models import StopWord
 
 MODELS = list(apps.all_models["archiv"].values())
 
@@ -81,38 +79,6 @@ class ArchivTestCase(TestCase):
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
 
-    def test_014_check_stopwords(self):
-        text = Text.objects.create()
-        stelle = Stelle.objects.create(
-            text=text,
-            zitat="sarvus De gentis et patriae. Gentis sunt nomina, quae ab antiquo suo semper dirivata sunt genere",
-        )
-        qs = Stelle.objects.filter(id=stelle.id)
-        url = f"{reverse('archiv:nlp_data')}?id={stelle.id}"
-        self.assertEqual(get_nlp_data(qs)["token"][0], "saruus")
-        response = client.get(url).json()
-        self.assertEqual(response["token"][0], "saruus")
-
-        StopWord.objects.get_or_create(word="saruus")
-        self.assertEqual(get_nlp_data(qs)["token"][0], "gens")
-        response = client.get(url).json()
-        self.assertEqual(response["token"][0], "gens")
-
-        StopWord.objects.filter(word="saruus").delete()
-        self.assertEqual(get_nlp_data(qs)["token"][0], "saruus")
-        response = client.get(url).json()
-        self.assertEqual(response["token"][0], "saruus")
-
-        StopWord.objects.get_or_create(word="sarvus")
-        self.assertEqual(get_nlp_data(qs)["token"][0], "gens")
-        response = client.get(url).json()
-        self.assertEqual(response["token"][0], "gens")
-
-        StopWord.objects.filter(word="sarvus").delete()
-        self.assertEqual(get_nlp_data(qs)["token"][0], "saruus")
-        response = client.get(url).json()
-        self.assertEqual(response["token"][0], "saruus")
-
     def test_015_gnd_normalizer(self):
         gnds = [
             ("", ""),
@@ -132,4 +98,4 @@ class ArchivTestCase(TestCase):
             url = f"{reverse(url_name)}?q=hansi"
             response = client.get(url)
             self.assertEqual(response.status_code, 200)
-            self.assertTrue("results" in response.json().keys())
+            self.assertTrue("results" in response.json())

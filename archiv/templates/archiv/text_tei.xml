@@ -1,4 +1,4 @@
-{% load webpage_extras %}
+{% load archiv_extras %}
 
 <TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="archetext__{{ object.id }}" xml:base="https://id.acdh.oeaw.ac.at/mmp/archiv/text/">
   <teiHeader>
