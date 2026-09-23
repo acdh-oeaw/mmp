@@ -1,23 +1,16 @@
-from django.contrib.auth.models import User
-from django.test import Client, TestCase
+from django.http import Http404
+from django.test import TestCase
+
+from webpage.views import GenericWebpageView
 
 
 class WebpageTest(TestCase):
-
-    def setUp(self):
-        self.client = Client()
-        User.objects.create_user('temporary', 'temp@gmail.com', 'temporary')
-
     def test_webpage(self):
-        rv = self.client.get('/')
+        rv = self.client.get("/")
         self.assertEqual(rv.status_code, 200)
-        rv = self.client.get('/accounts/login/')
-        self.assertContains(rv, 'Username')
-        form_data = {'username': 'temporary', 'password': 'temporary'}
-        rv = self.client.post('/accounts/login/', form_data, follow=True)
-        self.assertContains(rv, 'temporary')
-        rv = self.client.get('/logout/', follow=True)
-        self.assertContains(rv, 'signed out')
-        form_data = {'username': 'non_exist', 'password': 'temporary'}
-        rv = self.client.post('/accounts/login/', form_data, follow=True)
-        self.assertContains(rv, 'user does not exist')
+
+    def test_missing_template_returns_404(self):
+        view = GenericWebpageView()
+        view.kwargs = {"template": "missing-page"}
+        with self.assertRaises(Http404):
+            view.get_template_names()

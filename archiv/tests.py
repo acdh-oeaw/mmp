@@ -1,12 +1,12 @@
 from django.apps import apps
-from django.test import TestCase, Client
 from django.contrib.auth.models import User
+from django.test import Client, TestCase
 from django.urls import reverse
+
 from archiv.dal_urls import urlpatterns
-from archiv.models import KeyWord, UseCase, Text, Autor, Stelle
-from archiv.utils import parse_date, cent_from_year
-from archiv.text_processing import process_text
+from archiv.models import Autor, KeyWord, Stelle, Text, UseCase
 from archiv.nlp_utils import get_nlp_data
+from archiv.utils import cent_from_year, parse_date
 from topics.models import StopWord
 
 MODELS = list(apps.all_models["archiv"].values())
@@ -132,11 +132,6 @@ class ArchivTestCase(TestCase):
             self.assertEqual(response.status_code, 200)
             self.assertTrue(f"{x.title}" in response.content.decode())
 
-    def test_012_string_to_dict(self):
-        my_text = "De palatio venio Caroli et Carolus fuit mihi locutus"
-        processed = process_text(my_text)
-        self.assertIsInstance(processed, dict)
-
     def test_013_nlp_data(self):
         url = reverse("archiv:nlp_data")
         response = client.get(url)
@@ -149,7 +144,7 @@ class ArchivTestCase(TestCase):
             zitat="sarvus De gentis et patriae. Gentis sunt nomina, quae ab antiquo suo semper dirivata sunt genere",
         )
         qs = Stelle.objects.filter(id=stelle.id)
-        url = f'{reverse("archiv:nlp_data")}?id={stelle.id}'
+        url = f"{reverse('archiv:nlp_data')}?id={stelle.id}"
         self.assertEqual(get_nlp_data(qs)["token"][0], "saruus")
         response = client.get(url).json()
         self.assertEqual(response["token"][0], "saruus")

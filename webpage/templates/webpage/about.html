@@ -1,20 +1,13 @@
-{% extends "webpage/base.html" %}
+{% extends "base.html" %}
 {% load static %}
-{% load webpage_extras %}
-{% block title %} About {% endblock %}
+
+{% block title %} About the Project{% endblock %}
 {% block content %}
-<div class="container">
-    <div class="card">
-        <div class="card-header">
-            <h1 class="card-title">{% projects_metadata 'title' %}</h1>
-        </div>
-        <div class="card-body">
-            <div>
-                <p>
-                    {% projects_metadata 'description' %}
-                </p>
-            </div>
-        </div>
-    </div>
+<div class="container pt-3">
+    <h1 class="text-center">About the Project</h1>
+    <p>
+        <a href="https://mmp.acdh.oeaw.ac.at/">Mapping Medieval Peoples (MMP)</a> examines medieval perceptions of peoples and space and the intellectual frameworks in which they came into being through reconstructing the mental maps of medieval authors. As medieval conceptions of space were expressed and developed primarily through narrative, in MMP we have developed applications for network analysis and geovisualisation, using an interdisciplinary approach which allows us to visualise narrative descriptions of space. This allows us to elucidate how space and the peoples inhabiting it were described and imagined, and to make the different angles from which ethnic groups were described more visible, while bringing out the complexities and ambiguities of ethnic terminology. 
+    </p>
+    <p>The current website provides the backend to store and curate the data driving MMP</p>
 </div>
 {% endblock %}
