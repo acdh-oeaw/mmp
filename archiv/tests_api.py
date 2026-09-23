@@ -21,7 +21,7 @@ class ApiTestCase(TestCase):
 
     def test_002_model_endpoints(self):
         endpoints = client.get(API_ROOT).json()
-        for _, value in endpoints.items():
+        for value in endpoints.values():
             r = client.get(value)
             self.assertEqual(r.status_code, 200)
             self.assertEqual(r.accepted_media_type, "application/json")

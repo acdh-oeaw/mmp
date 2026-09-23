@@ -38,7 +38,6 @@ def global_autocomplete(request, endpoint):
 
 class ExternalLinkAC(autocomplete.Select2ListView):
     def get_list(self):
-        choices = []
         endpoint = self.forwarded.get("endpoint", None)
         global_ac = global_autocomplete(self.request, endpoint=endpoint)
         return global_ac
