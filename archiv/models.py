@@ -3,7 +3,6 @@ import logging
 import re
 
 from AcdhArcheAssets.uri_norm_rules import get_normalized_uri
-from browsing.utils import model_to_dict
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.gis.db.models import (
     GeometryCollectionField,
@@ -111,9 +110,6 @@ class UseCase(models.Model):
 
     def __str__(self):
         return f"{self.title}"
-
-    def field_dict(self):
-        return model_to_dict(self)
 
     @cached_property
     def get_texts(self):
@@ -357,9 +353,6 @@ class Autor(models.Model):
         else:
             return f"no english name provided for autor id:{self.id}"
 
-    def field_dict(self):
-        return model_to_dict(self)
-
     @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
@@ -538,9 +531,6 @@ class KeyWord(models.Model):
         orte = Ort.objects.filter(rvn_autor_ort_ort__in=self.get_authors).distinct()
         return orte
 
-    def field_dict(self):
-        return model_to_dict(self)
-
     @classmethod
     def get_natural_primary_key(self):
         return "stichwort"
@@ -717,9 +707,6 @@ class Ort(models.Model):
         if self.long and self.lat:
             self.coords = Point(self.long, self.lat)
         super().save(*args, **kwargs)
-
-    def field_dict(self):
-        return model_to_dict(self)
 
     @cached_property
     def place_as_dict(self):
@@ -913,9 +900,6 @@ class Stelle(models.Model):
             return f"{self.display_label} [{self.id}]"
         else:
             return f"{self.id}"
-
-    def field_dict(self):
-        return model_to_dict(self)
 
     @classmethod
     def get_natural_primary_key(self):
@@ -1126,9 +1110,6 @@ class Text(models.Model):
         else:
             return f"{self.legacy_id} ({self.not_before} - {self.not_after})"
 
-    def field_dict(self):
-        return model_to_dict(self)
-
     def get_tei_url(self):
         return reverse("archiv:text_xml", kwargs={"pk": self.id})
 
@@ -1224,9 +1205,6 @@ class Event(models.Model):
     def __str__(self):
         return f"{self.title}"
 
-    def field_dict(self):
-        return model_to_dict(self)
-
 
 class SpatialCoverage(models.Model):
     """Spatial Coverage of a Keyword bound to a specifc source document"""
@@ -1297,9 +1275,6 @@ class SpatialCoverage(models.Model):
 
     def __str__(self):
         return f"{self.stelle.all()} - {self.key_word}"
-
-    def field_dict(self):
-        return model_to_dict(self)
 
     @classmethod
     def get_natural_primary_key(self):

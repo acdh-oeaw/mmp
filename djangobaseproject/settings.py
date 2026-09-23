@@ -1,8 +1,6 @@
 import os
-import sys
 from pathlib import Path
 
-sys.modules["fontawesome_free"] = __import__("fontawesome-free")
 os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 SECRET_KEY = os.environ.get("SECRET_KEY", "1234verysecret")
 
@@ -69,24 +67,14 @@ INSTALLED_APPS = [
     "rest_framework_gis",
     "reversion",
     "ckeditor",
-    "ckeditor_uploader",
-    "crispy_forms",
-    "crispy_bootstrap4",
-    # "floppyforms",
     "django_filters",
-    "django_tables2",
-    "django_spaghetti",
     "rest_framework",
     "mptt",
     "leaflet",
     "webpage",
-    "browsing",
-    "charts",
-    "netvis",
     "vocabs",
     "infos",
     "archiv",
-    "fontawesome_free",
     "topics",
     "story_map",
     "layers",
