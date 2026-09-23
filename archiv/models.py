@@ -143,7 +143,7 @@ class UseCase(models.Model):
         time_table_data = []
         if self.get_texts:
             for x in self.get_texts:
-                try:
+                if x.start_date:
                     time_table_data.append(
                         {
                             "id": x.id,
@@ -152,14 +152,12 @@ class UseCase(models.Model):
                             "ent_type": "text",
                             "ent_title": x.title,
                             "ent_description": x.title,
-                            "ent_detail_view": x.get_absolute_url(),
                         }
                     )
-                except Exception:
-                    pass
+
         if self.get_authors:
             for x in self.get_authors:
-                try:
+                if x.start_date:
                     time_table_data.append(
                         {
                             "id": x.id,
@@ -168,14 +166,11 @@ class UseCase(models.Model):
                             "ent_type": "autor",
                             "ent_title": x.name,
                             "ent_description": x.name,
-                            "ent_detail_view": x.get_absolute_url(),
                         }
                     )
-                except Exception:
-                    pass
         if self.get_events:
             for x in self.get_events:
-                try:
+                if x.start_date:
                     time_table_data.append(
                         {
                             "id": x.id,
@@ -184,11 +179,9 @@ class UseCase(models.Model):
                             "ent_type": "event",
                             "ent_title": x.title,
                             "ent_description": x.description,
-                            "ent_detail_view": x.get_absolute_url(),
                         }
                     )
-                except Exception:
-                    pass
+
         return sorted(time_table_data, key=lambda k: k["start_date"])
 
 

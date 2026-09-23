@@ -1,48 +1,46 @@
 # API views for archiv created by appcreator
 import django_filters.rest_framework
-from rest_framework.filters import OrderingFilter
 from rest_framework import viewsets
+from rest_framework.filters import OrderingFilter
 from rest_framework_gis.pagination import GeoJsonPagination
-
 
 from archiv.api_serializers import (
     AutorSerializer,
+    ConeSerializer,
+    EventSerializer,
+    FuzzyGeoJsonOrtSerializer,
+    GeoJsonOrtSerializer,
     KeyWordSerializer,
     OrtSerializer,
-    StelleSerializer,
-    TextSerializer,
-    SpatialCoverageSerializer,
-    SpatialCoverageGroupSerializer,
-    UseCaseSerializer,
-    ConeSerializer,
-    GeoJsonOrtSerializer,
-    FuzzyGeoJsonOrtSerializer,
-    StorySerializer,
     SlideSerializer,
-    EventSerializer
-)
-from archiv.models import (
-    Autor,
-    KeyWord,
-    Ort,
-    Stelle,
-    Text,
-    SpatialCoverage,
-    UseCase,
-    Event
+    SpatialCoverageGroupSerializer,
+    SpatialCoverageSerializer,
+    StelleSerializer,
+    StorySerializer,
+    TextSerializer,
+    UseCaseSerializer,
 )
 from archiv.filters import (
     AutorListFilter,
+    EventListFilter,
     KeyWordListFilter,
     OrtListFilter,
+    SpatialCoverageListFilter,
     StelleListFilter,
     TextListFilter,
-    SpatialCoverageListFilter,
     UseCaseListFilter,
-    EventListFilter
 )
-
-from story_map.models import Story, Slide
+from archiv.models import (
+    Autor,
+    Event,
+    KeyWord,
+    Ort,
+    SpatialCoverage,
+    Stelle,
+    Text,
+    UseCase,
+)
+from story_map.models import Slide, Story
 
 
 class StoryViewSet(viewsets.ModelViewSet):
@@ -50,7 +48,7 @@ class StoryViewSet(viewsets.ModelViewSet):
     serializer_class = StorySerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
-        OrderingFilter
+        OrderingFilter,
     ]
 
 
@@ -59,7 +57,7 @@ class SlideViewSet(viewsets.ModelViewSet):
     serializer_class = SlideSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
-        OrderingFilter
+        OrderingFilter,
     ]
 
 
@@ -68,7 +66,7 @@ class UseCaseViewSet(viewsets.ModelViewSet):
     serializer_class = UseCaseSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
-        OrderingFilter
+        OrderingFilter,
     ]
     filter_class = UseCaseListFilter
 
@@ -78,7 +76,7 @@ class EventViewSet(viewsets.ModelViewSet):
     serializer_class = EventSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
-        OrderingFilter
+        OrderingFilter,
     ]
     filter_class = EventListFilter
 
@@ -88,7 +86,7 @@ class SpatialCoverageViewSet(viewsets.ModelViewSet):
     serializer_class = SpatialCoverageSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
-        OrderingFilter
+        OrderingFilter,
     ]
     filter_class = SpatialCoverageListFilter
     pagination_class = GeoJsonPagination
@@ -99,19 +97,22 @@ class SpatialCoverageGroupViewSet(viewsets.ModelViewSet):
     serializer_class = SpatialCoverageGroupSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
-        OrderingFilter
+        OrderingFilter,
     ]
     filter_class = SpatialCoverageListFilter
     pagination_class = GeoJsonPagination
 
 
 class ConeViewSet(viewsets.ModelViewSet):
-    queryset = SpatialCoverage.objects.exclude(fuzzy_geom=None)\
-        .exclude(stelle__text__ort__isnull=True).distinct()
+    queryset = (
+        SpatialCoverage.objects.exclude(fuzzy_geom=None)
+        .exclude(stelle__text__ort__isnull=True)
+        .distinct()
+    )
     serializer_class = ConeSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
-        OrderingFilter
+        OrderingFilter,
     ]
     filter_class = SpatialCoverageListFilter
     pagination_class = GeoJsonPagination
@@ -122,7 +123,7 @@ class AutorViewSet(viewsets.ModelViewSet):
     serializer_class = AutorSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
-        OrderingFilter
+        OrderingFilter,
     ]
     filter_class = AutorListFilter
 
@@ -132,7 +133,7 @@ class KeyWordViewSet(viewsets.ModelViewSet):
     serializer_class = KeyWordSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
-        OrderingFilter
+        OrderingFilter,
     ]
     filter_class = KeyWordListFilter
 
@@ -142,7 +143,7 @@ class OrtViewSet(viewsets.ModelViewSet):
     serializer_class = OrtSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
-        OrderingFilter
+        OrderingFilter,
     ]
     filter_class = OrtListFilter
 
@@ -152,7 +153,7 @@ class GeoJsonOrtViewSet(viewsets.ModelViewSet):
     serializer_class = GeoJsonOrtSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
-        OrderingFilter
+        OrderingFilter,
     ]
     filter_class = OrtListFilter
     pagination_class = GeoJsonPagination
@@ -163,7 +164,7 @@ class FuzzyGeoJsonOrtViewSet(viewsets.ModelViewSet):
     serializer_class = FuzzyGeoJsonOrtSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
-        OrderingFilter
+        OrderingFilter,
     ]
     filter_class = OrtListFilter
     pagination_class = GeoJsonPagination
@@ -174,10 +175,13 @@ class StelleViewSet(viewsets.ModelViewSet):
     serializer_class = StelleSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
-        OrderingFilter
+        OrderingFilter,
     ]
     filter_class = StelleListFilter
-    ordering_fields = [field.name for field in Stelle._meta.get_fields()] + ["text__not_before", "text__not_after"]
+    ordering_fields = [field.name for field in Stelle._meta.get_fields()] + [
+        "text__not_before",
+        "text__not_after",
+    ]
 
 
 class TextViewSet(viewsets.ModelViewSet):
@@ -185,7 +189,7 @@ class TextViewSet(viewsets.ModelViewSet):
     serializer_class = TextSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
-        OrderingFilter
+        OrderingFilter,
     ]
     filter_class = TextListFilter
 

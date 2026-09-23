@@ -1,23 +1,27 @@
-import pandas as pd
 from collections import Counter, defaultdict
-from django.views.generic.list import ListView
+
+import pandas as pd
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
+from django.views.generic.list import ListView
 
-
-from archiv.models import KeyWord, Text, Stelle, Autor
 from archiv.filters import StelleListFilter
+from archiv.models import Autor, KeyWord, Stelle, Text, UseCase
 from archiv.network_utils import create_graph, graph_table
-from archiv.utils import cent_from_year
 from archiv.nlp_utils import get_nlp_data
+from archiv.utils import cent_from_year
 from topics.models import StopWord
-
 
 default = [[x, 0] for x in range(-3, 16)]
 
 
-class StopWordListView(ListView):
+def get_usecase_timetable_json(response, pk):
+    item = get_object_or_404(UseCase, pk=pk)
+    data = item.get_timetable_data()
+    return JsonResponse(data, safe=False)
 
+
+class StopWordListView(ListView):
     model = StopWord
 
     def render_to_response(self, context, **kwargs):
@@ -27,12 +31,11 @@ class StopWordListView(ListView):
 
 
 class KeyWordStelle(ListView):
-
     model = Stelle
     filter_class = StelleListFilter
 
     def get_queryset(self, **kwargs):
-        qs = super(KeyWordStelle, self).get_queryset().distinct()
+        qs = super().get_queryset().distinct()
         self.filter = self.filter_class(self.request.GET, queryset=qs)
         return self.filter.qs.distinct()
 
@@ -53,12 +56,11 @@ class KeyWordStelle(ListView):
 
 
 class NlpDataStelle(ListView):
-
     model = Stelle
     filter_class = StelleListFilter
 
     def get_queryset(self, **kwargs):
-        qs = super(NlpDataStelle, self).get_queryset().distinct()
+        qs = super().get_queryset().distinct()
         self.filter = self.filter_class(self.request.GET, queryset=qs)
         return self.filter.qs.distinct()
 
@@ -101,7 +103,7 @@ def key_word_by_century(request, pk):
             d[k] = v
         for x in range(-3, 16):
             d[x] = d.get(x, 0)
-        payload = list(sorted(d.items()))
+        payload = sorted(d.items())
     else:
         payload = default
     result = {"id": pk, "title": kw.stichwort, "data": payload}
@@ -110,12 +112,11 @@ def key_word_by_century(request, pk):
 
 
 class KeyWordEndpoint(ListView):
-
     model = Stelle
     filter_class = StelleListFilter
 
     def get_queryset(self, **kwargs):
-        qs = super(KeyWordEndpoint, self).get_queryset().distinct()
+        qs = super().get_queryset().distinct()
         self.filter = self.filter_class(self.request.GET, queryset=qs)
         return self.filter.qs.distinct()
 
@@ -127,12 +128,11 @@ class KeyWordEndpoint(ListView):
 
 
 class KeyWordAuthorEndpoint(ListView):
-
     model = Stelle
     filter_class = StelleListFilter
 
     def get_queryset(self, **kwargs):
-        qs = super(KeyWordAuthorEndpoint, self).get_queryset().distinct()
+        qs = super().get_queryset().distinct()
         self.filter = self.filter_class(self.request.GET, queryset=qs)
         return self.filter.qs.distinct()
 
@@ -145,7 +145,7 @@ class KeyWordAuthorEndpoint(ListView):
         qs = self.get_queryset().distinct().order_by("id")
         df = graph_table(qs)
         data = create_graph(df)
-        node_ids = [x['key'] for x in data['nodes']]
+        node_ids = [x["key"] for x in data["nodes"]]
         if author_qs:
             for x in author_qs:
                 node = {
@@ -156,7 +156,8 @@ class KeyWordAuthorEndpoint(ListView):
                 }
                 data["nodes"].append(node)
                 kw = KeyWord.objects.filter(
-                    rvn_stelle_key_word_keyword__text__autor=x.id, rvn_stelle_key_word_keyword__in=qs
+                    rvn_stelle_key_word_keyword__text__autor=x.id,
+                    rvn_stelle_key_word_keyword__in=qs,
                 ).distinct()
                 for e in kw:
                     kw_id = f"keyword_{e.id}"

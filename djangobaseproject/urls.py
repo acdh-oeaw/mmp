@@ -58,6 +58,7 @@ urlpatterns = [
         name="openapi-schema",
     ),
     path("admin/", admin.site.urls),
+    path("archiv/", include("archiv.urls", namespace="archiv")),
     path("story-maps/", include("story_map.urls", namespace="story_map")),
     path("ac/", include("generic_ac.urls", namespace="generic-ac")),
     path("archiv-ac/", include("archiv.dal_urls", namespace="archiv-ac")),
