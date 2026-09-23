@@ -1,8 +1,10 @@
 from django.contrib import admin
 from django.urls import include, path
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularSwaggerView,
+)
 from rest_framework import routers
-
-# from rest_framework.documentation import include_docs_urls
 from rest_framework.schemas import get_schema_view
 
 from archiv import api_views as archiv_api_views
@@ -60,6 +62,12 @@ urlpatterns = [
     path("ac/", include("generic_ac.urls", namespace="generic-ac")),
     path("archiv-ac/", include("archiv.dal_urls", namespace="archiv-ac")),
     path("vocabs-ac/", include("vocabs.dal_urls", namespace="vocabs-ac")),
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path(
+        "api/schema/swagger-ui/",
+        SpectacularSwaggerView.as_view(url_name="schema"),
+        name="swagger-ui",
+    ),
     path("", include("webpage.urls", namespace="webpage")),
 ]
 
