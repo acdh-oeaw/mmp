@@ -33,11 +33,11 @@ else:
                 "DB_TYP", "django.contrib.gis.db.backends.postgis"
             ),
             "OPTIONS": {"options": "-c search_path=public,mmp"},
-            "NAME": os.environ.get("DB_NAME", "mmp"),
-            "USER": os.environ.get("DB_USER", "postgres"),
-            "PASSWORD": os.environ.get("DB_PASSWORD", "postgres"),
-            "HOST": os.environ.get("DB_HOST", "localhost"),
-            "PORT": os.environ.get("DB_PORT", "5432"),
+            "NAME": os.environ.get("POSTGRES_DB", "mmp"),
+            "USER": os.environ.get("POSTGRES_USER", "postgres"),
+            "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "postgres"),
+            "HOST": os.environ.get("POSTGRES_HOST", "localhost"),
+            "PORT": os.environ.get("POSTGRES_PORT", "5432"),
             "DISABLE_SERVER_SIDE_CURSORS": True,
         }
     }
