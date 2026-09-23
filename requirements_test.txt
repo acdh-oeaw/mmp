@@ -1,2 +1,0 @@
-flake8>=3.9
-coverage>=5.5
