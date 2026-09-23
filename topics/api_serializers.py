@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from topics.models import TextTopicRelation, Topic, ModelingProcess, StopWord
+
+from topics.models import ModelingProcess, StopWord, TextTopicRelation, Topic
 
 
 class TextTopicRelationSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = TextTopicRelation
         fields = "__all__"
@@ -11,7 +11,6 @@ class TextTopicRelationSerializer(serializers.ModelSerializer):
 
 
 class TopicSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Topic
         fields = "__all__"
@@ -19,7 +18,6 @@ class TopicSerializer(serializers.ModelSerializer):
 
 
 class ModelingProcessSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = ModelingProcess
         fields = "__all__"
@@ -27,7 +25,6 @@ class ModelingProcessSerializer(serializers.ModelSerializer):
 
 
 class StopWordSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = StopWord
         fields = "__all__"

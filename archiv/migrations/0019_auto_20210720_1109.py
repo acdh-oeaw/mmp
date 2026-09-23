@@ -4,19 +4,23 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0018_auto_20210520_1616'),
+        ("archiv", "0018_auto_20210520_1616"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='event',
-            options={'ordering': ['title'], 'verbose_name': 'Event'},
+            name="event",
+            options={"ordering": ["title"], "verbose_name": "Event"},
         ),
         migrations.AddField(
-            model_name='text',
-            name='not_before',
-            field=models.IntegerField(blank=True, help_text='YYY or YYYY', null=True, verbose_name='not before'),
+            model_name="text",
+            name="not_before",
+            field=models.IntegerField(
+                blank=True,
+                help_text="YYY or YYYY",
+                null=True,
+                verbose_name="not before",
+            ),
         ),
     ]

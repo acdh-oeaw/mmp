@@ -1,6 +1,6 @@
-{% load webpage_extras %}
+{% load archiv_extras %}
 
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="archetext__{{ object.id }}" prev="https://id.acdh.oeaw.ac.at/mmp/archiv/text/{{ object.get_prev_id }}" next="https://id.acdh.oeaw.ac.at/mmp/archiv/text/{{ object.get_next_id }}" xml:base="https://id.acdh.oeaw.ac.at/mmp/archiv/text/">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xml:id="archetext__{{ object.id }}" xml:base="https://id.acdh.oeaw.ac.at/mmp/archiv/text/">
   <teiHeader>
       <fileDesc>
          <titleStmt>

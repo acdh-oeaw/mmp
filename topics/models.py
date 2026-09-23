@@ -19,9 +19,7 @@ class Topic(models.Model):
     word = models.JSONField()
     title = models.CharField(max_length=250)
     weight = models.FloatField(blank=True, null=True)
-    process = models.ForeignKey(
-        'ModelingProcess', on_delete=models.CASCADE
-    )
+    process = models.ForeignKey("ModelingProcess", on_delete=models.CASCADE)
     topic_index = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
@@ -30,16 +28,10 @@ class Topic(models.Model):
 
 class TextTopicRelation(models.Model):
     text = models.ForeignKey(
-        Stelle,
-        null=True,
-        on_delete=models.SET_NULL,
-        related_name='has_topics'
+        Stelle, null=True, on_delete=models.SET_NULL, related_name="has_topics"
     )
     topic = models.ForeignKey(
-        Topic,
-        null=True,
-        on_delete=models.SET_NULL,
-        related_name='has_related_texts'
+        Topic, null=True, on_delete=models.SET_NULL, related_name="has_related_texts"
     )
     weight = models.FloatField(blank=True, null=True)
 
@@ -53,7 +45,7 @@ class StopWord(models.Model):
         null=True,
         max_length=250,
         verbose_name="stop word",
-        help_text="Word/Token to be excluded from any processing"
+        help_text="Word/Token to be excluded from any processing",
     )
 
     def __str__(self):

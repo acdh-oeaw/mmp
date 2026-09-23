@@ -2,20 +2,14 @@
 import django_filters.rest_framework
 from rest_framework import viewsets
 
-from topics.filters import TextTopicRelationListFilter
-
-from topics.models import (
-    Topic,
-    TextTopicRelation,
-    ModelingProcess,
-    StopWord
-)
 from topics.api_serializers import (
-    TopicSerializer,
-    TextTopicRelationSerializer,
     ModelingProcessSerializer,
-    StopWordSerializer
+    StopWordSerializer,
+    TextTopicRelationSerializer,
+    TopicSerializer,
 )
+from topics.filters import TextTopicRelationListFilter
+from topics.models import ModelingProcess, StopWord, TextTopicRelation, Topic
 
 
 class StopWordViewSet(viewsets.ModelViewSet):

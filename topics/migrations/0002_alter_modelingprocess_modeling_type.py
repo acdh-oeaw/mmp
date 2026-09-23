@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('topics', '0001_initial'),
+        ("topics", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='modelingprocess',
-            name='modeling_type',
-            field=models.CharField(default='gensim.models.LdaModel', max_length=250),
+            model_name="modelingprocess",
+            name="modeling_type",
+            field=models.CharField(default="gensim.models.LdaModel", max_length=250),
         ),
     ]

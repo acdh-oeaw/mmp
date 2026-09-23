@@ -1,39 +1,15 @@
-{% extends "webpage/base.html" %}
+{% extends "base.html" %}
 {% load static %}
-{% load stats_extras %}
-{% load webpage_extras %}
 {% block content %}
-
-        <div class="jumbotron" style="background-image: url({% static 'webpage/img/project_background.jpg' %}) ">
-            <div class="container">
-                <h1 style="text-align:center; color: #111;">{% projects_metadata 'title' %}</h1>
-                <h3 style="text-align:center; color: #111;">{% projects_metadata 'subtitle' %}</h3>
-               
-                    <p class="text-center">
-                        This page is for internale usage only. <br />please visist <a href="https://mmp.acdh.oeaw.ac.at/">https://mmp.acdh.oeaw.ac.at/</a>
-                    </p>
-            </div>
-        </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12" style="text-align:center">
-                <h4>Data-Count</h4>
-            </div>
-            {% create_object_count app='archiv' as models %}
-            {% for x in models %}
-                <div class="col-md-4  text-center">
-                    <div class="card flex-md-row mb-4 box-shadow">
-                        <div class="card-body">
-                            <h4 class="mb-0">{{x.name}}</h4>
-                            <h4 class="count">{{ x.count }}</h4>
-                            {% if x.link %}
-                                <a class="btn btn-main btn-outline-primary btn-sm" href="{{ x.link }}" role="button">View Details</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold text-body-emphasis">MMP-Backend</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">Backend/API for Mapping Medieval Peoples: Visualizing Semantic Landscapes in Early Medieval Europe</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <a href="https://mmp.acdh.oeaw.ac.at/" class="btn btn-primary btn-lg px-4 gap-3">Explore</a>
         </div>
     </div>
+</div>
+
+
 {% endblock %}

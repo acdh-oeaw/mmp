@@ -2,7 +2,6 @@ import pandas as pd
 
 from archiv.models import KeyWord, logger
 
-
 generic_property_table = [
     ("stichwort", "s"),
     ("id", "s_id"),
@@ -36,29 +35,29 @@ def create_graph(df):
         lambda row: f"keyword_{row['s_id']}__keyword_{row['t_id']}", axis=1
     )
     nodes = {}
-    graph['edges'] = []
-    for g, ndf in df.groupby('edge_key'):
+    graph["edges"] = []
+    for g, ndf in df.groupby("edge_key"):
         source_id, target_id = g.split("__")
         edge = {
             "key": g,
             "source": f"{source_id}",
             "target": f"{target_id}",
-            "passage_ids": [int(x) for x in sorted(list(set(ndf['stelle_id'].values)))],
-            "count": len(ndf)
+            "passage_ids": [int(x) for x in sorted(set(ndf["stelle_id"].values))],
+            "count": len(ndf),
         }
         nodes[f"{source_id}"] = {
             "key": f"{source_id}",
-            "id": int(ndf.iloc[0]['s_id']),
+            "id": int(ndf.iloc[0]["s_id"]),
             "kind": "keyword",
-            "type": ndf.iloc[0]['art'],
-            "label": ndf.iloc[0]['s'],
+            "type": ndf.iloc[0]["art"],
+            "label": ndf.iloc[0]["s"],
         }
         nodes[f"{target_id}"] = {
             "key": f"{target_id}",
-            "id": int(ndf.iloc[0]['t_id']),
+            "id": int(ndf.iloc[0]["t_id"]),
             "kind": "keyword",
-            "type": ndf.iloc[0]['t_art'],
-            "label": ndf.iloc[0]['t'],
+            "type": ndf.iloc[0]["t_art"],
+            "label": ndf.iloc[0]["t"],
         }
         graph["edges"].append(edge)
     graph["nodes"] = [value for key, value in nodes.items()]

@@ -4,25 +4,59 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='GeoJsonLayer',
+            name="GeoJsonLayer",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(help_text='Title of this Layer', max_length=250, verbose_name='Title')),
-                ('attribution', models.CharField(blank=True, help_text='Attribution to the Layer creator', max_length=250, verbose_name='Attribution')),
-                ('description', models.TextField(blank=True, help_text='Short Description of the Use Case', null=True, verbose_name='Description')),
-                ('data', models.JSONField(help_text='The actual GeoJson', verbose_name='GeoJson')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "title",
+                    models.CharField(
+                        help_text="Title of this Layer",
+                        max_length=250,
+                        verbose_name="Title",
+                    ),
+                ),
+                (
+                    "attribution",
+                    models.CharField(
+                        blank=True,
+                        help_text="Attribution to the Layer creator",
+                        max_length=250,
+                        verbose_name="Attribution",
+                    ),
+                ),
+                (
+                    "description",
+                    models.TextField(
+                        blank=True,
+                        help_text="Short Description of the Use Case",
+                        null=True,
+                        verbose_name="Description",
+                    ),
+                ),
+                (
+                    "data",
+                    models.JSONField(
+                        help_text="The actual GeoJson", verbose_name="GeoJson"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'GeoJson Layer',
-                'ordering': ['title'],
+                "verbose_name": "GeoJson Layer",
+                "ordering": ["title"],
             },
         ),
     ]

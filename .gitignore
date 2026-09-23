@@ -19,10 +19,7 @@ cypress.json
 .pip_cache
 
 # migrations
-vocabs/migrations/*
-bib/migrations/*
-webpage/migrations/*
-places/migrations/*
+
 
 
 # Ipython Notebook checkpoints
@@ -37,7 +34,6 @@ dev_secret.py
 # documentation build files
 
 /docs/_*/*
-/vocabs/data/spreadsheets/cv_burial.xlsx
 /Untitled.ipynb
 /arche/data/fileType.json
 /arche/data/fileList.json
@@ -51,7 +47,6 @@ node_modules
 temp
 dev.py
 .env_dev
-vocabs
 no_match.json
 database_mit_CaseStudies.csv
 Untitled1.ipynb

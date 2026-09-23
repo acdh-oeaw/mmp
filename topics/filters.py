@@ -1,21 +1,20 @@
 import django_filters
-from django_filters.rest_framework import FilterSet
 from django.forms import FloatField
+from django_filters.rest_framework import FilterSet
 
 from archiv.models import Stelle
-from . models import (
-    Topic
-)
+
+from .models import Topic
 
 NUMBER_LOOKUP_CHOICES = [
-    ('exact', 'Equals'),
-    ('gt', 'Greater than'),
-    ('lt', 'Less than')
+    ("exact", "Equals"),
+    ("gt", "Greater than"),
+    ("lt", "Less than"),
 ]
 
 
 def filter_by_ids(queryset, name, value):
-    values = value.split(',')
+    values = value.split(",")
     return queryset.filter(id__in=values)
 
 
@@ -34,6 +33,5 @@ class TextTopicRelationListFilter(FilterSet):
         label="Topics",
     )
     weight = django_filters.LookupChoiceFilter(
-        field_class=FloatField,
-        lookup_choices=NUMBER_LOOKUP_CHOICES
+        field_class=FloatField, lookup_choices=NUMBER_LOOKUP_CHOICES
     )

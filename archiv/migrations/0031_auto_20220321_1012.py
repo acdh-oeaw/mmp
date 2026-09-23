@@ -4,22 +4,21 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0030_auto_20220203_1155'),
+        ("archiv", "0030_auto_20220203_1155"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='autor',
-            options={'ordering': ['id'], 'verbose_name': 'Autor'},
+            name="autor",
+            options={"ordering": ["id"], "verbose_name": "Autor"},
         ),
         migrations.AlterModelOptions(
-            name='ort',
-            options={'ordering': ['id'], 'verbose_name': 'Ort'},
+            name="ort",
+            options={"ordering": ["id"], "verbose_name": "Ort"},
         ),
         migrations.AlterModelOptions(
-            name='stelle',
-            options={'ordering': ['id'], 'verbose_name': 'Stelle'},
+            name="stelle",
+            options={"ordering": ["id"], "verbose_name": "Stelle"},
         ),
     ]

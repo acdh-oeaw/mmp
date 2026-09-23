@@ -4,20 +4,29 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0029_auto_20220203_1007'),
+        ("archiv", "0029_auto_20220203_1007"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='autor',
-            name='end_date_year',
-            field=models.SmallIntegerField(blank=True, help_text="e.g. '350', Muss (!) als Zahl eingegeben werden", null=True, verbose_name='End Date'),
+            model_name="autor",
+            name="end_date_year",
+            field=models.SmallIntegerField(
+                blank=True,
+                help_text="e.g. '350', Muss (!) als Zahl eingegeben werden",
+                null=True,
+                verbose_name="End Date",
+            ),
         ),
         migrations.AlterField(
-            model_name='autor',
-            name='start_date_year',
-            field=models.SmallIntegerField(blank=True, help_text="e.g. '300'; Muss (!) als Zahl eingegeben werden", null=True, verbose_name='Start Date'),
+            model_name="autor",
+            name="start_date_year",
+            field=models.SmallIntegerField(
+                blank=True,
+                help_text="e.g. '300'; Muss (!) als Zahl eingegeben werden",
+                null=True,
+                verbose_name="Start Date",
+            ),
         ),
     ]

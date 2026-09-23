@@ -1,8 +1,8 @@
 import django_filters.rest_framework
 from rest_framework import viewsets
 
-from . models import GeoJsonLayer
-from . api_serializer import GeoJsonLayerSerializer
+from .api_serializer import GeoJsonLayerSerializer
+from .models import GeoJsonLayer
 
 
 class GeoJsonLayerViewSet(viewsets.ModelViewSet):
@@ -11,4 +11,6 @@ class GeoJsonLayerViewSet(viewsets.ModelViewSet):
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
     ]
-    filterset_fields = ['use_case', ]
+    filterset_fields = [
+        "use_case",
+    ]

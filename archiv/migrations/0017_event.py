@@ -4,22 +4,74 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0016_auto_20210505_1148'),
+        ("archiv", "0016_auto_20210505_1148"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Event',
+            name="Event",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(blank=True, help_text='Titel des Events', max_length=250, null=True, verbose_name='Titel')),
-                ('description', models.TextField(blank=True, help_text='Beschreibung', null=True, verbose_name='Beschreibung')),
-                ('start_date', models.IntegerField(blank=True, help_text='von', verbose_name='von')),
-                ('end_date', models.IntegerField(blank=True, help_text='bis', verbose_name='bis')),
-                ('written_date', models.CharField(blank=True, help_text="z.B. 'um 750'", max_length=250, null=True, verbose_name='Datum')),
-                ('use_case', models.ManyToManyField(blank=True, help_text='Verwendet in Use Case', related_name='has_event', to='archiv.UseCase', verbose_name='Use Case')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "title",
+                    models.CharField(
+                        blank=True,
+                        help_text="Titel des Events",
+                        max_length=250,
+                        null=True,
+                        verbose_name="Titel",
+                    ),
+                ),
+                (
+                    "description",
+                    models.TextField(
+                        blank=True,
+                        help_text="Beschreibung",
+                        null=True,
+                        verbose_name="Beschreibung",
+                    ),
+                ),
+                (
+                    "start_date",
+                    models.IntegerField(
+                        blank=True, help_text="von", verbose_name="von"
+                    ),
+                ),
+                (
+                    "end_date",
+                    models.IntegerField(
+                        blank=True, help_text="bis", verbose_name="bis"
+                    ),
+                ),
+                (
+                    "written_date",
+                    models.CharField(
+                        blank=True,
+                        help_text="z.B. 'um 750'",
+                        max_length=250,
+                        null=True,
+                        verbose_name="Datum",
+                    ),
+                ),
+                (
+                    "use_case",
+                    models.ManyToManyField(
+                        blank=True,
+                        help_text="Verwendet in Use Case",
+                        related_name="has_event",
+                        to="archiv.UseCase",
+                        verbose_name="Use Case",
+                    ),
+                ),
             ],
         ),
     ]

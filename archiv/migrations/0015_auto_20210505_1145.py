@@ -4,20 +4,23 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0014_stelle_ort'),
+        ("archiv", "0014_stelle_ort"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='stelle',
-            name='end_date',
-            field=models.PositiveSmallIntegerField(blank=True, help_text="e.g. '1234'", null=True, verbose_name='End Date'),
+            model_name="stelle",
+            name="end_date",
+            field=models.PositiveSmallIntegerField(
+                blank=True, help_text="e.g. '1234'", null=True, verbose_name="End Date"
+            ),
         ),
         migrations.AddField(
-            model_name='stelle',
-            name='start_date',
-            field=models.PositiveSmallIntegerField(blank=True, help_text="e.g. '300'", null=True, verbose_name='Start Date'),
+            model_name="stelle",
+            name="start_date",
+            field=models.PositiveSmallIntegerField(
+                blank=True, help_text="e.g. '300'", null=True, verbose_name="Start Date"
+            ),
         ),
     ]

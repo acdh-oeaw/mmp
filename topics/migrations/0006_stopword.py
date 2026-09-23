@@ -4,17 +4,33 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('topics', '0005_texttopicrelation'),
+        ("topics", "0005_texttopicrelation"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='StopWord',
+            name="StopWord",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('word', models.CharField(blank=True, help_text='Word/Token to be excluded from any processing', max_length=250, null=True, verbose_name='stop word')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "word",
+                    models.CharField(
+                        blank=True,
+                        help_text="Word/Token to be excluded from any processing",
+                        max_length=250,
+                        null=True,
+                        verbose_name="stop word",
+                    ),
+                ),
             ],
         ),
     ]

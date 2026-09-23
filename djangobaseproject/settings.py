@@ -1,8 +1,6 @@
 import os
-import sys
 from pathlib import Path
 
-sys.modules["fontawesome_free"] = __import__("fontawesome-free")
 os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 SECRET_KEY = os.environ.get("SECRET_KEY", "1234verysecret")
 
@@ -34,11 +32,13 @@ else:
             "ENGINE": os.environ.get(
                 "DB_TYP", "django.contrib.gis.db.backends.postgis"
             ),
-            "NAME": os.environ.get("DB_NAME", "mmp"),
-            "USER": os.environ.get("DB_USER", "postgres"),
-            "PASSWORD": os.environ.get("DB_PASSWORD", "postgres"),
-            "HOST": os.environ.get("DB_HOST", "localhost"),
-            "PORT": os.environ.get("DB_PORT", "5432"),
+            "OPTIONS": {"options": "-c search_path=public,mmp"},
+            "NAME": os.environ.get("POSTGRES_DB", "mmp"),
+            "USER": os.environ.get("POSTGRES_USER", "postgres"),
+            "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "postgres"),
+            "HOST": os.environ.get("POSTGRES_HOST", "localhost"),
+            "PORT": os.environ.get("POSTGRES_PORT", "5432"),
+            "DISABLE_SERVER_SIDE_CURSORS": True,
         }
     }
 
@@ -47,10 +47,8 @@ SHARED_URL = "https://shared.acdh.oeaw.ac.at/"
 PROJECT_NAME = "djangobaseproject"
 
 
-ACDH_IMPRINT_URL = (
-    "https://shared.acdh.oeaw.ac.at/acdh-common-assets/api/imprint.php?serviceID="
-)
-REDMINE_ID = 18716
+ACDH_IMPRINT_URL = "https://imprint.acdh.oeaw.ac.at/"
+REDMINE_ID = os.environ.get("REDMINE_ID", "18716")
 
 # Application definition
 
@@ -67,24 +65,15 @@ INSTALLED_APPS = [
     "rest_framework_gis",
     "reversion",
     "ckeditor",
-    "ckeditor_uploader",
-    "crispy_forms",
-    "crispy_bootstrap4",
-    "floppyforms",
     "django_filters",
-    "django_tables2",
-    "django_spaghetti",
     "rest_framework",
+    "drf_spectacular",
     "mptt",
     "leaflet",
     "webpage",
-    "browsing",
-    "charts",
-    "netvis",
     "vocabs",
     "infos",
     "archiv",
-    "fontawesome_free",
     "topics",
     "story_map",
     "layers",
@@ -92,7 +81,6 @@ INSTALLED_APPS = [
 ]
 if DEBUG:
     INSTALLED_APPS.insert(10, "django_extensions")
-    INSTALLED_APPS.insert(11, 'fixture_magic')
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
@@ -101,22 +89,24 @@ SPAGHETTI_SAUCE = {
     "show_fields": False,
     "exclude": {"auth": ["user"]},
 }
+CORS_ALLOW_ALL_ORIGINS = True
 AUTHENTICATION_BACKENDS = ("django.contrib.auth.backends.ModelBackend",)
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": (
         "rest_framework.permissions.IsAuthenticatedOrReadOnly",
     ),
-    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 50,
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
 MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -130,7 +120,7 @@ ROOT_URLCONF = "djangobaseproject.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -138,11 +128,6 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "webpage.webpage_content_processors.installed_apps",
-                "webpage.webpage_content_processors.is_dev_version",
-                "webpage.webpage_content_processors.get_db_name",
-                "webpage.webpage_content_processors.shared_url",
-                "webpage.webpage_content_processors.my_app_name",
             ],
         },
     },
@@ -220,149 +205,6 @@ LEAFLET_CONFIG = {
 # https://django-filter.readthedocs.io/en/stable/ref/settings.html#filters-empty-choice-label
 FILTERS_EMPTY_CHOICE_LABEL = None
 CKEDITOR_UPLOAD_PATH = "uploads/"
-
-
-CKEDITOR_CONFIGS = {
-    "default": {
-        # 'skin': 'moono',
-        # 'skin': 'office2013',
-        "toolbar_Basic": [["Source", "-", "Bold", "Italic"]],
-        "toolbar_YourCustomToolbarConfig": [
-            {
-                "name": "document",
-                "items": [
-                    "Source",
-                    "-",
-                    "Save",
-                    "NewPage",
-                    "Preview",
-                    "Print",
-                    "-",
-                    "Templates",
-                ],
-            },
-            {
-                "name": "clipboard",
-                "items": [
-                    "Cut",
-                    "Copy",
-                    "Paste",
-                    "PasteText",
-                    "PasteFromWord",
-                    "-",
-                    "Undo",
-                    "Redo",
-                ],
-            },
-            {"name": "editing", "items": ["Find", "Replace", "-", "SelectAll"]},
-            {
-                "name": "forms",
-                "items": [
-                    "Form",
-                    "Checkbox",
-                    "Radio",
-                    "TextField",
-                    "Textarea",
-                    "Select",
-                    "Button",
-                    "ImageButton",
-                    "HiddenField",
-                ],
-            },
-            "/",
-            {
-                "name": "basicstyles",
-                "items": [
-                    "Bold",
-                    "Italic",
-                    "Underline",
-                    "Strike",
-                    "Subscript",
-                    "Superscript",
-                    "-",
-                    "RemoveFormat",
-                ],
-            },
-            {
-                "name": "paragraph",
-                "items": [
-                    "NumberedList",
-                    "BulletedList",
-                    "-",
-                    "Outdent",
-                    "Indent",
-                    "-",
-                    "Blockquote",
-                    "CreateDiv",
-                    "-",
-                    "JustifyLeft",
-                    "JustifyCenter",
-                    "JustifyRight",
-                    "JustifyBlock",
-                    "-",
-                    "BidiLtr",
-                    "BidiRtl",
-                    "Language",
-                ],
-            },
-            {"name": "links", "items": ["Link", "Unlink", "Anchor"]},
-            {
-                "name": "insert",
-                "items": [
-                    "Image",
-                    "Flash",
-                    "Table",
-                    "HorizontalRule",
-                    "Smiley",
-                    "SpecialChar",
-                    "PageBreak",
-                    "Iframe",
-                ],
-            },
-            "/",
-            {"name": "styles", "items": ["Styles", "Format", "Font", "FontSize"]},
-            {"name": "colors", "items": ["TextColor", "BGColor"]},
-            {"name": "tools", "items": ["Maximize", "ShowBlocks"]},
-            {"name": "about", "items": ["About"]},
-            "/",  # put this to force next toolbar on new line
-            {
-                "name": "yourcustomtools",
-                "items": [
-                    # put the name of your editor.ui.addButton here
-                    "Preview",
-                    "Maximize",
-                ],
-            },
-        ],
-        "toolbar": "YourCustomToolbarConfig",  # put selected toolbar config here
-        # 'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
-        # 'height': 291,
-        # 'width': '100%',
-        # 'filebrowserWindowHeight': 725,
-        # 'filebrowserWindowWidth': 940,
-        # 'toolbarCanCollapse': True,
-        # 'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
-        "tabSpaces": 4,
-        "extraPlugins": ",".join(
-            [
-                "uploadimage",  # the upload image feature
-                # your extra plugins here
-                "div",
-                "autolink",
-                "autoembed",
-                "embedsemantic",
-                "autogrow",
-                # 'devtools',
-                "widget",
-                "lineutils",
-                "clipboard",
-                "dialog",
-                "dialogui",
-                "elementspath",
-            ]
-        ),
-    }
-}
 
 
 GENERIC_AC_CONFIG = [

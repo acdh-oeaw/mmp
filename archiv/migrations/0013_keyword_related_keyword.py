@@ -4,15 +4,20 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0012_auto_20210329_1107'),
+        ("archiv", "0012_auto_20210329_1107"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='keyword',
-            name='related_keyword',
-            field=models.ManyToManyField(blank=True, help_text='Steht in Verbindung zu anderem Stichwort', related_name='rvn_related_keyword', to='archiv.KeyWord', verbose_name='Stichwort'),
+            model_name="keyword",
+            name="related_keyword",
+            field=models.ManyToManyField(
+                blank=True,
+                help_text="Steht in Verbindung zu anderem Stichwort",
+                related_name="rvn_related_keyword",
+                to="archiv.KeyWord",
+                verbose_name="Stichwort",
+            ),
         ),
     ]

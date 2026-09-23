@@ -5,15 +5,16 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0025_remove_text_lang'),
+        ("archiv", "0025_remove_text_lang"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='usecase',
-            name='story_map',
-            field=ckeditor_uploader.fields.RichTextUploadingField(blank=True, help_text='Story Map', null=True, verbose_name='Story Map'),
+            model_name="usecase",
+            name="story_map",
+            field=ckeditor_uploader.fields.RichTextUploadingField(
+                blank=True, help_text="Story Map", null=True, verbose_name="Story Map"
+            ),
         ),
     ]

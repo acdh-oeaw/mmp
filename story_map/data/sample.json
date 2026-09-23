@@ -1,0 +1,283 @@
+{
+    "storymap": {
+        "attribution": "",
+        "call_to_action": true,
+        "call_to_action_text": "",
+        "language": "de",
+        "map_as_image": false,
+        "map_background_color": "#5f9468",
+        "map_subdomains": "",
+        "map_type": "zoomify",
+        "slides": [{
+            "background": {},
+            "date": "",
+            "location": {
+                "line": true
+            },
+            "media": {
+                "caption": "",
+                "credit": "",
+                "url": ""
+            },
+            "text": {
+                "headline": "Schwarzes Meer um 550",
+                "text": ""
+            },
+            "type": "overview"
+        }, {
+            "background": {},
+            "date": "",
+            "location": {
+                "icon": "//uploads.knightlab.com/storymapjs/ee3762a02e5862af8f02906ab1d35ec6/mapping-medieval-people-alternative-map/_images/Hagia Sophia.png",
+                "iconSize": [48, 48],
+                "lat": -66.40795547978848,
+                "line": true,
+                "lon": -84.814453125,
+                "use_custom_marker": true,
+                "zoom": 4
+            },
+            "media": {
+                "caption": "",
+                "credit": "Tataryn, https://commons.wikimedia.org/wiki/File:Justinian555AD.png",
+                "url": "//uploads.knightlab.com/storymapjs/ee3762a02e5862af8f02906ab1d35ec6/mapping-medieval-people-alternative-map/_images/346px-Mosaic_of_Justinianus_I_-_Basilica_San_Vitale_(Ravenna).jpg"
+            },
+            "text": {
+                "headline": "Konstantinopel, Hauptstadt des Byzantinischen Reiches",
+                "text": ""
+            }
+        }, {
+            "background": {},
+            "date": "",
+            "location": {
+                "icon": "//uploads.knightlab.com/storymapjs/ee3762a02e5862af8f02906ab1d35ec6/mapping-medieval-people-alternative-map/_images/feather.svg",
+                "iconSize": [47.36, 48],
+                "lat": -65.94647177615738,
+                "line": true,
+                "lon": -82.177734375,
+                "use_custom_marker": true,
+                "zoom": 4
+            },
+            "media": {
+                "caption": "",
+                "credit": "",
+                "url": "https://alchetron.com/cdn/jordanes-4a62fa9c-0eec-43bd-b2ba-14818dddd36-resize-750.jpeg"
+            },
+            "text": {
+                "headline": "Jordanes (\u2020 nach 552)",
+                "text": "&nbsp;<em>De origine actibusque Getarum</em><span>&nbsp;<br><br></span>"
+            }
+        }, {
+            "background": {},
+            "date": "",
+            "location": {
+                "lat": -45.95114968669139,
+                "line": true,
+                "lon": -118.828125,
+                "zoom": 3
+            },
+            "media": {
+                "caption": "",
+                "credit": "Arch\u00e4ologische Kulturen um 600 (frankensaurus.com)\u000bFunde von S\u01cerata Monteoru (aus Zden\u011bk V\u00e1\u0148a, The World of the Ancient Slavs)",
+                "url": "//uploads.knightlab.com/storymapjs/ee3762a02e5862af8f02906ab1d35ec6/mapping-medieval-people-alternative-map/_images/Sclaveni_2.png"
+            },
+            "text": {
+                "headline": "Sclaveni",
+                "text": ""
+            }
+        }, {
+            "background": {},
+            "date": "",
+            "location": {
+                "lat": -20.13847031245114,
+                "line": true,
+                "lon": -161.015625,
+                "zoom": 3
+            },
+            "media": {
+                "caption": "",
+                "credit": "Wikipedia",
+                "url": "//uploads.knightlab.com/storymapjs/ee3762a02e5862af8f02906ab1d35ec6/mapping-medieval-people-alternative-map/_images/Gepidae-removebg-preview.png"
+            },
+            "text": {
+                "headline": "Gepidae",
+                "text": "<div>\n\n\n\n\n\n\n\n<p><br></p></div>"
+            }
+        }, {
+            "date": "",
+            "location": {
+                "lat": -2.6357885741666065,
+                "line": true,
+                "lon": -77.255859375,
+                "zoom": 4
+            },
+            "media": {
+                "caption": "",
+                "credit": "",
+                "url": "//uploads.knightlab.com/storymapjs/ee3762a02e5862af8f02906ab1d35ec6/mapping-medieval-people-alternative-map/_images/Antes_2.jpg"
+            },
+            "text": {
+                "headline": "Anten",
+                "text": "<blockquote>\u201eDas m\u00e4chtige Volk der Veneter, deren Name freilich bei verschiedenen Familien und Orten wechseln mag, so werden sie dennoch grunds\u00e4tzlich Sklavenen und Anten genannt.\u201c</blockquote>"
+            }
+        }, {
+            "date": "",
+            "location": {
+                "lat": -3.162455530237848,
+                "line": true,
+                "lon": -45.703125,
+                "zoom": 3
+            },
+            "media": {
+                "caption": "",
+                "credit": "",
+                "url": "//uploads.knightlab.com/storymapjs/ee3762a02e5862af8f02906ab1d35ec6/mapping-medieval-people-alternative-map/_images/Akatziren_2.png"
+            },
+            "text": {
+                "headline": "Akatziri",
+                "text": "<blockquote>\u201eDas \u00fcberaus tapfere Volk der Akatziren, das keine Fr\u00fcchte kennt und sich von Vieh\u00adzucht und von Jagd ern\u00e4hrt.\u201c</blockquote>"
+            }
+        }, {
+            "date": "",
+            "location": {
+                "lat": -3.601142320158722,
+                "line": true,
+                "lon": 0.263671875,
+                "zoom": 4
+            },
+            "media": {
+                "caption": "",
+                "credit": "",
+                "url": "//uploads.knightlab.com/storymapjs/ee3762a02e5862af8f02906ab1d35ec6/mapping-medieval-people-alternative-map/_images/Bulgaren_1.jpg"
+            },
+            "text": {
+                "headline": "Bulgaren",
+                "text": ""
+            }
+        }, {
+            "date": "",
+            "location": {
+                "lat": -39.57182223734373,
+                "line": true,
+                "lon": -37.44140625,
+                "zoom": 2
+            },
+            "media": {
+                "caption": "",
+                "credit": "",
+                "url": "//uploads.knightlab.com/storymapjs/ee3762a02e5862af8f02906ab1d35ec6/mapping-medieval-people-alternative-map/_images/Altziagieren.jpg"
+            },
+            "text": {
+                "headline": "Altziagiren",
+                "text": "<blockquote>\u201eDie Alt\u00adziagiren leben bei der Chersones, wohin der gierige Kauf\u00admann die G\u00fcter Asiens bringt. Diese durchstreifen im Som\u00admer weite Felder als ihre Wohnsitze, je nachdem wie das Futter f\u00fcr ihr Vieh sie einl\u00e4dt. Im Winter ziehen sie sich an den Pontus (das Schwarze Meer) zur\u00fcck.\u201c</blockquote>"
+            }
+        }, {
+            "date": "",
+            "location": {
+                "lat": -18.81271785640776,
+                "line": true,
+                "lon": 53.78906249999999,
+                "zoom": 3
+            },
+            "media": {
+                "caption": "",
+                "credit": "",
+                "url": "//uploads.knightlab.com/storymapjs/ee3762a02e5862af8f02906ab1d35ec6/mapping-medieval-people-alternative-map/_images/Hunuguren_1.jpg"
+            },
+            "text": {
+                "headline": "Hunuguren",
+                "text": "<blockquote>Die <span style=\"color:black\">Hunuguren</span> aber sind daher be\u00adkannt, dass von ihnen <span style=\"color:black\">der Handel mit Hermelinfellen</span> be\u00adtrieben wird.</blockquote>"
+            }
+        }, {
+            "date": "",
+            "location": {
+                "lat": -47.8721439688873,
+                "line": true,
+                "lon": 91.40625,
+                "zoom": 3
+            },
+            "media": {
+                "caption": "Derbent Pass durch den Kaukasus nahe dem Kaspischen Meer",
+                "credit": "",
+                "url": "//uploads.knightlab.com/storymapjs/ee3762a02e5862af8f02906ab1d35ec6/mapping-medieval-people-alternative-map/_images/Sabiren_1.jpg"
+            },
+            "text": {
+                "headline": "Sabiren",
+                "text": ""
+            }
+        }, {
+            "date": "",
+            "location": {
+                "lat": -51.835777520452474,
+                "line": true,
+                "lon": 60.64453125000001,
+                "zoom": 3
+            },
+            "media": {
+                "caption": "",
+                "credit": "Kislovodsk, Institut f\u00fcr Arch\u00e4ologie der Russischen Akademie der Wissenschaften",
+                "url": "//uploads.knightlab.com/storymapjs/ee3762a02e5862af8f02906ab1d35ec6/mapping-medieval-people-alternative-map/_images/Alanen_2.jpg"
+            },
+            "text": {
+                "headline": "Alanen",
+                "text": ""
+            }
+        }, {
+            "date": "",
+            "location": {
+                "lat": -24.5271348225978,
+                "line": true,
+                "lon": 14.765625,
+                "zoom": 4
+            },
+            "media": {
+                "caption": "",
+                "credit": "",
+                "url": "//uploads.knightlab.com/storymapjs/ee3762a02e5862af8f02906ab1d35ec6/mapping-medieval-people-alternative-map/_images/Utiguren_1.jpg"
+            },
+            "text": {
+                "headline": "Utiguren",
+                "text": "<blockquote>\n\u201eEin K\u00f6nig der Hunnen hatte zwei S\u00f6hne, <span style=\"color:black\">einer hie\u00df Utigur, der andere Kutrigur</span> \u2013 und jeder gab seinen Untertanen seinen Namen\u2026 \u201c\n</blockquote>"
+            }
+        }, {
+            "date": "",
+            "location": {
+                "lat": -7.710991655433217,
+                "line": true,
+                "lon": -7.734374999999999,
+                "zoom": 3
+            },
+            "media": {
+                "caption": "",
+                "credit": "",
+                "url": "//uploads.knightlab.com/storymapjs/ee3762a02e5862af8f02906ab1d35ec6/mapping-medieval-people-alternative-map/_images/Hunguri.png"
+            },
+            "text": {
+                "headline": "Kutriguren",
+                "text": "<blockquote>\u201eObwohl sie <span style=\"color:black\">vom Kaiser jedes Jahr viele Geschenke</span> erhalten, \u00fcberschreiten sie dennoch jedes Jahr die Donau und fallen in das Land des Kaisers ein: Sie befinden sich gleichzeitig <span style=\"color:black\">im Frieden und im Krieg</span> mit den R\u00f6mern.\u201c</blockquote>"
+            }
+        }, {
+            "date": "",
+            "location": {
+                "lat": -33.43144133557529,
+                "line": true,
+                "lon": -33.046875,
+                "zoom": 0
+            },
+            "media": {
+                "caption": "",
+                "credit": "",
+                "url": "//uploads.knightlab.com/storymapjs/ee3762a02e5862af8f02906ab1d35ec6/mapping-medieval-people-alternative-map/_images/Tetraxiten_1.jpg"
+            },
+            "text": {
+                "headline": "Tetraxiten \u2013 Goten auf der Krim",
+                "text": ""
+            }
+        }],
+        "zoomify": {
+            "path": "http://www.fringepeople.net/MMP3/",
+            "height": 3312,
+            "width": 3800,
+            "attribution": ""
+        }
+    }
+}

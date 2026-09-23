@@ -4,14 +4,13 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0045_remove_usecase_custom_layer_alter_stelle_ort'),
+        ("archiv", "0045_remove_usecase_custom_layer_alter_stelle_ort"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='stelle',
-            name='ort',
+            model_name="stelle",
+            name="ort",
         ),
     ]

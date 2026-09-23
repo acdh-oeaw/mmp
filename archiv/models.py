@@ -2,24 +2,23 @@
 import logging
 import re
 
+from AcdhArcheAssets.uri_norm_rules import get_normalized_uri
+from ckeditor_uploader.fields import RichTextUploadingField
+from django.contrib.gis.db.models import (
+    GeometryCollectionField,
+    PointField,
+    PolygonField,
+)
+from django.contrib.gis.geos import GeometryCollection, Point, Polygon
 from django.db import models
 from django.urls import reverse
-from django.contrib.gis.geos import Polygon, Point, GeometryCollection
-from django.contrib.gis.db.models import PolygonField, PointField, GeometryCollectionField
 from django.utils.functional import cached_property
-from next_prev import next_in_order, prev_in_order
-from ckeditor_uploader.fields import RichTextUploadingField
-from AcdhArcheAssets.uri_norm_rules import get_normalized_uri
+
 from archiv.utils import parse_date
-from archiv.text_processing import process_text
-
-from browsing.browsing_utils import model_to_dict
-from vocabs.models import SkosConcept
-from story_map.models import Story
-
-from webpage.metadata import PROJECT_METADATA
 from layers.models import GeoJsonLayer
-
+from story_map.models import Story
+from vocabs.models import SkosConcept
+from webpage.metadata import PROJECT_METADATA
 
 logger = logging.getLogger(__name__)
 
@@ -31,15 +30,12 @@ def set_extra(self, **kwargs):
 
 models.Field.set_extra = set_extra
 
-LANG_CHOICES = (
-    ('lat', 'lat'),
-    ('gre', 'gre'),
-    ('und', 'und')
-)
+LANG_CHOICES = (("lat", "lat"), ("gre", "gre"), ("und", "und"))
 
 
 class UseCase(models.Model):
-    """ Use Case in regards of a specific research questions """
+    """Use Case in regards of a specific research questions"""
+
     title = models.CharField(
         max_length=250,
         blank=True,
@@ -68,7 +64,8 @@ class UseCase(models.Model):
         arche_prop="hasPrincipalInvestigator",
     )
     description = models.TextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Description",
         help_text="Short Description of the Use Case",
     ).set_extra(
@@ -76,14 +73,11 @@ class UseCase(models.Model):
         arche_prop="hasDescription",
     )
     story_map = RichTextUploadingField(
-        blank=True,
-        null=True,
-        verbose_name="Story Map",
-        help_text="Story Map"
+        blank=True, null=True, verbose_name="Story Map", help_text="Story Map"
     )
     knightlab_stoy_map = models.ManyToManyField(
         Story,
-        related_name='has_use_case',
+        related_name="has_use_case",
         blank=True,
         verbose_name="Knightlab Story Map",
         help_text="Knightlab Story Map",
@@ -92,40 +86,34 @@ class UseCase(models.Model):
     )
     layer = models.ManyToManyField(
         GeoJsonLayer,
-        related_name='use_case',
+        related_name="use_case",
         blank=True,
-        verbose_name='GeoJson Layers',
-        help_text="Select GeoJson Layers which should be related to this UseCase"
+        verbose_name="GeoJson Layers",
+        help_text="Select GeoJson Layers which should be related to this UseCase",
     )
     show_labels = models.BooleanField(
         default=False,
         verbose_name="Show Labels",
-        help_text="True if labels of the Spatial Coverage should be visible in the front end"
+        help_text="True if labels of the Spatial Coverage should be visible in the front end",
     )
     published = models.BooleanField(
         default=False,
         verbose_name="Published",
-        help_text="True if the use case should be presented in the frontend, false if not"
+        help_text="True if the use case should be presented in the frontend, false if not",
     )
 
     class Meta:
-
         ordering = [
-            'title',
+            "title",
         ]
         verbose_name = "Use Case"
 
     def __str__(self):
         return f"{self.title}"
 
-    def field_dict(self):
-        return model_to_dict(self)
-
     @cached_property
     def get_texts(self):
-        text = Text.objects.filter(
-            rvn_stelle_text_text__use_case=self
-        ).distinct()
+        text = Text.objects.filter(rvn_stelle_text_text__use_case=self).distinct()
         return text
 
     @cached_property
@@ -148,103 +136,62 @@ class UseCase(models.Model):
         return event
 
     @classmethod
-    def get_source_table(self):
-        return None
-
-    @classmethod
-    def get_listview_url(self):
-        return reverse('archiv:usecase_browse')
-
-    @classmethod
     def get_natural_primary_key(self):
         return "id"
-
-    @classmethod
-    def get_createview_url(self):
-        return reverse('archiv:usecase_create')
-
-    def get_absolute_url(self):
-        return reverse('archiv:usecase_detail', kwargs={'pk': self.id})
-
-    def get_delete_url(self):
-        return reverse('archiv:usecase_delete', kwargs={'pk': self.id})
-
-    def get_edit_url(self):
-        return reverse('archiv:usecase_edit', kwargs={'pk': self.id})
-
-    def get_next(self):
-        next = next_in_order(self)
-        if next:
-            return next.get_absolute_url()
-        return False
-
-    def get_prev(self):
-        prev = prev_in_order(self)
-        if prev:
-            return prev.get_absolute_url()
-        return False
 
     def get_timetable_data(self):
         time_table_data = []
         if self.get_texts:
             for x in self.get_texts:
-                try:
+                if x.start_date:
                     time_table_data.append(
                         {
-                            'id': x.id,
-                            'start_date': int(x.start_date),
-                            'end_date': x.end_date,
-                            'ent_type': 'text',
-                            'ent_title': x.title,
-                            'ent_description': x.title,
-                            'ent_detail_view': x.get_absolute_url()
+                            "id": x.id,
+                            "start_date": int(x.start_date),
+                            "end_date": x.end_date,
+                            "ent_type": "text",
+                            "ent_title": x.title,
+                            "ent_description": x.title,
                         }
                     )
-                except Exception:
-                    pass
+
         if self.get_authors:
             for x in self.get_authors:
-                try:
+                if x.start_date:
                     time_table_data.append(
                         {
-                            'id': x.id,
-                            'start_date': int(x.start_date),
-                            'end_date': x.end_date,
-                            'ent_type': 'autor',
-                            'ent_title': x.name,
-                            'ent_description': x.name,
-                            'ent_detail_view': x.get_absolute_url()
+                            "id": x.id,
+                            "start_date": int(x.start_date),
+                            "end_date": x.end_date,
+                            "ent_type": "autor",
+                            "ent_title": x.name,
+                            "ent_description": x.name,
                         }
                     )
-                except Exception:
-                    pass
         if self.get_events:
             for x in self.get_events:
-                try:
+                if x.start_date:
                     time_table_data.append(
                         {
-                            'id': x.id,
-                            'start_date': int(x.start_date),
-                            'end_date': x.end_date,
-                            'ent_type': 'event',
-                            'ent_title': x.title,
-                            'ent_description': x.description,
-                            'ent_detail_view': x.get_absolute_url()
+                            "id": x.id,
+                            "start_date": int(x.start_date),
+                            "end_date": x.end_date,
+                            "ent_type": "event",
+                            "ent_title": x.title,
+                            "ent_description": x.description,
                         }
                     )
-                except Exception:
-                    pass
-        return sorted(time_table_data, key=lambda k: k['start_date'])
+
+        return sorted(time_table_data, key=lambda k: k["start_date"])
 
 
 class Autor(models.Model):
-    """ Autor """
-    legacy_id = models.CharField(
-        max_length=300, blank=True,
-        verbose_name="Legacy ID"
-    )
+    """Autor"""
+
+    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Legacy ID",
         help_text="Legacy id (from GENS database)",
     ).set_extra(
@@ -350,24 +297,20 @@ class Autor(models.Model):
         data_lookup="abis",
     )
     start_date_year = models.SmallIntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Start Date",
-        help_text="e.g. '300'; Muss (!) als Zahl eingegeben werden"
-    ).set_extra(
-        is_public=True,
-        arche_prop="hasCoverageStartDate"
-    )
+        help_text="e.g. '300'; Muss (!) als Zahl eingegeben werden",
+    ).set_extra(is_public=True, arche_prop="hasCoverageStartDate")
     end_date_year = models.SmallIntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="End Date",
-        help_text="e.g. '350', Muss (!) als Zahl eingegeben werden"
-    ).set_extra(
-        is_public=True,
-        arche_prop="hasCoverageEndDate"
-    )
+        help_text="e.g. '350', Muss (!) als Zahl eingegeben werden",
+    ).set_extra(is_public=True, arche_prop="hasCoverageEndDate")
     ort = models.ForeignKey(
         "Ort",
-        related_name='rvn_autor_ort_ort',
+        related_name="rvn_autor_ort_ort",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -378,7 +321,8 @@ class Autor(models.Model):
         data_lookup="aort",
     )
     kommentar = models.TextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Comment",
         help_text="Comment",
     ).set_extra(
@@ -387,17 +331,12 @@ class Autor(models.Model):
         arche_prop="hasNote",
     )
     orig_data_csv = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="Original data"
-    ).set_extra(
-        is_public=True
-    )
+        blank=True, null=True, verbose_name="Original data"
+    ).set_extra(is_public=True)
 
     class Meta:
-
         ordering = [
-            'id',
+            "id",
         ]
         verbose_name = "Autor"
 
@@ -407,30 +346,13 @@ class Autor(models.Model):
         else:
             return f"no english name provided for autor id:{self.id}"
 
-    def field_dict(self):
-        return model_to_dict(self)
-
-    @classmethod
-    def get_listview_url(self):
-        return reverse('archiv:autor_browse')
-
-    @classmethod
-    def get_source_table(self):
-        return "autor"
-
     @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
 
-    @classmethod
-    def get_createview_url(self):
-        return reverse('archiv:autor_create')
-
     @cached_property
     def get_stellen(self):
-        stellen = Stelle.objects.filter(
-            text__autor=self
-        ).distinct()
+        stellen = Stelle.objects.filter(text__autor=self).distinct()
         return stellen
 
     @cached_property
@@ -455,69 +377,43 @@ class Autor(models.Model):
             gnd = self.gnd_id
             if "lobid" in gnd:
                 self.gnd_id = get_normalized_uri(gnd.replace("lobid.org", "d-nb.info"))
-            elif gnd.startswith('http'):
+            elif gnd.startswith("http"):
                 self.gnd_id = get_normalized_uri(gnd)
             else:
                 self.gnd_id = get_normalized_uri(f"https://d-nb.info/gnd/{gnd}")
-        super(Autor, self).save(*args, **kwargs)
-
-    def get_absolute_url(self):
-        return reverse('archiv:autor_detail', kwargs={'pk': self.id})
-
-    def get_delete_url(self):
-        return reverse('archiv:autor_delete', kwargs={'pk': self.id})
-
-    def get_edit_url(self):
-        return reverse('archiv:autor_edit', kwargs={'pk': self.id})
-
-    def get_next(self):
-        next = next_in_order(self)
-        if next:
-            return next.get_absolute_url()
-        return False
-
-    def get_prev(self):
-        prev = prev_in_order(self)
-        if prev:
-            return prev.get_absolute_url()
-        return False
+        super().save(*args, **kwargs)
 
     def get_names_list(self):
         name_list = []
         for attr in self._meta.get_fields():
             if attr.name.startswith("name_"):
-                name_list.append([
-                    attr.name.split("_")[1], getattr(self, attr.name)
-                ])
+                name_list.append([attr.name.split("_")[1], getattr(self, attr.name)])
             elif attr.name == "name":
-                name_list.append([
-                    "de", getattr(self, attr.name)
-                ])
+                name_list.append(["de", getattr(self, attr.name)])
         return name_list
 
     def start_date_tei_normalized(self):
         if self.start_date:
-            startdate = re.search(r'\d+', self.start_date).group()
+            startdate = re.search(r"\d+", self.start_date).group()
             return f"{int(startdate):04}"
         else:
             return ""
 
     def end_date_tei_normalized(self):
         if self.end_date:
-            enddate = re.search(r'\d+', self.end_date).group()
+            enddate = re.search(r"\d+", self.end_date).group()
             return f"{int(enddate):04}"
         else:
             return ""
 
 
 class KeyWord(models.Model):
-    """ Keyword """
-    legacy_id = models.CharField(
-        max_length=300, blank=True,
-        verbose_name="Legacy ID"
-    )
+    """Keyword"""
+
+    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Old primary key",
         help_text="Old primary key (from GENS database)",
     ).set_extra(
@@ -549,11 +445,11 @@ class KeyWord(models.Model):
         max_length=250,
         blank=True,
         choices=(
-            ('Keyword', 'Keyword'),
-            ('Name', 'Name'),
-            ('Ethnonym', 'Ethnonym'),
-            ('Region', 'Region'),
-            ('unclear', 'unclear')
+            ("Keyword", "Keyword"),
+            ("Name", "Name"),
+            ("Ethnonym", "Ethnonym"),
+            ("Region", "Region"),
+            ("unclear", "unclear"),
         ),
         verbose_name="Type of keyword",
         help_text="Type of keyword",
@@ -565,7 +461,7 @@ class KeyWord(models.Model):
         blank=True,
         null=True,
         verbose_name="Variants",
-        help_text="Variants forms (separated with ;)"
+        help_text="Variants forms (separated with ;)",
     )
     wurzel = models.CharField(
         max_length=250,
@@ -578,7 +474,7 @@ class KeyWord(models.Model):
     )
     related_keyword = models.ManyToManyField(
         "KeyWord",
-        related_name='rvn_related_keyword',
+        related_name="rvn_related_keyword",
         blank=True,
         verbose_name="Linked keyword",
         help_text="Other keyword linked to this one",
@@ -586,7 +482,8 @@ class KeyWord(models.Model):
         is_public=True,
     )
     kommentar = models.TextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Comment",
         help_text="Comment",
     ).set_extra(
@@ -595,17 +492,12 @@ class KeyWord(models.Model):
         arche_prop="hasNote",
     )
     orig_data_csv = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="Original data"
-    ).set_extra(
-        is_public=True
-    )
+        blank=True, null=True, verbose_name="Original data"
+    ).set_extra(is_public=True)
 
     class Meta:
-
         ordering = [
-            'stichwort',
+            "stichwort",
         ]
         verbose_name = "Keyword"
 
@@ -613,13 +505,11 @@ class KeyWord(models.Model):
         if self.stichwort:
             return f"{self.stichwort}, [wurzel: {self.wurzel}]"
         else:
-            return "{}".format(self.legacy_id)
+            return f"{self.legacy_id}"
 
     @cached_property
     def get_texts(self):
-        texts = Text.objects.filter(
-            rvn_stelle_text_text__key_word=self
-        ).distinct()
+        texts = Text.objects.filter(rvn_stelle_text_text__key_word=self).distinct()
         return texts
 
     @cached_property
@@ -631,63 +521,21 @@ class KeyWord(models.Model):
 
     @cached_property
     def get_orte(self):
-        orte = Ort.objects.filter(
-            rvn_autor_ort_ort__in=self.get_authors
-        ).distinct()
+        orte = Ort.objects.filter(rvn_autor_ort_ort__in=self.get_authors).distinct()
         return orte
-
-    def field_dict(self):
-        return model_to_dict(self)
-
-    @classmethod
-    def get_listview_url(self):
-        return reverse('archiv:keyword_browse')
-
-    @classmethod
-    def get_source_table(self):
-        return None
 
     @classmethod
     def get_natural_primary_key(self):
         return "stichwort"
 
-    @classmethod
-    def get_createview_url(self):
-        return reverse('archiv:keyword_create')
-
-    def get_absolute_url(self):
-        return reverse('archiv:keyword_detail', kwargs={'pk': self.id})
-
-    def get_keyword_by_century(self):
-        return reverse('archiv:keyword_by_century', kwargs={'pk': self.id})
-
-    def get_delete_url(self):
-        return reverse('archiv:keyword_delete', kwargs={'pk': self.id})
-
-    def get_edit_url(self):
-        return reverse('archiv:keyword_edit', kwargs={'pk': self.id})
-
-    def get_next(self):
-        next = next_in_order(self)
-        if next:
-            return next.get_absolute_url()
-        return False
-
-    def get_prev(self):
-        prev = prev_in_order(self)
-        if prev:
-            return prev.get_absolute_url()
-        return False
-
 
 class Ort(models.Model):
-    """ Ort """
-    legacy_id = models.CharField(
-        max_length=300, blank=True,
-        verbose_name="Legacy ID"
-    )
+    """Ort"""
+
+    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Old primary key",
         help_text="Old primary key (from GENS database)",
     ).set_extra(
@@ -766,7 +614,8 @@ class Ort(models.Model):
         arche_prop="hasAlternativeTitle",
     )
     long = models.FloatField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Longitude",
         help_text="Longitude",
     ).set_extra(
@@ -774,7 +623,8 @@ class Ort(models.Model):
         data_lookup="KoordW",
     )
     lat = models.FloatField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Latitude",
         help_text="Latitude",
     ).set_extra(
@@ -785,10 +635,11 @@ class Ort(models.Model):
         blank=True,
         null=True,
         help_text="Coordinates (automatically generated)",
-        verbose_name="Coordinates"
+        verbose_name="Coordinates",
     )
     fuzzy_geom = GeometryCollectionField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Approximate localisation",
         help_text="Approximate localisation of an area",
     ).set_extra(
@@ -797,7 +648,7 @@ class Ort(models.Model):
     )
     art = models.ForeignKey(
         SkosConcept,
-        related_name='rvn_ort_art_skosconcept',
+        related_name="rvn_ort_art_skosconcept",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -809,7 +660,7 @@ class Ort(models.Model):
     )
     kategorie = models.ForeignKey(
         SkosConcept,
-        related_name='rvn_ort_kategorie_skosconcept',
+        related_name="rvn_ort_kategorie_skosconcept",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -820,7 +671,8 @@ class Ort(models.Model):
         data_lookup="Kategorie",
     )
     kommentar = models.TextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Comment",
         help_text="Comment",
     ).set_extra(
@@ -829,17 +681,12 @@ class Ort(models.Model):
         arche_prop="hasNote",
     )
     orig_data_csv = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="Original data"
-    ).set_extra(
-        is_public=True
-    )
+        blank=True, null=True, verbose_name="Original data"
+    ).set_extra(is_public=True)
 
     class Meta:
-
         ordering = [
-            'id',
+            "id",
         ]
         verbose_name = "Ort"
 
@@ -852,18 +699,12 @@ class Ort(models.Model):
     def save(self, *args, **kwargs):
         if self.long and self.lat:
             self.coords = Point(self.long, self.lat)
-        super(Ort, self).save(*args, **kwargs)
-
-    def field_dict(self):
-        return model_to_dict(self)
+        super().save(*args, **kwargs)
 
     @cached_property
     def place_as_dict(self):
         if self.art is not None:
-            art = {
-                "id": self.art.id,
-                "label": self.art.pref_label
-            }
+            art = {"id": self.art.id, "label": self.art.pref_label}
         else:
             art = None
 
@@ -873,7 +714,7 @@ class Ort(models.Model):
             "name_antik": self.name_antik,
             "lat": self.lat,
             "lng": self.long,
-            "art": art
+            "art": art,
         }
         return pl
 
@@ -888,78 +729,34 @@ class Ort(models.Model):
         return geom
 
     @classmethod
-    def get_listview_url(self):
-        return reverse('archiv:ort_browse')
-
-    @classmethod
-    def get_source_table(self):
-        return "orte"
-
-    @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
-
-    @classmethod
-    def get_createview_url(self):
-        return reverse('archiv:ort_create')
-
-    def get_absolute_url(self):
-        return reverse('archiv:ort_detail', kwargs={'pk': self.id})
-
-    def get_delete_url(self):
-        return reverse('archiv:ort_delete', kwargs={'pk': self.id})
-
-    def get_edit_url(self):
-        return reverse('archiv:ort_edit', kwargs={'pk': self.id})
-
-    def get_next(self):
-        next = next_in_order(self)
-        if next:
-            return next.get_absolute_url()
-        return False
-
-    def get_prev(self):
-        prev = prev_in_order(self)
-        if prev:
-            return prev.get_absolute_url()
-        return False
 
     def get_names_list(self):
         name_list = []
         for attr in self._meta.get_fields():
             if attr.name.startswith("name_"):
-                name_list.append([
-                    attr.name.split("_")[1], getattr(self, attr.name)
-                ])
+                name_list.append([attr.name.split("_")[1], getattr(self, attr.name)])
             elif attr.name == "name":
-                name_list.append([
-                    "en", getattr(self, attr.name)
-                ])
+                name_list.append(["en", getattr(self, attr.name)])
         return name_list
 
     @cached_property
     def kind(self):
         if self.art:
-            art = {
-                "id": self.art.id,
-                "label": self.art.pref_label
-            }
+            art = {"id": self.art.id, "label": self.art.pref_label}
         else:
-            art = {
-                "id": None,
-                "label": "no place type provided"
-            }
+            art = {"id": None, "label": "no place type provided"}
         return art
 
 
 class Stelle(models.Model):
-    """ Stelle """
-    legacy_id = models.CharField(
-        max_length=300, blank=True,
-        verbose_name="Legacy ID"
-    )
+    """Stelle"""
+
+    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Old primary key",
         help_text="Old primary key (from GENS database)",
     ).set_extra(
@@ -970,7 +767,7 @@ class Stelle(models.Model):
     )
     text = models.ForeignKey(
         "Text",
-        related_name='rvn_stelle_text_text',
+        related_name="rvn_stelle_text_text",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -981,7 +778,8 @@ class Stelle(models.Model):
         data_lookup="stexttitel",
     )
     summary = models.TextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Summary",
         help_text="Summary",
     ).set_extra(
@@ -990,7 +788,8 @@ class Stelle(models.Model):
         arche_prop="hasDescription",
     )
     zitat = models.TextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Quotation",
         help_text="Text of the passage in the original language",
     ).set_extra(
@@ -1000,7 +799,8 @@ class Stelle(models.Model):
     )
     zitat_stelle = models.CharField(
         max_length=250,
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Quotation source",
         help_text="Chapter and/or page numbers for the passage",
     ).set_extra(
@@ -1008,7 +808,8 @@ class Stelle(models.Model):
         arche_prop="hasNote",
     )
     translation = models.TextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Translation",
         help_text="Translation",
     ).set_extra(
@@ -1017,7 +818,7 @@ class Stelle(models.Model):
     )
     key_word = models.ManyToManyField(
         "KeyWord",
-        related_name='rvn_stelle_key_word_keyword',
+        related_name="rvn_stelle_key_word_keyword",
         blank=True,
         verbose_name="Keyword",
         help_text="Keyword(s) asssociated with the passage",
@@ -1026,23 +827,20 @@ class Stelle(models.Model):
         arche_prop="hasSubject",
     )
     start_date = models.SmallIntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="From",
-        help_text="Start date or earliest possible date"
-    ).set_extra(
-        is_public=True,
-        arche_prop="hasCoverageStartDate"
-    )
+        help_text="Start date or earliest possible date",
+    ).set_extra(is_public=True, arche_prop="hasCoverageStartDate")
     end_date = models.SmallIntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="To",
-        help_text="End date or last possible date'"
-    ).set_extra(
-        is_public=True,
-        arche_prop="hasCoverageEndDate"
-    )
+        help_text="End date or last possible date'",
+    ).set_extra(is_public=True, arche_prop="hasCoverageEndDate")
     kommentar = models.TextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Comment",
         help_text="Comment",
     ).set_extra(
@@ -1051,21 +849,14 @@ class Stelle(models.Model):
         arche_prop="hasNote",
     )
     display_label = models.CharField(
-        max_length=250,
-        blank=True,
-        null=True,
-        verbose_name="Display label"
+        max_length=250, blank=True, null=True, verbose_name="Display label"
     )
     orig_data_csv = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="Original data"
-    ).set_extra(
-        is_public=True
-    )
+        blank=True, null=True, verbose_name="Original data"
+    ).set_extra(is_public=True)
     use_case = models.ManyToManyField(
         "UseCase",
-        related_name='has_stelle',
+        related_name="has_stelle",
         blank=True,
         verbose_name="Use case",
         help_text="Associated use case(s)",
@@ -1073,32 +864,28 @@ class Stelle(models.Model):
         is_public=True,
     )
     lemmata = models.JSONField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Quotation (lemmatised)",
-        help_text="A lemmatised version of the passage"
+        help_text="A lemmatised version of the passage",
     )
 
     class Meta:
-
         ordering = [
-            'id',
+            "id",
         ]
         verbose_name = "Stelle"
 
     def save(self, *args, **kwargs):
-        self.display_label = self.make_label()
-        if self.zitat and self.lemmata is None:
-            self.lemmata = process_text(self.zitat)
-        super(Stelle, self).save(*args, **kwargs)
+
+        super().save(*args, **kwargs)
 
     def make_label(self):
         try:
             label = f"{self.zitat[:35]}...; ({self.text}, {self.zitat_stelle})"
         except Exception as e:
-            logger.error(
-                f'Stelle.make_label in object: {self.id} threw error {e}'
-            )
-            label = "{}".format(self.id)
+            logger.error(f"Stelle.make_label in object: {self.id} threw error {e}")
+            label = f"{self.id}"
         return label[:249]
 
     def __str__(self):
@@ -1107,45 +894,9 @@ class Stelle(models.Model):
         else:
             return f"{self.id}"
 
-    def field_dict(self):
-        return model_to_dict(self)
-
-    @classmethod
-    def get_listview_url(self):
-        return reverse('archiv:stelle_browse')
-
-    @classmethod
-    def get_source_table(self):
-        return "stelle"
-
     @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
-
-    @classmethod
-    def get_createview_url(self):
-        return reverse('archiv:stelle_create')
-
-    def get_absolute_url(self):
-        return reverse('archiv:stelle_detail', kwargs={'pk': self.id})
-
-    def get_delete_url(self):
-        return reverse('archiv:stelle_delete', kwargs={'pk': self.id})
-
-    def get_edit_url(self):
-        return reverse('archiv:stelle_edit', kwargs={'pk': self.id})
-
-    def get_next(self):
-        next = next_in_order(self)
-        if next:
-            return next.get_absolute_url()
-        return False
-
-    def get_prev(self):
-        prev = prev_in_order(self)
-        if prev:
-            return prev.get_absolute_url()
-        return False
 
     def tei_markup_foreign(self, res):
         text = res
@@ -1155,26 +906,41 @@ class Stelle(models.Model):
         if self.key_word:
             for k in self.key_word.all():
                 if k.wurzel:
-                    text = re.sub(rf"([“,,\",′,\s,\(,',‘])({ k.wurzel }\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
-                                  r"\1" + "<foreign xml:lang='%s'>" % (language) + r"\2" +
-                                  "</foreign>" + r"\3",
-                                  text,
-                                  flags=re.IGNORECASE)
+                    text = re.sub(
+                        rf"([“,,\",′,\s,\(,',‘])({k.wurzel}\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
+                        r"\1"
+                        + f"<foreign xml:lang='{language}'>"
+                        + r"\2"
+                        + "</foreign>"
+                        + r"\3",
+                        text,
+                        flags=re.IGNORECASE,
+                    )
                 else:
                     variants = k.varianten.split(";")
                     for v in variants:
                         if len(v) != 0:
-                            text = re.sub(rf"([“,,\",′,\s,\(,',‘])({ v }\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
-                                          r"\1" + "<foreign xml:lang='%s'>" % (language) + r"\2" +
-                                          "</foreign>" + r"\3",
-                                          text,
-                                          flags=re.IGNORECASE)
+                            text = re.sub(
+                                rf"([“,,\",′,\s,\(,',‘])({v}\w+?)([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
+                                r"\1"
+                                + f"<foreign xml:lang='{language}'>"
+                                + r"\2"
+                                + "</foreign>"
+                                + r"\3",
+                                text,
+                                flags=re.IGNORECASE,
+                            )
                 if k.stichwort:
-                    text = re.sub(rf"([“,,\",′,\s,\(,',‘])({ k.stichwort })([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
-                                  r"\1" + "<foreign xml:lang='%s'>" % (language) + r"\2" +
-                                  "</foreign>" + r"\3",
-                                  text,
-                                  flags=re.IGNORECASE)
+                    text = re.sub(
+                        rf"([“,,\",′,\s,\(,',‘])({k.stichwort})([′,\s,\.,\,,\!,\?,\),\",',’,”,;])",
+                        r"\1"
+                        + "<foreign xml:lang='language'>"
+                        + r"\2"
+                        + "</foreign>"
+                        + r"\3",
+                        text,
+                        flags=re.IGNORECASE,
+                    )
             return text
 
     def translation_markup(self):
@@ -1193,13 +959,12 @@ class Stelle(models.Model):
 
 
 class Text(models.Model):
-    """ Text """
-    legacy_id = models.CharField(
-        max_length=300, blank=True,
-        verbose_name="Legacy ID"
-    )
+    """Text"""
+
+    legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Old primary key",
         help_text="Old primary key (from GENS database)",
     ).set_extra(
@@ -1210,7 +975,7 @@ class Text(models.Model):
     )
     autor = models.ManyToManyField(
         "Autor",
-        related_name='rvn_text_autor_autor',
+        related_name="rvn_text_autor_autor",
         blank=True,
         verbose_name="Author",
         help_text="Author",
@@ -1241,7 +1006,7 @@ class Text(models.Model):
     text_lang = models.CharField(
         max_length=250,
         blank=True,
-        default='lat',
+        default="lat",
         verbose_name="Language",
         help_text="Language of the original text (default Latin)",
     ).set_extra(
@@ -1276,16 +1041,10 @@ class Text(models.Model):
         data_lookup="tzeitbis",
     )
     not_before = models.IntegerField(
-        blank=True,
-        null=True,
-        verbose_name="not before",
-        help_text="YYY or YYYY"
+        blank=True, null=True, verbose_name="not before", help_text="YYY or YYYY"
     )
     not_after = models.IntegerField(
-        blank=True,
-        null=True,
-        verbose_name="not after",
-        help_text="YYY or YYYY"
+        blank=True, null=True, verbose_name="not after", help_text="YYY or YYYY"
     )
     edition = models.CharField(
         max_length=350,
@@ -1298,7 +1057,7 @@ class Text(models.Model):
     )
     art = models.ForeignKey(
         SkosConcept,
-        related_name='rvn_text_art_skosconcept',
+        related_name="rvn_text_art_skosconcept",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -1310,7 +1069,7 @@ class Text(models.Model):
     )
     ort = models.ManyToManyField(
         "Ort",
-        related_name='rvn_text_ort_ort',
+        related_name="rvn_text_ort_ort",
         blank=True,
         verbose_name="Place",
         help_text="Place of composition",
@@ -1319,7 +1078,8 @@ class Text(models.Model):
         data_lookup="tort",
     )
     kommentar = models.TextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Comment",
         help_text="Comment",
     ).set_extra(
@@ -1328,17 +1088,12 @@ class Text(models.Model):
         arche_prop="hasNote",
     )
     orig_data_csv = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name="Original data"
-    ).set_extra(
-        is_public=True
-    )
+        blank=True, null=True, verbose_name="Original data"
+    ).set_extra(is_public=True)
 
     class Meta:
-
         ordering = [
-            'title',
+            "title",
         ]
         verbose_name = "Text"
 
@@ -1348,60 +1103,16 @@ class Text(models.Model):
         else:
             return f"{self.legacy_id} ({self.not_before} - {self.not_after})"
 
-    def field_dict(self):
-        return model_to_dict(self)
-
     def get_tei_url(self):
-        return reverse('archiv:text_xml', kwargs={'pk': self.id})
+        return reverse("archiv:text_xml", kwargs={"pk": self.id})
 
     @classmethod
     def get_listview_url(self):
-        return reverse('archiv:text_browse')
-
-    @classmethod
-    def get_source_table(self):
-        return "text"
+        return reverse("archiv:text_browse")
 
     @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
-
-    @classmethod
-    def get_createview_url(self):
-        return reverse('archiv:text_create')
-
-    def get_absolute_url(self):
-        return reverse('archiv:text_detail', kwargs={'pk': self.id})
-
-    def get_delete_url(self):
-        return reverse('archiv:text_delete', kwargs={'pk': self.id})
-
-    def get_edit_url(self):
-        return reverse('archiv:text_edit', kwargs={'pk': self.id})
-
-    def get_next(self):
-        next = next_in_order(self)
-        if next:
-            return next.get_absolute_url()
-        return False
-
-    def get_prev(self):
-        prev = prev_in_order(self)
-        if prev:
-            return prev.get_absolute_url()
-        return False
-
-    def get_next_id(self):
-        next = next_in_order(self)
-        if next:
-            return next.id
-        return False
-
-    def get_prev_id(self):
-        prev = prev_in_order(self)
-        if prev:
-            return prev.id
-        return False
 
     def get_project_metadata(self):
         metadata = PROJECT_METADATA
@@ -1416,7 +1127,7 @@ class Text(models.Model):
             self.not_before = -100
         if not self.end_date and not self.not_after:
             self.not_after = 2020
-        super(Text, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
     def not_before_tei_normalized(self):
         if self.not_before:
@@ -1439,14 +1150,13 @@ class Text(models.Model):
 class Event(models.Model):
     title = models.CharField(
         max_length=250,
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Title",
-        help_text="Name of the event"
+        help_text="Name of the event",
     )
     description = models.TextField(
-        blank=True, null=True,
-        verbose_name="Description",
-        help_text="Description"
+        blank=True, null=True, verbose_name="Description", help_text="Description"
     )
     start_date = models.IntegerField(
         blank=True,
@@ -1466,68 +1176,35 @@ class Event(models.Model):
     )
     written_date = models.CharField(
         max_length=250,
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Date",
-        help_text="Specific year"
+        help_text="Specific year",
     )
     use_case = models.ManyToManyField(
         "UseCase",
-        related_name='has_event',
+        related_name="has_event",
         blank=True,
         verbose_name="Use case",
         help_text="Associated use case(s)",
-    ).set_extra(
-        is_public=True
-    )
+    ).set_extra(is_public=True)
 
     class Meta:
-
         ordering = [
-            'title',
+            "title",
         ]
         verbose_name = "Event"
 
     def __str__(self):
         return f"{self.title}"
 
-    def field_dict(self):
-        return model_to_dict(self)
-
-    @classmethod
-    def get_listview_url(self):
-        return reverse('archiv:event_browse')
-
-    @classmethod
-    def get_createview_url(self):
-        return reverse('archiv:event_create')
-
-    def get_absolute_url(self):
-        return reverse('archiv:event_detail', kwargs={'pk': self.id})
-
-    def get_delete_url(self):
-        return reverse('archiv:event_delete', kwargs={'pk': self.id})
-
-    def get_edit_url(self):
-        return reverse('archiv:event_edit', kwargs={'pk': self.id})
-
-    def get_next(self):
-        next = next_in_order(self)
-        if next:
-            return next.get_absolute_url()
-        return False
-
-    def get_prev(self):
-        prev = prev_in_order(self)
-        if prev:
-            return prev.get_absolute_url()
-        return False
-
 
 class SpatialCoverage(models.Model):
-    """ Spatial Coverage of a Keyword bound to a specifc source document"""
+    """Spatial Coverage of a Keyword bound to a specifc source document"""
+
     stelle = models.ManyToManyField(
         "Stelle",
-        related_name='has_spatial_coverage',
+        related_name="has_spatial_coverage",
         blank=True,
         verbose_name="Passage",
         help_text="Passage associated with coverage",
@@ -1536,7 +1213,7 @@ class SpatialCoverage(models.Model):
     )
     key_word = models.ForeignKey(
         "KeyWord",
-        related_name='has_spatial_coverage',
+        related_name="has_spatial_coverage",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -1547,7 +1224,8 @@ class SpatialCoverage(models.Model):
         arche_prop="hasSubject",
     )
     kommentar = models.TextField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Comment",
         help_text="Comment",
     ).set_extra(
@@ -1555,7 +1233,8 @@ class SpatialCoverage(models.Model):
         arche_prop="hasNote",
     )
     fuzzy_geom = PolygonField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Approximate localisation",
         help_text="Approximate localisation of an area",
     ).set_extra(
@@ -1563,7 +1242,8 @@ class SpatialCoverage(models.Model):
         arche_prop="hasWkt",
     )
     geom_collection = GeometryCollectionField(
-        blank=True, null=True,
+        blank=True,
+        null=True,
         verbose_name="Points and lines",
         help_text="points and lines",
     ).set_extra(
@@ -1575,66 +1255,29 @@ class SpatialCoverage(models.Model):
         blank=True,
         default=1,
         verbose_name="Degree of uncertainty",
-        help_text="Uncertainty of location on a scale from 1 (very secure) to 10 (very insecure)"
+        help_text="Uncertainty of location on a scale from 1 (very secure) to 10 (very insecure)",
     ).set_extra(
         is_public=True,
     )
 
     class Meta:
-
         ordering = [
-            'id',
+            "id",
         ]
         verbose_name = "Spatial Coverage"
 
     def __str__(self):
         return f"{self.stelle.all()} - {self.key_word}"
 
-    def field_dict(self):
-        return model_to_dict(self)
-
-    @classmethod
-    def get_source_table(self):
-        return None
-
-    @classmethod
-    def get_listview_url(self):
-        return reverse('archiv:spatialcoverage_browse')
-
     @classmethod
     def get_natural_primary_key(self):
         return "id"
 
-    @classmethod
-    def get_createview_url(self):
-        return reverse('archiv:spatialcoverage_create')
-
-    def get_absolute_url(self):
-        return reverse('archiv:spatialcoverage_detail', kwargs={'pk': self.id})
-
-    def get_delete_url(self):
-        return reverse('archiv:spatialcoverage_delete', kwargs={'pk': self.id})
-
-    def get_edit_url(self):
-        return reverse('archiv:spatialcoverage_edit', kwargs={'pk': self.id})
-
-    def get_next(self):
-        next = next_in_order(self)
-        if next:
-            return next.get_absolute_url()
-        return False
-
-    def get_prev(self):
-        prev = prev_in_order(self)
-        if prev:
-            return prev.get_absolute_url()
-        return False
-
     def get_author_coords(self):
         cur_item = SpatialCoverage.objects.filter(id=self.id)
         items = cur_item.values_list(
-            'stelle__text__ort__long',
-            'stelle__text__ort__lat',
+            "stelle__text__ort__long",
+            "stelle__text__ort__lat",
         )
         no_blanks = [x for x in items if x[0]]
         return no_blanks
@@ -1666,7 +1309,7 @@ class SpatialCoverage(models.Model):
                 "id": x.id,
                 "start_date": x.start_date,
                 "end_date": x.end_date,
-                "display_label": x.display_label
+                "display_label": x.display_label,
             }
             for x in self.stellen_objects
         ]
@@ -1678,16 +1321,16 @@ class SpatialCoverage(models.Model):
             {
                 "title": x.title,
                 "id": x.id,
-                "places": [
-                    getattr(p, 'place_as_dict') for p in x.ort.all()
-                ],
+                "places": [p.place_as_dict for p in x.ort.all()],
                 "authors": [
                     {
                         "id": p.id,
                         "name": p.name,
-                        "place": getattr(p.ort, 'place_as_dict', None)
-                    } for p in x.autor.all()
-                ]
-            } for x in t
+                        "place": getattr(p.ort, "place_as_dict", None),
+                    }
+                    for p in x.autor.all()
+                ],
+            }
+            for x in t
         ]
         return texts

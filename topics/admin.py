@@ -1,11 +1,11 @@
 from django.contrib import admin
-from topics.models import Topic, ModelingProcess, TextTopicRelation, StopWord
+
+from topics.models import ModelingProcess, StopWord, TextTopicRelation, Topic
 
 
 class StopWordAdmin(admin.ModelAdmin):
-
     search_fields = [
-        'word',
+        "word",
     ]
 
 

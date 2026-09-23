@@ -4,20 +4,30 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0010_auto_20210226_1207'),
+        ("archiv", "0010_auto_20210226_1207"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='text',
-            name='alt_title',
-            field=models.CharField(blank=True, help_text='Alternative(r) Titel', max_length=250, verbose_name='Alternative(r) Titel'),
+            model_name="text",
+            name="alt_title",
+            field=models.CharField(
+                blank=True,
+                help_text="Alternative(r) Titel",
+                max_length=250,
+                verbose_name="Alternative(r) Titel",
+            ),
         ),
         migrations.AddField(
-            model_name='text',
-            name='text_lang',
-            field=models.CharField(blank=True, default='lat', help_text="Spraches des Textes, default 'lat'", max_length=250, verbose_name='Sprache des Textes'),
+            model_name="text",
+            name="text_lang",
+            field=models.CharField(
+                blank=True,
+                default="lat",
+                help_text="Spraches des Textes, default 'lat'",
+                max_length=250,
+                verbose_name="Sprache des Textes",
+            ),
         ),
     ]

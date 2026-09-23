@@ -4,15 +4,20 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0009_auto_20210226_0923'),
+        ("archiv", "0009_auto_20210226_0923"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='keyword',
-            name='art',
-            field=models.CharField(blank=True, choices=[('Schlagwort', 'Schlagwort'), ('Eigenname', 'Eigenname')], help_text='Art des Stichworts', max_length=250, verbose_name='Art des Stichworts'),
+            model_name="keyword",
+            name="art",
+            field=models.CharField(
+                blank=True,
+                choices=[("Schlagwort", "Schlagwort"), ("Eigenname", "Eigenname")],
+                help_text="Art des Stichworts",
+                max_length=250,
+                verbose_name="Art des Stichworts",
+            ),
         ),
     ]

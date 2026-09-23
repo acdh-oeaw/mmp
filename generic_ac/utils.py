@@ -1,5 +1,5 @@
 from django.contrib.contenttypes.models import ContentType
-from django.core.paginator import Paginator, EmptyPage
+from django.core.paginator import EmptyPage, Paginator
 from django.db.models import Q
 
 
@@ -54,7 +54,7 @@ def query(request, q, config, page_size=5, page=1):
                     for key, value in x["additional_fields"].items():
                         extra_fields = {
                             "label": value["label"],
-                            "data": f'{getattr(obj, value["lookup"])}'
+                            "data": f"{getattr(obj, value['lookup'])}",
                         }
                         item["additional_fields"][key] = extra_fields
                 response["results"].append(item)

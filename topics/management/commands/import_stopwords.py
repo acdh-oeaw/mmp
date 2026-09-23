@@ -8,12 +8,12 @@ class Command(BaseCommand):
     help = "import stop words"
 
     def handle(self, *args, **kwargs):
-        file = '~/Downloads/Acdh version Stoppwörter - lg vw Kopie 22122021.xlsx'
+        file = "~/Downloads/Acdh version Stoppwörter - lg vw Kopie 22122021.xlsx"
 
         df = pd.read_excel(file)
         for i, row in df.iterrows():
             try:
-                word, value = row['token'].split(':')
+                word, value = row["token"].split(":")
             except ValueError:
                 continue
             value = int(value)

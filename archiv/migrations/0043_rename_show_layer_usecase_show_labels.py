@@ -4,15 +4,14 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0042_usecase_show_layer_alter_autor_id_alter_event_id_and_more'),
+        ("archiv", "0042_usecase_show_layer_alter_autor_id_alter_event_id_and_more"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='usecase',
-            old_name='show_layer',
-            new_name='show_labels',
+            model_name="usecase",
+            old_name="show_layer",
+            new_name="show_labels",
         ),
     ]

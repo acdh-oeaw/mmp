@@ -1,8 +1,8 @@
-from django.test import TestCase, Client
-from django.urls import reverse
 from django.conf import settings
-from generic_ac.urls import urlpatterns
+from django.test import Client, TestCase
+from django.urls import reverse
 
+from generic_ac.urls import urlpatterns
 
 client = Client()
 
@@ -21,7 +21,7 @@ class ApiTestCase(TestCase):
 
     def test_002_model_endpoints(self):
         endpoints = client.get(API_ROOT).json()
-        for _, value in endpoints.items():
+        for value in endpoints.values():
             r = client.get(value)
             self.assertEqual(r.status_code, 200)
             self.assertEqual(r.accepted_media_type, "application/json")

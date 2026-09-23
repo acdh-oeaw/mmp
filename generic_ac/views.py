@@ -1,8 +1,9 @@
-from django.http import JsonResponse
 from django.conf import settings
+from django.http import JsonResponse
+
 from .utils import query
 
-GENERIC_AC_CONFIG = getattr(settings, "GENERIC_AC_CONFIG")
+GENERIC_AC_CONFIG = settings.GENERIC_AC_CONFIG
 
 
 def generic_ac_view(request):

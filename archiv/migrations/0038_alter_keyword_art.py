@@ -4,15 +4,26 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0037_usecase_custom_layer'),
+        ("archiv", "0037_usecase_custom_layer"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='keyword',
-            name='art',
-            field=models.CharField(blank=True, choices=[('Keyword', 'Keyword'), ('Name', 'Name'), ('Ethonym', 'Ethonym'), ('Region', 'Region'), ('unclear', 'unclear')], help_text='Type of keyword', max_length=250, verbose_name='Type of keyword'),
+            model_name="keyword",
+            name="art",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("Keyword", "Keyword"),
+                    ("Name", "Name"),
+                    ("Ethonym", "Ethonym"),
+                    ("Region", "Region"),
+                    ("unclear", "unclear"),
+                ],
+                help_text="Type of keyword",
+                max_length=250,
+                verbose_name="Type of keyword",
+            ),
         ),
     ]

@@ -4,19 +4,24 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0032_spatialcoverage_geom_collection'),
+        ("archiv", "0032_spatialcoverage_geom_collection"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='stelle',
-            name='ort',
+            model_name="stelle",
+            name="ort",
         ),
         migrations.AddField(
-            model_name='stelle',
-            name='ort',
-            field=models.ManyToManyField(blank=True, help_text='Ort', related_name='rvn_stelle_ort_ort', to='archiv.Ort', verbose_name='Ort'),
+            model_name="stelle",
+            name="ort",
+            field=models.ManyToManyField(
+                blank=True,
+                help_text="Ort",
+                related_name="rvn_stelle_ort_ort",
+                to="archiv.Ort",
+                verbose_name="Ort",
+            ),
         ),
     ]

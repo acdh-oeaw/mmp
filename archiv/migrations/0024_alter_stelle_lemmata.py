@@ -4,15 +4,19 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('archiv', '0023_alter_text_lang'),
+        ("archiv", "0023_alter_text_lang"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='stelle',
-            name='lemmata',
-            field=models.JSONField(blank=True, help_text='A lemmatized version of the quote', null=True, verbose_name='A lemmatized version of the quote'),
+            model_name="stelle",
+            name="lemmata",
+            field=models.JSONField(
+                blank=True,
+                help_text="A lemmatized version of the quote",
+                null=True,
+                verbose_name="A lemmatized version of the quote",
+            ),
         ),
     ]
