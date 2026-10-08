@@ -14,6 +14,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils.functional import cached_property
 
+from archiv.my_model_utils import CrudUrlMixin, PrevNextMixin
 from archiv.utils import parse_date
 from layers.models import GeoJsonLayer
 from story_map.models import Story
@@ -33,7 +34,7 @@ models.Field.set_extra = set_extra
 LANG_CHOICES = (("lat", "lat"), ("gre", "gre"), ("und", "und"))
 
 
-class UseCase(models.Model):
+class UseCase(CrudUrlMixin, PrevNextMixin, models.Model):
     """Use Case in regards of a specific research questions"""
 
     title = models.CharField(

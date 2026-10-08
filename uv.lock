@@ -20,6 +20,23 @@ wheels = [
 ]
 
 [[package]]
+name = "acdh-django-browsing"
+version = "4.1.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "crispy-bootstrap5" },
+    { name = "django-crispy-forms" },
+    { name = "django-filter" },
+    { name = "django-super-deduper" },
+    { name = "django-tables2" },
+    { name = "tablib" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/e5/f0/443d8db999e6c0a9dbe1a4bf27feed1232a7ab1eb3c13e704f20e10d052a/acdh_django_browsing-4.1.1.tar.gz", hash = "sha256:7a9a15179ebb4f9ff49873737c69bb3f2280b1b55b08e54558d7a2f2f01a9301", size = 10734, upload-time = "2026-04-20T10:07:08.42Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/25/31/346f2741cb947be991ecceadd0a5e78121d852a64684ee8e19866adc7486/acdh_django_browsing-4.1.1-py3-none-any.whl", hash = "sha256:ca3235a610fd44818d9932f71575944dd14abb2f5aee16393a01a14a4ec67a74", size = 16194, upload-time = "2026-04-20T10:07:07.242Z" },
+]
+
+[[package]]
 name = "acdh-django-charts"
 version = "0.6.0"
 source = { registry = "https://pypi.org/simple" }
@@ -163,6 +180,19 @@ wheels = [
 ]
 
 [[package]]
+name = "crispy-bootstrap5"
+version = "2026.9"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+    { name = "django-crispy-forms" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/1b/e2/932204e16fd4b15522a481cb66c0529a24ea68678198b8ccd2f77be9082d/crispy_bootstrap5-2026.9.tar.gz", hash = "sha256:e574e6e910e97f5a32f5a18cc632d8bfd71cc4cb0f8fdd531e15f8618af2488b", size = 23530, upload-time = "2026-09-02T20:40:23.32Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/8d/f7/97f995d5b308a23b2a486996c2d9abf438ca0a0cee85c156e02b26e68d80/crispy_bootstrap5-2026.9-py3-none-any.whl", hash = "sha256:b65409c50f5b71383770075e6cbb8335405efa1487f874ff6be6f2f6953b041c", size = 24771, upload-time = "2026-09-02T20:40:22.058Z" },
+]
+
+[[package]]
 name = "django"
 version = "6.1.1"
 source = { registry = "https://pypi.org/simple" }
@@ -199,6 +229,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/15/6e/7923d3932bcdc6df7deea3d0cc31552144444130e5a2bef669e88c4e8141/django_ckeditor-6.7.3.tar.gz", hash = "sha256:889fd80ee7d368e3c5b828c8dabf8907d56bcad6bf5881f3898416df4f2adfe7", size = 1726851, upload-time = "2025-06-06T10:16:35.748Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d2/03/b2095f13b571ab78b2a3f55d30e2b3f126b3f4f350391037c37c418f7c2f/django_ckeditor-6.7.3-py3-none-any.whl", hash = "sha256:09771c9b8fb33b84bd2767dfc891a24b7fbdb0120910a7ec65b763a4ae6807bb", size = 2455696, upload-time = "2025-06-06T10:16:40.05Z" },
+]
+
+[[package]]
+name = "django-crispy-forms"
+version = "2.7"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/bc/f5/b79e3ed7cae871d5d71bf3448d627e1fabab769358bb90808bec056556fe/django_crispy_forms-2.7.tar.gz", hash = "sha256:4c59bed60417375cba26cebb2c67ab350b655934670270b1c89dbcd7e60f1b4c", size = 1097842, upload-time = "2026-07-29T11:12:12.081Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/1f/44/50335d09c4deb70affee0c54feef07ba458df015e32e45490615d9dc5b6b/django_crispy_forms-2.7-py3-none-any.whl", hash = "sha256:42a7ecb05ac3fd050d006dfe7aeceb7f318c30e5b5124ff619e2be252f36f096", size = 31478, upload-time = "2026-07-29T11:12:11.052Z" },
 ]
 
 [[package]]
@@ -262,6 +304,15 @@ wheels = [
 ]
 
 [[package]]
+name = "django-next-prev"
+version = "1.1.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/d4/9b/00bd08cdd54e8e9cf3a321b59d8ad8bf287b7373ec06de7048696cc267b1/django-next-prev-1.1.0.tar.gz", hash = "sha256:eb79dcde18bb0c75c809224ed8656417fb3e56eb7e7064552772ffb11d203885", size = 4841, upload-time = "2021-01-07T20:39:06.158Z" }
+
+[[package]]
 name = "django-reversion"
 version = "6.3.0"
 source = { registry = "https://pypi.org/simple" }
@@ -283,6 +334,30 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/45/1f/c1fc11aa877748a1477595572b0b1b686ca86cee470f169f53e2c30672d2/django-spaghetti-and-meatballs-0.4.2.tar.gz", hash = "sha256:ad1341aa2de9bd989d1f242455980b94ba289836b5a9b67015d1b11fcb33932e", size = 12178, upload-time = "2020-12-20T06:23:24.326Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/69/d5/d5553dcfbb0610ee82f9efd6625a1b524a9abdd2f3803c5c568b95448fae/django_spaghetti_and_meatballs-0.4.2-py3-none-any.whl", hash = "sha256:daebe5a4000f70b0a538106df27e34ab46d1303e1ee50257d6546aa2ef5330ba", size = 13942, upload-time = "2020-12-20T06:23:25.878Z" },
+]
+
+[[package]]
+name = "django-super-deduper"
+version = "0.1.4"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/9a/94/b943a991c8348fc7a9d0f7894a8cab7087a477d4651a7e02c7dd099b1fa9/django-super-deduper-0.1.4.tar.gz", hash = "sha256:e88cd3f954d44feef6c06d44267a17f289cc65f42eb802b44091ec7e50e5f36c", size = 9673, upload-time = "2020-05-26T16:23:10.251Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c8/2a/9a10418648cb439acc6c9677579e7753ff5f70cb9cb831dfa5c56f42c643/django_super_deduper-0.1.4-py3-none-any.whl", hash = "sha256:d7e0b971e917ef4ac28a1f40e5bf3c0eb66f4d09ca04c079654333e6da0e3008", size = 5564, upload-time = "2020-05-26T16:23:08.97Z" },
+]
+
+[[package]]
+name = "django-tables2"
+version = "3.0.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/87/c4/ac3eee8fb075e0b945452780f876cdad72caff38dba84df7df42c9cc8763/django_tables2-3.0.1.tar.gz", hash = "sha256:5a8b51b6c18ce5ec4edd4d0f23c55a8b15590854168b2e5c734118ee369dcbfd", size = 130254, upload-time = "2026-08-30T10:59:02.682Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/43/e7/6a75201123d94d0644588b40cc759dc88df50fa917d121046de5b182ec43/django_tables2-3.0.1-py3-none-any.whl", hash = "sha256:cfabaeeb4b5c4df0844ab0b3f634263deeb131ba2f3174fa5d3e15975047e881", size = 96402, upload-time = "2026-08-30T10:59:03.969Z" },
 ]
 
 [[package]]
@@ -484,6 +559,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "acdh-arche-assets" },
+    { name = "acdh-django-browsing" },
     { name = "acdh-django-charts" },
     { name = "django" },
     { name = "django-autocomplete-light" },
@@ -491,6 +567,7 @@ dependencies = [
     { name = "django-extensions" },
     { name = "django-leaflet" },
     { name = "django-mptt" },
+    { name = "django-next-prev" },
     { name = "django-reversion" },
     { name = "django-spaghetti-and-meatballs" },
     { name = "djangorestframework-gis" },
@@ -512,6 +589,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "acdh-arche-assets", specifier = ">=3.32.0" },
+    { name = "acdh-django-browsing", specifier = ">=4.1.1" },
     { name = "acdh-django-charts", specifier = ">=0.6.0" },
     { name = "django", specifier = ">=6.1.1" },
     { name = "django-autocomplete-light", specifier = ">=5.0.0" },
@@ -519,6 +597,7 @@ requires-dist = [
     { name = "django-extensions", specifier = ">=4.1" },
     { name = "django-leaflet", specifier = ">=0.34.0" },
     { name = "django-mptt", specifier = ">=0.18.0" },
+    { name = "django-next-prev", specifier = ">=1.1.0" },
     { name = "django-reversion", specifier = ">=6.3.0" },
     { name = "django-spaghetti-and-meatballs", specifier = ">=0.4.2" },
     { name = "djangorestframework-gis", specifier = ">=1.3.0" },
@@ -864,6 +943,15 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/5f/d3/3f06a1006f2261d1342aefb3c71eed02f5d4ca5bdbecd86ebc12ad38306e/sqlparse-0.6.0.tar.gz", hash = "sha256:113c35c75365ab9cc9c7231d68c6428fb11c085fc8e9eb1ad659b7ddbf6cd2b9", size = 178477, upload-time = "2026-08-13T19:16:06.396Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/d9/50/f00935da0ec7cbf325f8dc4f772ae46fbc7b672dd62876e73f0a94adda57/sqlparse-0.6.0-py3-none-any.whl", hash = "sha256:b861c0288ce2fa56209a9a6412d2e066ac664b3873b89c26c9d8415e8e32996f", size = 50070, upload-time = "2026-08-13T19:16:04.062Z" },
+]
+
+[[package]]
+name = "tablib"
+version = "3.10.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/96/b9/59d9c8b9c34642e7a718e8a1a7a91af3eb9b48f79bac794263702d41519c/tablib-3.10.0.tar.gz", hash = "sha256:781cfa9a42de8f33c52aff857fd0a04e483de4fd1c53eaaa9a6aeac62bad11de", size = 127128, upload-time = "2026-07-31T17:30:15.577Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/fc/0f/3ae17545ff976687f679ed3a101df7017135ee04769e858a4ccea0cc3f3e/tablib-3.10.0-py3-none-any.whl", hash = "sha256:5721bf3a52d491f8f843628a3a3200db164f6ad9e92fb6eaa64dc3f945f30ad9", size = 50170, upload-time = "2026-07-31T17:30:04.925Z" },
 ]
 
 [[package]]
