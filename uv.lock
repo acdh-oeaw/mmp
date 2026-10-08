@@ -274,6 +274,18 @@ wheels = [
 ]
 
 [[package]]
+name = "django-spaghetti-and-meatballs"
+version = "0.4.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/45/1f/c1fc11aa877748a1477595572b0b1b686ca86cee470f169f53e2c30672d2/django-spaghetti-and-meatballs-0.4.2.tar.gz", hash = "sha256:ad1341aa2de9bd989d1f242455980b94ba289836b5a9b67015d1b11fcb33932e", size = 12178, upload-time = "2020-12-20T06:23:24.326Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/69/d5/d5553dcfbb0610ee82f9efd6625a1b524a9abdd2f3803c5c568b95448fae/django_spaghetti_and_meatballs-0.4.2-py3-none-any.whl", hash = "sha256:daebe5a4000f70b0a538106df27e34ab46d1303e1ee50257d6546aa2ef5330ba", size = 13942, upload-time = "2020-12-20T06:23:25.878Z" },
+]
+
+[[package]]
 name = "djangorestframework"
 version = "3.18.1"
 source = { registry = "https://pypi.org/simple" }
@@ -480,6 +492,7 @@ dependencies = [
     { name = "django-leaflet" },
     { name = "django-mptt" },
     { name = "django-reversion" },
+    { name = "django-spaghetti-and-meatballs" },
     { name = "djangorestframework-gis" },
     { name = "drf-spectacular" },
     { name = "gunicorn" },
@@ -507,6 +520,7 @@ requires-dist = [
     { name = "django-leaflet", specifier = ">=0.34.0" },
     { name = "django-mptt", specifier = ">=0.18.0" },
     { name = "django-reversion", specifier = ">=6.3.0" },
+    { name = "django-spaghetti-and-meatballs", specifier = ">=0.4.2" },
     { name = "djangorestframework-gis", specifier = ">=1.3.0" },
     { name = "drf-spectacular", specifier = ">=0.30.0" },
     { name = "gunicorn", specifier = ">=26.2.0" },
