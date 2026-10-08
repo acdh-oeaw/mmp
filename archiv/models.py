@@ -37,6 +37,8 @@ LANG_CHOICES = (("lat", "lat"), ("gre", "gre"), ("und", "und"))
 class UseCase(CrudUrlMixin, PrevNextMixin, models.Model):
     """Use Case in regards of a specific research questions"""
 
+    url_namespace = "archiv"
+    url_basename = "usecase"
     title = models.CharField(
         max_length=250,
         blank=True,
