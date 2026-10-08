@@ -78,6 +78,7 @@ INSTALLED_APPS = [
     "story_map",
     "layers",
     "generic_ac",
+    "django_spaghetti",
 ]
 if DEBUG:
     INSTALLED_APPS.insert(10, "django_extensions")
@@ -203,6 +204,15 @@ LEAFLET_CONFIG = {
 # https://django-filter.readthedocs.io/en/stable/ref/settings.html#filters-empty-choice-label
 FILTERS_EMPTY_CHOICE_LABEL = None
 CKEDITOR_UPLOAD_PATH = "uploads/"
+
+SPAGHETTI_SAUCE = {
+    "apps": [
+        "archiv",
+        "layers",
+    ],
+    "show_fields": False,
+    "exclude": {"auth": ["user"]},
+}
 
 
 GENERIC_AC_CONFIG = [

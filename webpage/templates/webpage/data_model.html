@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Data Model {% endblock %}
+{% block content %}
+<div class="container">
+    <style>
+        #visualization {
+            height: 800px;
+        }
+    </style>
+    {% include 'django_spaghetti/plate.html' %}
+{% endblock %}
