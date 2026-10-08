@@ -86,7 +86,7 @@ if DEBUG:
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 SPAGHETTI_SAUCE = {
-    "apps": ["archiv", "topics"],
+    "apps": ["archiv", "vocabs", "layers", "topics"],
     "show_fields": False,
     "exclude": {"auth": ["user"]},
 }
@@ -204,16 +204,6 @@ LEAFLET_CONFIG = {
 # https://django-filter.readthedocs.io/en/stable/ref/settings.html#filters-empty-choice-label
 FILTERS_EMPTY_CHOICE_LABEL = None
 CKEDITOR_UPLOAD_PATH = "uploads/"
-
-SPAGHETTI_SAUCE = {
-    "apps": [
-        "archiv",
-        "layers",
-    ],
-    "show_fields": False,
-    "exclude": {"auth": ["user"]},
-}
-
 
 GENERIC_AC_CONFIG = [
     {
