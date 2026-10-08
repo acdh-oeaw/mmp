@@ -6,7 +6,6 @@ from browsing.utils import (
     GenericListView,
 )
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic.edit import DeleteView
 
@@ -16,8 +15,10 @@ from archiv.models import UseCase
 class UseCaseListView(GenericListView):
     model = UseCase
     formhelper_class = GenericFilterFormHelper
-    init_columns = ["name", "part_of"]
-    enable_merge = False
+    init_columns = ["id", "title", "principal_investigator"]
+    exclude_columns = [
+        "story_map",
+    ]
 
 
 class UseCaseDetailView(BaseDetailView):
@@ -45,7 +46,7 @@ class UseCaseUpdate(BaseUpdateView):
 class UseCaseDelete(DeleteView):
     model = UseCase
     template_name = "webpage/confirm_delete.html"
-    success_url = reverse_lazy("archiv:archiv_browse")
+    success_url = UseCase.get_listview_url()
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
