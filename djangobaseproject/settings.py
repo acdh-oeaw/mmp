@@ -63,12 +63,16 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework_gis",
+    "django_tables2",
     "reversion",
     "ckeditor",
     "django_filters",
+    "crispy_forms",
+    "crispy_bootstrap5",
     "rest_framework",
     "drf_spectacular",
     "mptt",
+    "browsing",
     "leaflet",
     "webpage",
     "vocabs",
@@ -113,6 +117,9 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "reversion.middleware.RevisionMiddleware",
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 ROOT_URLCONF = "djangobaseproject.urls"
 
