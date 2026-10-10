@@ -15,6 +15,8 @@ urlpatterns = [
         Plate.as_view(plate_template_name="webpage/data_model.html"),
         name="data_model",
     ),
+    path("accounts/login/", views.user_login, name="user_login"),
+    path("logout/", views.user_logout, name="user_logout"),
     path("", views.GenericWebpageView.as_view(), name="start"),
     path("<slug:template>", views.GenericWebpageView.as_view(), name="staticpage"),
 ]
