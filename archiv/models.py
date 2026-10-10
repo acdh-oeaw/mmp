@@ -188,9 +188,11 @@ class UseCase(CrudUrlMixin, PrevNextMixin, models.Model):
         return sorted(time_table_data, key=lambda k: k["start_date"])
 
 
-class Autor(models.Model):
+class Autor(CrudUrlMixin, PrevNextMixin, models.Model):
     """Autor"""
 
+    url_namespace = "archiv"
+    url_basename = "autor"
     legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
         blank=True,
@@ -410,9 +412,11 @@ class Autor(models.Model):
             return ""
 
 
-class KeyWord(models.Model):
+class KeyWord(CrudUrlMixin, PrevNextMixin, models.Model):
     """Keyword"""
 
+    url_namespace = "archiv"
+    url_basename = "keyword"
     legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
         blank=True,
@@ -532,8 +536,11 @@ class KeyWord(models.Model):
         return "stichwort"
 
 
-class Ort(models.Model):
+class Ort(CrudUrlMixin, PrevNextMixin, models.Model):
     """Ort"""
+
+    url_namespace = "archiv"
+    url_basename = "ort"
 
     legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
@@ -753,8 +760,11 @@ class Ort(models.Model):
         return art
 
 
-class Stelle(models.Model):
+class Stelle(CrudUrlMixin, PrevNextMixin, models.Model):
     """Stelle"""
+
+    url_namespace = "archiv"
+    url_basename = "stelle"
 
     legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
@@ -961,8 +971,11 @@ class Stelle(models.Model):
             return ""
 
 
-class Text(models.Model):
+class Text(CrudUrlMixin, PrevNextMixin, models.Model):
     """Text"""
+
+    url_namespace = "archiv"
+    url_basename = "text"
 
     legacy_id = models.CharField(max_length=300, blank=True, verbose_name="Legacy ID")
     legacy_pk = models.IntegerField(
@@ -1110,10 +1123,6 @@ class Text(models.Model):
         return reverse("archiv:text_xml", kwargs={"pk": self.id})
 
     @classmethod
-    def get_listview_url(self):
-        return reverse("archiv:text_browse")
-
-    @classmethod
     def get_natural_primary_key(self):
         return "legacy_pk"
 
@@ -1150,7 +1159,10 @@ class Text(models.Model):
             return ""
 
 
-class Event(models.Model):
+class Event(CrudUrlMixin, PrevNextMixin, models.Model):
+    url_namespace = "archiv"
+    url_basename = "event"
+
     title = models.CharField(
         max_length=250,
         blank=True,
@@ -1202,8 +1214,11 @@ class Event(models.Model):
         return f"{self.title}"
 
 
-class SpatialCoverage(models.Model):
+class SpatialCoverage(CrudUrlMixin, PrevNextMixin, models.Model):
     """Spatial Coverage of a Keyword bound to a specifc source document"""
+
+    url_namespace = "archiv"
+    url_basename = "spatialcoverage"
 
     stelle = models.ManyToManyField(
         "Stelle",

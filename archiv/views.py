@@ -1,53 +1,24 @@
-from browsing.utils import (
-    BaseCreateView,
-    BaseDetailView,
-    BaseUpdateView,
-    GenericFilterFormHelper,
-    GenericListView,
+from archiv.crud_registry import crud
+from archiv.models import (
+    Autor,
+    Event,
+    KeyWord,
+    Ort,
+    SpatialCoverage,
+    Stelle,
+    Text,
+    UseCase,
 )
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
-from django.views.generic.edit import DeleteView
 
-from archiv.models import UseCase
-
-
-class UseCaseListView(GenericListView):
-    model = UseCase
-    formhelper_class = GenericFilterFormHelper
-    init_columns = ["id", "title", "principal_investigator"]
-    exclude_columns = [
-        "story_map",
-    ]
-
-
-class UseCaseDetailView(BaseDetailView):
-    model = UseCase
-
-
-class UseCaseCreate(BaseCreateView):
-    model = UseCase
-    # form_class = UseCaseForm
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
-
-
-class UseCaseUpdate(BaseUpdateView):
-    model = UseCase
-    # form_class = UseCaseForm
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
-
-
-class UseCaseDelete(DeleteView):
-    model = UseCase
-    template_name = "webpage/confirm_delete.html"
-    success_url = UseCase.get_listview_url()
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
+crud.register(Autor, init_columns=["id", "name", "jahrhundert"])
+crud.register(
+    UseCase,
+    init_columns=["id", "title", "principal_investigator"],
+    exclude_columns=["story_map"],
+)
+crud.register(KeyWord, init_columns=["stichwort"])
+crud.register(Ort, init_columns=["id", "name", "name_antik"])
+crud.register(Stelle, init_columns=["id", "display_label", "text"])
+crud.register(Text, init_columns=["id", "title", "not_before", "not_after"])
+crud.register(Event, init_columns=["id", "title", "start_date", "end_date"])
+crud.register(SpatialCoverage, init_columns=["id", "key_word", "fuzzyness"])
