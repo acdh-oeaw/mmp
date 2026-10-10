@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ object }}{% endblock %}
+{% block content %}
+{% include 'browsing/partials/detailview_breadcrumb.html' %}
+<div class="container">
+    {% include 'browsing/partials/detailview_title.html' %}
+
+        {% block custom %}
+        <h2>Basic Information</h2>
+        <table class="table table-responsive table-hover">
+              {% for x in object.field_dict %}
+              {% if x.value %}
+              {% if user.is_authenticated %}
+              <tr>
+                <th>
+                  {% if x.help_text %}
+                  <abbr title="{{ x.help_text }}">{{ x.verbose_name }}</abbr>
+                  {% else %}
+                  {{ x.verbose_name }}
+                  {% endif %}
+                </th>
+                <td>
+                  {% if x.f_type == 'M2M' %}
+                  {% for y in x.value %}
+                  <li>
+                    <a href="{{ y.get_absolute_url }}">{{ y }}</a>
+                  </li>
+                  {% endfor %}
+                  {% elif  x.f_type == 'FK' %}
+                  <a href="{{ x.value.get_absolute_url }}">{{ x.value }}</a>
+                  {% elif  x.f_type == 'FK' %}
+                  <a href="{{ x.value.get_absolute_url }}">{{ x.value }}</a>
+                  {% elif  x.f_type == 'REVRESE_RELATION' %}
+                  {% for y in x.value %}
+                  <li>
+                    <a href="{{ y.get_absolute_url }}">{{ y }}</a>
+                  </li>
+                  {% endfor %}
+
+                  {% elif  x.f_type == 'SIMPLE' %}
+                  {{ x.value }}
+                  {% endif %}
+                </td>
+              </tr>
+              {% elif not x.extra_fields or x.extra_fields.is_public %}
+                {% if x.verbose_name != "The original data" and x.verbose_name != "ID" and x.verbose_name != "Matches FileChecker Entry" %}
+                <tr>
+                  <th>
+                    {% if x.help_text %}
+                    <abbr title="{{ x.help_text }}">{{ x.verbose_name }}</abbr>
+                    {% else %}
+                    {{ x.verbose_name }}
+                    {% endif %}
+                  </th>
+                  <td>
+                    {% if x.f_type == 'M2M' %}
+                    {% for y in x.value %}
+                    <li>
+                      <a href="{{ y.get_absolute_url }}">{{ y }}</a>
+                    </li>
+                    {% endfor %}
+                    {% elif  x.f_type == 'FK' %}
+                    <a href="{{ x.value.get_absolute_url }}">
+                      {% if x.verbose_name == "Copyright" %}
+                        {{ x.value|upper }}
+                      {% else %}
+                        {{ x.value }}
+                      {% endif %}
+                      </a>
+                    {% elif  x.f_type == 'FK' %}
+                    <a href="{{ x.value.get_absolute_url }}"></a>
+                    {% elif  x.f_type == 'REVRESE_RELATION' %}
+                    {% for y in x.value %}
+                    <li>
+                      <a href="{{ y.get_absolute_url }}">{{ y|upper }}</a>
+                    </li>
+                    {% endfor %}
+
+                    {% elif  x.f_type == 'SIMPLE' %}
+                    {{ x.value|safe }}
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endif %}
+              {% endif %}
+              {% endif %}
+              {% endfor %}
+            </table>
+    {% if user.is_authenticated %}
+   
+        <div class="float-end">
+            <a href="{{ object.get_delete_url }}">
+                <i class="bi bi-trash3" title="delete entry"></i>
+            </a>
+        </div>
+    {% endif %}
+</div>
+{% endblock custom %}
+{% endblock %}

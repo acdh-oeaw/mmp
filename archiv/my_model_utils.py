@@ -1,3 +1,4 @@
+from browsing.utils import model_to_dict
 from django.db import models
 from django.urls import NoReverseMatch, reverse, reverse_lazy
 from next_prev import next_in_order, prev_in_order
@@ -94,3 +95,14 @@ class CrudUrlMixin(models.Model):
         except NoReverseMatch:
             return False
         return return_url
+
+    def field_dict(self):
+        fields = model_to_dict(self)
+        related = {f.name: f for f in self._meta.get_fields() if f.is_relation}
+        for f in fields:
+            if f["f_type"] == "REVRESE_RELATION":
+                f["verbose_name"] = related[
+                    f["name"]
+                ].related_model._meta.verbose_name_plural
+        order = ["SIMPLE", "DateTime", "FK", "M2M", "REVRESE_RELATION"]
+        return sorted(fields, key=lambda f: order.index(f["f_type"]))
