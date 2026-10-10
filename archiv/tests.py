@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.test import Client, TestCase
 from django.urls import reverse
 
+from archiv.crud_registry import crud
 from archiv.dal_urls import urlpatterns
 from archiv.models import Autor, KeyWord, Text, UseCase
 from archiv.utils import cent_from_year, parse_date
@@ -99,3 +100,43 @@ class ArchivTestCase(TestCase):
             response = client.get(url)
             self.assertEqual(response.status_code, 200)
             self.assertTrue("results" in response.json())
+
+    def test_017_crud_views_anonymous(self):
+        for model in crud._registry:
+            base = model._get_url_basename()
+            item = model.objects.first() or model.objects.create()
+            public = {
+                "browse": reverse(f"archiv:{base}_browse"),
+                "detail": reverse(f"archiv:{base}_detail", kwargs={"pk": item.id}),
+            }
+            for action, url in public.items():
+                with self.subTest(model=model.__name__, action=action):
+                    self.assertEqual(client.get(url).status_code, 200)
+            protected = {
+                "create": reverse(f"archiv:{base}_create"),
+                "edit": reverse(f"archiv:{base}_edit", kwargs={"pk": item.id}),
+                "delete": reverse(f"archiv:{base}_delete", kwargs={"pk": item.id}),
+            }
+            for action, url in protected.items():
+                with self.subTest(model=model.__name__, action=action):
+                    self.assertEqual(client.get(url).status_code, 302)
+
+    def test_018_crud_views_logged_in(self):
+        self.client.login(**USER)
+        for model in crud._registry:
+            base = model._get_url_basename()
+            item = model.objects.first() or model.objects.create()
+            urls = {
+                "create": reverse(f"archiv:{base}_create"),
+                "edit": reverse(f"archiv:{base}_edit", kwargs={"pk": item.id}),
+                "delete": reverse(f"archiv:{base}_delete", kwargs={"pk": item.id}),
+            }
+            for action, url in urls.items():
+                with self.subTest(model=model.__name__, action=action):
+                    self.assertEqual(self.client.get(url).status_code, 200)
+
+    def test_019_endpoints(self):
+        for name in ["keyword_stelle", "stopwords", "keyword_data"]:
+            with self.subTest(name=name):
+                response = client.get(reverse(f"archiv:{name}"))
+                self.assertEqual(response.status_code, 200)
