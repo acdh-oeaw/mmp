@@ -1,6 +1,7 @@
 from django.urls import path
 
-from archiv import views
+from archiv import views  # noqa: F401  (registers models)
+from archiv.crud_registry import crud
 from archiv.endpoint_views import (
     KeyWordAuthorEndpoint,
     KeyWordEndpoint,
@@ -14,32 +15,7 @@ from archiv.endpoint_views import (
 from . import tei_views
 
 app_name = "archiv"
-urlpatterns = [
-    path(
-        "usecase/",
-        views.UseCaseListView.as_view(),
-        name="usecase_browse",
-    ),
-    path(
-        "usecase/detail/<int:pk>",
-        views.UseCaseDetailView.as_view(),
-        name="usecase_detail",
-    ),
-    path(
-        "usecase/create/",
-        views.UseCaseCreate.as_view(),
-        name="usecase_create",
-    ),
-    path(
-        "usecase/edit/<int:pk>",
-        views.UseCaseUpdate.as_view(),
-        name="usecase_edit",
-    ),
-    path(
-        "usecase/delete/<int:pk>",
-        views.UseCaseDelete.as_view(),
-        name="usecase_delete",
-    ),
+urlpatterns = crud.get_urls() + [
     path("keyword/century/<int:pk>", key_word_by_century, name="keyword_by_century"),
     path("keyword-network/", KeyWordEndpoint.as_view(), name="keyword_data"),
     path(
