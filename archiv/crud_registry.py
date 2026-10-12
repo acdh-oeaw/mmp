@@ -26,26 +26,36 @@ class CrudRegistry:
         self._registry = {}
 
     def register(
-        self, model, detail_template="archiv/generic_detail.html", **list_options
+        self,
+        model,
+        detail_template="archiv/generic_detail.html",
+        filter_class=None,
+        **list_options,
     ):
-        """Extra keyword arguments (e.g. init_columns) become attributes of the list view."""
+        """Extra keyword arguments (e.g. init_columns) become attributes of the list view.
+
+        filter_class overrides the auto-generated FilterSet of the list view.
+        """
         name = model.__name__
 
-        # django-filter cannot generate filters for field types without a default filter
-        unsupported = [
-            f.name
-            for f in [*model._meta.fields, *model._meta.many_to_many]
-            if try_dbfield(django_filters.FilterSet.FILTER_DEFAULTS.get, f.__class__)
-            is None
-        ]
-        model_cls = model
+        if filter_class is None:
+            # django-filter cannot generate filters for field types without a default filter
+            unsupported = [
+                f.name
+                for f in [*model._meta.fields, *model._meta.many_to_many]
+                if try_dbfield(
+                    django_filters.FilterSet.FILTER_DEFAULTS.get, f.__class__
+                )
+                is None
+            ]
+            model_cls = model
 
-        class Filter(django_filters.FilterSet):
-            class Meta:
-                model = model_cls
-                exclude = unsupported
+            class filter_class(django_filters.FilterSet):
+                class Meta:
+                    model = model_cls
+                    exclude = unsupported
 
-        list_options.setdefault("filter_class", Filter)
+        list_options["filter_class"] = filter_class
 
         def build(suffix, bases, **attrs):
             return type(f"{name}{suffix}", bases, {"model": model, **attrs})
