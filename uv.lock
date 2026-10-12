@@ -219,19 +219,6 @@ wheels = [
 ]
 
 [[package]]
-name = "django-ckeditor"
-version = "6.7.3"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "django" },
-    { name = "django-js-asset" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/15/6e/7923d3932bcdc6df7deea3d0cc31552144444130e5a2bef669e88c4e8141/django_ckeditor-6.7.3.tar.gz", hash = "sha256:889fd80ee7d368e3c5b828c8dabf8907d56bcad6bf5881f3898416df4f2adfe7", size = 1726851, upload-time = "2025-06-06T10:16:35.748Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/d2/03/b2095f13b571ab78b2a3f55d30e2b3f126b3f4f350391037c37c418f7c2f/django_ckeditor-6.7.3-py3-none-any.whl", hash = "sha256:09771c9b8fb33b84bd2767dfc891a24b7fbdb0120910a7ec65b763a4ae6807bb", size = 2455696, upload-time = "2025-06-06T10:16:40.05Z" },
-]
-
-[[package]]
 name = "django-crispy-forms"
 version = "2.7"
 source = { registry = "https://pypi.org/simple" }
@@ -358,6 +345,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/87/c4/ac3eee8fb075e0b945452780f876cdad72caff38dba84df7df42c9cc8763/django_tables2-3.0.1.tar.gz", hash = "sha256:5a8b51b6c18ce5ec4edd4d0f23c55a8b15590854168b2e5c734118ee369dcbfd", size = 130254, upload-time = "2026-08-30T10:59:02.682Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/43/e7/6a75201123d94d0644588b40cc759dc88df50fa917d121046de5b182ec43/django_tables2-3.0.1-py3-none-any.whl", hash = "sha256:cfabaeeb4b5c4df0844ab0b3f634263deeb131ba2f3174fa5d3e15975047e881", size = 96402, upload-time = "2026-08-30T10:59:03.969Z" },
+]
+
+[[package]]
+name = "django-tinymce"
+version = "5.0.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/0a/71/e9556c8bc1d99c0cb4081af0abc6440d7cf53c87b6c7da7b117f2de24881/django_tinymce-5.0.0.tar.gz", hash = "sha256:6257669ed596accf5fa967ff3061276b2c5352baac1bbc658fcd8252b12ca38a", size = 1161002, upload-time = "2025-10-21T19:25:25.831Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/21/22/b7b9299b40995b524bb2f6d61ae55bd690858630ff5e0ba9a06210313195/django_tinymce-5.0.0-py3-none-any.whl", hash = "sha256:c2e9c5efd2cc6c036f4c57e602b133180433e2bd1513b897089d3c4fb4e20579", size = 1400312, upload-time = "2025-10-21T19:25:24.113Z" },
 ]
 
 [[package]]
@@ -563,13 +562,13 @@ dependencies = [
     { name = "acdh-django-charts" },
     { name = "django" },
     { name = "django-autocomplete-light" },
-    { name = "django-ckeditor" },
     { name = "django-extensions" },
     { name = "django-leaflet" },
     { name = "django-mptt" },
     { name = "django-next-prev" },
     { name = "django-reversion" },
     { name = "django-spaghetti-and-meatballs" },
+    { name = "django-tinymce" },
     { name = "djangorestframework-gis" },
     { name = "drf-spectacular" },
     { name = "gunicorn" },
@@ -593,13 +592,13 @@ requires-dist = [
     { name = "acdh-django-charts", specifier = ">=0.6.0" },
     { name = "django", specifier = ">=6.1.1" },
     { name = "django-autocomplete-light", specifier = ">=5.0.0" },
-    { name = "django-ckeditor", specifier = ">=6.7.3" },
     { name = "django-extensions", specifier = ">=4.1" },
     { name = "django-leaflet", specifier = ">=0.34.0" },
     { name = "django-mptt", specifier = ">=0.18.0" },
     { name = "django-next-prev", specifier = ">=1.1.0" },
     { name = "django-reversion", specifier = ">=6.3.0" },
     { name = "django-spaghetti-and-meatballs", specifier = ">=0.4.2" },
+    { name = "django-tinymce", specifier = ">=5.0.0" },
     { name = "djangorestframework-gis", specifier = ">=1.3.0" },
     { name = "drf-spectacular", specifier = ">=0.30.0" },
     { name = "gunicorn", specifier = ">=26.2.0" },

@@ -699,8 +699,8 @@ class SkosConcept(MPTTModel):
     def get_createview_url(self):
         return reverse("vocabs:skosconcept_create")
 
-    def get_absolute_url(self):
-        return reverse("vocabs:skosconcept_detail", kwargs={"pk": self.id})
+    # def get_absolute_url(self):
+    #     return reverse_lazy("vocabs:skosconcept_detail", kwargs={"pk": self.id})
 
     def __str__(self):
         return self.pref_label

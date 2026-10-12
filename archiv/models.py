@@ -3,7 +3,6 @@ import logging
 import re
 
 from AcdhArcheAssets.uri_norm_rules import get_normalized_uri
-from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.gis.db.models import (
     GeometryCollectionField,
     PointField,
@@ -13,6 +12,7 @@ from django.contrib.gis.geos import GeometryCollection, Point, Polygon
 from django.db import models
 from django.urls import reverse
 from django.utils.functional import cached_property
+from tinymce.models import HTMLField
 
 from archiv.my_model_utils import CrudUrlMixin, PrevNextMixin
 from archiv.utils import parse_date
@@ -75,7 +75,7 @@ class UseCase(CrudUrlMixin, PrevNextMixin, models.Model):
         is_public=True,
         arche_prop="hasDescription",
     )
-    story_map = RichTextUploadingField(
+    story_map = HTMLField(
         blank=True, null=True, verbose_name="Story Map", help_text="Story Map"
     )
     knightlab_stoy_map = models.ManyToManyField(
