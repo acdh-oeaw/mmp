@@ -1334,10 +1334,10 @@ class SpatialCoverage(CrudUrlMixin, PrevNextMixin, models.Model):
 
     @cached_property
     def texts(self):
-        t = [x.text for x in self.stellen_objects]
+        t = [x.text for x in self.stellen_objects if x.text]
         texts = [
             {
-                "title": x.title,
+                "title": x.text,
                 "id": x.id,
                 "places": [p.place_as_dict for p in x.ort.all()],
                 "authors": [
