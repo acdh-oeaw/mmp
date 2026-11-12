@@ -30,11 +30,13 @@ class CrudRegistry:
         model,
         detail_template="archiv/generic_detail.html",
         filter_class=None,
+        detail_view_form=None,
         **list_options,
     ):
         """Extra keyword arguments (e.g. init_columns) become attributes of the list view.
 
         filter_class overrides the auto-generated FilterSet of the list view.
+        detail_view_form overrides the form used for both create and edit views.
         """
         name = model.__name__
 
@@ -70,8 +72,16 @@ class CrudRegistry:
             "detail": build(
                 "DetailView", (BaseDetailView,), template_name=detail_template
             ),
-            "create": build("Create", (LoginRequiredMixin, BaseCreateView)),
-            "edit": build("Update", (LoginRequiredMixin, BaseUpdateView)),
+            "create": build(
+                "Create",
+                (LoginRequiredMixin, BaseCreateView),
+                form_class=detail_view_form,
+            ),
+            "edit": build(
+                "Update",
+                (LoginRequiredMixin, BaseUpdateView),
+                form_class=detail_view_form,
+            ),
             "delete": build(
                 "Delete",
                 (LoginRequiredMixin, DeleteView),

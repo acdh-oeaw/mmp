@@ -1,9 +1,12 @@
+from unittest.mock import patch
+
+from django import forms
 from django.apps import apps
 from django.contrib.auth.models import User
-from django.test import Client, TestCase
+from django.test import Client, SimpleTestCase, TestCase
 from django.urls import reverse
 
-from archiv.crud_registry import crud
+from archiv.crud_registry import CrudRegistry, crud
 from archiv.dal_urls import urlpatterns
 from archiv.models import Autor, KeyWord, Text, UseCase
 from archiv.utils import cent_from_year, parse_date
@@ -28,6 +31,30 @@ CENTURY_TEST_DATA = [
     [1000, 10],
     [1001, 11],
 ]
+
+
+class CrudRegistryFormTests(SimpleTestCase):
+    def test_custom_form_is_used_for_create_and_edit(self):
+        class CustomForm(forms.ModelForm):
+            class Meta:
+                model = Autor
+                fields = ["name"]
+
+        views = CrudRegistry().register(Autor, detail_view_form=CustomForm)
+        for action in ("create", "edit"):
+            with self.subTest(action=action):
+                self.assertIs(views[action]().get_form_class(), CustomForm)
+
+    def test_default_form_is_generated_for_create_and_edit(self):
+        views = CrudRegistry().register(Autor)
+        with patch("browsing.utils.get_generic_form") as get_generic_form:
+            for action in ("create", "edit"):
+                with self.subTest(action=action):
+                    get_generic_form.reset_mock()
+                    self.assertIs(
+                        views[action]().get_form_class(), get_generic_form.return_value
+                    )
+                    get_generic_form.assert_called_once_with(Autor)
 
 
 class ArchivTestCase(TestCase):

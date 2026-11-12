@@ -699,6 +699,7 @@ class Ort(CrudUrlMixin, PrevNextMixin, models.Model):
             "id",
         ]
         verbose_name = "Ort"
+        verbose_name_plural = "Orte"
 
     def __str__(self):
         if self.name and self.name != "":
@@ -888,6 +889,7 @@ class Stelle(CrudUrlMixin, PrevNextMixin, models.Model):
             "id",
         ]
         verbose_name = "Stelle"
+        verbose_name_plural = "Stellen"
 
     def save(self, *args, **kwargs):
 
@@ -1112,6 +1114,7 @@ class Text(CrudUrlMixin, PrevNextMixin, models.Model):
             "title",
         ]
         verbose_name = "Text"
+        verbose_name_plural = "Texts"
 
     def __str__(self):
         if self.title:
