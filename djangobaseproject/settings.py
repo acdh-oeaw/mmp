@@ -200,10 +200,12 @@ SERIALIZATION_MODULES = {
     "geojson": "django.contrib.gis.serializers.geojson",
 }
 
+
 LEAFLET_CONFIG = {
-    "DEFAULT_CENTER": (40, 10),
+    "DEFAULT_CENTER": (40.1, 10.1),
     "DEFAULT_ZOOM": 4,
     "MIN_ZOOM": 3,
+    "MAX_ZOOM": 18,
     "OVERLAYS": [],
 }
 

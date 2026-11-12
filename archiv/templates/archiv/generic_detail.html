@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
+{% load leaflet_tags %}
+{% block scriptHeader %}
+{% if object.fuzzy_geom or object.geom_collection %}
+    {% leaflet_css %}
+    {% leaflet_js %}
+    
+{% endif %}
+{% endblock %}
 {% block title %}{{ object }}{% endblock %}
 {% block content %}
 {% include 'browsing/partials/detailview_breadcrumb.html' %}
@@ -86,7 +94,69 @@
               {% endif %}
               {% endif %}
               {% endfor %}
-            </table>
+        </table>
+
+        {% if object.fuzzy_geom or object.geom_collection %}
+        <div class="mt-2">
+    <span class="me-3">
+        <span style="color: #e67e22;">●</span>
+        Approximate localisation
+    </span>
+    <span>
+        <span style="color: #044a42;">●</span>
+        Points and lines
+    </span>
+</div>
+        {% leaflet_map "detail-map" callback="window.map_init_detail" %}
+    <div id="detail-map" style="height: 500px; width: 100%;"></div>
+    
+    <script>
+    function map_init_detail(map, options) {
+
+        const fuzzyGeom = {{ object.fuzzy_geom.geojson|default:"null"|safe }};
+        const geomCollection = {{ object.geom_collection.geojson|default:"null"|safe }};
+
+        const layers = [];
+
+        if (fuzzyGeom) {
+            const layer = L.geoJSON(fuzzyGeom, {
+                style: {
+                    color: '#e67e22',
+                    weight: 2,
+                    fillOpacity: 0.15
+                }
+            }).addTo(map);
+
+            layers.push(layer);
+        }
+
+        if (geomCollection) {
+            const layer = L.geoJSON(geomCollection, {
+                style: {
+                    color: '#044a42',
+                    weight: 3
+                },
+                pointToLayer: function(feature, latlng) {
+                    return L.circleMarker(latlng, {
+                        radius: 6,
+                        color: '#044a42',
+                        fillOpacity: 0.8
+                    });
+                }
+            }).addTo(map);
+
+            layers.push(layer);
+        }
+
+        if (layers.length) {
+            const group = L.featureGroup(layers);
+            map.fitBounds(group.getBounds(), { padding: [20, 20] });
+        }
+    }
+</script>
+
+{% leaflet_map "detail-map" callback="window.map_init_detail" %}
+{% endif %}
     {% if user.is_authenticated %}
    
         <div class="float-end">
@@ -95,6 +165,7 @@
             </a>
         </div>
     {% endif %}
+
 </div>
 {% endblock custom %}
 {% endblock %}

@@ -9,7 +9,7 @@ from archiv.filters import (
     TextListFilter,
     UseCaseListFilter,
 )
-from archiv.forms import AutorForm, StelleForm, TextForm
+from archiv.forms import AutorForm, SpatialCoverageForm, StelleForm, TextForm
 from archiv.models import (
     Autor,
     Event,
@@ -24,7 +24,7 @@ from archiv.models import (
 crud.register(
     Autor,
     filter_class=AutorListFilter,
-    detail_view_form=AutorForm,
+    crud_form=AutorForm,
     init_columns=["id", "name", "jahrhundert"],
 )
 crud.register(
@@ -40,13 +40,13 @@ crud.register(
 crud.register(
     Stelle,
     filter_class=StelleListFilter,
-    detail_view_form=StelleForm,
+    crud_form=StelleForm,
     init_columns=["id", "display_label", "text"],
 )
 crud.register(
     Text,
     filter_class=TextListFilter,
-    detail_view_form=TextForm,
+    crud_form=TextForm,
     init_columns=["id", "title", "not_before", "not_after"],
 )
 crud.register(
@@ -57,5 +57,7 @@ crud.register(
 crud.register(
     SpatialCoverage,
     filter_class=SpatialCoverageListFilter,
+    crud_form=SpatialCoverageForm,
+    crud_template="archiv/leaflet_edit.html",
     init_columns=["id", "key_word", "fuzzyness"],
 )

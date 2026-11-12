@@ -21,6 +21,7 @@ class SpatialCoverageForm(forms.ModelForm):
             ),
             "key_word": autocomplete.ModelSelect2(url="archiv-ac:keyword-autocomplete"),
             "fuzzy_geom": LeafletWidget(),
+            "geom_collection": LeafletWidget(),
         }
 
     def __init__(self, *args, **kwargs):

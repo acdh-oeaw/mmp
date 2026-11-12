@@ -40,7 +40,7 @@ class CrudRegistryFormTests(SimpleTestCase):
                 model = Autor
                 fields = ["name"]
 
-        views = CrudRegistry().register(Autor, detail_view_form=CustomForm)
+        views = CrudRegistry().register(Autor, crud_form=CustomForm)
         for action in ("create", "edit"):
             with self.subTest(action=action):
                 self.assertIs(views[action]().get_form_class(), CustomForm)
@@ -55,6 +55,29 @@ class CrudRegistryFormTests(SimpleTestCase):
                         views[action]().get_form_class(), get_generic_form.return_value
                     )
                     get_generic_form.assert_called_once_with(Autor)
+
+    def test_custom_template_is_used_for_create_and_edit(self):
+        views = CrudRegistry().register(Autor, crud_template="custom/form.html")
+        for action in ("create", "edit"):
+            with self.subTest(action=action):
+                self.assertEqual(views[action].template_name, "custom/form.html")
+
+    def test_default_template_is_used_for_create_and_edit(self):
+        views = CrudRegistry().register(Autor)
+        for action in ("create", "edit"):
+            with self.subTest(action=action):
+                self.assertEqual(
+                    views[action].template_name, "browsing/generic_create.html"
+                )
+
+    def test_individual_templates_can_override_create_and_edit(self):
+        views = CrudRegistry().register(
+            Autor,
+            create_template="custom/create.html",
+            edit_template="custom/edit.html",
+        )
+        self.assertEqual(views["create"].template_name, "custom/create.html")
+        self.assertEqual(views["edit"].template_name, "custom/edit.html")
 
 
 class ArchivTestCase(TestCase):

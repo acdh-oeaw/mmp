@@ -30,15 +30,23 @@ class CrudRegistry:
         model,
         detail_template="archiv/generic_detail.html",
         filter_class=None,
-        detail_view_form=None,
+        crud_form=None,
+        crud_template="browsing/generic_create.html",
+        create_template=None,
+        edit_template=None,
         **list_options,
     ):
         """Extra keyword arguments (e.g. init_columns) become attributes of the list view.
 
         filter_class overrides the auto-generated FilterSet of the list view.
-        detail_view_form overrides the form used for both create and edit views.
+        crud_form overrides the form used for both create and edit views.
+        crud_template overrides the template used for both create and edit views.
+        create_template and edit_template allow overriding create and edit templates individually.
         """
         name = model.__name__
+
+        create_template = create_template or crud_template
+        edit_template = edit_template or crud_template
 
         if filter_class is None:
             # django-filter cannot generate filters for field types without a default filter
@@ -75,12 +83,14 @@ class CrudRegistry:
             "create": build(
                 "Create",
                 (LoginRequiredMixin, BaseCreateView),
-                form_class=detail_view_form,
+                form_class=crud_form,
+                template_name=create_template,
             ),
             "edit": build(
                 "Update",
                 (LoginRequiredMixin, BaseUpdateView),
-                form_class=detail_view_form,
+                form_class=crud_form,
+                template_name=edit_template,
             ),
             "delete": build(
                 "Delete",
