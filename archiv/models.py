@@ -147,43 +147,52 @@ class UseCase(CrudUrlMixin, PrevNextMixin, models.Model):
         if self.get_texts:
             for x in self.get_texts:
                 if x.start_date:
-                    time_table_data.append(
-                        {
-                            "id": x.id,
-                            "start_date": int(x.start_date),
-                            "end_date": x.end_date,
-                            "ent_type": "text",
-                            "ent_title": x.title,
-                            "ent_description": x.title,
-                        }
-                    )
+                    try:
+                        time_table_data.append(
+                            {
+                                "id": x.id,
+                                "start_date": int(x.start_date),
+                                "end_date": x.end_date,
+                                "ent_type": "text",
+                                "ent_title": x.title,
+                                "ent_description": x.title,
+                            }
+                        )
+                    except ValueError:
+                        continue
 
         if self.get_authors:
             for x in self.get_authors:
                 if x.start_date:
-                    time_table_data.append(
-                        {
-                            "id": x.id,
-                            "start_date": int(x.start_date),
-                            "end_date": x.end_date,
-                            "ent_type": "autor",
-                            "ent_title": x.name,
-                            "ent_description": x.name,
-                        }
-                    )
+                    try:
+                        time_table_data.append(
+                            {
+                                "id": x.id,
+                                "start_date": int(x.start_date),
+                                "end_date": x.end_date,
+                                "ent_type": "autor",
+                                "ent_title": x.name,
+                                "ent_description": x.name,
+                            }
+                        )
+                    except ValueError:
+                        continue
         if self.get_events:
             for x in self.get_events:
                 if x.start_date:
-                    time_table_data.append(
-                        {
-                            "id": x.id,
-                            "start_date": int(x.start_date),
-                            "end_date": x.end_date,
-                            "ent_type": "event",
-                            "ent_title": x.title,
-                            "ent_description": x.description,
-                        }
-                    )
+                    try:
+                        time_table_data.append(
+                            {
+                                "id": x.id,
+                                "start_date": int(x.start_date),
+                                "end_date": x.end_date,
+                                "ent_type": "event",
+                                "ent_title": x.title,
+                                "ent_description": x.description,
+                            }
+                        )
+                    except ValueError:
+                        continue
 
         return sorted(time_table_data, key=lambda k: k["start_date"])
 
