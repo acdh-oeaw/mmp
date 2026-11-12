@@ -298,6 +298,9 @@ class OrtForm(forms.ModelForm):
         exclude = [
             "coords",
         ]
+        widgets = {
+            "fuzzy_geom": LeafletWidget(),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
