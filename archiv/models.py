@@ -1337,7 +1337,7 @@ class SpatialCoverage(CrudUrlMixin, PrevNextMixin, models.Model):
         t = [x.text for x in self.stellen_objects if x.text]
         texts = [
             {
-                "title": x.text,
+                "title": x.title,
                 "id": x.id,
                 "places": [p.place_as_dict for p in x.ort.all()],
                 "authors": [
