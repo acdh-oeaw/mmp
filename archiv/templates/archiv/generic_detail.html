@@ -15,7 +15,6 @@
 
         {% block custom %}
         <h2>Basic Information</h2>
-        <h2>{{ object.coords.geojson }}</h2>
         <table class="table table-responsive table-hover">
               {% for x in object.field_dict %}
               {% if x.value %}
