@@ -37,15 +37,13 @@ class KeyWordStelle(ListView):
     def get_queryset(self, **kwargs):
         qs = super().get_queryset().distinct()
         self.filter = self.filter_class(self.request.GET, queryset=qs)
-        return self.filter.qs.distinct()
+        return self.filter.qs.distinct().prefetch_related("key_word")
 
     def render_to_response(self, context, **kwargs):
         qs = self.get_queryset().distinct().order_by("id")
-        qs_kw = [x.key_word.all().distinct() for x in qs]
-        key_words = []
-        for x in qs_kw:
-            for y in x:
-                key_words.append(y.stichwort)
+        key_words = [
+            keyword.stichwort for stelle in qs for keyword in stelle.key_word.all()
+        ]
         key_word_counter = Counter(key_words)
         data = {
             "token_dict": [
