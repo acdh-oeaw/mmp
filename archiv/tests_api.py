@@ -1,7 +1,10 @@
 from django.conf import settings
+from django.http import QueryDict
 from django.test import Client, TestCase
 from django.urls import reverse
 
+from archiv.filters import StelleListFilter
+from archiv.models import Stelle
 from generic_ac.urls import urlpatterns
 
 client = Client()
@@ -25,6 +28,16 @@ class ApiTestCase(TestCase):
             r = client.get(value)
             self.assertEqual(r.status_code, 200)
             self.assertEqual(r.accepted_media_type, "application/json")
+
+    def test_stelle_api_applies_text_art_filter(self):
+        params = QueryDict("text__art=20")
+        response = client.get("/api/stelle/", params)
+        expected_count = StelleListFilter(
+            data=params, queryset=Stelle.objects.all()
+        ).qs.distinct().count()
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["count"], expected_count)
 
     def test_003_generic_ac(self):
         for x in urlpatterns:

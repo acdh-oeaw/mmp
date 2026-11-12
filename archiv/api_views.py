@@ -74,7 +74,7 @@ class UseCaseViewSet(viewsets.ModelViewSet):
         django_filters.rest_framework.DjangoFilterBackend,
         OrderingFilter,
     ]
-    filter_class = UseCaseListFilter
+    filterset_class = UseCaseListFilter
 
 
 class EventViewSet(viewsets.ModelViewSet):
@@ -84,7 +84,7 @@ class EventViewSet(viewsets.ModelViewSet):
         django_filters.rest_framework.DjangoFilterBackend,
         OrderingFilter,
     ]
-    filter_class = EventListFilter
+    filterset_class = EventListFilter
 
 
 class SpatialCoverageViewSet(viewsets.ModelViewSet):
@@ -99,7 +99,7 @@ class SpatialCoverageViewSet(viewsets.ModelViewSet):
         django_filters.rest_framework.DjangoFilterBackend,
         OrderingFilter,
     ]
-    filter_class = SpatialCoverageListFilter
+    filterset_class = SpatialCoverageListFilter
     pagination_class = GeoJsonPagination
 
 
@@ -115,7 +115,7 @@ class SpatialCoverageGroupViewSet(viewsets.ModelViewSet):
         django_filters.rest_framework.DjangoFilterBackend,
         OrderingFilter,
     ]
-    filter_class = SpatialCoverageListFilter
+    filterset_class = SpatialCoverageListFilter
     pagination_class = GeoJsonPagination
 
 
@@ -132,7 +132,7 @@ class ConeViewSet(viewsets.ModelViewSet):
         django_filters.rest_framework.DjangoFilterBackend,
         OrderingFilter,
     ]
-    filter_class = SpatialCoverageListFilter
+    filterset_class = SpatialCoverageListFilter
     pagination_class = GeoJsonPagination
 
 
@@ -148,7 +148,7 @@ class AutorViewSet(viewsets.ModelViewSet):
         django_filters.rest_framework.DjangoFilterBackend,
         OrderingFilter,
     ]
-    filter_class = AutorListFilter
+    filterset_class = AutorListFilter
 
 
 class KeyWordViewSet(viewsets.ModelViewSet):
@@ -164,7 +164,7 @@ class KeyWordViewSet(viewsets.ModelViewSet):
         django_filters.rest_framework.DjangoFilterBackend,
         OrderingFilter,
     ]
-    filter_class = KeyWordListFilter
+    filterset_class = KeyWordListFilter
 
 
 class OrtViewSet(viewsets.ModelViewSet):
@@ -179,7 +179,7 @@ class OrtViewSet(viewsets.ModelViewSet):
         django_filters.rest_framework.DjangoFilterBackend,
         OrderingFilter,
     ]
-    filter_class = OrtListFilter
+    filterset_class = OrtListFilter
 
 
 class GeoJsonOrtViewSet(viewsets.ModelViewSet):
@@ -189,7 +189,7 @@ class GeoJsonOrtViewSet(viewsets.ModelViewSet):
         django_filters.rest_framework.DjangoFilterBackend,
         OrderingFilter,
     ]
-    filter_class = OrtListFilter
+    filterset_class = OrtListFilter
     pagination_class = GeoJsonPagination
 
 
@@ -202,7 +202,7 @@ class FuzzyGeoJsonOrtViewSet(viewsets.ModelViewSet):
         django_filters.rest_framework.DjangoFilterBackend,
         OrderingFilter,
     ]
-    filter_class = OrtListFilter
+    filterset_class = OrtListFilter
     pagination_class = GeoJsonPagination
 
 
@@ -224,7 +224,7 @@ class StelleViewSet(viewsets.ModelViewSet):
         django_filters.rest_framework.DjangoFilterBackend,
         OrderingFilter,
     ]
-    filter_class = StelleListFilter
+    filterset_class = StelleListFilter
     ordering_fields = [field.name for field in Stelle._meta.get_fields()] + [
         "text__not_before",
         "text__not_after",
@@ -243,7 +243,7 @@ class TextViewSet(viewsets.ModelViewSet):
         django_filters.rest_framework.DjangoFilterBackend,
         OrderingFilter,
     ]
-    filter_class = TextListFilter
+    filterset_class = TextListFilter
 
 
 # cut&paste the following snippet into your projects urls.py
