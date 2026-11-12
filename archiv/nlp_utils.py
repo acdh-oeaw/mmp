@@ -1,20 +1,16 @@
-import itertools
 from collections import Counter
 
-from django.contrib.contenttypes.models import ContentType
+from topics.models import StopWord
 
 
 def get_nlp_data(qs):
-    stop_word_ct = ContentType.objects.get(app_label="topics", model="stopword")
-    stop_word_class = stop_word_ct.model_class()
-    stop_words = [x[0] for x in stop_word_class.objects.all().values_list("word")]
+    stop_words = set(StopWord.objects.values_list("word", flat=True))
     qs_filtered = qs.exclude(lemmata__isnull=True).filter(text__text_lang="lat")
     try:
         tokens = [
             x["lemma"]
-            for x in list(
-                itertools.chain(*[x.lemmata["processed_text"] for x in qs_filtered])
-            )
+            for lemmata in qs_filtered.values_list("lemmata", flat=True).iterator()
+            for x in lemmata["processed_text"]
             if x["token"] not in stop_words
         ]
     except TypeError:

@@ -40,7 +40,7 @@ class KeyWordStelle(ListView):
         return self.filter.qs.distinct().prefetch_related("key_word")
 
     def render_to_response(self, context, **kwargs):
-        qs = self.get_queryset().distinct().order_by("id")
+        qs = self.object_list.order_by("id")
         key_words = [
             keyword.stichwort for stelle in qs for keyword in stelle.key_word.all()
         ]
@@ -63,16 +63,9 @@ class NlpDataStelle(ListView):
         return self.filter.qs.distinct()
 
     def render_to_response(self, context, **kwargs):
-        qs = self.get_queryset().distinct().order_by("id")
+        qs = self.object_list.order_by("id")
         data = get_nlp_data(qs)
-        clean_token = [x for x in data["token"]]
-        clean_data = {
-            "token": clean_token,
-            "token_dict": dict(Counter(clean_token)),
-            "token_count": len(clean_token),
-            "unique_token_count": len(set(clean_token)),
-        }
-        return JsonResponse(clean_data)
+        return JsonResponse(data)
 
 
 def key_word_by_century(request, pk):
@@ -86,8 +79,8 @@ def key_word_by_century(request, pk):
         .order_by("not_before")
         .values_list(*props)
     )
-    if items:
-        df = pd.DataFrame(items, columns=props)
+    df = pd.DataFrame.from_records(items.iterator(), columns=props)
+    if not df.empty:
         df["century_start"] = df.apply(
             lambda x: cent_from_year(x["not_before"]), axis=1
         )
@@ -119,7 +112,7 @@ class KeyWordEndpoint(ListView):
         return self.filter.qs.distinct()
 
     def render_to_response(self, context, **kwargs):
-        qs = self.get_queryset().distinct().order_by("id")
+        qs = self.object_list.order_by("id")
         df = graph_table(qs)
         data = create_graph(df)
         return JsonResponse(data)
@@ -140,11 +133,24 @@ class KeyWordAuthorEndpoint(ListView):
             author_qs = Autor.objects.filter(id__in=author_ids)
         except ValueError:
             author_qs = []
-        qs = self.get_queryset().distinct().order_by("id")
+        qs = self.object_list.order_by("id")
         df = graph_table(qs)
         data = create_graph(df)
-        node_ids = [x["key"] for x in data["nodes"]]
+        node_ids = {x["key"] for x in data["nodes"]}
         if author_qs:
+            keywords_by_author = defaultdict(list)
+            matching_keywords = (
+                KeyWord.objects.filter(
+                    rvn_stelle_key_word_keyword__text__autor__in=author_qs,
+                    rvn_stelle_key_word_keyword__in=qs,
+                )
+                .order_by("stichwort")
+                .values_list("rvn_stelle_key_word_keyword__text__autor__id", "id")
+                .distinct()
+            )
+            for author_id, keyword_id in matching_keywords:
+                keywords_by_author[author_id].append(keyword_id)
+
             for x in author_qs:
                 node = {
                     "key": f"autor_{x.id}",
@@ -153,16 +159,12 @@ class KeyWordAuthorEndpoint(ListView):
                     "label": f"{x}",
                 }
                 data["nodes"].append(node)
-                kw = KeyWord.objects.filter(
-                    rvn_stelle_key_word_keyword__text__autor=x.id,
-                    rvn_stelle_key_word_keyword__in=qs,
-                ).distinct()
-                for e in kw:
-                    kw_id = f"keyword_{e.id}"
+                for keyword_id in keywords_by_author[x.id]:
+                    kw_id = f"keyword_{keyword_id}"
                     if kw_id in node_ids:
                         data["edges"].append(
                             {
-                                "key": f"autor_{x.id}__keyword_{e.id}",
+                                "key": f"autor_{x.id}__keyword_{keyword_id}",
                                 "source": f"autor_{x.id}",
                                 "target": kw_id,
                             }

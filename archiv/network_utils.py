@@ -17,9 +17,7 @@ def graph_table(stellen, prop_table=generic_property_table):
     """takes a qs and returns a 'edge' df"""
     property_table = prop_table
     qs = KeyWord.objects.filter(rvn_stelle_key_word_keyword__in=stellen).distinct()
-    logger.info(
-        f"compiling network for {qs.count()} KeyWords mentioned in {stellen.count()} Stellen"
-    )
+    logger.info("compiling keyword network")
     columns = [x[1] for x in property_table]
     props = [x[0] for x in property_table]
 

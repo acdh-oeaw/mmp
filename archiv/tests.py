@@ -108,6 +108,15 @@ class ArchivTestCase(TestCase):
         response = client.get(url)
         self.assertEqual(response.status_code, 200)
 
+    def test_keyword_author_network_endpoint(self):
+        author_ids = list(Autor.objects.values_list("id", flat=True)[:2])
+        response = self.client.get(
+            "/archiv/keyword-author-network/", {"author": author_ids}
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("nodes", response.json())
+        self.assertIn("edges", response.json())
+
     def test_009_centuries(self):
         for x in CENTURY_TEST_DATA:
             self.assertEqual(cent_from_year(x[0]), x[1])
