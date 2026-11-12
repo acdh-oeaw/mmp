@@ -44,7 +44,9 @@ from story_map.models import Slide, Story
 
 
 class StoryViewSet(viewsets.ModelViewSet):
-    queryset = Story.objects.all().distinct()
+    queryset = (
+        Story.objects.all().distinct().prefetch_related("has_slides", "has_use_case")
+    )
     serializer_class = StorySerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
@@ -53,7 +55,7 @@ class StoryViewSet(viewsets.ModelViewSet):
 
 
 class SlideViewSet(viewsets.ModelViewSet):
-    queryset = Slide.objects.all().distinct()
+    queryset = Slide.objects.all().distinct().select_related("story")
     serializer_class = SlideSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
@@ -62,7 +64,11 @@ class SlideViewSet(viewsets.ModelViewSet):
 
 
 class UseCaseViewSet(viewsets.ModelViewSet):
-    queryset = UseCase.objects.filter(published=True).distinct()
+    queryset = (
+        UseCase.objects.filter(published=True)
+        .distinct()
+        .prefetch_related("knightlab_stoy_map", "layer", "has_stelle", "has_event")
+    )
     serializer_class = UseCaseSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
@@ -82,7 +88,12 @@ class EventViewSet(viewsets.ModelViewSet):
 
 
 class SpatialCoverageViewSet(viewsets.ModelViewSet):
-    queryset = SpatialCoverage.objects.exclude(fuzzy_geom=None).distinct()
+    queryset = (
+        SpatialCoverage.objects.exclude(fuzzy_geom=None)
+        .distinct()
+        .select_related("key_word")
+        .prefetch_related("stelle__text__ort", "stelle__text__autor__ort")
+    )
     serializer_class = SpatialCoverageSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
@@ -93,7 +104,12 @@ class SpatialCoverageViewSet(viewsets.ModelViewSet):
 
 
 class SpatialCoverageGroupViewSet(viewsets.ModelViewSet):
-    queryset = SpatialCoverage.objects.exclude(geom_collection__isnull=True).distinct()
+    queryset = (
+        SpatialCoverage.objects.exclude(geom_collection__isnull=True)
+        .distinct()
+        .select_related("key_word")
+        .prefetch_related("stelle__text__ort", "stelle__text__autor__ort")
+    )
     serializer_class = SpatialCoverageGroupSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
@@ -108,6 +124,8 @@ class ConeViewSet(viewsets.ModelViewSet):
         SpatialCoverage.objects.exclude(fuzzy_geom=None)
         .exclude(stelle__text__ort__isnull=True)
         .distinct()
+        .select_related("key_word")
+        .prefetch_related("stelle__text__ort", "stelle__text__autor__ort")
     )
     serializer_class = ConeSerializer
     filter_backends = [
@@ -119,7 +137,12 @@ class ConeViewSet(viewsets.ModelViewSet):
 
 
 class AutorViewSet(viewsets.ModelViewSet):
-    queryset = Autor.objects.all().distinct()
+    queryset = (
+        Autor.objects.all()
+        .distinct()
+        .select_related("ort")
+        .prefetch_related("rvn_text_autor_autor")
+    )
     serializer_class = AutorSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
@@ -129,7 +152,13 @@ class AutorViewSet(viewsets.ModelViewSet):
 
 
 class KeyWordViewSet(viewsets.ModelViewSet):
-    queryset = KeyWord.objects.all().distinct()
+    queryset = (
+        KeyWord.objects.all()
+        .distinct()
+        .prefetch_related(
+            "related_keyword", "rvn_stelle_key_word_keyword", "has_spatial_coverage"
+        )
+    )
     serializer_class = KeyWordSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
@@ -139,7 +168,12 @@ class KeyWordViewSet(viewsets.ModelViewSet):
 
 
 class OrtViewSet(viewsets.ModelViewSet):
-    queryset = Ort.objects.all().distinct()
+    queryset = (
+        Ort.objects.all()
+        .distinct()
+        .select_related("art", "kategorie")
+        .prefetch_related("rvn_autor_ort_ort", "rvn_text_ort_ort")
+    )
     serializer_class = OrtSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
@@ -149,7 +183,7 @@ class OrtViewSet(viewsets.ModelViewSet):
 
 
 class GeoJsonOrtViewSet(viewsets.ModelViewSet):
-    queryset = Ort.objects.exclude(coords__isnull=True).distinct()
+    queryset = Ort.objects.exclude(coords__isnull=True).distinct().select_related("art")
     serializer_class = GeoJsonOrtSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
@@ -160,7 +194,9 @@ class GeoJsonOrtViewSet(viewsets.ModelViewSet):
 
 
 class FuzzyGeoJsonOrtViewSet(viewsets.ModelViewSet):
-    queryset = Ort.objects.exclude(fuzzy_geom__isnull=True).distinct()
+    queryset = (
+        Ort.objects.exclude(fuzzy_geom__isnull=True).distinct().select_related("art")
+    )
     serializer_class = FuzzyGeoJsonOrtSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
@@ -171,7 +207,18 @@ class FuzzyGeoJsonOrtViewSet(viewsets.ModelViewSet):
 
 
 class StelleViewSet(viewsets.ModelViewSet):
-    queryset = Stelle.objects.all().distinct()
+    queryset = (
+        Stelle.objects.all()
+        .distinct()
+        .select_related("text", "text__art")
+        .prefetch_related(
+            "key_word",
+            "key_word__related_keyword",
+            "has_spatial_coverage",
+            "text__autor",
+            "text__ort",
+        )
+    )
     serializer_class = StelleSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,
@@ -185,7 +232,12 @@ class StelleViewSet(viewsets.ModelViewSet):
 
 
 class TextViewSet(viewsets.ModelViewSet):
-    queryset = Text.objects.all().distinct()
+    queryset = (
+        Text.objects.all()
+        .distinct()
+        .select_related("art")
+        .prefetch_related("autor", "ort", "rvn_stelle_text_text")
+    )
     serializer_class = TextSerializer
     filter_backends = [
         django_filters.rest_framework.DjangoFilterBackend,

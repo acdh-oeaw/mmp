@@ -23,7 +23,7 @@ class ModelingProcessViewSet(viewsets.ModelViewSet):
 
 
 class TopicViewSet(viewsets.ModelViewSet):
-    queryset = Topic.objects.all().distinct()
+    queryset = Topic.objects.all().distinct().select_related("process")
     serializer_class = TopicSerializer
 
 

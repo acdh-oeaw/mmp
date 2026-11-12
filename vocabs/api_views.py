@@ -23,7 +23,11 @@ class LargeResultsSetPagination(pagination.PageNumberPagination):
 
 
 class SkosConceptSchemeViewSet(viewsets.ModelViewSet):
-    queryset = SkosConceptScheme.objects.all()
+    queryset = (
+        SkosConceptScheme.objects.all()
+        .select_related("created_by")
+        .prefetch_related("curator", "has_concepts")
+    )
     serializer_class = SkosConceptSchemeSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     pagination_class = LargeResultsSetPagination
@@ -31,7 +35,11 @@ class SkosConceptSchemeViewSet(viewsets.ModelViewSet):
 
 
 class SkosCollectionViewSet(viewsets.ModelViewSet):
-    queryset = SkosCollection.objects.all()
+    queryset = (
+        SkosCollection.objects.all()
+        .select_related("scheme", "created_by")
+        .prefetch_related("has_members")
+    )
     serializer_class = SkosCollectionSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     pagination_class = LargeResultsSetPagination
@@ -39,7 +47,11 @@ class SkosCollectionViewSet(viewsets.ModelViewSet):
 
 
 class SkosConceptViewSet(viewsets.ModelViewSet):
-    queryset = SkosConcept.objects.all()
+    queryset = (
+        SkosConcept.objects.all()
+        .select_related("scheme", "broader_concept", "created_by")
+        .prefetch_related("collection", "narrower_concepts")
+    )
     serializer_class = SkosConceptSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     pagination_class = LargeResultsSetPagination
